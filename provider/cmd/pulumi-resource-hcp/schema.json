@@ -1,0 +1,2558 @@
+{
+    "name": "hcp",
+    "description": "A Pulumi package for creating and managing hcp cloud resources.",
+    "keywords": [
+        "pulumi",
+        "hcp"
+    ],
+    "homepage": "https://pulumi.io",
+    "license": "Apache-2.0",
+    "attribution": "This Pulumi package is based on the [`hcp` Terraform Provider](https://github.com/hashicorp/terraform-provider-hcp).",
+    "repository": "https://github.com/grapl-security/pulumi-hcp",
+    "meta": {
+        "moduleFormat": "(.*)(?:/[^/]*)"
+    },
+    "config": {
+        "variables": {
+            "clientId": {
+                "type": "string",
+                "description": "The OAuth2 Client ID for API operations.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "HCP_CLIENT_ID"
+                    ]
+                }
+            },
+            "clientSecret": {
+                "type": "string",
+                "description": "The OAuth2 Client Secret for API operations.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "HCP_CLIENT_SECRET"
+                    ]
+                }
+            }
+        }
+    },
+    "types": {
+        "hcp:index/getPackerImageIterationBuild:getPackerImageIterationBuild": {
+            "properties": {
+                "cloudProvider": {
+                    "type": "string",
+                    "description": "Name of the cloud provider this image is stored-in, if any.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "componentType": {
+                    "type": "string",
+                    "description": "Name of the builder that built this. Ex: 'amazon-ebs.example'.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "Creation time of this build.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "HCP ID of this build.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "images": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/hcp:index/getPackerImageIterationBuildImage:getPackerImageIterationBuildImage"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Labels for this build.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "packerRunUuid": {
+                    "type": "string",
+                    "description": "Packer generated UUID of this build.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Status of this build. DONE means that all images tied to this build were successfully built.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Time this build was last updated.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "cloudProvider",
+                "componentType",
+                "createdAt",
+                "id",
+                "images",
+                "labels",
+                "packerRunUuid",
+                "status",
+                "updatedAt"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "hcp:index/getPackerImageIterationBuildImage:getPackerImageIterationBuildImage": {
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "Creation time of this iteration\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of this resource.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "imageId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "region": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "createdAt",
+                "id",
+                "imageId",
+                "region"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        }
+    },
+    "provider": {
+        "description": "The provider type for the hcp package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
+        "properties": {
+            "clientId": {
+                "type": "string",
+                "description": "The OAuth2 Client ID for API operations.\n"
+            },
+            "clientSecret": {
+                "type": "string",
+                "description": "The OAuth2 Client Secret for API operations.\n"
+            }
+        },
+        "inputProperties": {
+            "clientId": {
+                "type": "string",
+                "description": "The OAuth2 Client ID for API operations.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "HCP_CLIENT_ID"
+                    ]
+                }
+            },
+            "clientSecret": {
+                "type": "string",
+                "description": "The OAuth2 Client Secret for API operations.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "HCP_CLIENT_SECRET"
+                    ]
+                }
+            }
+        }
+    },
+    "resources": {
+        "hcp:index/awsNetworkPeering:AwsNetworkPeering": {
+            "description": "The AWS network peering resource allows you to manage a network peering between an HVN and a peer AWS VPC.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst main = new hcp.Hvn(\"main\", {\n    hvnId: \"main-hvn\",\n    cloudProvider: \"aws\",\n    region: \"us-west-2\",\n    cidrBlock: \"172.25.16.0/20\",\n});\nconst peerVpc = new aws.ec2.Vpc(\"peerVpc\", {cidrBlock: \"172.31.0.0/16\"});\nconst peerArn = aws.getArnOutput({\n    arn: peerVpc.arn,\n});\nconst dev = new hcp.AwsNetworkPeering(\"dev\", {\n    hvnId: main.hvnId,\n    peeringId: \"dev\",\n    peerVpcId: peerVpc.id,\n    peerAccountId: peerVpc.ownerId,\n    peerVpcRegion: peerArn.apply(peerArn =\u003e peerArn.region),\n});\nconst main_to_dev = new hcp.HvnRoute(\"main-to-dev\", {\n    hvnLink: main.selfLink,\n    hvnRouteId: \"main-to-dev\",\n    destinationCidr: \"172.31.0.0/16\",\n    targetLink: dev.selfLink,\n});\nconst peerVpcPeeringConnectionAccepter = new aws.ec2.VpcPeeringConnectionAccepter(\"peerVpcPeeringConnectionAccepter\", {\n    vpcPeeringConnectionId: dev.providerPeeringId,\n    autoAccept: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_hcp as hcp\n\nmain = hcp.Hvn(\"main\",\n    hvn_id=\"main-hvn\",\n    cloud_provider=\"aws\",\n    region=\"us-west-2\",\n    cidr_block=\"172.25.16.0/20\")\npeer_vpc = aws.ec2.Vpc(\"peerVpc\", cidr_block=\"172.31.0.0/16\")\npeer_arn = aws.get_arn_output(arn=peer_vpc.arn)\ndev = hcp.AwsNetworkPeering(\"dev\",\n    hvn_id=main.hvn_id,\n    peering_id=\"dev\",\n    peer_vpc_id=peer_vpc.id,\n    peer_account_id=peer_vpc.owner_id,\n    peer_vpc_region=peer_arn.region)\nmain_to_dev = hcp.HvnRoute(\"main-to-dev\",\n    hvn_link=main.self_link,\n    hvn_route_id=\"main-to-dev\",\n    destination_cidr=\"172.31.0.0/16\",\n    target_link=dev.self_link)\npeer_vpc_peering_connection_accepter = aws.ec2.VpcPeeringConnectionAccepter(\"peerVpcPeeringConnectionAccepter\",\n    vpc_peering_connection_id=dev.provider_peering_id,\n    auto_accept=True)\n```\n```csharp\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var main = new Hcp.Hvn(\"main\", new Hcp.HvnArgs\n        {\n            HvnId = \"main-hvn\",\n            CloudProvider = \"aws\",\n            Region = \"us-west-2\",\n            CidrBlock = \"172.25.16.0/20\",\n        });\n        var peerVpc = new Aws.Ec2.Vpc(\"peerVpc\", new Aws.Ec2.VpcArgs\n        {\n            CidrBlock = \"172.31.0.0/16\",\n        });\n        var peerArn = Aws.GetArn.Invoke(new Aws.GetArnInvokeArgs\n        {\n            Arn = peerVpc.Arn,\n        });\n        var dev = new Hcp.AwsNetworkPeering(\"dev\", new Hcp.AwsNetworkPeeringArgs\n        {\n            HvnId = main.HvnId,\n            PeeringId = \"dev\",\n            PeerVpcId = peerVpc.Id,\n            PeerAccountId = peerVpc.OwnerId,\n            PeerVpcRegion = peerArn.Apply(peerArn =\u003e peerArn.Region),\n        });\n        var main_to_dev = new Hcp.HvnRoute(\"main-to-dev\", new Hcp.HvnRouteArgs\n        {\n            HvnLink = main.SelfLink,\n            HvnRouteId = \"main-to-dev\",\n            DestinationCidr = \"172.31.0.0/16\",\n            TargetLink = dev.SelfLink,\n        });\n        var peerVpcPeeringConnectionAccepter = new Aws.Ec2.VpcPeeringConnectionAccepter(\"peerVpcPeeringConnectionAccepter\", new Aws.Ec2.VpcPeeringConnectionAccepterArgs\n        {\n            VpcPeeringConnectionId = dev.ProviderPeeringId,\n            AutoAccept = true,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-aws/sdk/v4/go/aws\"\n\t\"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/ec2\"\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := hcp.NewHvn(ctx, \"main\", \u0026hcp.HvnArgs{\n\t\t\tHvnId:         pulumi.String(\"main-hvn\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t\tCidrBlock:     pulumi.String(\"172.25.16.0/20\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tpeerVpc, err := ec2.NewVpc(ctx, \"peerVpc\", \u0026ec2.VpcArgs{\n\t\t\tCidrBlock: pulumi.String(\"172.31.0.0/16\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tpeerArn := aws.GetArnOutput(ctx, GetArnOutputArgs{\n\t\t\tArn: peerVpc.Arn,\n\t\t}, nil)\n\t\tdev, err := hcp.NewAwsNetworkPeering(ctx, \"dev\", \u0026hcp.AwsNetworkPeeringArgs{\n\t\t\tHvnId:         main.HvnId,\n\t\t\tPeeringId:     pulumi.String(\"dev\"),\n\t\t\tPeerVpcId:     peerVpc.ID(),\n\t\t\tPeerAccountId: peerVpc.OwnerId,\n\t\t\tPeerVpcRegion: peerArn.ApplyT(func(peerArn GetArnResult) (string, error) {\n\t\t\t\treturn peerArn.Region, nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = hcp.NewHvnRoute(ctx, \"main-to-dev\", \u0026hcp.HvnRouteArgs{\n\t\t\tHvnLink:         main.SelfLink,\n\t\t\tHvnRouteId:      pulumi.String(\"main-to-dev\"),\n\t\t\tDestinationCidr: pulumi.String(\"172.31.0.0/16\"),\n\t\t\tTargetLink:      dev.SelfLink,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ec2.NewVpcPeeringConnectionAccepter(ctx, \"peerVpcPeeringConnectionAccepter\", \u0026ec2.VpcPeeringConnectionAccepterArgs{\n\t\t\tVpcPeeringConnectionId: dev.ProviderPeeringId,\n\t\t\tAutoAccept:             pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID is {hvn_id}:{peering_id}\n\n```sh\n $ pulumi import hcp:index/awsNetworkPeering:AwsNetworkPeering peer main-hvn:11eb60b3-d4ec-5eed-aacc-0242ac120015\n```\n\n ",
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "The time that the network peering was created.\n"
+                },
+                "expiresAt": {
+                    "type": "string",
+                    "description": "The time after which the network peering will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.\n"
+                },
+                "hvnId": {
+                    "type": "string",
+                    "description": "The ID of the HashiCorp Virtual Network (HVN).\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "The ID of the HCP organization where the network peering is located. Always matches the HVN's organization.\n"
+                },
+                "peerAccountId": {
+                    "type": "string",
+                    "description": "The account ID of the peer VPC in AWS.\n"
+                },
+                "peerVpcId": {
+                    "type": "string",
+                    "description": "The ID of the peer VPC in AWS.\n"
+                },
+                "peerVpcRegion": {
+                    "type": "string",
+                    "description": "The region of the peer VPC in AWS.\n"
+                },
+                "peeringId": {
+                    "type": "string",
+                    "description": "The ID of the network peering.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "The ID of the HCP project where the network peering is located. Always matches the HVN's project.\n"
+                },
+                "providerPeeringId": {
+                    "type": "string",
+                    "description": "The peering connection ID used by AWS.\n"
+                },
+                "selfLink": {
+                    "type": "string",
+                    "description": "A unique URL identifying the network peering.\n"
+                }
+            },
+            "required": [
+                "createdAt",
+                "expiresAt",
+                "hvnId",
+                "organizationId",
+                "peerAccountId",
+                "peerVpcId",
+                "peerVpcRegion",
+                "peeringId",
+                "projectId",
+                "providerPeeringId",
+                "selfLink"
+            ],
+            "inputProperties": {
+                "hvnId": {
+                    "type": "string",
+                    "description": "The ID of the HashiCorp Virtual Network (HVN).\n"
+                },
+                "peerAccountId": {
+                    "type": "string",
+                    "description": "The account ID of the peer VPC in AWS.\n"
+                },
+                "peerVpcId": {
+                    "type": "string",
+                    "description": "The ID of the peer VPC in AWS.\n"
+                },
+                "peerVpcRegion": {
+                    "type": "string",
+                    "description": "The region of the peer VPC in AWS.\n"
+                },
+                "peeringId": {
+                    "type": "string",
+                    "description": "The ID of the network peering.\n"
+                }
+            },
+            "requiredInputs": [
+                "hvnId",
+                "peerAccountId",
+                "peerVpcId",
+                "peerVpcRegion",
+                "peeringId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AwsNetworkPeering resources.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The time that the network peering was created.\n"
+                    },
+                    "expiresAt": {
+                        "type": "string",
+                        "description": "The time after which the network peering will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.\n"
+                    },
+                    "hvnId": {
+                        "type": "string",
+                        "description": "The ID of the HashiCorp Virtual Network (HVN).\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The ID of the HCP organization where the network peering is located. Always matches the HVN's organization.\n"
+                    },
+                    "peerAccountId": {
+                        "type": "string",
+                        "description": "The account ID of the peer VPC in AWS.\n"
+                    },
+                    "peerVpcId": {
+                        "type": "string",
+                        "description": "The ID of the peer VPC in AWS.\n"
+                    },
+                    "peerVpcRegion": {
+                        "type": "string",
+                        "description": "The region of the peer VPC in AWS.\n"
+                    },
+                    "peeringId": {
+                        "type": "string",
+                        "description": "The ID of the network peering.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of the HCP project where the network peering is located. Always matches the HVN's project.\n"
+                    },
+                    "providerPeeringId": {
+                        "type": "string",
+                        "description": "The peering connection ID used by AWS.\n"
+                    },
+                    "selfLink": {
+                        "type": "string",
+                        "description": "A unique URL identifying the network peering.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "hcp:index/awsTransitGatewayAttachment:AwsTransitGatewayAttachment": {
+            "description": "\n\n\n## Import\n\n# The import ID is {hvn_id}:{transit_gateway_attachment_id}\n\n```sh\n $ pulumi import hcp:index/awsTransitGatewayAttachment:AwsTransitGatewayAttachment example main-hvn:example-tgw-attachment\n```\n\n ",
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "The time that the transit gateway attachment was created.\n"
+                },
+                "expiresAt": {
+                    "type": "string",
+                    "description": "The time after which the transit gateway attachment will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.\n"
+                },
+                "hvnId": {
+                    "type": "string",
+                    "description": "The ID of the HashiCorp Virtual Network (HVN).\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "The ID of the HCP organization where the transit gateway attachment is located. Always matches the HVN's organization.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "The ID of the HCP project where the transit gateway attachment is located. Always matches the HVN's project.\n"
+                },
+                "providerTransitGatewayAttachmentId": {
+                    "type": "string",
+                    "description": "The transit gateway attachment ID used by AWS.\n"
+                },
+                "resourceShareArn": {
+                    "type": "string",
+                    "description": "The Amazon Resource Name (ARN) of the Resource Share that is needed to grant HCP access to the transit gateway in AWS.\nThe Resource Share should be associated with the HCP AWS account principal (see\n[aws_ram_principal_association](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ram_principal_association))\nand the transit gateway resource (see\n[aws_ram_resource_association](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ram_resource_association))\n"
+                },
+                "selfLink": {
+                    "type": "string",
+                    "description": "A unique URL identifying the transit gateway attachment.\n"
+                },
+                "state": {
+                    "type": "string",
+                    "description": "The state of the transit gateway attachment.\n"
+                },
+                "transitGatewayAttachmentId": {
+                    "type": "string",
+                    "description": "The user-settable name of the transit gateway attachment in HCP.\n"
+                },
+                "transitGatewayId": {
+                    "type": "string",
+                    "description": "The ID of the user-owned transit gateway in AWS. The AWS region of the transit gateway must match the HVN.\n"
+                }
+            },
+            "required": [
+                "createdAt",
+                "expiresAt",
+                "hvnId",
+                "organizationId",
+                "projectId",
+                "providerTransitGatewayAttachmentId",
+                "resourceShareArn",
+                "selfLink",
+                "state",
+                "transitGatewayAttachmentId",
+                "transitGatewayId"
+            ],
+            "inputProperties": {
+                "hvnId": {
+                    "type": "string",
+                    "description": "The ID of the HashiCorp Virtual Network (HVN).\n"
+                },
+                "resourceShareArn": {
+                    "type": "string",
+                    "description": "The Amazon Resource Name (ARN) of the Resource Share that is needed to grant HCP access to the transit gateway in AWS.\nThe Resource Share should be associated with the HCP AWS account principal (see\n[aws_ram_principal_association](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ram_principal_association))\nand the transit gateway resource (see\n[aws_ram_resource_association](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ram_resource_association))\n"
+                },
+                "transitGatewayAttachmentId": {
+                    "type": "string",
+                    "description": "The user-settable name of the transit gateway attachment in HCP.\n"
+                },
+                "transitGatewayId": {
+                    "type": "string",
+                    "description": "The ID of the user-owned transit gateway in AWS. The AWS region of the transit gateway must match the HVN.\n"
+                }
+            },
+            "requiredInputs": [
+                "hvnId",
+                "resourceShareArn",
+                "transitGatewayAttachmentId",
+                "transitGatewayId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AwsTransitGatewayAttachment resources.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The time that the transit gateway attachment was created.\n"
+                    },
+                    "expiresAt": {
+                        "type": "string",
+                        "description": "The time after which the transit gateway attachment will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.\n"
+                    },
+                    "hvnId": {
+                        "type": "string",
+                        "description": "The ID of the HashiCorp Virtual Network (HVN).\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The ID of the HCP organization where the transit gateway attachment is located. Always matches the HVN's organization.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of the HCP project where the transit gateway attachment is located. Always matches the HVN's project.\n"
+                    },
+                    "providerTransitGatewayAttachmentId": {
+                        "type": "string",
+                        "description": "The transit gateway attachment ID used by AWS.\n"
+                    },
+                    "resourceShareArn": {
+                        "type": "string",
+                        "description": "The Amazon Resource Name (ARN) of the Resource Share that is needed to grant HCP access to the transit gateway in AWS.\nThe Resource Share should be associated with the HCP AWS account principal (see\n[aws_ram_principal_association](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ram_principal_association))\nand the transit gateway resource (see\n[aws_ram_resource_association](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ram_resource_association))\n"
+                    },
+                    "selfLink": {
+                        "type": "string",
+                        "description": "A unique URL identifying the transit gateway attachment.\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "The state of the transit gateway attachment.\n"
+                    },
+                    "transitGatewayAttachmentId": {
+                        "type": "string",
+                        "description": "The user-settable name of the transit gateway attachment in HCP.\n"
+                    },
+                    "transitGatewayId": {
+                        "type": "string",
+                        "description": "The ID of the user-owned transit gateway in AWS. The AWS region of the transit gateway must match the HVN.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "hcp:index/consulCluster:ConsulCluster": {
+            "description": "The Consul cluster resource allows you to manage an HCP Consul cluster.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst exampleHvn = new hcp.Hvn(\"exampleHvn\", {\n    hvnId: \"hvn\",\n    cloudProvider: \"aws\",\n    region: \"us-west-2\",\n    cidrBlock: \"172.25.16.0/20\",\n});\nconst exampleConsulCluster = new hcp.ConsulCluster(\"exampleConsulCluster\", {\n    clusterId: \"consul-cluster\",\n    hvnId: exampleHvn.hvnId,\n    tier: \"development\",\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample_hvn = hcp.Hvn(\"exampleHvn\",\n    hvn_id=\"hvn\",\n    cloud_provider=\"aws\",\n    region=\"us-west-2\",\n    cidr_block=\"172.25.16.0/20\")\nexample_consul_cluster = hcp.ConsulCluster(\"exampleConsulCluster\",\n    cluster_id=\"consul-cluster\",\n    hvn_id=example_hvn.hvn_id,\n    tier=\"development\")\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleHvn = new Hcp.Hvn(\"exampleHvn\", new Hcp.HvnArgs\n        {\n            HvnId = \"hvn\",\n            CloudProvider = \"aws\",\n            Region = \"us-west-2\",\n            CidrBlock = \"172.25.16.0/20\",\n        });\n        var exampleConsulCluster = new Hcp.ConsulCluster(\"exampleConsulCluster\", new Hcp.ConsulClusterArgs\n        {\n            ClusterId = \"consul-cluster\",\n            HvnId = exampleHvn.HvnId,\n            Tier = \"development\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleHvn, err := hcp.NewHvn(ctx, \"exampleHvn\", \u0026hcp.HvnArgs{\n\t\t\tHvnId:         pulumi.String(\"hvn\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t\tCidrBlock:     pulumi.String(\"172.25.16.0/20\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = hcp.NewConsulCluster(ctx, \"exampleConsulCluster\", \u0026hcp.ConsulClusterArgs{\n\t\t\tClusterId: pulumi.String(\"consul-cluster\"),\n\t\t\tHvnId:     exampleHvn.HvnId,\n\t\t\tTier:      pulumi.String(\"development\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID is {cluster_id}\n\n```sh\n $ pulumi import hcp:index/consulCluster:ConsulCluster example consul-cluster\n```\n\n ",
+            "properties": {
+                "autoHvnToHvnPeering": {
+                    "type": "boolean",
+                    "description": "Enables automatic HVN to HVN peering when creating a secondary cluster in a federation. The alternative to using the auto-accept feature is to create an `hcp.HvnPeeringConnection` resource that explicitly defines the HVN resources that are allowed to communicate with each other.\n"
+                },
+                "cloudProvider": {
+                    "type": "string",
+                    "description": "The provider where the HCP Consul cluster is located.\n"
+                },
+                "clusterId": {
+                    "type": "string",
+                    "description": "The ID of the HCP Consul cluster.\n"
+                },
+                "connectEnabled": {
+                    "type": "boolean",
+                    "description": "Denotes the Consul connect feature should be enabled for this cluster.  Default to true.\n"
+                },
+                "consulAutomaticUpgrades": {
+                    "type": "boolean",
+                    "description": "Denotes that automatic Consul upgrades are enabled.\n"
+                },
+                "consulCaFile": {
+                    "type": "string",
+                    "description": "The cluster CA file encoded as a Base64 string.\n"
+                },
+                "consulConfigFile": {
+                    "type": "string",
+                    "description": "The cluster config encoded as a Base64 string.\n"
+                },
+                "consulPrivateEndpointUrl": {
+                    "type": "string",
+                    "description": "The private URL for the Consul UI.\n"
+                },
+                "consulPublicEndpointUrl": {
+                    "type": "string",
+                    "description": "The public URL for the Consul UI. This will be empty if `public_endpoint` is `false`.\n"
+                },
+                "consulRootTokenAccessorId": {
+                    "type": "string",
+                    "description": "The accessor ID of the root ACL token that is generated upon cluster creation. If a new root token is generated using the `hcp_consul_root_token` resource, this field is no longer valid.\n"
+                },
+                "consulRootTokenSecretId": {
+                    "type": "string",
+                    "description": "The secret ID of the root ACL token that is generated upon cluster creation. If a new root token is generated using the `hcp_consul_root_token` resource, this field is no longer valid.\n"
+                },
+                "consulSnapshotInterval": {
+                    "type": "string",
+                    "description": "The Consul snapshot interval.\n"
+                },
+                "consulSnapshotRetention": {
+                    "type": "string",
+                    "description": "The retention policy for Consul snapshots.\n"
+                },
+                "consulVersion": {
+                    "type": "string",
+                    "description": "The Consul version of the cluster.\n"
+                },
+                "datacenter": {
+                    "type": "string",
+                    "description": "The Consul data center name of the cluster. If not specified, it is defaulted to the value of `cluster_id`.\n"
+                },
+                "hvnId": {
+                    "type": "string",
+                    "description": "The ID of the HVN this HCP Consul cluster is associated to.\n"
+                },
+                "minConsulVersion": {
+                    "type": "string",
+                    "description": "The minimum Consul version of the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "The ID of the organization this HCP Consul cluster is located in.\n"
+                },
+                "primaryLink": {
+                    "type": "string",
+                    "description": "The `self_link` of the HCP Consul cluster which is the primary in the federation setup with this HCP Consul cluster. If not specified, it is a standalone cluster.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "The ID of the project this HCP Consul cluster is located in.\n"
+                },
+                "publicEndpoint": {
+                    "type": "boolean",
+                    "description": "Denotes that the cluster has a public endpoint for the Consul UI. Defaults to false.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region where the HCP Consul cluster is located.\n"
+                },
+                "scale": {
+                    "type": "integer",
+                    "description": "The number of Consul server nodes in the cluster.\n"
+                },
+                "selfLink": {
+                    "type": "string",
+                    "description": "A unique URL identifying the HCP Consul cluster.\n"
+                },
+                "size": {
+                    "type": "string",
+                    "description": "The t-shirt size representation of each server VM that this Consul cluster is provisioned with. Valid option for development tier - `x_small`. Valid options for other tiers - `small`, `medium`, `large`. For more details - https://cloud.hashicorp.com/pricing/consul. Upgrading the size of a cluster after creation is allowed.\n"
+                },
+                "tier": {
+                    "type": "string",
+                    "description": "The tier that the HCP Consul cluster will be provisioned as.  Only `development`, `standard` and `plus` are available at this time. See [pricing information](https://cloud.hashicorp.com/pricing/consul).\n"
+                }
+            },
+            "required": [
+                "autoHvnToHvnPeering",
+                "cloudProvider",
+                "clusterId",
+                "consulAutomaticUpgrades",
+                "consulCaFile",
+                "consulConfigFile",
+                "consulPrivateEndpointUrl",
+                "consulPublicEndpointUrl",
+                "consulRootTokenAccessorId",
+                "consulRootTokenSecretId",
+                "consulSnapshotInterval",
+                "consulSnapshotRetention",
+                "consulVersion",
+                "datacenter",
+                "hvnId",
+                "organizationId",
+                "projectId",
+                "region",
+                "scale",
+                "selfLink",
+                "size",
+                "tier"
+            ],
+            "inputProperties": {
+                "autoHvnToHvnPeering": {
+                    "type": "boolean",
+                    "description": "Enables automatic HVN to HVN peering when creating a secondary cluster in a federation. The alternative to using the auto-accept feature is to create an `hcp.HvnPeeringConnection` resource that explicitly defines the HVN resources that are allowed to communicate with each other.\n"
+                },
+                "clusterId": {
+                    "type": "string",
+                    "description": "The ID of the HCP Consul cluster.\n"
+                },
+                "connectEnabled": {
+                    "type": "boolean",
+                    "description": "Denotes the Consul connect feature should be enabled for this cluster.  Default to true.\n"
+                },
+                "datacenter": {
+                    "type": "string",
+                    "description": "The Consul data center name of the cluster. If not specified, it is defaulted to the value of `cluster_id`.\n"
+                },
+                "hvnId": {
+                    "type": "string",
+                    "description": "The ID of the HVN this HCP Consul cluster is associated to.\n"
+                },
+                "minConsulVersion": {
+                    "type": "string",
+                    "description": "The minimum Consul version of the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.\n"
+                },
+                "primaryLink": {
+                    "type": "string",
+                    "description": "The `self_link` of the HCP Consul cluster which is the primary in the federation setup with this HCP Consul cluster. If not specified, it is a standalone cluster.\n"
+                },
+                "publicEndpoint": {
+                    "type": "boolean",
+                    "description": "Denotes that the cluster has a public endpoint for the Consul UI. Defaults to false.\n"
+                },
+                "size": {
+                    "type": "string",
+                    "description": "The t-shirt size representation of each server VM that this Consul cluster is provisioned with. Valid option for development tier - `x_small`. Valid options for other tiers - `small`, `medium`, `large`. For more details - https://cloud.hashicorp.com/pricing/consul. Upgrading the size of a cluster after creation is allowed.\n"
+                },
+                "tier": {
+                    "type": "string",
+                    "description": "The tier that the HCP Consul cluster will be provisioned as.  Only `development`, `standard` and `plus` are available at this time. See [pricing information](https://cloud.hashicorp.com/pricing/consul).\n"
+                }
+            },
+            "requiredInputs": [
+                "clusterId",
+                "hvnId",
+                "tier"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ConsulCluster resources.\n",
+                "properties": {
+                    "autoHvnToHvnPeering": {
+                        "type": "boolean",
+                        "description": "Enables automatic HVN to HVN peering when creating a secondary cluster in a federation. The alternative to using the auto-accept feature is to create an `hcp.HvnPeeringConnection` resource that explicitly defines the HVN resources that are allowed to communicate with each other.\n"
+                    },
+                    "cloudProvider": {
+                        "type": "string",
+                        "description": "The provider where the HCP Consul cluster is located.\n"
+                    },
+                    "clusterId": {
+                        "type": "string",
+                        "description": "The ID of the HCP Consul cluster.\n"
+                    },
+                    "connectEnabled": {
+                        "type": "boolean",
+                        "description": "Denotes the Consul connect feature should be enabled for this cluster.  Default to true.\n"
+                    },
+                    "consulAutomaticUpgrades": {
+                        "type": "boolean",
+                        "description": "Denotes that automatic Consul upgrades are enabled.\n"
+                    },
+                    "consulCaFile": {
+                        "type": "string",
+                        "description": "The cluster CA file encoded as a Base64 string.\n"
+                    },
+                    "consulConfigFile": {
+                        "type": "string",
+                        "description": "The cluster config encoded as a Base64 string.\n"
+                    },
+                    "consulPrivateEndpointUrl": {
+                        "type": "string",
+                        "description": "The private URL for the Consul UI.\n"
+                    },
+                    "consulPublicEndpointUrl": {
+                        "type": "string",
+                        "description": "The public URL for the Consul UI. This will be empty if `public_endpoint` is `false`.\n"
+                    },
+                    "consulRootTokenAccessorId": {
+                        "type": "string",
+                        "description": "The accessor ID of the root ACL token that is generated upon cluster creation. If a new root token is generated using the `hcp_consul_root_token` resource, this field is no longer valid.\n"
+                    },
+                    "consulRootTokenSecretId": {
+                        "type": "string",
+                        "description": "The secret ID of the root ACL token that is generated upon cluster creation. If a new root token is generated using the `hcp_consul_root_token` resource, this field is no longer valid.\n"
+                    },
+                    "consulSnapshotInterval": {
+                        "type": "string",
+                        "description": "The Consul snapshot interval.\n"
+                    },
+                    "consulSnapshotRetention": {
+                        "type": "string",
+                        "description": "The retention policy for Consul snapshots.\n"
+                    },
+                    "consulVersion": {
+                        "type": "string",
+                        "description": "The Consul version of the cluster.\n"
+                    },
+                    "datacenter": {
+                        "type": "string",
+                        "description": "The Consul data center name of the cluster. If not specified, it is defaulted to the value of `cluster_id`.\n"
+                    },
+                    "hvnId": {
+                        "type": "string",
+                        "description": "The ID of the HVN this HCP Consul cluster is associated to.\n"
+                    },
+                    "minConsulVersion": {
+                        "type": "string",
+                        "description": "The minimum Consul version of the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The ID of the organization this HCP Consul cluster is located in.\n"
+                    },
+                    "primaryLink": {
+                        "type": "string",
+                        "description": "The `self_link` of the HCP Consul cluster which is the primary in the federation setup with this HCP Consul cluster. If not specified, it is a standalone cluster.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of the project this HCP Consul cluster is located in.\n"
+                    },
+                    "publicEndpoint": {
+                        "type": "boolean",
+                        "description": "Denotes that the cluster has a public endpoint for the Consul UI. Defaults to false.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region where the HCP Consul cluster is located.\n"
+                    },
+                    "scale": {
+                        "type": "integer",
+                        "description": "The number of Consul server nodes in the cluster.\n"
+                    },
+                    "selfLink": {
+                        "type": "string",
+                        "description": "A unique URL identifying the HCP Consul cluster.\n"
+                    },
+                    "size": {
+                        "type": "string",
+                        "description": "The t-shirt size representation of each server VM that this Consul cluster is provisioned with. Valid option for development tier - `x_small`. Valid options for other tiers - `small`, `medium`, `large`. For more details - https://cloud.hashicorp.com/pricing/consul. Upgrading the size of a cluster after creation is allowed.\n"
+                    },
+                    "tier": {
+                        "type": "string",
+                        "description": "The tier that the HCP Consul cluster will be provisioned as.  Only `development`, `standard` and `plus` are available at this time. See [pricing information](https://cloud.hashicorp.com/pricing/consul).\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "hcp:index/consulClusterRootToken:ConsulClusterRootToken": {
+            "properties": {
+                "accessorId": {
+                    "type": "string",
+                    "description": "The accessor ID of the root ACL token.\n"
+                },
+                "clusterId": {
+                    "type": "string",
+                    "description": "The ID of the HCP Consul cluster.\n"
+                },
+                "kubernetesSecret": {
+                    "type": "string",
+                    "description": "The root ACL token Base64 encoded in a Kubernetes secret.\n"
+                },
+                "secretId": {
+                    "type": "string",
+                    "description": "The secret ID of the root ACL token.\n"
+                }
+            },
+            "required": [
+                "accessorId",
+                "clusterId",
+                "kubernetesSecret",
+                "secretId"
+            ],
+            "inputProperties": {
+                "clusterId": {
+                    "type": "string",
+                    "description": "The ID of the HCP Consul cluster.\n"
+                }
+            },
+            "requiredInputs": [
+                "clusterId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ConsulClusterRootToken resources.\n",
+                "properties": {
+                    "accessorId": {
+                        "type": "string",
+                        "description": "The accessor ID of the root ACL token.\n"
+                    },
+                    "clusterId": {
+                        "type": "string",
+                        "description": "The ID of the HCP Consul cluster.\n"
+                    },
+                    "kubernetesSecret": {
+                        "type": "string",
+                        "description": "The root ACL token Base64 encoded in a Kubernetes secret.\n"
+                    },
+                    "secretId": {
+                        "type": "string",
+                        "description": "The secret ID of the root ACL token.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "hcp:index/consulSnapshot:ConsulSnapshot": {
+            "description": "The Consul snapshot resource allows users to manage Consul snapshots of an HCP Consul cluster. Snapshots currently have a retention policy of 30 days.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\n// Note: Snapshots currently have a retention policy of 30 days. After that time, any Terraform\n// state refresh will note that a new snapshot resource will be created.\nconst example = new hcp.ConsulSnapshot(\"example\", {\n    clusterId: \"consul-cluster\",\n    snapshotName: \"my-snapshot\",\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\n# Note: Snapshots currently have a retention policy of 30 days. After that time, any Terraform\n# state refresh will note that a new snapshot resource will be created.\nexample = hcp.ConsulSnapshot(\"example\",\n    cluster_id=\"consul-cluster\",\n    snapshot_name=\"my-snapshot\")\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        // Note: Snapshots currently have a retention policy of 30 days. After that time, any Terraform\n        // state refresh will note that a new snapshot resource will be created.\n        var example = new Hcp.ConsulSnapshot(\"example\", new Hcp.ConsulSnapshotArgs\n        {\n            ClusterId = \"consul-cluster\",\n            SnapshotName = \"my-snapshot\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.NewConsulSnapshot(ctx, \"example\", \u0026hcp.ConsulSnapshotArgs{\n\t\t\tClusterId:    pulumi.String(\"consul-cluster\"),\n\t\t\tSnapshotName: pulumi.String(\"my-snapshot\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "clusterId": {
+                    "type": "string",
+                    "description": "The ID of the HCP Consul cluster.\n"
+                },
+                "consulVersion": {
+                    "type": "string",
+                    "description": "The version of Consul at the time of snapshot creation.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "The ID of the HCP organization where the project the HCP Consul cluster is located.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "The ID of the project the HCP Consul cluster is located.\n"
+                },
+                "restoredAt": {
+                    "type": "string",
+                    "description": "Timestamp of when the snapshot was restored. If the snapshot has not been restored, this field will be blank.\n"
+                },
+                "size": {
+                    "type": "integer",
+                    "description": "The size of the snapshot in bytes.\n"
+                },
+                "snapshotId": {
+                    "type": "string",
+                    "description": "The ID of the Consul snapshot\n"
+                },
+                "snapshotName": {
+                    "type": "string",
+                    "description": "The name of the snapshot.\n"
+                }
+            },
+            "required": [
+                "clusterId",
+                "consulVersion",
+                "organizationId",
+                "projectId",
+                "restoredAt",
+                "size",
+                "snapshotId",
+                "snapshotName"
+            ],
+            "inputProperties": {
+                "clusterId": {
+                    "type": "string",
+                    "description": "The ID of the HCP Consul cluster.\n"
+                },
+                "snapshotName": {
+                    "type": "string",
+                    "description": "The name of the snapshot.\n"
+                }
+            },
+            "requiredInputs": [
+                "clusterId",
+                "snapshotName"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ConsulSnapshot resources.\n",
+                "properties": {
+                    "clusterId": {
+                        "type": "string",
+                        "description": "The ID of the HCP Consul cluster.\n"
+                    },
+                    "consulVersion": {
+                        "type": "string",
+                        "description": "The version of Consul at the time of snapshot creation.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The ID of the HCP organization where the project the HCP Consul cluster is located.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of the project the HCP Consul cluster is located.\n"
+                    },
+                    "restoredAt": {
+                        "type": "string",
+                        "description": "Timestamp of when the snapshot was restored. If the snapshot has not been restored, this field will be blank.\n"
+                    },
+                    "size": {
+                        "type": "integer",
+                        "description": "The size of the snapshot in bytes.\n"
+                    },
+                    "snapshotId": {
+                        "type": "string",
+                        "description": "The ID of the Consul snapshot\n"
+                    },
+                    "snapshotName": {
+                        "type": "string",
+                        "description": "The name of the snapshot.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "hcp:index/hvn:Hvn": {
+            "description": "The HVN resource allows you to manage a HashiCorp Virtual Network in HCP.\n\nWe recommend the following when selecting the CIDR block of an HVN:\n\n- The CIDR block value must be a private IPv4 CIDR block within the [RFC1918](https://datatracker.ietf.org/doc/html/rfc1918) address space (10.*.*.*, 192.168.*.*, 172.[16-31].*.*).\n\n- The CIDR block value must be the first IP address of the desired CIDR block. The helper `cidrsubnet(\"172.16.1.1/24\", 0, 0)` will specify the first address of the CIDR block in the first argument.\n\n- The CIDR block value must end between /16 and /25.\n\n- If the CIDR block values for your HVN and VPCs overlap, then you will not be able to establish a connection. Ensure that any VPCs you plan to connect do not have overlapping values.\n\n- The default HVN CIDR block value does not overlap with the default CIDR block value for AWS VPCs (172.31.0.0/16). However, if you are planning to use this HVN in production, we recommend adding a custom value instead of using the default.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst example = new hcp.Hvn(\"example\", {\n    cidrBlock: \"172.25.16.0/20\",\n    cloudProvider: \"aws\",\n    hvnId: \"main-hvn\",\n    region: \"us-west-2\",\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample = hcp.Hvn(\"example\",\n    cidr_block=\"172.25.16.0/20\",\n    cloud_provider=\"aws\",\n    hvn_id=\"main-hvn\",\n    region=\"us-west-2\")\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Hcp.Hvn(\"example\", new Hcp.HvnArgs\n        {\n            CidrBlock = \"172.25.16.0/20\",\n            CloudProvider = \"aws\",\n            HvnId = \"main-hvn\",\n            Region = \"us-west-2\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.NewHvn(ctx, \"example\", \u0026hcp.HvnArgs{\n\t\t\tCidrBlock:     pulumi.String(\"172.25.16.0/20\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tHvnId:         pulumi.String(\"main-hvn\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID is {hvn_id}\n\n```sh\n $ pulumi import hcp:index/hvn:Hvn example main-hvn\n```\n\n ",
+            "properties": {
+                "cidrBlock": {
+                    "type": "string",
+                    "description": "The CIDR range of the HVN. If this is not provided, the service will provide a default value.\n"
+                },
+                "cloudProvider": {
+                    "type": "string",
+                    "description": "The provider where the HVN is located. Only 'aws' is available at this time.\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "The time that the HVN was created.\n"
+                },
+                "hvnId": {
+                    "type": "string",
+                    "description": "The ID of the HashiCorp Virtual Network (HVN).\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "The ID of the HCP organization where the HVN is located.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "The ID of the HCP project where the HVN is located.\n"
+                },
+                "providerAccountId": {
+                    "type": "string",
+                    "description": "The provider account ID where the HVN is located.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region where the HVN is located.\n"
+                },
+                "selfLink": {
+                    "type": "string",
+                    "description": "A unique URL identifying the HVN.\n"
+                }
+            },
+            "required": [
+                "cidrBlock",
+                "cloudProvider",
+                "createdAt",
+                "hvnId",
+                "organizationId",
+                "projectId",
+                "providerAccountId",
+                "region",
+                "selfLink"
+            ],
+            "inputProperties": {
+                "cidrBlock": {
+                    "type": "string",
+                    "description": "The CIDR range of the HVN. If this is not provided, the service will provide a default value.\n"
+                },
+                "cloudProvider": {
+                    "type": "string",
+                    "description": "The provider where the HVN is located. Only 'aws' is available at this time.\n"
+                },
+                "hvnId": {
+                    "type": "string",
+                    "description": "The ID of the HashiCorp Virtual Network (HVN).\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region where the HVN is located.\n"
+                }
+            },
+            "requiredInputs": [
+                "cloudProvider",
+                "hvnId",
+                "region"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Hvn resources.\n",
+                "properties": {
+                    "cidrBlock": {
+                        "type": "string",
+                        "description": "The CIDR range of the HVN. If this is not provided, the service will provide a default value.\n"
+                    },
+                    "cloudProvider": {
+                        "type": "string",
+                        "description": "The provider where the HVN is located. Only 'aws' is available at this time.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The time that the HVN was created.\n"
+                    },
+                    "hvnId": {
+                        "type": "string",
+                        "description": "The ID of the HashiCorp Virtual Network (HVN).\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The ID of the HCP organization where the HVN is located.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of the HCP project where the HVN is located.\n"
+                    },
+                    "providerAccountId": {
+                        "type": "string",
+                        "description": "The provider account ID where the HVN is located.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region where the HVN is located.\n"
+                    },
+                    "selfLink": {
+                        "type": "string",
+                        "description": "A unique URL identifying the HVN.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "hcp:index/hvnPeeringConnection:HvnPeeringConnection": {
+            "description": "The HVN peering connection resource allows you to manage a peering connection between HVNs.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst hvn1 = new hcp.Hvn(\"hvn1\", {\n    hvnId: \"hvn-1\",\n    cloudProvider: \"aws\",\n    region: \"us-west-2\",\n    cidrBlock: \"172.25.16.0/20\",\n});\nconst hvn2 = new hcp.Hvn(\"hvn2\", {\n    hvnId: \"hvn-2\",\n    cloudProvider: \"aws\",\n    region: \"us-west-2\",\n    cidrBlock: \"172.18.16.0/20\",\n});\nconst peer1 = new hcp.HvnPeeringConnection(\"peer1\", {\n    hvn1: hvn1.selfLink,\n    hvn2: hvn2.selfLink,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nhvn1 = hcp.Hvn(\"hvn1\",\n    hvn_id=\"hvn-1\",\n    cloud_provider=\"aws\",\n    region=\"us-west-2\",\n    cidr_block=\"172.25.16.0/20\")\nhvn2 = hcp.Hvn(\"hvn2\",\n    hvn_id=\"hvn-2\",\n    cloud_provider=\"aws\",\n    region=\"us-west-2\",\n    cidr_block=\"172.18.16.0/20\")\npeer1 = hcp.HvnPeeringConnection(\"peer1\",\n    hvn1=hvn1.self_link,\n    hvn2=hvn2.self_link)\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var hvn1 = new Hcp.Hvn(\"hvn1\", new Hcp.HvnArgs\n        {\n            HvnId = \"hvn-1\",\n            CloudProvider = \"aws\",\n            Region = \"us-west-2\",\n            CidrBlock = \"172.25.16.0/20\",\n        });\n        var hvn2 = new Hcp.Hvn(\"hvn2\", new Hcp.HvnArgs\n        {\n            HvnId = \"hvn-2\",\n            CloudProvider = \"aws\",\n            Region = \"us-west-2\",\n            CidrBlock = \"172.18.16.0/20\",\n        });\n        var peer1 = new Hcp.HvnPeeringConnection(\"peer1\", new Hcp.HvnPeeringConnectionArgs\n        {\n            Hvn1 = hvn1.SelfLink,\n            Hvn2 = hvn2.SelfLink,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\thvn1, err := hcp.NewHvn(ctx, \"hvn1\", \u0026hcp.HvnArgs{\n\t\t\tHvnId:         pulumi.String(\"hvn-1\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t\tCidrBlock:     pulumi.String(\"172.25.16.0/20\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\thvn2, err := hcp.NewHvn(ctx, \"hvn2\", \u0026hcp.HvnArgs{\n\t\t\tHvnId:         pulumi.String(\"hvn-2\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t\tCidrBlock:     pulumi.String(\"172.18.16.0/20\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = hcp.NewHvnPeeringConnection(ctx, \"peer1\", \u0026hcp.HvnPeeringConnectionArgs{\n\t\t\tHvn1: hvn1.SelfLink,\n\t\t\tHvn2: hvn2.SelfLink,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID requires the first HVN ID in the format {hvn_1_id}:{peering_id}\n\n```sh\n $ pulumi import hcp:index/hvnPeeringConnection:HvnPeeringConnection peer_1 hvn-1:peer-1\n```\n\n ",
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "The time that the peering connection was created.\n"
+                },
+                "expiresAt": {
+                    "type": "string",
+                    "description": "The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.\n"
+                },
+                "hvn1": {
+                    "type": "string",
+                    "description": "The unique URL of one of the HVNs being peered.\n"
+                },
+                "hvn2": {
+                    "type": "string",
+                    "description": "The unique URL of one of the HVNs being peered.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "The ID of the HCP organization where the peering connection is located. Always matches the HVNs' organization.\n"
+                },
+                "peeringId": {
+                    "type": "string",
+                    "description": "The ID of the peering connection.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "The ID of the HCP project where the peering connection is located. Always matches the HVNs' project.\n"
+                },
+                "selfLink": {
+                    "type": "string",
+                    "description": "A unique URL identifying the peering connection\n"
+                }
+            },
+            "required": [
+                "createdAt",
+                "expiresAt",
+                "hvn1",
+                "hvn2",
+                "organizationId",
+                "peeringId",
+                "projectId",
+                "selfLink"
+            ],
+            "inputProperties": {
+                "hvn1": {
+                    "type": "string",
+                    "description": "The unique URL of one of the HVNs being peered.\n"
+                },
+                "hvn2": {
+                    "type": "string",
+                    "description": "The unique URL of one of the HVNs being peered.\n"
+                }
+            },
+            "requiredInputs": [
+                "hvn1",
+                "hvn2"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering HvnPeeringConnection resources.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The time that the peering connection was created.\n"
+                    },
+                    "expiresAt": {
+                        "type": "string",
+                        "description": "The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.\n"
+                    },
+                    "hvn1": {
+                        "type": "string",
+                        "description": "The unique URL of one of the HVNs being peered.\n"
+                    },
+                    "hvn2": {
+                        "type": "string",
+                        "description": "The unique URL of one of the HVNs being peered.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The ID of the HCP organization where the peering connection is located. Always matches the HVNs' organization.\n"
+                    },
+                    "peeringId": {
+                        "type": "string",
+                        "description": "The ID of the peering connection.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of the HCP project where the peering connection is located. Always matches the HVNs' project.\n"
+                    },
+                    "selfLink": {
+                        "type": "string",
+                        "description": "A unique URL identifying the peering connection\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "hcp:index/hvnRoute:HvnRoute": {
+            "description": "\n\n\n## Import\n\n# The import ID is {hvn_id}:{hvn_route_id}\n\n```sh\n $ pulumi import hcp:index/hvnRoute:HvnRoute example main-hvn:example-hvn-route\n```\n\n ",
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "The time that the HVN route was created.\n"
+                },
+                "destinationCidr": {
+                    "type": "string",
+                    "description": "The destination CIDR of the HVN route.\n"
+                },
+                "hvnLink": {
+                    "type": "string",
+                    "description": "The `self_link` of the HashiCorp Virtual Network (HVN).\n"
+                },
+                "hvnRouteId": {
+                    "type": "string",
+                    "description": "The ID of the HVN route.\n"
+                },
+                "selfLink": {
+                    "type": "string",
+                    "description": "A unique URL identifying the HVN route.\n"
+                },
+                "state": {
+                    "type": "string",
+                    "description": "The state of the HVN route.\n"
+                },
+                "targetLink": {
+                    "type": "string",
+                    "description": "A unique URL identifying the target of the HVN route. Examples of the target: `aws_network_peering`, `aws_transit_gateway_attachment`\n"
+                }
+            },
+            "required": [
+                "createdAt",
+                "destinationCidr",
+                "hvnLink",
+                "hvnRouteId",
+                "selfLink",
+                "state",
+                "targetLink"
+            ],
+            "inputProperties": {
+                "destinationCidr": {
+                    "type": "string",
+                    "description": "The destination CIDR of the HVN route.\n"
+                },
+                "hvnLink": {
+                    "type": "string",
+                    "description": "The `self_link` of the HashiCorp Virtual Network (HVN).\n"
+                },
+                "hvnRouteId": {
+                    "type": "string",
+                    "description": "The ID of the HVN route.\n"
+                },
+                "targetLink": {
+                    "type": "string",
+                    "description": "A unique URL identifying the target of the HVN route. Examples of the target: `aws_network_peering`, `aws_transit_gateway_attachment`\n"
+                }
+            },
+            "requiredInputs": [
+                "destinationCidr",
+                "hvnLink",
+                "hvnRouteId",
+                "targetLink"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering HvnRoute resources.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The time that the HVN route was created.\n"
+                    },
+                    "destinationCidr": {
+                        "type": "string",
+                        "description": "The destination CIDR of the HVN route.\n"
+                    },
+                    "hvnLink": {
+                        "type": "string",
+                        "description": "The `self_link` of the HashiCorp Virtual Network (HVN).\n"
+                    },
+                    "hvnRouteId": {
+                        "type": "string",
+                        "description": "The ID of the HVN route.\n"
+                    },
+                    "selfLink": {
+                        "type": "string",
+                        "description": "A unique URL identifying the HVN route.\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "The state of the HVN route.\n"
+                    },
+                    "targetLink": {
+                        "type": "string",
+                        "description": "A unique URL identifying the target of the HVN route. Examples of the target: `aws_network_peering`, `aws_transit_gateway_attachment`\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "hcp:index/vaultCluster:VaultCluster": {
+            "description": "The Vault cluster resource allows you to manage an HCP Vault cluster.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst exampleHvn = new hcp.Hvn(\"exampleHvn\", {\n    hvnId: \"hvn\",\n    cloudProvider: \"aws\",\n    region: \"us-west-2\",\n    cidrBlock: \"172.25.16.0/20\",\n});\nconst exampleVaultCluster = new hcp.VaultCluster(\"exampleVaultCluster\", {\n    clusterId: \"vault-cluster\",\n    hvnId: exampleHvn.hvnId,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample_hvn = hcp.Hvn(\"exampleHvn\",\n    hvn_id=\"hvn\",\n    cloud_provider=\"aws\",\n    region=\"us-west-2\",\n    cidr_block=\"172.25.16.0/20\")\nexample_vault_cluster = hcp.VaultCluster(\"exampleVaultCluster\",\n    cluster_id=\"vault-cluster\",\n    hvn_id=example_hvn.hvn_id)\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleHvn = new Hcp.Hvn(\"exampleHvn\", new Hcp.HvnArgs\n        {\n            HvnId = \"hvn\",\n            CloudProvider = \"aws\",\n            Region = \"us-west-2\",\n            CidrBlock = \"172.25.16.0/20\",\n        });\n        var exampleVaultCluster = new Hcp.VaultCluster(\"exampleVaultCluster\", new Hcp.VaultClusterArgs\n        {\n            ClusterId = \"vault-cluster\",\n            HvnId = exampleHvn.HvnId,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleHvn, err := hcp.NewHvn(ctx, \"exampleHvn\", \u0026hcp.HvnArgs{\n\t\t\tHvnId:         pulumi.String(\"hvn\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t\tCidrBlock:     pulumi.String(\"172.25.16.0/20\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = hcp.NewVaultCluster(ctx, \"exampleVaultCluster\", \u0026hcp.VaultClusterArgs{\n\t\t\tClusterId: pulumi.String(\"vault-cluster\"),\n\t\t\tHvnId:     exampleHvn.HvnId,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID is {cluster_id}\n\n```sh\n $ pulumi import hcp:index/vaultCluster:VaultCluster example vault-cluster\n```\n\n ",
+            "properties": {
+                "cloudProvider": {
+                    "type": "string",
+                    "description": "The provider where the HCP Vault cluster is located.\n"
+                },
+                "clusterId": {
+                    "type": "string",
+                    "description": "The ID of the HCP Vault cluster.\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "The time that the Vault cluster was created.\n"
+                },
+                "hvnId": {
+                    "type": "string",
+                    "description": "The ID of the HVN this HCP Vault cluster is associated to.\n"
+                },
+                "minVaultVersion": {
+                    "type": "string",
+                    "description": "The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The name of the customer namespace this HCP Vault cluster is located in.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "The ID of the organization this HCP Vault cluster is located in.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "The ID of the project this HCP Vault cluster is located in.\n"
+                },
+                "publicEndpoint": {
+                    "type": "boolean",
+                    "description": "Denotes that the cluster has a public endpoint. Defaults to false.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region where the HCP Vault cluster is located.\n"
+                },
+                "tier": {
+                    "type": "string",
+                    "description": "Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `standard_small`, `standard_medium`, `standard_large`, `starter_small`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).\n"
+                },
+                "vaultPrivateEndpointUrl": {
+                    "type": "string",
+                    "description": "The private URL for the Vault cluster.\n"
+                },
+                "vaultPublicEndpointUrl": {
+                    "type": "string",
+                    "description": "The public URL for the Vault cluster. This will be empty if `public_endpoint` is `false`.\n"
+                },
+                "vaultVersion": {
+                    "type": "string",
+                    "description": "The Vault version of the cluster.\n"
+                }
+            },
+            "required": [
+                "cloudProvider",
+                "clusterId",
+                "createdAt",
+                "hvnId",
+                "namespace",
+                "organizationId",
+                "projectId",
+                "region",
+                "tier",
+                "vaultPrivateEndpointUrl",
+                "vaultPublicEndpointUrl",
+                "vaultVersion"
+            ],
+            "inputProperties": {
+                "clusterId": {
+                    "type": "string",
+                    "description": "The ID of the HCP Vault cluster.\n"
+                },
+                "hvnId": {
+                    "type": "string",
+                    "description": "The ID of the HVN this HCP Vault cluster is associated to.\n"
+                },
+                "minVaultVersion": {
+                    "type": "string",
+                    "description": "The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.\n"
+                },
+                "publicEndpoint": {
+                    "type": "boolean",
+                    "description": "Denotes that the cluster has a public endpoint. Defaults to false.\n"
+                },
+                "tier": {
+                    "type": "string",
+                    "description": "Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `standard_small`, `standard_medium`, `standard_large`, `starter_small`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).\n"
+                }
+            },
+            "requiredInputs": [
+                "clusterId",
+                "hvnId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering VaultCluster resources.\n",
+                "properties": {
+                    "cloudProvider": {
+                        "type": "string",
+                        "description": "The provider where the HCP Vault cluster is located.\n"
+                    },
+                    "clusterId": {
+                        "type": "string",
+                        "description": "The ID of the HCP Vault cluster.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The time that the Vault cluster was created.\n"
+                    },
+                    "hvnId": {
+                        "type": "string",
+                        "description": "The ID of the HVN this HCP Vault cluster is associated to.\n"
+                    },
+                    "minVaultVersion": {
+                        "type": "string",
+                        "description": "The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.\n"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The name of the customer namespace this HCP Vault cluster is located in.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The ID of the organization this HCP Vault cluster is located in.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of the project this HCP Vault cluster is located in.\n"
+                    },
+                    "publicEndpoint": {
+                        "type": "boolean",
+                        "description": "Denotes that the cluster has a public endpoint. Defaults to false.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region where the HCP Vault cluster is located.\n"
+                    },
+                    "tier": {
+                        "type": "string",
+                        "description": "Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `standard_small`, `standard_medium`, `standard_large`, `starter_small`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).\n"
+                    },
+                    "vaultPrivateEndpointUrl": {
+                        "type": "string",
+                        "description": "The private URL for the Vault cluster.\n"
+                    },
+                    "vaultPublicEndpointUrl": {
+                        "type": "string",
+                        "description": "The public URL for the Vault cluster. This will be empty if `public_endpoint` is `false`.\n"
+                    },
+                    "vaultVersion": {
+                        "type": "string",
+                        "description": "The Vault version of the cluster.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "hcp:index/vaultClusterAdminToken:VaultClusterAdminToken": {
+            "properties": {
+                "clusterId": {
+                    "type": "string",
+                    "description": "The ID of the HCP Vault cluster.\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "The time that the admin token was created.\n"
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The admin token of this HCP Vault cluster.\n"
+                }
+            },
+            "required": [
+                "clusterId",
+                "createdAt",
+                "token"
+            ],
+            "inputProperties": {
+                "clusterId": {
+                    "type": "string",
+                    "description": "The ID of the HCP Vault cluster.\n"
+                }
+            },
+            "requiredInputs": [
+                "clusterId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering VaultClusterAdminToken resources.\n",
+                "properties": {
+                    "clusterId": {
+                        "type": "string",
+                        "description": "The ID of the HCP Vault cluster.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The time that the admin token was created.\n"
+                    },
+                    "token": {
+                        "type": "string",
+                        "description": "The admin token of this HCP Vault cluster.\n"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "functions": {
+        "hcp:index/getAwsNetworkPeering:getAwsNetworkPeering": {
+            "description": "The AWS network peering data source provides information about an existing network peering between an HVN and a peer AWS VPC.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst test = hcp.getAwsNetworkPeering({\n    hvnId: _var.hvn_id,\n    peeringId: _var.peering_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\ntest = hcp.get_aws_network_peering(hvn_id=var[\"hvn_id\"],\n    peering_id=var[\"peering_id\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = Output.Create(Hcp.GetAwsNetworkPeering.InvokeAsync(new Hcp.GetAwsNetworkPeeringArgs\n        {\n            HvnId = @var.Hvn_id,\n            PeeringId = @var.Peering_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupAwsNetworkPeering(ctx, \u0026GetAwsNetworkPeeringArgs{\n\t\t\tHvnId:     _var.Hvn_id,\n\t\t\tPeeringId: _var.Peering_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getAwsNetworkPeering.\n",
+                "properties": {
+                    "hvnId": {
+                        "type": "string",
+                        "description": "The ID of the HashiCorp Virtual Network (HVN).\n"
+                    },
+                    "peeringId": {
+                        "type": "string",
+                        "description": "The ID of the network peering.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "hvnId",
+                    "peeringId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getAwsNetworkPeering.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The time that the network peering was created.\n"
+                    },
+                    "expiresAt": {
+                        "type": "string",
+                        "description": "The time after which the network peering will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.\n"
+                    },
+                    "hvnId": {
+                        "type": "string",
+                        "description": "The ID of the HashiCorp Virtual Network (HVN).\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The ID of the HCP organization where the network peering is located. Always matches the HVN's organization.\n"
+                    },
+                    "peerAccountId": {
+                        "type": "string",
+                        "description": "The account ID of the peer VPC in AWS.\n"
+                    },
+                    "peerVpcId": {
+                        "type": "string",
+                        "description": "The ID of the peer VPC in AWS.\n"
+                    },
+                    "peerVpcRegion": {
+                        "type": "string",
+                        "description": "The region of the peer VPC in AWS.\n"
+                    },
+                    "peeringId": {
+                        "type": "string",
+                        "description": "The ID of the network peering.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of the HCP project where the network peering is located. Always matches the HVN's project.\n"
+                    },
+                    "providerPeeringId": {
+                        "type": "string",
+                        "description": "The peering connection ID used by AWS.\n"
+                    },
+                    "selfLink": {
+                        "type": "string",
+                        "description": "A unique URL identifying the network peering.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "createdAt",
+                    "expiresAt",
+                    "hvnId",
+                    "organizationId",
+                    "peerAccountId",
+                    "peerVpcId",
+                    "peerVpcRegion",
+                    "peeringId",
+                    "projectId",
+                    "providerPeeringId",
+                    "selfLink",
+                    "id"
+                ]
+            }
+        },
+        "hcp:index/getAwsTransitGatewayAttachment:getAwsTransitGatewayAttachment": {
+            "description": "The AWS transit gateway attachment data source provides information about an existing transit gateway attachment.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst test = hcp.getAwsTransitGatewayAttachment({\n    hvnId: _var.hvn_id,\n    transitGatewayAttachmentId: _var.transit_gateway_attachment_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\ntest = hcp.get_aws_transit_gateway_attachment(hvn_id=var[\"hvn_id\"],\n    transit_gateway_attachment_id=var[\"transit_gateway_attachment_id\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = Output.Create(Hcp.GetAwsTransitGatewayAttachment.InvokeAsync(new Hcp.GetAwsTransitGatewayAttachmentArgs\n        {\n            HvnId = @var.Hvn_id,\n            TransitGatewayAttachmentId = @var.Transit_gateway_attachment_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupAwsTransitGatewayAttachment(ctx, \u0026GetAwsTransitGatewayAttachmentArgs{\n\t\t\tHvnId:                      _var.Hvn_id,\n\t\t\tTransitGatewayAttachmentId: _var.Transit_gateway_attachment_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getAwsTransitGatewayAttachment.\n",
+                "properties": {
+                    "hvnId": {
+                        "type": "string",
+                        "description": "The ID of the HashiCorp Virtual Network (HVN).\n"
+                    },
+                    "transitGatewayAttachmentId": {
+                        "type": "string",
+                        "description": "The user-settable name of the transit gateway attachment in HCP.\n"
+                    },
+                    "waitForActiveState": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "hvnId",
+                    "transitGatewayAttachmentId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getAwsTransitGatewayAttachment.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The time that the transit gateway attachment was created.\n"
+                    },
+                    "expiresAt": {
+                        "type": "string",
+                        "description": "The time after which the transit gateway attachment will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.\n"
+                    },
+                    "hvnId": {
+                        "type": "string",
+                        "description": "The ID of the HashiCorp Virtual Network (HVN).\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The ID of the HCP organization where the transit gateway attachment is located. Always matches the HVN's organization.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of the HCP project where the transit gateway attachment is located. Always matches the HVN's project.\n"
+                    },
+                    "providerTransitGatewayAttachmentId": {
+                        "type": "string",
+                        "description": "The transit gateway attachment ID used by AWS.\n"
+                    },
+                    "selfLink": {
+                        "type": "string",
+                        "description": "A unique URL identifying the transit gateway attachment.\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "The state of the transit gateway attachment.\n"
+                    },
+                    "transitGatewayAttachmentId": {
+                        "type": "string",
+                        "description": "The user-settable name of the transit gateway attachment in HCP.\n"
+                    },
+                    "transitGatewayId": {
+                        "type": "string",
+                        "description": "The ID of the user-owned transit gateway in AWS.\n"
+                    },
+                    "waitForActiveState": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "createdAt",
+                    "expiresAt",
+                    "hvnId",
+                    "organizationId",
+                    "projectId",
+                    "providerTransitGatewayAttachmentId",
+                    "selfLink",
+                    "state",
+                    "transitGatewayAttachmentId",
+                    "transitGatewayId",
+                    "id"
+                ]
+            }
+        },
+        "hcp:index/getConsulAgentHelmConfig:getConsulAgentHelmConfig": {
+            "description": "The Consul agent Helm config data source provides Helm values for a Consul agent running in Kubernetes.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst example = hcp.getConsulAgentHelmConfig({\n    clusterId: _var.cluster_id,\n    kubernetesEndpoint: _var.kubernetes_endpoint,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample = hcp.get_consul_agent_helm_config(cluster_id=var[\"cluster_id\"],\n    kubernetes_endpoint=var[\"kubernetes_endpoint\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Hcp.GetConsulAgentHelmConfig.InvokeAsync(new Hcp.GetConsulAgentHelmConfigArgs\n        {\n            ClusterId = @var.Cluster_id,\n            KubernetesEndpoint = @var.Kubernetes_endpoint,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.GetConsulAgentHelmConfig(ctx, \u0026GetConsulAgentHelmConfigArgs{\n\t\t\tClusterId:          _var.Cluster_id,\n\t\t\tKubernetesEndpoint: _var.Kubernetes_endpoint,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getConsulAgentHelmConfig.\n",
+                "properties": {
+                    "clusterId": {
+                        "type": "string",
+                        "description": "The ID of the HCP Consul cluster.\n"
+                    },
+                    "exposeGossipPorts": {
+                        "type": "boolean",
+                        "description": "Denotes that the gossip ports should be exposed.\n"
+                    },
+                    "kubernetesEndpoint": {
+                        "type": "string",
+                        "description": "The FQDN for the Kubernetes API.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "clusterId",
+                    "kubernetesEndpoint"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getConsulAgentHelmConfig.\n",
+                "properties": {
+                    "clusterId": {
+                        "type": "string",
+                        "description": "The ID of the HCP Consul cluster.\n"
+                    },
+                    "config": {
+                        "type": "string",
+                        "description": "The agent Helm config.\n"
+                    },
+                    "exposeGossipPorts": {
+                        "type": "boolean",
+                        "description": "Denotes that the gossip ports should be exposed.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "kubernetesEndpoint": {
+                        "type": "string",
+                        "description": "The FQDN for the Kubernetes API.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "clusterId",
+                    "config",
+                    "kubernetesEndpoint",
+                    "id"
+                ]
+            }
+        },
+        "hcp:index/getConsulAgentKubernetesSecret:getConsulAgentKubernetesSecret": {
+            "description": "The agent config Kubernetes secret data source provides Consul agents running in Kubernetes the configuration needed to connect to the Consul cluster.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst test = hcp.getConsulAgentKubernetesSecret({\n    clusterId: _var.cluster_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\ntest = hcp.get_consul_agent_kubernetes_secret(cluster_id=var[\"cluster_id\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = Output.Create(Hcp.GetConsulAgentKubernetesSecret.InvokeAsync(new Hcp.GetConsulAgentKubernetesSecretArgs\n        {\n            ClusterId = @var.Cluster_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.GetConsulAgentKubernetesSecret(ctx, \u0026GetConsulAgentKubernetesSecretArgs{\n\t\t\tClusterId: _var.Cluster_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getConsulAgentKubernetesSecret.\n",
+                "properties": {
+                    "clusterId": {
+                        "type": "string",
+                        "description": "The ID of the HCP Consul cluster.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "clusterId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getConsulAgentKubernetesSecret.\n",
+                "properties": {
+                    "clusterId": {
+                        "type": "string",
+                        "description": "The ID of the HCP Consul cluster.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "secret": {
+                        "type": "string",
+                        "description": "The Consul agent configuration in the format of a Kubernetes secret (YAML).\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "clusterId",
+                    "secret",
+                    "id"
+                ]
+            }
+        },
+        "hcp:index/getConsulCluster:getConsulCluster": {
+            "description": "The cluster data source provides information about an existing HCP Consul cluster.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst example = hcp.getConsulCluster({\n    clusterId: _var.cluster_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample = hcp.get_consul_cluster(cluster_id=var[\"cluster_id\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Hcp.GetConsulCluster.InvokeAsync(new Hcp.GetConsulClusterArgs\n        {\n            ClusterId = @var.Cluster_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupConsulCluster(ctx, \u0026GetConsulClusterArgs{\n\t\t\tClusterId: _var.Cluster_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getConsulCluster.\n",
+                "properties": {
+                    "clusterId": {
+                        "type": "string",
+                        "description": "The ID of the HCP Consul cluster.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "clusterId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getConsulCluster.\n",
+                "properties": {
+                    "autoHvnToHvnPeering": {
+                        "type": "boolean",
+                        "description": "Enables automatic HVN to HVN peering when creating a secondary cluster in a federation.\n"
+                    },
+                    "cloudProvider": {
+                        "type": "string",
+                        "description": "The provider where the HCP Consul cluster is located. Only 'aws' is available at this time.\n"
+                    },
+                    "clusterId": {
+                        "type": "string",
+                        "description": "The ID of the HCP Consul cluster.\n"
+                    },
+                    "connectEnabled": {
+                        "type": "boolean",
+                        "description": "Denotes the Consul connect feature should be enabled for this cluster.  Default to true.\n"
+                    },
+                    "consulAutomaticUpgrades": {
+                        "type": "boolean",
+                        "description": "Denotes that automatic Consul upgrades are enabled.\n"
+                    },
+                    "consulCaFile": {
+                        "type": "string",
+                        "description": "The cluster CA file encoded as a Base64 string.\n"
+                    },
+                    "consulConfigFile": {
+                        "type": "string",
+                        "description": "The cluster config encoded as a Base64 string.\n"
+                    },
+                    "consulPrivateEndpointUrl": {
+                        "type": "string",
+                        "description": "The private URL for the Consul UI.\n"
+                    },
+                    "consulPublicEndpointUrl": {
+                        "type": "string",
+                        "description": "The public URL for the Consul UI. This will be empty if `public_endpoint` is `false`.\n"
+                    },
+                    "consulSnapshotInterval": {
+                        "type": "string",
+                        "description": "The Consul snapshot interval.\n"
+                    },
+                    "consulSnapshotRetention": {
+                        "type": "string",
+                        "description": "The retention policy for Consul snapshots.\n"
+                    },
+                    "consulVersion": {
+                        "type": "string",
+                        "description": "The Consul version of the cluster.\n"
+                    },
+                    "datacenter": {
+                        "type": "string",
+                        "description": "The Consul data center name of the cluster. If not specified, it is defaulted to the value of `cluster_id`.\n"
+                    },
+                    "hvnId": {
+                        "type": "string",
+                        "description": "The ID of the HVN this HCP Consul cluster is associated to.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The ID of the organization the project for this HCP Consul cluster is located.\n"
+                    },
+                    "primaryLink": {
+                        "type": "string",
+                        "description": "The `self_link` of the HCP Consul cluster which is the primary in the federation setup with this HCP Consul cluster. If not specified, it is a standalone cluster.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of the project this HCP Consul cluster is located.\n"
+                    },
+                    "publicEndpoint": {
+                        "type": "boolean",
+                        "description": "Denotes that the cluster has a public endpoint for the Consul UI. Defaults to false.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region where the HCP Consul cluster is located.\n"
+                    },
+                    "scale": {
+                        "type": "integer",
+                        "description": "The the number of Consul server nodes in the cluster.\n"
+                    },
+                    "selfLink": {
+                        "type": "string",
+                        "description": "A unique URL identifying the HCP Consul cluster.\n"
+                    },
+                    "size": {
+                        "type": "string",
+                        "description": "The t-shirt size representation of each server VM that this Consul cluster is provisioned with. Valid option for development tier - `x_small`. Valid options for other tiers - `small`, `medium`, `large`. For more details - https://cloud.hashicorp.com/pricing/consul\n"
+                    },
+                    "tier": {
+                        "type": "string",
+                        "description": "The tier that the HCP Consul cluster will be provisioned as.  Only `development`, `standard` and `plus` are available at this time.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "autoHvnToHvnPeering",
+                    "cloudProvider",
+                    "clusterId",
+                    "connectEnabled",
+                    "consulAutomaticUpgrades",
+                    "consulCaFile",
+                    "consulConfigFile",
+                    "consulPrivateEndpointUrl",
+                    "consulPublicEndpointUrl",
+                    "consulSnapshotInterval",
+                    "consulSnapshotRetention",
+                    "consulVersion",
+                    "datacenter",
+                    "hvnId",
+                    "organizationId",
+                    "primaryLink",
+                    "projectId",
+                    "publicEndpoint",
+                    "region",
+                    "scale",
+                    "selfLink",
+                    "size",
+                    "tier",
+                    "id"
+                ]
+            }
+        },
+        "hcp:index/getConsulVersions:getConsulVersions": {
+            "description": "The Consul versions data source provides the Consul versions supported by HCP.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst defaultConsulVersions = pulumi.output(hcp.getConsulVersions());\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\ndefault = hcp.get_consul_versions()\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var @default = Output.Create(Hcp.GetConsulVersions.InvokeAsync());\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.GetConsulVersions(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "outputs": {
+                "description": "A collection of values returned by getConsulVersions.\n",
+                "properties": {
+                    "availables": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The Consul versions available on HCP.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "previews": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The preview versions of Consul available on HCP.\n"
+                    },
+                    "recommended": {
+                        "type": "string",
+                        "description": "The recommended Consul version for HCP clusters.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "availables",
+                    "previews",
+                    "recommended",
+                    "id"
+                ]
+            }
+        },
+        "hcp:index/getHvn:getHvn": {
+            "description": "The HVN data source provides information about an existing HashiCorp Virtual Network.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst example = hcp.getHvn({\n    hvnId: _var.hvn_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample = hcp.get_hvn(hvn_id=var[\"hvn_id\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Hcp.GetHvn.InvokeAsync(new Hcp.GetHvnArgs\n        {\n            HvnId = @var.Hvn_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupHvn(ctx, \u0026GetHvnArgs{\n\t\t\tHvnId: _var.Hvn_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getHvn.\n",
+                "properties": {
+                    "hvnId": {
+                        "type": "string",
+                        "description": "The ID of the HashiCorp Virtual Network (HVN).\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "hvnId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getHvn.\n",
+                "properties": {
+                    "cidrBlock": {
+                        "type": "string",
+                        "description": "The CIDR range of the HVN.\n"
+                    },
+                    "cloudProvider": {
+                        "type": "string",
+                        "description": "The provider where the HVN is located.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The time that the HVN was created.\n"
+                    },
+                    "hvnId": {
+                        "type": "string",
+                        "description": "The ID of the HashiCorp Virtual Network (HVN).\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The ID of the HCP organization where the HVN is located.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of the HCP project where the HVN is located.\n"
+                    },
+                    "providerAccountId": {
+                        "type": "string",
+                        "description": "The provider account ID where the HVN is located.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region where the HVN is located.\n"
+                    },
+                    "selfLink": {
+                        "type": "string",
+                        "description": "A unique URL identifying the HVN.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "cidrBlock",
+                    "cloudProvider",
+                    "createdAt",
+                    "hvnId",
+                    "organizationId",
+                    "projectId",
+                    "providerAccountId",
+                    "region",
+                    "selfLink",
+                    "id"
+                ]
+            }
+        },
+        "hcp:index/getHvnPeeringConnection:getHvnPeeringConnection": {
+            "description": "The HVN peering connection data source provides information about an existing peering connection between HVNs.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst test = hcp.getHvnPeeringConnection({\n    peeringId: _var.peering_id,\n    hvn1: _var.hvn_1,\n    hvn2: _var.hvn_2,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\ntest = hcp.get_hvn_peering_connection(peering_id=var[\"peering_id\"],\n    hvn1=var[\"hvn_1\"],\n    hvn2=var[\"hvn_2\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = Output.Create(Hcp.GetHvnPeeringConnection.InvokeAsync(new Hcp.GetHvnPeeringConnectionArgs\n        {\n            PeeringId = @var.Peering_id,\n            Hvn1 = @var.Hvn_1,\n            Hvn2 = @var.Hvn_2,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupHvnPeeringConnection(ctx, \u0026GetHvnPeeringConnectionArgs{\n\t\t\tPeeringId: _var.Peering_id,\n\t\t\tHvn1:      _var.Hvn_1,\n\t\t\tHvn2:      _var.Hvn_2,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getHvnPeeringConnection.\n",
+                "properties": {
+                    "hvn1": {
+                        "type": "string",
+                        "description": "The unique URL of one of the HVNs being peered.\n"
+                    },
+                    "hvn2": {
+                        "type": "string",
+                        "description": "The unique URL of one of the HVNs being peered.\n"
+                    },
+                    "peeringId": {
+                        "type": "string",
+                        "description": "The ID of the peering connection.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "hvn1",
+                    "hvn2",
+                    "peeringId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getHvnPeeringConnection.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The time that the peering connection was created.\n"
+                    },
+                    "expiresAt": {
+                        "type": "string",
+                        "description": "The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.\n"
+                    },
+                    "hvn1": {
+                        "type": "string",
+                        "description": "The unique URL of one of the HVNs being peered.\n"
+                    },
+                    "hvn2": {
+                        "type": "string",
+                        "description": "The unique URL of one of the HVNs being peered.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The ID of the HCP organization where the peering connection is located. Always matches the HVNs' organization.\n"
+                    },
+                    "peeringId": {
+                        "type": "string",
+                        "description": "The ID of the peering connection.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of the HCP project where the peering connection is located. Always matches the HVNs' project.\n"
+                    },
+                    "selfLink": {
+                        "type": "string",
+                        "description": "A unique URL identifying the peering connection\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "createdAt",
+                    "expiresAt",
+                    "hvn1",
+                    "hvn2",
+                    "organizationId",
+                    "peeringId",
+                    "projectId",
+                    "selfLink",
+                    "id"
+                ]
+            }
+        },
+        "hcp:index/getHvnRoute:getHvnRoute": {
+            "description": "The HVN route data source provides information about an existing HVN route.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst example = hcp.getHvnRoute({\n    hvnLink: _var.hvn_link,\n    destinationCidr: _var.hvn_route_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample = hcp.get_hvn_route(hvn_link=var[\"hvn_link\"],\n    destination_cidr=var[\"hvn_route_id\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Hcp.GetHvnRoute.InvokeAsync(new Hcp.GetHvnRouteArgs\n        {\n            HvnLink = @var.Hvn_link,\n            DestinationCidr = @var.Hvn_route_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupHvnRoute(ctx, \u0026GetHvnRouteArgs{\n\t\t\tHvnLink:         _var.Hvn_link,\n\t\t\tDestinationCidr: _var.Hvn_route_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getHvnRoute.\n",
+                "properties": {
+                    "hvnLink": {
+                        "type": "string",
+                        "description": "The `self_link` of the HashiCorp Virtual Network (HVN).\n"
+                    },
+                    "hvnRouteId": {
+                        "type": "string",
+                        "description": "The ID of the HVN route.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "hvnLink",
+                    "hvnRouteId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getHvnRoute.\n",
+                "properties": {
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The time that the HVN route was created.\n"
+                    },
+                    "destinationCidr": {
+                        "type": "string",
+                        "description": "The destination CIDR of the HVN route.\n"
+                    },
+                    "hvnLink": {
+                        "type": "string",
+                        "description": "The `self_link` of the HashiCorp Virtual Network (HVN).\n"
+                    },
+                    "hvnRouteId": {
+                        "type": "string",
+                        "description": "The ID of the HVN route.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "selfLink": {
+                        "type": "string",
+                        "description": "A unique URL identifying the HVN route.\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "The state of the HVN route.\n"
+                    },
+                    "targetLink": {
+                        "type": "string",
+                        "description": "A unique URL identifying the target of the HVN route.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "createdAt",
+                    "destinationCidr",
+                    "hvnLink",
+                    "hvnRouteId",
+                    "selfLink",
+                    "state",
+                    "targetLink",
+                    "id"
+                ]
+            }
+        },
+        "hcp:index/getPackerImage:getPackerImage": {
+            "description": "\u003e **Note:** This feature is currently in beta.\n\nThe Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst hardened-source = hcp.getPackerIteration({\n    bucketName: \"hardened-ubuntu-16-04\",\n    channel: \"production\",\n});\nconst foo = hardened_source.then(hardened_source =\u003e hcp.getPackerImage({\n    bucketName: \"hardened-ubuntu-16-04\",\n    cloudProvider: \"aws\",\n    iterationId: hardened_source.ulid,\n    region: \"us-east-1\",\n}));\nexport const packer_registry_ubuntu = foo.then(foo =\u003e foo.cloudImageId);\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nhardened_source = hcp.get_packer_iteration(bucket_name=\"hardened-ubuntu-16-04\",\n    channel=\"production\")\nfoo = hcp.get_packer_image(bucket_name=\"hardened-ubuntu-16-04\",\n    cloud_provider=\"aws\",\n    iteration_id=hardened_source.ulid,\n    region=\"us-east-1\")\npulumi.export(\"packer-registry-ubuntu\", foo.cloud_image_id)\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var hardened_source = Output.Create(Hcp.GetPackerIteration.InvokeAsync(new Hcp.GetPackerIterationArgs\n        {\n            BucketName = \"hardened-ubuntu-16-04\",\n            Channel = \"production\",\n        }));\n        var foo = hardened_source.Apply(hardened_source =\u003e Output.Create(Hcp.GetPackerImage.InvokeAsync(new Hcp.GetPackerImageArgs\n        {\n            BucketName = \"hardened-ubuntu-16-04\",\n            CloudProvider = \"aws\",\n            IterationId = hardened_source.Ulid,\n            Region = \"us-east-1\",\n        })));\n        this.Packer_registry_ubuntu = foo.Apply(foo =\u003e foo.CloudImageId);\n    }\n\n    [Output(\"packer-registry-ubuntu\")]\n    public Output\u003cstring\u003e Packer_registry_ubuntu { get; set; }\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\thardened_source, err := hcp.GetPackerIteration(ctx, \u0026GetPackerIterationArgs{\n\t\t\tBucketName: \"hardened-ubuntu-16-04\",\n\t\t\tChannel:    \"production\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tfoo, err := hcp.GetPackerImage(ctx, \u0026GetPackerImageArgs{\n\t\t\tBucketName:    \"hardened-ubuntu-16-04\",\n\t\t\tCloudProvider: \"aws\",\n\t\t\tIterationId:   hardened_source.Ulid,\n\t\t\tRegion:        \"us-east-1\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"packer-registry-ubuntu\", foo.CloudImageId)\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getPackerImage.\n",
+                "properties": {
+                    "bucketName": {
+                        "type": "string",
+                        "description": "The slug of the HCP Packer Registry image bucket to pull from.\n"
+                    },
+                    "cloudProvider": {
+                        "type": "string",
+                        "description": "Name of the cloud provider this image is stored-in.\n"
+                    },
+                    "iterationId": {
+                        "type": "string",
+                        "description": "HCP ID of this image.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "Region this image is stored in, if any.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "bucketName",
+                    "cloudProvider",
+                    "iterationId",
+                    "region"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getPackerImage.\n",
+                "properties": {
+                    "bucketName": {
+                        "type": "string",
+                        "description": "The slug of the HCP Packer Registry image bucket to pull from.\n"
+                    },
+                    "buildId": {
+                        "type": "string",
+                        "description": "HCP ID of this build.\n"
+                    },
+                    "cloudImageId": {
+                        "type": "string",
+                        "description": "Cloud Image ID or URL string identifying this image for the builder that built it.\n"
+                    },
+                    "cloudProvider": {
+                        "type": "string",
+                        "description": "Name of the cloud provider this image is stored-in.\n"
+                    },
+                    "componentType": {
+                        "type": "string",
+                        "description": "Name of the builder that built this. Ex: 'amazon-ebs.example'\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Creation time of this build.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "iterationId": {
+                        "type": "string",
+                        "description": "HCP ID of this image.\n"
+                    },
+                    "labels": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "description": "Labels associated with this build.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The ID of the organization this HCP Packer registry is located in.\n"
+                    },
+                    "packerRunUuid": {
+                        "type": "string",
+                        "description": "UUID of this build.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of the project this HCP Packer registry is located in.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "Region this image is stored in, if any.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "bucketName",
+                    "buildId",
+                    "cloudImageId",
+                    "cloudProvider",
+                    "componentType",
+                    "createdAt",
+                    "iterationId",
+                    "labels",
+                    "organizationId",
+                    "packerRunUuid",
+                    "projectId",
+                    "region",
+                    "id"
+                ]
+            }
+        },
+        "hcp:index/getPackerImageIteration:getPackerImageIteration": {
+            "description": "\u003e **Note:** This feature is currently in beta.\n\nThe Packer Image data source iteration gets the most recent iteration (or build) of an image, given a channel.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst alpine = pulumi.output(hcp.getPackerImageIteration({\n    bucketName: \"alpine\",\n    channel: \"production\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nalpine = hcp.get_packer_image_iteration(bucket_name=\"alpine\",\n    channel=\"production\")\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var alpine = Output.Create(Hcp.GetPackerImageIteration.InvokeAsync(new Hcp.GetPackerImageIterationArgs\n        {\n            BucketName = \"alpine\",\n            Channel = \"production\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.GetPackerImageIteration(ctx, \u0026GetPackerImageIterationArgs{\n\t\t\tBucketName: \"alpine\",\n\t\t\tChannel:    \"production\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getPackerImageIteration.\n",
+                "properties": {
+                    "bucketName": {
+                        "type": "string",
+                        "description": "The slug of the HCP Packer Registry image bucket to pull from.\n"
+                    },
+                    "channel": {
+                        "type": "string",
+                        "description": "The channel that points to the version of the image you want.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "bucketName",
+                    "channel"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getPackerImageIteration.\n",
+                "properties": {
+                    "bucketName": {
+                        "type": "string",
+                        "description": "The slug of the HCP Packer Registry image bucket to pull from.\n"
+                    },
+                    "builds": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/hcp:index/getPackerImageIterationBuild:getPackerImageIterationBuild"
+                        },
+                        "description": "Builds for this iteration. An iteration can have more than one build if it took more than one go to build all images.\n"
+                    },
+                    "channel": {
+                        "type": "string",
+                        "description": "The channel that points to the version of the image you want.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Creation time of this iteration\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "incrementalVersion": {
+                        "type": "integer",
+                        "description": "Incremental version of this iteration\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The ID of the organization this HCP Packer registry is located in.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of the project this HCP Packer registry is located in.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "bucketName",
+                    "builds",
+                    "channel",
+                    "createdAt",
+                    "incrementalVersion",
+                    "organizationId",
+                    "projectId",
+                    "id"
+                ]
+            }
+        },
+        "hcp:index/getPackerIteration:getPackerIteration": {
+            "description": "\u003e **Note:** This feature is currently in beta.\n\nThe Packer Image data source iteration gets the most recent iteration (or build) of an image, given a channel.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst hardened_source = pulumi.output(hcp.getPackerIteration({\n    bucketName: \"hardened-ubuntu-16-04\",\n    channel: \"megan-test\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nhardened_source = hcp.get_packer_iteration(bucket_name=\"hardened-ubuntu-16-04\",\n    channel=\"megan-test\")\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var hardened_source = Output.Create(Hcp.GetPackerIteration.InvokeAsync(new Hcp.GetPackerIterationArgs\n        {\n            BucketName = \"hardened-ubuntu-16-04\",\n            Channel = \"megan-test\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.GetPackerIteration(ctx, \u0026GetPackerIterationArgs{\n\t\t\tBucketName: \"hardened-ubuntu-16-04\",\n\t\t\tChannel:    \"megan-test\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getPackerIteration.\n",
+                "properties": {
+                    "bucketName": {
+                        "type": "string",
+                        "description": "The slug of the HCP Packer Registry image bucket to pull from.\n"
+                    },
+                    "channel": {
+                        "type": "string",
+                        "description": "The channel that points to the version of the image you want.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "bucketName",
+                    "channel"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getPackerIteration.\n",
+                "properties": {
+                    "authorId": {
+                        "type": "string",
+                        "description": "The name of the person who created this iteration.\n"
+                    },
+                    "bucketName": {
+                        "type": "string",
+                        "description": "The slug of the HCP Packer Registry image bucket to pull from.\n"
+                    },
+                    "channel": {
+                        "type": "string",
+                        "description": "The channel that points to the version of the image you want.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Creation time of this iteration\n"
+                    },
+                    "fingerprint": {
+                        "type": "string",
+                        "description": "The unique fingerprint associated with this iteration; often a git sha.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "incrementalVersion": {
+                        "type": "integer",
+                        "description": "Incremental version of this iteration\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The ID of the organization this HCP Packer registry is located in.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of the project this HCP Packer registry is located in.\n"
+                    },
+                    "ulid": {
+                        "type": "string",
+                        "description": "The ULID of this iteration.\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "Time this build was last updated.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "authorId",
+                    "bucketName",
+                    "channel",
+                    "createdAt",
+                    "fingerprint",
+                    "incrementalVersion",
+                    "organizationId",
+                    "projectId",
+                    "ulid",
+                    "updatedAt",
+                    "id"
+                ]
+            }
+        },
+        "hcp:index/getVaultCluster:getVaultCluster": {
+            "description": "The cluster data source provides information about an existing HCP Vault cluster.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst example = hcp.getVaultCluster({\n    clusterId: _var.cluster_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample = hcp.get_vault_cluster(cluster_id=var[\"cluster_id\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Hcp.GetVaultCluster.InvokeAsync(new Hcp.GetVaultClusterArgs\n        {\n            ClusterId = @var.Cluster_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupVaultCluster(ctx, \u0026GetVaultClusterArgs{\n\t\t\tClusterId: _var.Cluster_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getVaultCluster.\n",
+                "properties": {
+                    "clusterId": {
+                        "type": "string",
+                        "description": "The ID of the HCP Vault cluster.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "clusterId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getVaultCluster.\n",
+                "properties": {
+                    "cloudProvider": {
+                        "type": "string",
+                        "description": "The provider where the HCP Vault cluster is located.\n"
+                    },
+                    "clusterId": {
+                        "type": "string",
+                        "description": "The ID of the HCP Vault cluster.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The time that the Vault cluster was created.\n"
+                    },
+                    "hvnId": {
+                        "type": "string",
+                        "description": "The ID of the HVN this HCP Vault cluster is associated to.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "minVaultVersion": {
+                        "type": "string",
+                        "description": "The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.\n"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The name of the customer namespace this HCP Vault cluster is located in.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The ID of the organization this HCP Vault cluster is located in.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of the project this HCP Vault cluster is located in.\n"
+                    },
+                    "publicEndpoint": {
+                        "type": "boolean",
+                        "description": "Denotes that the cluster has a public endpoint. Defaults to false.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region where the HCP Vault cluster is located.\n"
+                    },
+                    "tier": {
+                        "type": "string",
+                        "description": "The tier that the HCP Vault cluster will be provisioned as.  Only 'development' is available at this time.\n"
+                    },
+                    "vaultPrivateEndpointUrl": {
+                        "type": "string",
+                        "description": "The private URL for the Vault cluster.\n"
+                    },
+                    "vaultPublicEndpointUrl": {
+                        "type": "string",
+                        "description": "The public URL for the Vault cluster. This will be empty if `public_endpoint` is `false`.\n"
+                    },
+                    "vaultVersion": {
+                        "type": "string",
+                        "description": "The Vault version of the cluster.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "cloudProvider",
+                    "clusterId",
+                    "createdAt",
+                    "hvnId",
+                    "minVaultVersion",
+                    "namespace",
+                    "organizationId",
+                    "projectId",
+                    "publicEndpoint",
+                    "region",
+                    "tier",
+                    "vaultPrivateEndpointUrl",
+                    "vaultPublicEndpointUrl",
+                    "vaultVersion",
+                    "id"
+                ]
+            }
+        }
+    },
+    "language": {
+        "csharp": {
+            "compatibility": "tfbridge20",
+            "namespaces": null,
+            "packageReferences": {
+                "Pulumi": "3.*"
+            }
+        },
+        "go": {
+            "generateResourceContainerTypes": true,
+            "importBasePath": "github.com/pulumi/pulumi-hcp/sdk/go/hcp"
+        },
+        "nodejs": {
+            "compatibility": "tfbridge20",
+            "dependencies": {
+                "@pulumi/pulumi": "^3.0.0"
+            },
+            "devDependencies": {
+                "@types/mime": "^2.0.0",
+                "@types/node": "^10.0.0"
+            },
+            "disableUnionOutputTypes": true,
+            "packageDescription": "A Pulumi package for creating and managing hcp cloud resources.",
+            "packageName": "",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hashicorp/terraform-provider-hcp)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-hcp` repo](https://github.com/pulumi/pulumi-hcp/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`hashicorp/terraform-provider-hcp` repo](https://github.com/hashicorp/terraform-provider-hcp/issues).",
+            "typescriptVersion": ""
+        },
+        "python": {
+            "compatibility": "tfbridge20",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hashicorp/terraform-provider-hcp)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-hcp` repo](https://github.com/pulumi/pulumi-hcp/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`hashicorp/terraform-provider-hcp` repo](https://github.com/hashicorp/terraform-provider-hcp/issues).",
+            "requires": {
+                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
+            }
+        }
+    }
+}
