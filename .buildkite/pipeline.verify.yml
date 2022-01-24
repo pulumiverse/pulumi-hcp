@@ -1,0 +1,7 @@
+---
+steps:
+  # TODO: This will become a real pipeline once we figure out what
+  # that looks like for Pulumi providers. For now, this is just a
+  # placeholder.
+  - label: ":earth_asia::earth_americas::earth_africa: Hello World"
+    command: "echo 'Hello World'"
