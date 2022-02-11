@@ -1,14 +1,18 @@
 {
     "name": "hcp",
+    "displayName": "HashiCorp Cloud Platform (HCP)",
     "description": "A Pulumi package for creating and managing hcp cloud resources.",
     "keywords": [
         "pulumi",
-        "hcp"
+        "hcp",
+        "category/infrastructure"
     ],
     "homepage": "https://pulumi.io",
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`hcp` Terraform Provider](https://github.com/hashicorp/terraform-provider-hcp).",
     "repository": "https://github.com/grapl-security/pulumi-hcp",
+    "pluginDownloadURL": "https://github.com/grapl-security/pulumi-hcp/releases/download/${VERSION}",
+    "publisher": "Grapl Security",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
     },
@@ -16,21 +20,11 @@
         "variables": {
             "clientId": {
                 "type": "string",
-                "description": "The OAuth2 Client ID for API operations.\n",
-                "defaultInfo": {
-                    "environment": [
-                        "HCP_CLIENT_ID"
-                    ]
-                }
+                "description": "The OAuth2 Client ID for API operations.\n"
             },
             "clientSecret": {
                 "type": "string",
-                "description": "The OAuth2 Client Secret for API operations.\n",
-                "defaultInfo": {
-                    "environment": [
-                        "HCP_CLIENT_SECRET"
-                    ]
-                }
+                "description": "The OAuth2 Client Secret for API operations.\n"
             }
         }
     },
@@ -208,21 +202,11 @@
         "inputProperties": {
             "clientId": {
                 "type": "string",
-                "description": "The OAuth2 Client ID for API operations.\n",
-                "defaultInfo": {
-                    "environment": [
-                        "HCP_CLIENT_ID"
-                    ]
-                }
+                "description": "The OAuth2 Client ID for API operations.\n"
             },
             "clientSecret": {
                 "type": "string",
-                "description": "The OAuth2 Client Secret for API operations.\n",
-                "defaultInfo": {
-                    "environment": [
-                        "HCP_CLIENT_SECRET"
-                    ]
-                }
+                "description": "The OAuth2 Client Secret for API operations.\n"
             }
         }
     },

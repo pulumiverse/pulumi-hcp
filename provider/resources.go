@@ -54,26 +54,19 @@ func Provider() tfbridge.ProviderInfo {
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:           p,
-		Name:        "hcp",
-		Description: "A Pulumi package for creating and managing hcp cloud resources.",
-		Keywords:    []string{"pulumi", "hcp"},
-		License:     "Apache-2.0",
-		Homepage:    "https://pulumi.io",
-		GitHubOrg:   "hashicorp",
-		Repository:  "https://github.com/grapl-security/pulumi-hcp",
-		Config: map[string]*tfbridge.SchemaInfo{
-			"client_id": {
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"HCP_CLIENT_ID"},
-				},
-			},
-			"client_secret": {
-				Default: &tfbridge.DefaultInfo{
-					EnvVars: []string{"HCP_CLIENT_SECRET"},
-				},
-			},
-		},
+		P:                    p,
+		Name:                 "hcp",
+		Description:          "A Pulumi package for creating and managing hcp cloud resources.",
+		Keywords:             []string{"pulumi", "hcp", "category/infrastructure"},
+		License:              "Apache-2.0",
+		Homepage:             "https://pulumi.io",
+		GitHubOrg:            "hashicorp",
+		LogoURL:              "https://raw.githubusercontent.com/grapl-security/pulumi-hcp/main/assets/hcp.svg",
+		Repository:           "https://github.com/grapl-security/pulumi-hcp",
+		Publisher:            "Grapl Security",
+		DisplayName:          "HashiCorp Cloud Platform (HCP)",
+		PluginDownloadURL:    "https://github.com/grapl-security/pulumi-hcp/releases/download/${VERSION}",
+		Config:               map[string]*tfbridge.SchemaInfo{},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"hcp_aws_network_peering":            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AwsNetworkPeering")},
