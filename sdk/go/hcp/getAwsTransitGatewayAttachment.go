@@ -36,6 +36,7 @@ import (
 // }
 // ```
 func LookupAwsTransitGatewayAttachment(ctx *pulumi.Context, args *LookupAwsTransitGatewayAttachmentArgs, opts ...pulumi.InvokeOption) (*LookupAwsTransitGatewayAttachmentResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupAwsTransitGatewayAttachmentResult
 	err := ctx.Invoke("hcp:index/getAwsTransitGatewayAttachment:getAwsTransitGatewayAttachment", args, &rv, opts...)
 	if err != nil {

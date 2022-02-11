@@ -30,12 +30,7 @@ func NewProvider(ctx *pulumi.Context,
 		args = &ProviderArgs{}
 	}
 
-	if isZero(args.ClientId) {
-		args.ClientId = pulumi.StringPtr(getEnvOrDefault("", nil, "HCP_CLIENT_ID").(string))
-	}
-	if isZero(args.ClientSecret) {
-		args.ClientSecret = pulumi.StringPtr(getEnvOrDefault("", nil, "HCP_CLIENT_SECRET").(string))
-	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:hcp", name, args, &resource, opts...)
 	if err != nil {

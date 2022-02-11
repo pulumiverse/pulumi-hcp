@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Hcp
 {
@@ -39,7 +38,7 @@ namespace Pulumi.Hcp
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetHvnResult> InvokeAsync(GetHvnArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetHvnResult>("hcp:index/getHvn:getHvn", args ?? new GetHvnArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetHvnResult>("hcp:index/getHvn:getHvn", args ?? new GetHvnArgs(), options.WithDefaults());
 
         /// <summary>
         /// The HVN data source provides information about an existing HashiCorp Virtual Network.
@@ -68,7 +67,7 @@ namespace Pulumi.Hcp
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetHvnResult> Invoke(GetHvnInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetHvnResult>("hcp:index/getHvn:getHvn", args ?? new GetHvnInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetHvnResult>("hcp:index/getHvn:getHvn", args ?? new GetHvnInvokeArgs(), options.WithDefaults());
     }
 
 

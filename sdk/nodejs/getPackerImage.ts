@@ -33,9 +33,7 @@ export function getPackerImage(args: GetPackerImageArgs, opts?: pulumi.InvokeOpt
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("hcp:index/getPackerImage:getPackerImage", {
         "bucketName": args.bucketName,
         "cloudProvider": args.cloudProvider,

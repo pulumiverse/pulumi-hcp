@@ -48,6 +48,7 @@ namespace Pulumi.Hcp
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                PluginDownloadURL = "https://github.com/grapl-security/pulumi-hcp/releases/download/${VERSION}",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -72,8 +73,6 @@ namespace Pulumi.Hcp
 
         public ProviderArgs()
         {
-            ClientId = Utilities.GetEnv("HCP_CLIENT_ID");
-            ClientSecret = Utilities.GetEnv("HCP_CLIENT_SECRET");
         }
     }
 }

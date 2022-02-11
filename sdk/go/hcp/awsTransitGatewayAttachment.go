@@ -68,6 +68,7 @@ func NewAwsTransitGatewayAttachment(ctx *pulumi.Context,
 	if args.TransitGatewayId == nil {
 		return nil, errors.New("invalid value for required argument 'TransitGatewayId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource AwsTransitGatewayAttachment
 	err := ctx.RegisterResource("hcp:index/awsTransitGatewayAttachment:AwsTransitGatewayAttachment", name, args, &resource, opts...)
 	if err != nil {

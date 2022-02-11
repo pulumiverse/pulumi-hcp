@@ -45,12 +45,10 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            resourceInputs["clientId"] = (args ? args.clientId : undefined) ?? utilities.getEnv("HCP_CLIENT_ID");
-            resourceInputs["clientSecret"] = (args ? args.clientSecret : undefined) ?? utilities.getEnv("HCP_CLIENT_SECRET");
+            resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["clientSecret"] = args ? args.clientSecret : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }

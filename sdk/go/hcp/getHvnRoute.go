@@ -36,6 +36,7 @@ import (
 // }
 // ```
 func LookupHvnRoute(ctx *pulumi.Context, args *LookupHvnRouteArgs, opts ...pulumi.InvokeOption) (*LookupHvnRouteResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupHvnRouteResult
 	err := ctx.Invoke("hcp:index/getHvnRoute:getHvnRoute", args, &rv, opts...)
 	if err != nil {

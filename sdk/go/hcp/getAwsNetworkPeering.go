@@ -36,6 +36,7 @@ import (
 // }
 // ```
 func LookupAwsNetworkPeering(ctx *pulumi.Context, args *LookupAwsNetworkPeeringArgs, opts ...pulumi.InvokeOption) (*LookupAwsNetworkPeeringResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupAwsNetworkPeeringResult
 	err := ctx.Invoke("hcp:index/getAwsNetworkPeering:getAwsNetworkPeering", args, &rv, opts...)
 	if err != nil {

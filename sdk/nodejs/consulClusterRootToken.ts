@@ -76,9 +76,7 @@ export class ConsulClusterRootToken extends pulumi.CustomResource {
             resourceInputs["kubernetesSecret"] = undefined /*out*/;
             resourceInputs["secretId"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ConsulClusterRootToken.__pulumiType, name, resourceInputs, opts);
     }
 }

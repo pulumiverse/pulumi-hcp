@@ -149,9 +149,7 @@ export class Hvn extends pulumi.CustomResource {
             resourceInputs["providerAccountId"] = undefined /*out*/;
             resourceInputs["selfLink"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Hvn.__pulumiType, name, resourceInputs, opts);
     }
 }

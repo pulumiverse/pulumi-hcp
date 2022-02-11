@@ -30,6 +30,7 @@ import (
 // }
 // ```
 func GetConsulVersions(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetConsulVersionsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetConsulVersionsResult
 	err := ctx.Invoke("hcp:index/getConsulVersions:getConsulVersions", nil, &rv, opts...)
 	if err != nil {

@@ -32,7 +32,7 @@ namespace Pulumi.Hcp
 
         private static readonly Pulumi.Config __config = new Pulumi.Config("hcp");
 
-        private static readonly __Value<string?> _clientId = new __Value<string?>(() => __config.Get("clientId") ?? Utilities.GetEnv("HCP_CLIENT_ID"));
+        private static readonly __Value<string?> _clientId = new __Value<string?>(() => __config.Get("clientId"));
         /// <summary>
         /// The OAuth2 Client ID for API operations.
         /// </summary>
@@ -42,7 +42,7 @@ namespace Pulumi.Hcp
             set => _clientId.Set(value);
         }
 
-        private static readonly __Value<string?> _clientSecret = new __Value<string?>(() => __config.Get("clientSecret") ?? Utilities.GetEnv("HCP_CLIENT_SECRET"));
+        private static readonly __Value<string?> _clientSecret = new __Value<string?>(() => __config.Get("clientSecret"));
         /// <summary>
         /// The OAuth2 Client Secret for API operations.
         /// </summary>

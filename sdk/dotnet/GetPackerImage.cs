@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Hcp
 {
@@ -52,7 +51,7 @@ namespace Pulumi.Hcp
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetPackerImageResult> InvokeAsync(GetPackerImageArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetPackerImageResult>("hcp:index/getPackerImage:getPackerImage", args ?? new GetPackerImageArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetPackerImageResult>("hcp:index/getPackerImage:getPackerImage", args ?? new GetPackerImageArgs(), options.WithDefaults());
 
         /// <summary>
         /// &gt; **Note:** This feature is currently in beta.
@@ -94,7 +93,7 @@ namespace Pulumi.Hcp
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetPackerImageResult> Invoke(GetPackerImageInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetPackerImageResult>("hcp:index/getPackerImage:getPackerImage", args ?? new GetPackerImageInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetPackerImageResult>("hcp:index/getPackerImage:getPackerImage", args ?? new GetPackerImageInvokeArgs(), options.WithDefaults());
     }
 
 

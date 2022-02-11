@@ -35,6 +35,7 @@ import (
 // }
 // ```
 func LookupConsulCluster(ctx *pulumi.Context, args *LookupConsulClusterArgs, opts ...pulumi.InvokeOption) (*LookupConsulClusterResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupConsulClusterResult
 	err := ctx.Invoke("hcp:index/getConsulCluster:getConsulCluster", args, &rv, opts...)
 	if err != nil {

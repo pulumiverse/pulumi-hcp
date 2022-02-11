@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Hcp
 {
@@ -40,7 +39,7 @@ namespace Pulumi.Hcp
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAwsNetworkPeeringResult> InvokeAsync(GetAwsNetworkPeeringArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAwsNetworkPeeringResult>("hcp:index/getAwsNetworkPeering:getAwsNetworkPeering", args ?? new GetAwsNetworkPeeringArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetAwsNetworkPeeringResult>("hcp:index/getAwsNetworkPeering:getAwsNetworkPeering", args ?? new GetAwsNetworkPeeringArgs(), options.WithDefaults());
 
         /// <summary>
         /// The AWS network peering data source provides information about an existing network peering between an HVN and a peer AWS VPC.
@@ -70,7 +69,7 @@ namespace Pulumi.Hcp
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetAwsNetworkPeeringResult> Invoke(GetAwsNetworkPeeringInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAwsNetworkPeeringResult>("hcp:index/getAwsNetworkPeering:getAwsNetworkPeering", args ?? new GetAwsNetworkPeeringInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetAwsNetworkPeeringResult>("hcp:index/getAwsNetworkPeering:getAwsNetworkPeering", args ?? new GetAwsNetworkPeeringInvokeArgs(), options.WithDefaults());
     }
 
 

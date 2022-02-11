@@ -56,6 +56,7 @@ func NewHvnRoute(ctx *pulumi.Context,
 	if args.TargetLink == nil {
 		return nil, errors.New("invalid value for required argument 'TargetLink'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource HvnRoute
 	err := ctx.RegisterResource("hcp:index/hvnRoute:HvnRoute", name, args, &resource, opts...)
 	if err != nil {

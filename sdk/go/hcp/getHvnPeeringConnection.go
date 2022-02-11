@@ -37,6 +37,7 @@ import (
 // }
 // ```
 func LookupHvnPeeringConnection(ctx *pulumi.Context, args *LookupHvnPeeringConnectionArgs, opts ...pulumi.InvokeOption) (*LookupHvnPeeringConnectionResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupHvnPeeringConnectionResult
 	err := ctx.Invoke("hcp:index/getHvnPeeringConnection:getHvnPeeringConnection", args, &rv, opts...)
 	if err != nil {

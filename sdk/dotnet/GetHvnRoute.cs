@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Hcp
 {
@@ -40,7 +39,7 @@ namespace Pulumi.Hcp
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetHvnRouteResult> InvokeAsync(GetHvnRouteArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetHvnRouteResult>("hcp:index/getHvnRoute:getHvnRoute", args ?? new GetHvnRouteArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetHvnRouteResult>("hcp:index/getHvnRoute:getHvnRoute", args ?? new GetHvnRouteArgs(), options.WithDefaults());
 
         /// <summary>
         /// The HVN route data source provides information about an existing HVN route.
@@ -70,7 +69,7 @@ namespace Pulumi.Hcp
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetHvnRouteResult> Invoke(GetHvnRouteInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetHvnRouteResult>("hcp:index/getHvnRoute:getHvnRoute", args ?? new GetHvnRouteInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetHvnRouteResult>("hcp:index/getHvnRoute:getHvnRoute", args ?? new GetHvnRouteInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -96,6 +96,7 @@ func NewHvnPeeringConnection(ctx *pulumi.Context,
 	if args.Hvn2 == nil {
 		return nil, errors.New("invalid value for required argument 'Hvn2'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource HvnPeeringConnection
 	err := ctx.RegisterResource("hcp:index/hvnPeeringConnection:HvnPeeringConnection", name, args, &resource, opts...)
 	if err != nil {

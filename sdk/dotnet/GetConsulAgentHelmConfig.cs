@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Hcp
 {
@@ -40,7 +39,7 @@ namespace Pulumi.Hcp
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetConsulAgentHelmConfigResult> InvokeAsync(GetConsulAgentHelmConfigArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetConsulAgentHelmConfigResult>("hcp:index/getConsulAgentHelmConfig:getConsulAgentHelmConfig", args ?? new GetConsulAgentHelmConfigArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetConsulAgentHelmConfigResult>("hcp:index/getConsulAgentHelmConfig:getConsulAgentHelmConfig", args ?? new GetConsulAgentHelmConfigArgs(), options.WithDefaults());
 
         /// <summary>
         /// The Consul agent Helm config data source provides Helm values for a Consul agent running in Kubernetes.
@@ -70,7 +69,7 @@ namespace Pulumi.Hcp
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetConsulAgentHelmConfigResult> Invoke(GetConsulAgentHelmConfigInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetConsulAgentHelmConfigResult>("hcp:index/getConsulAgentHelmConfig:getConsulAgentHelmConfig", args ?? new GetConsulAgentHelmConfigInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetConsulAgentHelmConfigResult>("hcp:index/getConsulAgentHelmConfig:getConsulAgentHelmConfig", args ?? new GetConsulAgentHelmConfigInvokeArgs(), options.WithDefaults());
     }
 
 

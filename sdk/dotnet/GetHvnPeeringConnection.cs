@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Hcp
 {
@@ -41,7 +40,7 @@ namespace Pulumi.Hcp
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetHvnPeeringConnectionResult> InvokeAsync(GetHvnPeeringConnectionArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetHvnPeeringConnectionResult>("hcp:index/getHvnPeeringConnection:getHvnPeeringConnection", args ?? new GetHvnPeeringConnectionArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetHvnPeeringConnectionResult>("hcp:index/getHvnPeeringConnection:getHvnPeeringConnection", args ?? new GetHvnPeeringConnectionArgs(), options.WithDefaults());
 
         /// <summary>
         /// The HVN peering connection data source provides information about an existing peering connection between HVNs.
@@ -72,7 +71,7 @@ namespace Pulumi.Hcp
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetHvnPeeringConnectionResult> Invoke(GetHvnPeeringConnectionInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetHvnPeeringConnectionResult>("hcp:index/getHvnPeeringConnection:getHvnPeeringConnection", args ?? new GetHvnPeeringConnectionInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetHvnPeeringConnectionResult>("hcp:index/getHvnPeeringConnection:getHvnPeeringConnection", args ?? new GetHvnPeeringConnectionInvokeArgs(), options.WithDefaults());
     }
 
 

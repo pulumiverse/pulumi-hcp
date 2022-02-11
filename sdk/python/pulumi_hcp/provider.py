@@ -20,12 +20,8 @@ class ProviderArgs:
         :param pulumi.Input[str] client_id: The OAuth2 Client ID for API operations.
         :param pulumi.Input[str] client_secret: The OAuth2 Client Secret for API operations.
         """
-        if client_id is None:
-            client_id = _utilities.get_env('HCP_CLIENT_ID')
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
-        if client_secret is None:
-            client_secret = _utilities.get_env('HCP_CLIENT_SECRET')
         if client_secret is not None:
             pulumi.set(__self__, "client_secret", client_secret)
 
@@ -109,16 +105,14 @@ class Provider(pulumi.ProviderResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
-            if client_id is None:
-                client_id = _utilities.get_env('HCP_CLIENT_ID')
             __props__.__dict__["client_id"] = client_id
-            if client_secret is None:
-                client_secret = _utilities.get_env('HCP_CLIENT_SECRET')
             __props__.__dict__["client_secret"] = client_secret
         super(Provider, __self__).__init__(
             'hcp',

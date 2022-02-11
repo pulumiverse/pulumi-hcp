@@ -134,6 +134,7 @@ func NewAwsNetworkPeering(ctx *pulumi.Context,
 	if args.PeeringId == nil {
 		return nil, errors.New("invalid value for required argument 'PeeringId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource AwsNetworkPeering
 	err := ctx.RegisterResource("hcp:index/awsNetworkPeering:AwsNetworkPeering", name, args, &resource, opts...)
 	if err != nil {

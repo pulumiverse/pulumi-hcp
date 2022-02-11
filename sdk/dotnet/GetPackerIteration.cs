@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Hcp
 {
@@ -42,7 +41,7 @@ namespace Pulumi.Hcp
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetPackerIterationResult> InvokeAsync(GetPackerIterationArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetPackerIterationResult>("hcp:index/getPackerIteration:getPackerIteration", args ?? new GetPackerIterationArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetPackerIterationResult>("hcp:index/getPackerIteration:getPackerIteration", args ?? new GetPackerIterationArgs(), options.WithDefaults());
 
         /// <summary>
         /// &gt; **Note:** This feature is currently in beta.
@@ -74,7 +73,7 @@ namespace Pulumi.Hcp
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetPackerIterationResult> Invoke(GetPackerIterationInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetPackerIterationResult>("hcp:index/getPackerIteration:getPackerIteration", args ?? new GetPackerIterationInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetPackerIterationResult>("hcp:index/getPackerIteration:getPackerIteration", args ?? new GetPackerIterationInvokeArgs(), options.WithDefaults());
     }
 
 

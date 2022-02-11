@@ -26,9 +26,7 @@ export function getPackerIteration(args: GetPackerIterationArgs, opts?: pulumi.I
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("hcp:index/getPackerIteration:getPackerIteration", {
         "bucketName": args.bucketName,
         "channel": args.channel,

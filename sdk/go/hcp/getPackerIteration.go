@@ -38,6 +38,7 @@ import (
 // }
 // ```
 func GetPackerIteration(ctx *pulumi.Context, args *GetPackerIterationArgs, opts ...pulumi.InvokeOption) (*GetPackerIterationResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetPackerIterationResult
 	err := ctx.Invoke("hcp:index/getPackerIteration:getPackerIteration", args, &rv, opts...)
 	if err != nil {

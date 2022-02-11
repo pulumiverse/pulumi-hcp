@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Hcp
 {
@@ -39,7 +38,7 @@ namespace Pulumi.Hcp
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetConsulClusterResult> InvokeAsync(GetConsulClusterArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetConsulClusterResult>("hcp:index/getConsulCluster:getConsulCluster", args ?? new GetConsulClusterArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetConsulClusterResult>("hcp:index/getConsulCluster:getConsulCluster", args ?? new GetConsulClusterArgs(), options.WithDefaults());
 
         /// <summary>
         /// The cluster data source provides information about an existing HCP Consul cluster.
@@ -68,7 +67,7 @@ namespace Pulumi.Hcp
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetConsulClusterResult> Invoke(GetConsulClusterInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetConsulClusterResult>("hcp:index/getConsulCluster:getConsulCluster", args ?? new GetConsulClusterInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetConsulClusterResult>("hcp:index/getConsulCluster:getConsulCluster", args ?? new GetConsulClusterInvokeArgs(), options.WithDefaults());
     }
 
 

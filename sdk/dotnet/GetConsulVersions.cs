@@ -35,7 +35,7 @@ namespace Pulumi.Hcp
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetConsulVersionsResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetConsulVersionsResult>("hcp:index/getConsulVersions:getConsulVersions", InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetConsulVersionsResult>("hcp:index/getConsulVersions:getConsulVersions", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

@@ -48,6 +48,7 @@ import (
 // }
 // ```
 func GetPackerImage(ctx *pulumi.Context, args *GetPackerImageArgs, opts ...pulumi.InvokeOption) (*GetPackerImageResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetPackerImageResult
 	err := ctx.Invoke("hcp:index/getPackerImage:getPackerImage", args, &rv, opts...)
 	if err != nil {

@@ -168,9 +168,7 @@ export class VaultCluster extends pulumi.CustomResource {
             resourceInputs["vaultPublicEndpointUrl"] = undefined /*out*/;
             resourceInputs["vaultVersion"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(VaultCluster.__pulumiType, name, resourceInputs, opts);
     }
 }

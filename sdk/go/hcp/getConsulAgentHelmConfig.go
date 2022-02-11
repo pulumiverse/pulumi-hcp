@@ -36,6 +36,7 @@ import (
 // }
 // ```
 func GetConsulAgentHelmConfig(ctx *pulumi.Context, args *GetConsulAgentHelmConfigArgs, opts ...pulumi.InvokeOption) (*GetConsulAgentHelmConfigResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetConsulAgentHelmConfigResult
 	err := ctx.Invoke("hcp:index/getConsulAgentHelmConfig:getConsulAgentHelmConfig", args, &rv, opts...)
 	if err != nil {

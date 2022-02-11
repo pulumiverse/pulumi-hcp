@@ -10,18 +10,10 @@ import (
 
 // The OAuth2 Client ID for API operations.
 func GetClientId(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "hcp:clientId")
-	if err == nil {
-		return v
-	}
-	return getEnvOrDefault("", nil, "HCP_CLIENT_ID").(string)
+	return config.Get(ctx, "hcp:clientId")
 }
 
 // The OAuth2 Client Secret for API operations.
 func GetClientSecret(ctx *pulumi.Context) string {
-	v, err := config.Try(ctx, "hcp:clientSecret")
-	if err == nil {
-		return v
-	}
-	return getEnvOrDefault("", nil, "HCP_CLIENT_SECRET").(string)
+	return config.Get(ctx, "hcp:clientSecret")
 }

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Hcp
 {
@@ -40,7 +39,7 @@ namespace Pulumi.Hcp
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAwsTransitGatewayAttachmentResult> InvokeAsync(GetAwsTransitGatewayAttachmentArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAwsTransitGatewayAttachmentResult>("hcp:index/getAwsTransitGatewayAttachment:getAwsTransitGatewayAttachment", args ?? new GetAwsTransitGatewayAttachmentArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetAwsTransitGatewayAttachmentResult>("hcp:index/getAwsTransitGatewayAttachment:getAwsTransitGatewayAttachment", args ?? new GetAwsTransitGatewayAttachmentArgs(), options.WithDefaults());
 
         /// <summary>
         /// The AWS transit gateway attachment data source provides information about an existing transit gateway attachment.
@@ -70,7 +69,7 @@ namespace Pulumi.Hcp
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetAwsTransitGatewayAttachmentResult> Invoke(GetAwsTransitGatewayAttachmentInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAwsTransitGatewayAttachmentResult>("hcp:index/getAwsTransitGatewayAttachment:getAwsTransitGatewayAttachment", args ?? new GetAwsTransitGatewayAttachmentInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetAwsTransitGatewayAttachmentResult>("hcp:index/getAwsTransitGatewayAttachment:getAwsTransitGatewayAttachment", args ?? new GetAwsTransitGatewayAttachmentInvokeArgs(), options.WithDefaults());
     }
 
 

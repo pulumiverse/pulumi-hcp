@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Hcp
 {
@@ -39,7 +38,7 @@ namespace Pulumi.Hcp
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetConsulAgentKubernetesSecretResult> InvokeAsync(GetConsulAgentKubernetesSecretArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetConsulAgentKubernetesSecretResult>("hcp:index/getConsulAgentKubernetesSecret:getConsulAgentKubernetesSecret", args ?? new GetConsulAgentKubernetesSecretArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetConsulAgentKubernetesSecretResult>("hcp:index/getConsulAgentKubernetesSecret:getConsulAgentKubernetesSecret", args ?? new GetConsulAgentKubernetesSecretArgs(), options.WithDefaults());
 
         /// <summary>
         /// The agent config Kubernetes secret data source provides Consul agents running in Kubernetes the configuration needed to connect to the Consul cluster.
@@ -68,7 +67,7 @@ namespace Pulumi.Hcp
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetConsulAgentKubernetesSecretResult> Invoke(GetConsulAgentKubernetesSecretInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetConsulAgentKubernetesSecretResult>("hcp:index/getConsulAgentKubernetesSecret:getConsulAgentKubernetesSecret", args ?? new GetConsulAgentKubernetesSecretInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetConsulAgentKubernetesSecretResult>("hcp:index/getConsulAgentKubernetesSecret:getConsulAgentKubernetesSecret", args ?? new GetConsulAgentKubernetesSecretInvokeArgs(), options.WithDefaults());
     }
 
 

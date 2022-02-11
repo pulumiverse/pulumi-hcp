@@ -24,9 +24,7 @@ export function getConsulAgentHelmConfig(args: GetConsulAgentHelmConfigArgs, opt
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("hcp:index/getConsulAgentHelmConfig:getConsulAgentHelmConfig", {
         "clusterId": args.clusterId,
         "exposeGossipPorts": args.exposeGossipPorts,

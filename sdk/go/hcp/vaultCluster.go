@@ -99,6 +99,7 @@ func NewVaultCluster(ctx *pulumi.Context,
 	if args.HvnId == nil {
 		return nil, errors.New("invalid value for required argument 'HvnId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VaultCluster
 	err := ctx.RegisterResource("hcp:index/vaultCluster:VaultCluster", name, args, &resource, opts...)
 	if err != nil {

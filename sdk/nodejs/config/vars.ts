@@ -13,7 +13,7 @@ const __config = new pulumi.Config("hcp");
 export declare const clientId: string | undefined;
 Object.defineProperty(exports, "clientId", {
     get() {
-        return __config.get("clientId") ?? utilities.getEnv("HCP_CLIENT_ID");
+        return __config.get("clientId");
     },
     enumerable: true,
 });
@@ -24,7 +24,7 @@ Object.defineProperty(exports, "clientId", {
 export declare const clientSecret: string | undefined;
 Object.defineProperty(exports, "clientSecret", {
     get() {
-        return __config.get("clientSecret") ?? utilities.getEnv("HCP_CLIENT_SECRET");
+        return __config.get("clientSecret");
     },
     enumerable: true,
 });

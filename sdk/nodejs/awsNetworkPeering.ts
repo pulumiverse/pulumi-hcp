@@ -177,9 +177,7 @@ export class AwsNetworkPeering extends pulumi.CustomResource {
             resourceInputs["providerPeeringId"] = undefined /*out*/;
             resourceInputs["selfLink"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AwsNetworkPeering.__pulumiType, name, resourceInputs, opts);
     }
 }

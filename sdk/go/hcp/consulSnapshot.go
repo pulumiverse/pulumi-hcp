@@ -70,6 +70,7 @@ func NewConsulSnapshot(ctx *pulumi.Context,
 	if args.SnapshotName == nil {
 		return nil, errors.New("invalid value for required argument 'SnapshotName'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ConsulSnapshot
 	err := ctx.RegisterResource("hcp:index/consulSnapshot:ConsulSnapshot", name, args, &resource, opts...)
 	if err != nil {

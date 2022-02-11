@@ -35,6 +35,7 @@ import (
 // }
 // ```
 func GetConsulAgentKubernetesSecret(ctx *pulumi.Context, args *GetConsulAgentKubernetesSecretArgs, opts ...pulumi.InvokeOption) (*GetConsulAgentKubernetesSecretResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetConsulAgentKubernetesSecretResult
 	err := ctx.Invoke("hcp:index/getConsulAgentKubernetesSecret:getConsulAgentKubernetesSecret", args, &rv, opts...)
 	if err != nil {

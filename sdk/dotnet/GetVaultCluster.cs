@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Hcp
 {
@@ -39,7 +38,7 @@ namespace Pulumi.Hcp
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetVaultClusterResult> InvokeAsync(GetVaultClusterArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetVaultClusterResult>("hcp:index/getVaultCluster:getVaultCluster", args ?? new GetVaultClusterArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetVaultClusterResult>("hcp:index/getVaultCluster:getVaultCluster", args ?? new GetVaultClusterArgs(), options.WithDefaults());
 
         /// <summary>
         /// The cluster data source provides information about an existing HCP Vault cluster.
@@ -68,7 +67,7 @@ namespace Pulumi.Hcp
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetVaultClusterResult> Invoke(GetVaultClusterInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetVaultClusterResult>("hcp:index/getVaultCluster:getVaultCluster", args ?? new GetVaultClusterInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetVaultClusterResult>("hcp:index/getVaultCluster:getVaultCluster", args ?? new GetVaultClusterInvokeArgs(), options.WithDefaults());
     }
 
 
