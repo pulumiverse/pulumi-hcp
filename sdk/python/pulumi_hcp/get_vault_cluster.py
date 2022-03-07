@@ -20,7 +20,7 @@ class GetVaultClusterResult:
     """
     A collection of values returned by getVaultCluster.
     """
-    def __init__(__self__, cloud_provider=None, cluster_id=None, created_at=None, hvn_id=None, id=None, min_vault_version=None, namespace=None, organization_id=None, project_id=None, public_endpoint=None, region=None, tier=None, vault_private_endpoint_url=None, vault_public_endpoint_url=None, vault_version=None):
+    def __init__(__self__, cloud_provider=None, cluster_id=None, created_at=None, hvn_id=None, id=None, min_vault_version=None, namespace=None, organization_id=None, primary_link=None, project_id=None, public_endpoint=None, region=None, self_link=None, tier=None, vault_private_endpoint_url=None, vault_public_endpoint_url=None, vault_version=None):
         if cloud_provider and not isinstance(cloud_provider, str):
             raise TypeError("Expected argument 'cloud_provider' to be a str")
         pulumi.set(__self__, "cloud_provider", cloud_provider)
@@ -45,6 +45,9 @@ class GetVaultClusterResult:
         if organization_id and not isinstance(organization_id, str):
             raise TypeError("Expected argument 'organization_id' to be a str")
         pulumi.set(__self__, "organization_id", organization_id)
+        if primary_link and not isinstance(primary_link, str):
+            raise TypeError("Expected argument 'primary_link' to be a str")
+        pulumi.set(__self__, "primary_link", primary_link)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -54,6 +57,9 @@ class GetVaultClusterResult:
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
+        if self_link and not isinstance(self_link, str):
+            raise TypeError("Expected argument 'self_link' to be a str")
+        pulumi.set(__self__, "self_link", self_link)
         if tier and not isinstance(tier, str):
             raise TypeError("Expected argument 'tier' to be a str")
         pulumi.set(__self__, "tier", tier)
@@ -132,6 +138,14 @@ class GetVaultClusterResult:
         return pulumi.get(self, "organization_id")
 
     @property
+    @pulumi.getter(name="primaryLink")
+    def primary_link(self) -> str:
+        """
+        The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+        """
+        return pulumi.get(self, "primary_link")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
         """
@@ -154,6 +168,14 @@ class GetVaultClusterResult:
         The region where the HCP Vault cluster is located.
         """
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="selfLink")
+    def self_link(self) -> str:
+        """
+        A unique URL identifying the Vault cluster.
+        """
+        return pulumi.get(self, "self_link")
 
     @property
     @pulumi.getter
@@ -202,9 +224,11 @@ class AwaitableGetVaultClusterResult(GetVaultClusterResult):
             min_vault_version=self.min_vault_version,
             namespace=self.namespace,
             organization_id=self.organization_id,
+            primary_link=self.primary_link,
             project_id=self.project_id,
             public_endpoint=self.public_endpoint,
             region=self.region,
+            self_link=self.self_link,
             tier=self.tier,
             vault_private_endpoint_url=self.vault_private_endpoint_url,
             vault_public_endpoint_url=self.vault_public_endpoint_url,
@@ -247,9 +271,11 @@ def get_vault_cluster(cluster_id: Optional[str] = None,
         min_vault_version=__ret__.min_vault_version,
         namespace=__ret__.namespace,
         organization_id=__ret__.organization_id,
+        primary_link=__ret__.primary_link,
         project_id=__ret__.project_id,
         public_endpoint=__ret__.public_endpoint,
         region=__ret__.region,
+        self_link=__ret__.self_link,
         tier=__ret__.tier,
         vault_private_endpoint_url=__ret__.vault_private_endpoint_url,
         vault_public_endpoint_url=__ret__.vault_public_endpoint_url,

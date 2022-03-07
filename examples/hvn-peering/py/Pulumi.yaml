@@ -1,0 +1,6 @@
+name: hvn-peering-py
+runtime:
+  name: python
+  options:
+    virtualenv: venv
+description: Peer an HCP HVN with an AWS VPC

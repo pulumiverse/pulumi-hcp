@@ -1,5 +1,0 @@
-{
-  "resource": true,
-  "name": "hcp",
-  "server": "https://github.com/grapl-security/pulumi-hcp/releases/download/${VERSION}"
-}

@@ -1,7 +1,7 @@
 {
-    "name": "@pulumi/hcp",
+    "name": "@grapl/pulumi-hcp",
     "version": "${VERSION}",
-    "description": "A Pulumi package for creating and managing hcp cloud resources.",
+    "description": "A Pulumi package for creating and managing HCP cloud resources.",
     "keywords": [
         "pulumi",
         "hcp",

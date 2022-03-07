@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+readonly tag_bk_metadata_key="release-tag"
+
+tag="$(buildkite-agent meta-data get "${tag_bk_metadata_key}")"
+
+# TODO: validate tag:
+# - starts with "v"
+# - is semver
+# - doesn't have extra whitespace
+
+# TODO: Only export this if ${BUILDKITE_REPO} starts with "https"
+export GIT_CONFIG_PARAMETERS="'credential.helper'='!.buildkite/scripts/git-credential-grapl'"
+
+git tag "${tag}"
+git push origin "${tag}" --verbose

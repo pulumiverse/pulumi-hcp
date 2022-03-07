@@ -1,17 +1,3 @@
-// Copyright 2016-2018, Pulumi Corporation.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 package hcp
 
 import (
@@ -47,6 +33,11 @@ func preConfigureCallback(vars resource.PropertyMap, c tfshim.ResourceConfig) er
 	return nil
 }
 
+// boolRef returns a reference to the bool argument.
+func boolRef(b bool) *bool {
+	return &b
+}
+
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
@@ -54,23 +45,48 @@ func Provider() tfbridge.ProviderInfo {
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:                    p,
-		Name:                 "hcp",
-		Description:          "A Pulumi package for creating and managing hcp cloud resources.",
-		Keywords:             []string{"pulumi", "hcp", "category/infrastructure"},
-		License:              "Apache-2.0",
-		Homepage:             "https://pulumi.io",
-		GitHubOrg:            "hashicorp",
-		LogoURL:              "https://raw.githubusercontent.com/grapl-security/pulumi-hcp/main/assets/hcp.svg",
-		Repository:           "https://github.com/grapl-security/pulumi-hcp",
-		Publisher:            "Grapl Security",
-		DisplayName:          "HashiCorp Cloud Platform (HCP)",
-		PluginDownloadURL:    "https://github.com/grapl-security/pulumi-hcp/releases/download/${VERSION}",
-		Config:               map[string]*tfbridge.SchemaInfo{},
+		P:           p,
+		Name:        "hcp",
+		Description: "A Pulumi package for creating and managing HCP cloud resources.",
+		// Keywords describing the provider in the Pulumi Registry.
+		Keywords: []string{"pulumi", "hcp", "category/infrastructure"},
+		License:  "Apache-2.0",
+		Homepage: "https://pulumi.io",
+		// The organization of the underlying Terraform provider we're
+		// using, because it is not part of the `terraform-providers`
+		// organization (this is required for proper documentation
+		// extraction).
+		GitHubOrg: "hashicorp",
+		// The logo for this provider that will be shown in the Pulumi
+		// Registry.
+		LogoURL: "https://raw.githubusercontent.com/grapl-security/pulumi-hcp/main/assets/hcp.svg",
+		// The repository for *this* code.
+		Repository:  "https://github.com/grapl-security/pulumi-hcp",
+		Publisher:   "Grapl Security",
+		DisplayName: "HashiCorp Cloud Platform (HCP)",
+		// Binaries for the plugin will be stored as Github Releases
+		// (recommended by Pulumi).
+		PluginDownloadURL: "https://github.com/grapl-security/pulumi-hcp/releases/download/${VERSION}",
+		Config: map[string]*tfbridge.SchemaInfo{
+			"client_id": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"HCP_CLIENT_ID"},
+				},
+			},
+			"client_secret": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"HCP_CLIENT_SECRET"},
+				},
+				Secret: boolRef(true),
+			},
+		},
 		PreConfigureCallback: preConfigureCallback,
+		// Each resource from the underlying Terraform provider should
+		// be reflected here.
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"hcp_aws_network_peering":            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AwsNetworkPeering")},
 			"hcp_aws_transit_gateway_attachment": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AwsTransitGatewayAttachment")},
+			"hcp_azure_peering_connection":       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AzurePeeringConnection")},
 			"hcp_consul_cluster":                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ConsulCluster")},
 			"hcp_consul_cluster_root_token":      {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ConsulClusterRootToken")},
 			"hcp_consul_snapshot":                {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ConsulSnapshot")},
@@ -80,11 +96,14 @@ func Provider() tfbridge.ProviderInfo {
 			"hcp_vault_cluster":                  {Tok: tfbridge.MakeResource(mainPkg, mainMod, "VaultCluster")},
 			"hcp_vault_cluster_admin_token":      {Tok: tfbridge.MakeResource(mainPkg, mainMod, "VaultClusterAdminToken")},
 		},
+		// Each data source from the underlying Terraform provider
+		// should be reflected here.
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"hcp_aws_network_peering": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAwsNetworkPeering")},
 			"hcp_aws_transit_gateway_attachment": {Tok: tfbridge.MakeDataSource(
 				mainPkg, mainMod, "getAwsTransitGatewayAttachment",
 			)},
+			"hcp_azure_peering_connection": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAzurePeeringConnection")},
 			"hcp_consul_agent_helm_config": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getConsulAgentHelmConfig")},
 			"hcp_consul_agent_kubernetes_secret": {Tok: tfbridge.MakeDataSource(
 				mainPkg, mainMod, "getConsulAgentKubernetesSecret",
@@ -107,6 +126,7 @@ func Provider() tfbridge.ProviderInfo {
 				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
 				"@types/mime": "^2.0.0",
 			},
+			PackageName: "@grapl/pulumi-hcp",
 		},
 		Python: &tfbridge.PythonInfo{
 			Requires: map[string]string{
@@ -115,7 +135,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
-				fmt.Sprintf("github.com/pulumi/pulumi-%[1]s/sdk/", mainPkg),
+				fmt.Sprintf("github.com/grapl-security/pulumi-%[1]s/sdk/", mainPkg),
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
 				mainPkg,

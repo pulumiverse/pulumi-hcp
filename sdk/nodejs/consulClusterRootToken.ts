@@ -4,6 +4,18 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as hcp from "@pulumi/hcp";
+ *
+ * const example = new hcp.ConsulClusterRootToken("example", {
+ *     clusterId: "consul-cluster",
+ * });
+ * ```
+ */
 export class ConsulClusterRootToken extends pulumi.CustomResource {
     /**
      * Get an existing ConsulClusterRootToken resource's state with the given name, ID, and optional extra

@@ -1,7 +1,146 @@
 ---
+env:
+  BUILD_ENVIRONMENT_IMAGE: "docker.cloudsmith.io/grapl/raw/pulumi-build-env:3.26.1"
+  BUILDKITE_PLUGIN_VAULT_ENV_SECRET_PREFIX: "secret/data/buildkite/env"
+
+# Note: we must "unshallow" our shallow checkouts in order for these
+# builds to work properly; `pulumictl` relies on this for generating
+# version strings from repository tags.
+
 steps:
-  # TODO: This will become a real pipeline once we figure out what
-  # that looks like for Pulumi providers. For now, this is just a
-  # placeholder.
-  - label: ":earth_asia::earth_americas::earth_africa: Hello World"
-    command: "echo 'Hello World'"
+
+  - label: ":golangci-lint: Lint"
+    command:
+      - make lint
+    plugins:
+      - improbable-eng/metahook#v0.4.1:
+          pre-command: git fetch --unshallow
+      - docker#v3.11.0:
+          image: "${BUILD_ENVIRONMENT_IMAGE}"
+
+  - label: ":hammer_and_wrench: Build Provider"
+    key: provider
+    command:
+      - make provider
+    plugins:
+      - improbable-eng/metahook#v0.4.1:
+          pre-command: git fetch --unshallow
+      - docker#v3.11.0:
+          image: "${BUILD_ENVIRONMENT_IMAGE}"
+    # This will pick up tfgen, but that's OK
+    artifact_paths:
+      - "bin/*"
+      # We also need this to get into the "SDK Checks"
+      # - "provider/cmd/*/schema.go"
+
+  - label: ":hammer_and_wrench: Build all Providers"
+    command:
+      - make build-all-providers
+    plugins:
+      - improbable-eng/metahook#v0.4.1:
+          pre-command: git fetch --unshallow
+      - docker#v3.11.0:
+          image: "${BUILD_ENVIRONMENT_IMAGE}"
+    artifact_paths:
+      - "dist/**/*"
+
+  - group: ":white_check_mark: SDK Checks"
+    steps:
+      - label: ":{{ matrix.language }}: SDK Check"
+        depends_on: provider
+        command:
+          - .buildkite/scripts/check-sdk {{matrix.language}}
+        plugins:
+          - artifacts#v1.5.0:
+              # We're currently running these checks on Linux, so we
+              # can just grab the provider we built earlier. If we
+              # ever branch out to test on Windows or macOS, we'll
+              # need to do something a bit different.
+              download:
+                - "bin/*"
+                # - "provider/cmd/*/schema.go"
+          - improbable-eng/metahook#v0.4.1:
+              # TODO: Fix this chmod bit more formally
+              pre-command: git fetch --unshallow && chmod a+x bin/*
+          - docker#v3.11.0:
+              image: "${BUILD_ENVIRONMENT_IMAGE}"
+        matrix:
+          setup:
+            language:
+              - go
+              - nodejs
+              - python
+
+  - group: ":pencil: SDK Tests"
+    steps:
+      - label: ":{{ matrix.language }}: Test"
+        depends_on: provider
+        # TODO: depends on SDK check, too?
+        command:
+          # TODO: Ugh, this MUST be better
+          - make {{matrix.language}}-sdk test-{{matrix.language}}
+        plugins:
+          - grapl-security/vault-login#v0.1.2
+          - grapl-security/vault-env#v0.1.0:
+              secrets:
+                - PULUMI_ACCESS_TOKEN
+                - pulumi-hcp/HCP-credentials
+          - artifacts#v1.5.0:
+              # We're currently running these tests on Linux, so we
+              # can just grab the provider we built earlier. If we
+              # ever branch out to test on Windows or macOS, we'll
+              # need to do something a bit different.
+              download:
+                - "bin/*"
+                # - "provider/cmd/*/schema.go"
+          - improbable-eng/metahook#v0.4.1:
+              # TODO: Fix this chmod bit more formally
+              pre-command: git fetch --unshallow && chmod a+x bin/*
+          - docker#v3.11.0:
+              image: "${BUILD_ENVIRONMENT_IMAGE}"
+              # Pulumi tests will generate some AWS infrastructure, so
+              # they need some AWS creds.
+              propagate-aws-auth-tokens: true
+              environment:
+                - PULUMI_ACCESS_TOKEN
+                # Ensure that the test projects are run in our "grapl"
+                # Pulumi organization
+                - PULUMI_TEST_OWNER=grapl
+                # Credentials for our testing HCP account
+                - HCP_CLIENT_ID
+                - HCP_CLIENT_SECRET
+                # This is needed so the Pulumi integration testing
+                # framework can properly swap in the Go SDK code from
+                # the current checkout (rather than pulling in code
+                # from a release tag on Github, as it would in a
+                # non-testing environment). It must be the directory
+                # above where the code checkout is mounted in the
+                # container.
+                - "PULUMI_GO_DEP_ROOT=/"
+              # Alongside setting PULUMI_GO_DEP_ROOT, we must also
+              # change the workdir to the name of the repository,
+              # rather than the Docker plugin's default of `/workdir`
+              # (in that case, we would be trying to use code from a
+              # "workdir" project, which doesn't exist.)
+              workdir: /pulumi-hcp
+        agents:
+          queue: "pulumi-pulumi-provider-testing"
+        # We're limited to creating 3 instances some resources in HCP,
+        # so we need to make sure our tests don't run afoul of
+        # that. Within each language runtime's tests, parallelism is
+        # disabled, so this concurrency limit will basically be the
+        # maximum number of Pulumi test programs that are running at
+        # any given time.
+        #
+        # We only have 3 languages at the moment, but this will be
+        # good if/when we ship a dotnet provider.
+        #
+        # See also `examples/README.md` in this repository.
+        concurrency: 3
+        concurrency_group: hcp_resource_limits
+        matrix:
+          setup:
+            language:
+              - go
+              - nodejs
+              - python

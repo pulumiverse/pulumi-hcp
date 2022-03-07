@@ -4,6 +4,18 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as hcp from "@pulumi/hcp";
+ *
+ * const example = new hcp.VaultClusterAdminToken("example", {
+ *     clusterId: "test-vault-cluster",
+ * });
+ * ```
+ */
 export class VaultClusterAdminToken extends pulumi.CustomResource {
     /**
      * Get an existing VaultClusterAdminToken resource's state with the given name, ID, and optional extra

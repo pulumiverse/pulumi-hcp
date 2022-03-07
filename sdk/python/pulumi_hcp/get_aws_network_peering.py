@@ -20,7 +20,7 @@ class GetAwsNetworkPeeringResult:
     """
     A collection of values returned by getAwsNetworkPeering.
     """
-    def __init__(__self__, created_at=None, expires_at=None, hvn_id=None, id=None, organization_id=None, peer_account_id=None, peer_vpc_id=None, peer_vpc_region=None, peering_id=None, project_id=None, provider_peering_id=None, self_link=None):
+    def __init__(__self__, created_at=None, expires_at=None, hvn_id=None, id=None, organization_id=None, peer_account_id=None, peer_vpc_id=None, peer_vpc_region=None, peering_id=None, project_id=None, provider_peering_id=None, self_link=None, wait_for_active_state=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -57,6 +57,9 @@ class GetAwsNetworkPeeringResult:
         if self_link and not isinstance(self_link, str):
             raise TypeError("Expected argument 'self_link' to be a str")
         pulumi.set(__self__, "self_link", self_link)
+        if wait_for_active_state and not isinstance(wait_for_active_state, bool):
+            raise TypeError("Expected argument 'wait_for_active_state' to be a bool")
+        pulumi.set(__self__, "wait_for_active_state", wait_for_active_state)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -154,6 +157,11 @@ class GetAwsNetworkPeeringResult:
         """
         return pulumi.get(self, "self_link")
 
+    @property
+    @pulumi.getter(name="waitForActiveState")
+    def wait_for_active_state(self) -> Optional[bool]:
+        return pulumi.get(self, "wait_for_active_state")
+
 
 class AwaitableGetAwsNetworkPeeringResult(GetAwsNetworkPeeringResult):
     # pylint: disable=using-constant-test
@@ -172,11 +180,13 @@ class AwaitableGetAwsNetworkPeeringResult(GetAwsNetworkPeeringResult):
             peering_id=self.peering_id,
             project_id=self.project_id,
             provider_peering_id=self.provider_peering_id,
-            self_link=self.self_link)
+            self_link=self.self_link,
+            wait_for_active_state=self.wait_for_active_state)
 
 
 def get_aws_network_peering(hvn_id: Optional[str] = None,
                             peering_id: Optional[str] = None,
+                            wait_for_active_state: Optional[bool] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAwsNetworkPeeringResult:
     """
     The AWS network peering data source provides information about an existing network peering between an HVN and a peer AWS VPC.
@@ -188,7 +198,8 @@ def get_aws_network_peering(hvn_id: Optional[str] = None,
     import pulumi_hcp as hcp
 
     test = hcp.get_aws_network_peering(hvn_id=var["hvn_id"],
-        peering_id=var["peering_id"])
+        peering_id=var["peering_id"],
+        wait_for_active_state=True)
     ```
 
 
@@ -198,6 +209,7 @@ def get_aws_network_peering(hvn_id: Optional[str] = None,
     __args__ = dict()
     __args__['hvnId'] = hvn_id
     __args__['peeringId'] = peering_id
+    __args__['waitForActiveState'] = wait_for_active_state
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
@@ -218,12 +230,14 @@ def get_aws_network_peering(hvn_id: Optional[str] = None,
         peering_id=__ret__.peering_id,
         project_id=__ret__.project_id,
         provider_peering_id=__ret__.provider_peering_id,
-        self_link=__ret__.self_link)
+        self_link=__ret__.self_link,
+        wait_for_active_state=__ret__.wait_for_active_state)
 
 
 @_utilities.lift_output_func(get_aws_network_peering)
 def get_aws_network_peering_output(hvn_id: Optional[pulumi.Input[str]] = None,
                                    peering_id: Optional[pulumi.Input[str]] = None,
+                                   wait_for_active_state: Optional[pulumi.Input[Optional[bool]]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAwsNetworkPeeringResult]:
     """
     The AWS network peering data source provides information about an existing network peering between an HVN and a peer AWS VPC.
@@ -235,7 +249,8 @@ def get_aws_network_peering_output(hvn_id: Optional[pulumi.Input[str]] = None,
     import pulumi_hcp as hcp
 
     test = hcp.get_aws_network_peering(hvn_id=var["hvn_id"],
-        peering_id=var["peering_id"])
+        peering_id=var["peering_id"],
+        wait_for_active_state=True)
     ```
 
 

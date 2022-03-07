@@ -193,8 +193,6 @@ def get_packer_image(bucket_name: Optional[str] = None,
                      region: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPackerImageResult:
     """
-    > **Note:** This feature is currently in beta.
-
     The Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id.
 
     ## Example Usage
@@ -254,8 +252,6 @@ def get_packer_image_output(bucket_name: Optional[pulumi.Input[str]] = None,
                             region: Optional[pulumi.Input[str]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPackerImageResult]:
     """
-    > **Note:** This feature is currently in beta.
-
     The Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id.
 
     ## Example Usage

@@ -19,12 +19,12 @@ class _ExportableConfig(types.ModuleType):
         """
         The OAuth2 Client ID for API operations.
         """
-        return __config__.get('clientId')
+        return __config__.get('clientId') or _utilities.get_env('HCP_CLIENT_ID')
 
     @property
     def client_secret(self) -> Optional[str]:
         """
         The OAuth2 Client Secret for API operations.
         """
-        return __config__.get('clientSecret')
+        return __config__.get('clientSecret') or _utilities.get_env('HCP_CLIENT_SECRET')
 

@@ -6,20 +6,21 @@ layout: installation
 
 ## Installation
 
-The Pulumi HCP provider is available as a package in all Pulumi languages:
+The Pulumi HCP provider is available as a package in the following Pulumi languages:
 
-* JavaScript/TypeScript: [`@graphl-security/pulumi-hcp`](https://www.npmjs.com/package/@graphl-security/hcp)
+* JavaScript/TypeScript: [`@grapl/pulumi-hcp`](https://www.npmjs.com/package/@grapl/pulumi-hcp)
 * Python: [`pulumi_hcp`](https://pypi.org/project/pulumi-hcp/)
-* Go: [`github.com/graphl-security/pulumi-hcp/sdk`](https://pkg.go.dev/github.com/graphl-security/pulumi-hcp/sdk)
-* .NET: [`Pulumi.Hcp`](https://www.nuget.org/packages/Pulumi.Hcp)
+* Go: [`github.com/graphl-security/pulumi-hcp/sdk`](https://pkg.go.dev/github.com/grapl-security/pulumi-hcp/sdk)
 
 ## Setup
 
-To provision resources with the Pulumi HCP provider, you need to have Scaleway credentials.
+To provision resources with the Pulumi HCP provider, you need to have
+HCP credentials.
 
 ### Set environment variables
 
-Once you have provisioned these credentials, you can set environment variables to provision resources in Scaleway:
+Once you have provisioned these credentials, you can set environment
+variables to provision resources in HCP:
 
 {{< chooser os "linux,macos,windows" >}}
 {{% choosable os linux %}}
@@ -28,7 +29,6 @@ Once you have provisioned these credentials, you can set environment variables t
 $ export HCP_CLIENT_ID=<HCP_CLIENT_ID>
 $ export HCP_CLIENT_SECRET=<HCP_CLIENT_SECRET>
 ```
-
 {{% /choosable %}}
 
 {{% choosable os macos %}}

@@ -1,7 +1,7 @@
 {
     "name": "hcp",
     "displayName": "HashiCorp Cloud Platform (HCP)",
-    "description": "A Pulumi package for creating and managing hcp cloud resources.",
+    "description": "A Pulumi package for creating and managing HCP cloud resources.",
     "keywords": [
         "pulumi",
         "hcp",
@@ -11,6 +11,7 @@
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`hcp` Terraform Provider](https://github.com/hashicorp/terraform-provider-hcp).",
     "repository": "https://github.com/grapl-security/pulumi-hcp",
+    "logoUrl": "https://raw.githubusercontent.com/grapl-security/pulumi-hcp/main/assets/hcp.svg",
     "pluginDownloadURL": "https://github.com/grapl-security/pulumi-hcp/releases/download/${VERSION}",
     "publisher": "Grapl Security",
     "meta": {
@@ -20,11 +21,22 @@
         "variables": {
             "clientId": {
                 "type": "string",
-                "description": "The OAuth2 Client ID for API operations.\n"
+                "description": "The OAuth2 Client ID for API operations.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "HCP_CLIENT_ID"
+                    ]
+                }
             },
             "clientSecret": {
                 "type": "string",
-                "description": "The OAuth2 Client Secret for API operations.\n"
+                "description": "The OAuth2 Client Secret for API operations.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "HCP_CLIENT_SECRET"
+                    ]
+                },
+                "secret": true
             }
         }
     },
@@ -196,23 +208,35 @@
             },
             "clientSecret": {
                 "type": "string",
-                "description": "The OAuth2 Client Secret for API operations.\n"
+                "description": "The OAuth2 Client Secret for API operations.\n",
+                "secret": true
             }
         },
         "inputProperties": {
             "clientId": {
                 "type": "string",
-                "description": "The OAuth2 Client ID for API operations.\n"
+                "description": "The OAuth2 Client ID for API operations.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "HCP_CLIENT_ID"
+                    ]
+                }
             },
             "clientSecret": {
                 "type": "string",
-                "description": "The OAuth2 Client Secret for API operations.\n"
+                "description": "The OAuth2 Client Secret for API operations.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "HCP_CLIENT_SECRET"
+                    ]
+                },
+                "secret": true
             }
         }
     },
     "resources": {
         "hcp:index/awsNetworkPeering:AwsNetworkPeering": {
-            "description": "The AWS network peering resource allows you to manage a network peering between an HVN and a peer AWS VPC.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst main = new hcp.Hvn(\"main\", {\n    hvnId: \"main-hvn\",\n    cloudProvider: \"aws\",\n    region: \"us-west-2\",\n    cidrBlock: \"172.25.16.0/20\",\n});\nconst peerVpc = new aws.ec2.Vpc(\"peerVpc\", {cidrBlock: \"172.31.0.0/16\"});\nconst peerArn = aws.getArnOutput({\n    arn: peerVpc.arn,\n});\nconst dev = new hcp.AwsNetworkPeering(\"dev\", {\n    hvnId: main.hvnId,\n    peeringId: \"dev\",\n    peerVpcId: peerVpc.id,\n    peerAccountId: peerVpc.ownerId,\n    peerVpcRegion: peerArn.apply(peerArn =\u003e peerArn.region),\n});\nconst main_to_dev = new hcp.HvnRoute(\"main-to-dev\", {\n    hvnLink: main.selfLink,\n    hvnRouteId: \"main-to-dev\",\n    destinationCidr: \"172.31.0.0/16\",\n    targetLink: dev.selfLink,\n});\nconst peerVpcPeeringConnectionAccepter = new aws.ec2.VpcPeeringConnectionAccepter(\"peerVpcPeeringConnectionAccepter\", {\n    vpcPeeringConnectionId: dev.providerPeeringId,\n    autoAccept: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_hcp as hcp\n\nmain = hcp.Hvn(\"main\",\n    hvn_id=\"main-hvn\",\n    cloud_provider=\"aws\",\n    region=\"us-west-2\",\n    cidr_block=\"172.25.16.0/20\")\npeer_vpc = aws.ec2.Vpc(\"peerVpc\", cidr_block=\"172.31.0.0/16\")\npeer_arn = aws.get_arn_output(arn=peer_vpc.arn)\ndev = hcp.AwsNetworkPeering(\"dev\",\n    hvn_id=main.hvn_id,\n    peering_id=\"dev\",\n    peer_vpc_id=peer_vpc.id,\n    peer_account_id=peer_vpc.owner_id,\n    peer_vpc_region=peer_arn.region)\nmain_to_dev = hcp.HvnRoute(\"main-to-dev\",\n    hvn_link=main.self_link,\n    hvn_route_id=\"main-to-dev\",\n    destination_cidr=\"172.31.0.0/16\",\n    target_link=dev.self_link)\npeer_vpc_peering_connection_accepter = aws.ec2.VpcPeeringConnectionAccepter(\"peerVpcPeeringConnectionAccepter\",\n    vpc_peering_connection_id=dev.provider_peering_id,\n    auto_accept=True)\n```\n```csharp\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var main = new Hcp.Hvn(\"main\", new Hcp.HvnArgs\n        {\n            HvnId = \"main-hvn\",\n            CloudProvider = \"aws\",\n            Region = \"us-west-2\",\n            CidrBlock = \"172.25.16.0/20\",\n        });\n        var peerVpc = new Aws.Ec2.Vpc(\"peerVpc\", new Aws.Ec2.VpcArgs\n        {\n            CidrBlock = \"172.31.0.0/16\",\n        });\n        var peerArn = Aws.GetArn.Invoke(new Aws.GetArnInvokeArgs\n        {\n            Arn = peerVpc.Arn,\n        });\n        var dev = new Hcp.AwsNetworkPeering(\"dev\", new Hcp.AwsNetworkPeeringArgs\n        {\n            HvnId = main.HvnId,\n            PeeringId = \"dev\",\n            PeerVpcId = peerVpc.Id,\n            PeerAccountId = peerVpc.OwnerId,\n            PeerVpcRegion = peerArn.Apply(peerArn =\u003e peerArn.Region),\n        });\n        var main_to_dev = new Hcp.HvnRoute(\"main-to-dev\", new Hcp.HvnRouteArgs\n        {\n            HvnLink = main.SelfLink,\n            HvnRouteId = \"main-to-dev\",\n            DestinationCidr = \"172.31.0.0/16\",\n            TargetLink = dev.SelfLink,\n        });\n        var peerVpcPeeringConnectionAccepter = new Aws.Ec2.VpcPeeringConnectionAccepter(\"peerVpcPeeringConnectionAccepter\", new Aws.Ec2.VpcPeeringConnectionAccepterArgs\n        {\n            VpcPeeringConnectionId = dev.ProviderPeeringId,\n            AutoAccept = true,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-aws/sdk/v4/go/aws\"\n\t\"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/ec2\"\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := hcp.NewHvn(ctx, \"main\", \u0026hcp.HvnArgs{\n\t\t\tHvnId:         pulumi.String(\"main-hvn\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t\tCidrBlock:     pulumi.String(\"172.25.16.0/20\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tpeerVpc, err := ec2.NewVpc(ctx, \"peerVpc\", \u0026ec2.VpcArgs{\n\t\t\tCidrBlock: pulumi.String(\"172.31.0.0/16\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tpeerArn := aws.GetArnOutput(ctx, GetArnOutputArgs{\n\t\t\tArn: peerVpc.Arn,\n\t\t}, nil)\n\t\tdev, err := hcp.NewAwsNetworkPeering(ctx, \"dev\", \u0026hcp.AwsNetworkPeeringArgs{\n\t\t\tHvnId:         main.HvnId,\n\t\t\tPeeringId:     pulumi.String(\"dev\"),\n\t\t\tPeerVpcId:     peerVpc.ID(),\n\t\t\tPeerAccountId: peerVpc.OwnerId,\n\t\t\tPeerVpcRegion: peerArn.ApplyT(func(peerArn GetArnResult) (string, error) {\n\t\t\t\treturn peerArn.Region, nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = hcp.NewHvnRoute(ctx, \"main-to-dev\", \u0026hcp.HvnRouteArgs{\n\t\t\tHvnLink:         main.SelfLink,\n\t\t\tHvnRouteId:      pulumi.String(\"main-to-dev\"),\n\t\t\tDestinationCidr: pulumi.String(\"172.31.0.0/16\"),\n\t\t\tTargetLink:      dev.SelfLink,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ec2.NewVpcPeeringConnectionAccepter(ctx, \"peerVpcPeeringConnectionAccepter\", \u0026ec2.VpcPeeringConnectionAccepterArgs{\n\t\t\tVpcPeeringConnectionId: dev.ProviderPeeringId,\n\t\t\tAutoAccept:             pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID is {hvn_id}:{peering_id}\n\n```sh\n $ pulumi import hcp:index/awsNetworkPeering:AwsNetworkPeering peer main-hvn:11eb60b3-d4ec-5eed-aacc-0242ac120015\n```\n\n ",
+            "description": "The AWS network peering resource allows you to manage a network peering between an HVN and a peer AWS VPC.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as pulumi_hcp from \"@grapl/pulumi-hcp\";\n\nconst main = new hcp.Hvn(\"main\", {\n    hvnId: \"main-hvn\",\n    cloudProvider: \"aws\",\n    region: \"us-west-2\",\n    cidrBlock: \"172.25.16.0/20\",\n});\nconst peerVpc = new aws.ec2.Vpc(\"peerVpc\", {cidrBlock: \"172.31.0.0/16\"});\nconst peerArn = aws.getArnOutput({\n    arn: peerVpc.arn,\n});\nconst dev = new hcp.AwsNetworkPeering(\"dev\", {\n    hvnId: main.hvnId,\n    peeringId: \"dev\",\n    peerVpcId: peerVpc.id,\n    peerAccountId: peerVpc.ownerId,\n    peerVpcRegion: peerArn.apply(peerArn =\u003e peerArn.region),\n});\nconst main_to_dev = new hcp.HvnRoute(\"main-to-dev\", {\n    hvnLink: main.selfLink,\n    hvnRouteId: \"main-to-dev\",\n    destinationCidr: \"172.31.0.0/16\",\n    targetLink: dev.selfLink,\n});\nconst peerVpcPeeringConnectionAccepter = new aws.ec2.VpcPeeringConnectionAccepter(\"peerVpcPeeringConnectionAccepter\", {\n    vpcPeeringConnectionId: dev.providerPeeringId,\n    autoAccept: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_hcp as hcp\n\nmain = hcp.Hvn(\"main\",\n    hvn_id=\"main-hvn\",\n    cloud_provider=\"aws\",\n    region=\"us-west-2\",\n    cidr_block=\"172.25.16.0/20\")\npeer_vpc = aws.ec2.Vpc(\"peerVpc\", cidr_block=\"172.31.0.0/16\")\npeer_arn = aws.get_arn_output(arn=peer_vpc.arn)\ndev = hcp.AwsNetworkPeering(\"dev\",\n    hvn_id=main.hvn_id,\n    peering_id=\"dev\",\n    peer_vpc_id=peer_vpc.id,\n    peer_account_id=peer_vpc.owner_id,\n    peer_vpc_region=peer_arn.region)\nmain_to_dev = hcp.HvnRoute(\"main-to-dev\",\n    hvn_link=main.self_link,\n    hvn_route_id=\"main-to-dev\",\n    destination_cidr=\"172.31.0.0/16\",\n    target_link=dev.self_link)\npeer_vpc_peering_connection_accepter = aws.ec2.VpcPeeringConnectionAccepter(\"peerVpcPeeringConnectionAccepter\",\n    vpc_peering_connection_id=dev.provider_peering_id,\n    auto_accept=True)\n```\n```csharp\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var main = new Hcp.Hvn(\"main\", new Hcp.HvnArgs\n        {\n            HvnId = \"main-hvn\",\n            CloudProvider = \"aws\",\n            Region = \"us-west-2\",\n            CidrBlock = \"172.25.16.0/20\",\n        });\n        var peerVpc = new Aws.Ec2.Vpc(\"peerVpc\", new Aws.Ec2.VpcArgs\n        {\n            CidrBlock = \"172.31.0.0/16\",\n        });\n        var peerArn = Aws.GetArn.Invoke(new Aws.GetArnInvokeArgs\n        {\n            Arn = peerVpc.Arn,\n        });\n        var dev = new Hcp.AwsNetworkPeering(\"dev\", new Hcp.AwsNetworkPeeringArgs\n        {\n            HvnId = main.HvnId,\n            PeeringId = \"dev\",\n            PeerVpcId = peerVpc.Id,\n            PeerAccountId = peerVpc.OwnerId,\n            PeerVpcRegion = peerArn.Apply(peerArn =\u003e peerArn.Region),\n        });\n        var main_to_dev = new Hcp.HvnRoute(\"main-to-dev\", new Hcp.HvnRouteArgs\n        {\n            HvnLink = main.SelfLink,\n            HvnRouteId = \"main-to-dev\",\n            DestinationCidr = \"172.31.0.0/16\",\n            TargetLink = dev.SelfLink,\n        });\n        var peerVpcPeeringConnectionAccepter = new Aws.Ec2.VpcPeeringConnectionAccepter(\"peerVpcPeeringConnectionAccepter\", new Aws.Ec2.VpcPeeringConnectionAccepterArgs\n        {\n            VpcPeeringConnectionId = dev.ProviderPeeringId,\n            AutoAccept = true,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi-aws/sdk/v5/go/aws\"\n\t\"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := hcp.NewHvn(ctx, \"main\", \u0026hcp.HvnArgs{\n\t\t\tHvnId:         pulumi.String(\"main-hvn\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t\tCidrBlock:     pulumi.String(\"172.25.16.0/20\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tpeerVpc, err := ec2.NewVpc(ctx, \"peerVpc\", \u0026ec2.VpcArgs{\n\t\t\tCidrBlock: pulumi.String(\"172.31.0.0/16\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tpeerArn := aws.GetArnOutput(ctx, GetArnOutputArgs{\n\t\t\tArn: peerVpc.Arn,\n\t\t}, nil)\n\t\tdev, err := hcp.NewAwsNetworkPeering(ctx, \"dev\", \u0026hcp.AwsNetworkPeeringArgs{\n\t\t\tHvnId:         main.HvnId,\n\t\t\tPeeringId:     pulumi.String(\"dev\"),\n\t\t\tPeerVpcId:     peerVpc.ID(),\n\t\t\tPeerAccountId: peerVpc.OwnerId,\n\t\t\tPeerVpcRegion: peerArn.ApplyT(func(peerArn GetArnResult) (string, error) {\n\t\t\t\treturn peerArn.Region, nil\n\t\t\t}).(pulumi.StringOutput),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = hcp.NewHvnRoute(ctx, \"main-to-dev\", \u0026hcp.HvnRouteArgs{\n\t\t\tHvnLink:         main.SelfLink,\n\t\t\tHvnRouteId:      pulumi.String(\"main-to-dev\"),\n\t\t\tDestinationCidr: pulumi.String(\"172.31.0.0/16\"),\n\t\t\tTargetLink:      dev.SelfLink,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ec2.NewVpcPeeringConnectionAccepter(ctx, \"peerVpcPeeringConnectionAccepter\", \u0026ec2.VpcPeeringConnectionAccepterArgs{\n\t\t\tVpcPeeringConnectionId: dev.ProviderPeeringId,\n\t\t\tAutoAccept:             pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID is {hvn_id}:{peering_id}\n\n```sh\n $ pulumi import hcp:index/awsNetworkPeering:AwsNetworkPeering peer main-hvn:11eb60b3-d4ec-5eed-aacc-0242ac120015\n```\n\n ",
             "properties": {
                 "createdAt": {
                     "type": "string",
@@ -353,7 +377,7 @@
             }
         },
         "hcp:index/awsTransitGatewayAttachment:AwsTransitGatewayAttachment": {
-            "description": "\n\n\n## Import\n\n# The import ID is {hvn_id}:{transit_gateway_attachment_id}\n\n```sh\n $ pulumi import hcp:index/awsTransitGatewayAttachment:AwsTransitGatewayAttachment example main-hvn:example-tgw-attachment\n```\n\n ",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as pulumi_hcp from \"@grapl/pulumi-hcp\";\n\nconst main = new hcp.Hvn(\"main\", {\n    hvnId: \"main-hvn\",\n    cloudProvider: \"aws\",\n    region: \"us-west-2\",\n    cidrBlock: \"172.25.16.0/20\",\n});\nconst exampleVpc = new aws.ec2.Vpc(\"exampleVpc\", {cidrBlock: \"172.31.0.0/16\"});\nconst exampleTransitGateway = new aws.ec2transitgateway.TransitGateway(\"exampleTransitGateway\", {tags: {\n    Name: \"example-tgw\",\n}});\nconst exampleResourceShare = new aws.ram.ResourceShare(\"exampleResourceShare\", {allowExternalPrincipals: true});\nconst examplePrincipalAssociation = new aws.ram.PrincipalAssociation(\"examplePrincipalAssociation\", {\n    resourceShareArn: exampleResourceShare.arn,\n    principal: main.providerAccountId,\n});\nconst exampleResourceAssociation = new aws.ram.ResourceAssociation(\"exampleResourceAssociation\", {\n    resourceShareArn: exampleResourceShare.arn,\n    resourceArn: exampleTransitGateway.arn,\n});\nconst exampleAwsTransitGatewayAttachment = new hcp.AwsTransitGatewayAttachment(\"exampleAwsTransitGatewayAttachment\", {\n    hvnId: main.hvnId,\n    transitGatewayAttachmentId: \"example-tgw-attachment\",\n    transitGatewayId: exampleTransitGateway.id,\n    resourceShareArn: exampleResourceShare.arn,\n}, {\n    dependsOn: [\n        examplePrincipalAssociation,\n        exampleResourceAssociation,\n    ],\n});\nconst route = new hcp.HvnRoute(\"route\", {\n    hvnLink: main.selfLink,\n    hvnRouteId: \"hvn-to-tgw-attachment\",\n    destinationCidr: exampleVpc.cidrBlock,\n    targetLink: exampleAwsTransitGatewayAttachment.selfLink,\n});\nconst exampleVpcAttachmentAccepter = new aws.ec2transitgateway.VpcAttachmentAccepter(\"exampleVpcAttachmentAccepter\", {transitGatewayAttachmentId: exampleAwsTransitGatewayAttachment.providerTransitGatewayAttachmentId});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_hcp as hcp\n\nmain = hcp.Hvn(\"main\",\n    hvn_id=\"main-hvn\",\n    cloud_provider=\"aws\",\n    region=\"us-west-2\",\n    cidr_block=\"172.25.16.0/20\")\nexample_vpc = aws.ec2.Vpc(\"exampleVpc\", cidr_block=\"172.31.0.0/16\")\nexample_transit_gateway = aws.ec2transitgateway.TransitGateway(\"exampleTransitGateway\", tags={\n    \"Name\": \"example-tgw\",\n})\nexample_resource_share = aws.ram.ResourceShare(\"exampleResourceShare\", allow_external_principals=True)\nexample_principal_association = aws.ram.PrincipalAssociation(\"examplePrincipalAssociation\",\n    resource_share_arn=example_resource_share.arn,\n    principal=main.provider_account_id)\nexample_resource_association = aws.ram.ResourceAssociation(\"exampleResourceAssociation\",\n    resource_share_arn=example_resource_share.arn,\n    resource_arn=example_transit_gateway.arn)\nexample_aws_transit_gateway_attachment = hcp.AwsTransitGatewayAttachment(\"exampleAwsTransitGatewayAttachment\",\n    hvn_id=main.hvn_id,\n    transit_gateway_attachment_id=\"example-tgw-attachment\",\n    transit_gateway_id=example_transit_gateway.id,\n    resource_share_arn=example_resource_share.arn,\n    opts=pulumi.ResourceOptions(depends_on=[\n            example_principal_association,\n            example_resource_association,\n        ]))\nroute = hcp.HvnRoute(\"route\",\n    hvn_link=main.self_link,\n    hvn_route_id=\"hvn-to-tgw-attachment\",\n    destination_cidr=example_vpc.cidr_block,\n    target_link=example_aws_transit_gateway_attachment.self_link)\nexample_vpc_attachment_accepter = aws.ec2transitgateway.VpcAttachmentAccepter(\"exampleVpcAttachmentAccepter\", transit_gateway_attachment_id=example_aws_transit_gateway_attachment.provider_transit_gateway_attachment_id)\n```\n```csharp\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var main = new Hcp.Hvn(\"main\", new Hcp.HvnArgs\n        {\n            HvnId = \"main-hvn\",\n            CloudProvider = \"aws\",\n            Region = \"us-west-2\",\n            CidrBlock = \"172.25.16.0/20\",\n        });\n        var exampleVpc = new Aws.Ec2.Vpc(\"exampleVpc\", new Aws.Ec2.VpcArgs\n        {\n            CidrBlock = \"172.31.0.0/16\",\n        });\n        var exampleTransitGateway = new Aws.Ec2TransitGateway.TransitGateway(\"exampleTransitGateway\", new Aws.Ec2TransitGateway.TransitGatewayArgs\n        {\n            Tags = \n            {\n                { \"Name\", \"example-tgw\" },\n            },\n        });\n        var exampleResourceShare = new Aws.Ram.ResourceShare(\"exampleResourceShare\", new Aws.Ram.ResourceShareArgs\n        {\n            AllowExternalPrincipals = true,\n        });\n        var examplePrincipalAssociation = new Aws.Ram.PrincipalAssociation(\"examplePrincipalAssociation\", new Aws.Ram.PrincipalAssociationArgs\n        {\n            ResourceShareArn = exampleResourceShare.Arn,\n            Principal = main.ProviderAccountId,\n        });\n        var exampleResourceAssociation = new Aws.Ram.ResourceAssociation(\"exampleResourceAssociation\", new Aws.Ram.ResourceAssociationArgs\n        {\n            ResourceShareArn = exampleResourceShare.Arn,\n            ResourceArn = exampleTransitGateway.Arn,\n        });\n        var exampleAwsTransitGatewayAttachment = new Hcp.AwsTransitGatewayAttachment(\"exampleAwsTransitGatewayAttachment\", new Hcp.AwsTransitGatewayAttachmentArgs\n        {\n            HvnId = main.HvnId,\n            TransitGatewayAttachmentId = \"example-tgw-attachment\",\n            TransitGatewayId = exampleTransitGateway.Id,\n            ResourceShareArn = exampleResourceShare.Arn,\n        }, new CustomResourceOptions\n        {\n            DependsOn = \n            {\n                examplePrincipalAssociation,\n                exampleResourceAssociation,\n            },\n        });\n        var route = new Hcp.HvnRoute(\"route\", new Hcp.HvnRouteArgs\n        {\n            HvnLink = main.SelfLink,\n            HvnRouteId = \"hvn-to-tgw-attachment\",\n            DestinationCidr = exampleVpc.CidrBlock,\n            TargetLink = exampleAwsTransitGatewayAttachment.SelfLink,\n        });\n        var exampleVpcAttachmentAccepter = new Aws.Ec2TransitGateway.VpcAttachmentAccepter(\"exampleVpcAttachmentAccepter\", new Aws.Ec2TransitGateway.VpcAttachmentAccepterArgs\n        {\n            TransitGatewayAttachmentId = exampleAwsTransitGatewayAttachment.ProviderTransitGatewayAttachmentId,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2\"\n\t\"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2transitgateway\"\n\t\"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ram\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := hcp.NewHvn(ctx, \"main\", \u0026hcp.HvnArgs{\n\t\t\tHvnId:         pulumi.String(\"main-hvn\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t\tCidrBlock:     pulumi.String(\"172.25.16.0/20\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texampleVpc, err := ec2.NewVpc(ctx, \"exampleVpc\", \u0026ec2.VpcArgs{\n\t\t\tCidrBlock: pulumi.String(\"172.31.0.0/16\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texampleTransitGateway, err := ec2transitgateway.NewTransitGateway(ctx, \"exampleTransitGateway\", \u0026ec2transitgateway.TransitGatewayArgs{\n\t\t\tTags: pulumi.StringMap{\n\t\t\t\t\"Name\": pulumi.String(\"example-tgw\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texampleResourceShare, err := ram.NewResourceShare(ctx, \"exampleResourceShare\", \u0026ram.ResourceShareArgs{\n\t\t\tAllowExternalPrincipals: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texamplePrincipalAssociation, err := ram.NewPrincipalAssociation(ctx, \"examplePrincipalAssociation\", \u0026ram.PrincipalAssociationArgs{\n\t\t\tResourceShareArn: exampleResourceShare.Arn,\n\t\t\tPrincipal:        main.ProviderAccountId,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texampleResourceAssociation, err := ram.NewResourceAssociation(ctx, \"exampleResourceAssociation\", \u0026ram.ResourceAssociationArgs{\n\t\t\tResourceShareArn: exampleResourceShare.Arn,\n\t\t\tResourceArn:      exampleTransitGateway.Arn,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texampleAwsTransitGatewayAttachment, err := hcp.NewAwsTransitGatewayAttachment(ctx, \"exampleAwsTransitGatewayAttachment\", \u0026hcp.AwsTransitGatewayAttachmentArgs{\n\t\t\tHvnId:                      main.HvnId,\n\t\t\tTransitGatewayAttachmentId: pulumi.String(\"example-tgw-attachment\"),\n\t\t\tTransitGatewayId:           exampleTransitGateway.ID(),\n\t\t\tResourceShareArn:           exampleResourceShare.Arn,\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\texamplePrincipalAssociation,\n\t\t\texampleResourceAssociation,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = hcp.NewHvnRoute(ctx, \"route\", \u0026hcp.HvnRouteArgs{\n\t\t\tHvnLink:         main.SelfLink,\n\t\t\tHvnRouteId:      pulumi.String(\"hvn-to-tgw-attachment\"),\n\t\t\tDestinationCidr: exampleVpc.CidrBlock,\n\t\t\tTargetLink:      exampleAwsTransitGatewayAttachment.SelfLink,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ec2transitgateway.NewVpcAttachmentAccepter(ctx, \"exampleVpcAttachmentAccepter\", \u0026ec2transitgateway.VpcAttachmentAccepterArgs{\n\t\t\tTransitGatewayAttachmentId: exampleAwsTransitGatewayAttachment.ProviderTransitGatewayAttachmentId,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID is {hvn_id}:{transit_gateway_attachment_id}\n\n```sh\n $ pulumi import hcp:index/awsTransitGatewayAttachment:AwsTransitGatewayAttachment example main-hvn:example-tgw-attachment\n```\n\n ",
             "properties": {
                 "createdAt": {
                     "type": "string",
@@ -488,8 +512,186 @@
                 "type": "object"
             }
         },
+        "hcp:index/azurePeeringConnection:AzurePeeringConnection": {
+            "description": "\u003e **Note:** Azure support coming soon. This resource is currently in internal preview only.\n\nThe Azure peering connection resource allows you to manage a peering connection between an HVN and a peer Azure VNet.\n\n\n## Import\n\n# The import ID is {hvn_id}:{peering_id}\n\n```sh\n $ pulumi import hcp:index/azurePeeringConnection:AzurePeeringConnection peer main-hvn:199e7e96-4d5f-4456-91f3-b6cc71f1e561\n```\n\n ",
+            "properties": {
+                "applicationId": {
+                    "type": "string",
+                    "description": "The ID of the Azure application whose credentials are used to peer the HCP HVN's underlying VNet with the customer VNet.\n"
+                },
+                "azurePeeringId": {
+                    "type": "string",
+                    "description": "The peering connection ID used by Azure.\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "The time that the peering connection was created.\n"
+                },
+                "expiresAt": {
+                    "type": "string",
+                    "description": "The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.\n"
+                },
+                "hvnLink": {
+                    "type": "string",
+                    "description": "The `self_link` of the HashiCorp Virtual Network (HVN).\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "The ID of the HCP organization where the peering connection is located. Always matches the HVN's organization.\n"
+                },
+                "peerResourceGroupName": {
+                    "type": "string",
+                    "description": "The resource group name of the peer VNet in Azure.\n"
+                },
+                "peerSubscriptionId": {
+                    "type": "string",
+                    "description": "The subscription ID of the peer VNet in Azure.\n"
+                },
+                "peerTenantId": {
+                    "type": "string",
+                    "description": "The tenant ID of the peer VNet in Azure.\n"
+                },
+                "peerVnetName": {
+                    "type": "string",
+                    "description": "The name of the peer VNet in Azure.\n"
+                },
+                "peerVnetRegion": {
+                    "type": "string",
+                    "description": "The region of the peer VNet in Azure.\n"
+                },
+                "peeringId": {
+                    "type": "string",
+                    "description": "The ID of the peering connection.\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "The ID of the HCP project where the peering connection is located. Always matches the HVN's project.\n"
+                },
+                "selfLink": {
+                    "type": "string",
+                    "description": "A unique URL identifying the peering connection.\n"
+                }
+            },
+            "required": [
+                "applicationId",
+                "azurePeeringId",
+                "createdAt",
+                "expiresAt",
+                "hvnLink",
+                "organizationId",
+                "peerResourceGroupName",
+                "peerSubscriptionId",
+                "peerTenantId",
+                "peerVnetName",
+                "peerVnetRegion",
+                "peeringId",
+                "projectId",
+                "selfLink"
+            ],
+            "inputProperties": {
+                "hvnLink": {
+                    "type": "string",
+                    "description": "The `self_link` of the HashiCorp Virtual Network (HVN).\n"
+                },
+                "peerResourceGroupName": {
+                    "type": "string",
+                    "description": "The resource group name of the peer VNet in Azure.\n"
+                },
+                "peerSubscriptionId": {
+                    "type": "string",
+                    "description": "The subscription ID of the peer VNet in Azure.\n"
+                },
+                "peerTenantId": {
+                    "type": "string",
+                    "description": "The tenant ID of the peer VNet in Azure.\n"
+                },
+                "peerVnetName": {
+                    "type": "string",
+                    "description": "The name of the peer VNet in Azure.\n"
+                },
+                "peerVnetRegion": {
+                    "type": "string",
+                    "description": "The region of the peer VNet in Azure.\n"
+                },
+                "peeringId": {
+                    "type": "string",
+                    "description": "The ID of the peering connection.\n"
+                }
+            },
+            "requiredInputs": [
+                "hvnLink",
+                "peerResourceGroupName",
+                "peerSubscriptionId",
+                "peerTenantId",
+                "peerVnetName",
+                "peerVnetRegion",
+                "peeringId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AzurePeeringConnection resources.\n",
+                "properties": {
+                    "applicationId": {
+                        "type": "string",
+                        "description": "The ID of the Azure application whose credentials are used to peer the HCP HVN's underlying VNet with the customer VNet.\n"
+                    },
+                    "azurePeeringId": {
+                        "type": "string",
+                        "description": "The peering connection ID used by Azure.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The time that the peering connection was created.\n"
+                    },
+                    "expiresAt": {
+                        "type": "string",
+                        "description": "The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.\n"
+                    },
+                    "hvnLink": {
+                        "type": "string",
+                        "description": "The `self_link` of the HashiCorp Virtual Network (HVN).\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The ID of the HCP organization where the peering connection is located. Always matches the HVN's organization.\n"
+                    },
+                    "peerResourceGroupName": {
+                        "type": "string",
+                        "description": "The resource group name of the peer VNet in Azure.\n"
+                    },
+                    "peerSubscriptionId": {
+                        "type": "string",
+                        "description": "The subscription ID of the peer VNet in Azure.\n"
+                    },
+                    "peerTenantId": {
+                        "type": "string",
+                        "description": "The tenant ID of the peer VNet in Azure.\n"
+                    },
+                    "peerVnetName": {
+                        "type": "string",
+                        "description": "The name of the peer VNet in Azure.\n"
+                    },
+                    "peerVnetRegion": {
+                        "type": "string",
+                        "description": "The region of the peer VNet in Azure.\n"
+                    },
+                    "peeringId": {
+                        "type": "string",
+                        "description": "The ID of the peering connection.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of the HCP project where the peering connection is located. Always matches the HVN's project.\n"
+                    },
+                    "selfLink": {
+                        "type": "string",
+                        "description": "A unique URL identifying the peering connection.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "hcp:index/consulCluster:ConsulCluster": {
-            "description": "The Consul cluster resource allows you to manage an HCP Consul cluster.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst exampleHvn = new hcp.Hvn(\"exampleHvn\", {\n    hvnId: \"hvn\",\n    cloudProvider: \"aws\",\n    region: \"us-west-2\",\n    cidrBlock: \"172.25.16.0/20\",\n});\nconst exampleConsulCluster = new hcp.ConsulCluster(\"exampleConsulCluster\", {\n    clusterId: \"consul-cluster\",\n    hvnId: exampleHvn.hvnId,\n    tier: \"development\",\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample_hvn = hcp.Hvn(\"exampleHvn\",\n    hvn_id=\"hvn\",\n    cloud_provider=\"aws\",\n    region=\"us-west-2\",\n    cidr_block=\"172.25.16.0/20\")\nexample_consul_cluster = hcp.ConsulCluster(\"exampleConsulCluster\",\n    cluster_id=\"consul-cluster\",\n    hvn_id=example_hvn.hvn_id,\n    tier=\"development\")\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleHvn = new Hcp.Hvn(\"exampleHvn\", new Hcp.HvnArgs\n        {\n            HvnId = \"hvn\",\n            CloudProvider = \"aws\",\n            Region = \"us-west-2\",\n            CidrBlock = \"172.25.16.0/20\",\n        });\n        var exampleConsulCluster = new Hcp.ConsulCluster(\"exampleConsulCluster\", new Hcp.ConsulClusterArgs\n        {\n            ClusterId = \"consul-cluster\",\n            HvnId = exampleHvn.HvnId,\n            Tier = \"development\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleHvn, err := hcp.NewHvn(ctx, \"exampleHvn\", \u0026hcp.HvnArgs{\n\t\t\tHvnId:         pulumi.String(\"hvn\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t\tCidrBlock:     pulumi.String(\"172.25.16.0/20\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = hcp.NewConsulCluster(ctx, \"exampleConsulCluster\", \u0026hcp.ConsulClusterArgs{\n\t\t\tClusterId: pulumi.String(\"consul-cluster\"),\n\t\t\tHvnId:     exampleHvn.HvnId,\n\t\t\tTier:      pulumi.String(\"development\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID is {cluster_id}\n\n```sh\n $ pulumi import hcp:index/consulCluster:ConsulCluster example consul-cluster\n```\n\n ",
+            "description": "The Consul cluster resource allows you to manage an HCP Consul cluster.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as pulumi_hcp from \"@grapl/pulumi-hcp\";\n\nconst exampleHvn = new hcp.Hvn(\"exampleHvn\", {\n    hvnId: \"hvn\",\n    cloudProvider: \"aws\",\n    region: \"us-west-2\",\n    cidrBlock: \"172.25.16.0/20\",\n});\nconst exampleConsulCluster = new hcp.ConsulCluster(\"exampleConsulCluster\", {\n    clusterId: \"consul-cluster\",\n    hvnId: exampleHvn.hvnId,\n    tier: \"development\",\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample_hvn = hcp.Hvn(\"exampleHvn\",\n    hvn_id=\"hvn\",\n    cloud_provider=\"aws\",\n    region=\"us-west-2\",\n    cidr_block=\"172.25.16.0/20\")\nexample_consul_cluster = hcp.ConsulCluster(\"exampleConsulCluster\",\n    cluster_id=\"consul-cluster\",\n    hvn_id=example_hvn.hvn_id,\n    tier=\"development\")\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleHvn = new Hcp.Hvn(\"exampleHvn\", new Hcp.HvnArgs\n        {\n            HvnId = \"hvn\",\n            CloudProvider = \"aws\",\n            Region = \"us-west-2\",\n            CidrBlock = \"172.25.16.0/20\",\n        });\n        var exampleConsulCluster = new Hcp.ConsulCluster(\"exampleConsulCluster\", new Hcp.ConsulClusterArgs\n        {\n            ClusterId = \"consul-cluster\",\n            HvnId = exampleHvn.HvnId,\n            Tier = \"development\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleHvn, err := hcp.NewHvn(ctx, \"exampleHvn\", \u0026hcp.HvnArgs{\n\t\t\tHvnId:         pulumi.String(\"hvn\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t\tCidrBlock:     pulumi.String(\"172.25.16.0/20\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = hcp.NewConsulCluster(ctx, \"exampleConsulCluster\", \u0026hcp.ConsulClusterArgs{\n\t\t\tClusterId: pulumi.String(\"consul-cluster\"),\n\t\t\tHvnId:     exampleHvn.HvnId,\n\t\t\tTier:      pulumi.String(\"development\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID is {cluster_id}\n\n```sh\n $ pulumi import hcp:index/consulCluster:ConsulCluster example consul-cluster\n```\n\n ",
             "properties": {
                 "autoHvnToHvnPeering": {
                     "type": "boolean",
@@ -779,6 +981,7 @@
             }
         },
         "hcp:index/consulClusterRootToken:ConsulClusterRootToken": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst example = new hcp.ConsulClusterRootToken(\"example\", {\n    clusterId: \"consul-cluster\",\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample = hcp.ConsulClusterRootToken(\"example\", cluster_id=\"consul-cluster\")\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Hcp.ConsulClusterRootToken(\"example\", new Hcp.ConsulClusterRootTokenArgs\n        {\n            ClusterId = \"consul-cluster\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.NewConsulClusterRootToken(ctx, \"example\", \u0026hcp.ConsulClusterRootTokenArgs{\n\t\t\tClusterId: pulumi.String(\"consul-cluster\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "accessorId": {
                     "type": "string",
@@ -836,7 +1039,7 @@
             }
         },
         "hcp:index/consulSnapshot:ConsulSnapshot": {
-            "description": "The Consul snapshot resource allows users to manage Consul snapshots of an HCP Consul cluster. Snapshots currently have a retention policy of 30 days.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\n// Note: Snapshots currently have a retention policy of 30 days. After that time, any Terraform\n// state refresh will note that a new snapshot resource will be created.\nconst example = new hcp.ConsulSnapshot(\"example\", {\n    clusterId: \"consul-cluster\",\n    snapshotName: \"my-snapshot\",\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\n# Note: Snapshots currently have a retention policy of 30 days. After that time, any Terraform\n# state refresh will note that a new snapshot resource will be created.\nexample = hcp.ConsulSnapshot(\"example\",\n    cluster_id=\"consul-cluster\",\n    snapshot_name=\"my-snapshot\")\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        // Note: Snapshots currently have a retention policy of 30 days. After that time, any Terraform\n        // state refresh will note that a new snapshot resource will be created.\n        var example = new Hcp.ConsulSnapshot(\"example\", new Hcp.ConsulSnapshotArgs\n        {\n            ClusterId = \"consul-cluster\",\n            SnapshotName = \"my-snapshot\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.NewConsulSnapshot(ctx, \"example\", \u0026hcp.ConsulSnapshotArgs{\n\t\t\tClusterId:    pulumi.String(\"consul-cluster\"),\n\t\t\tSnapshotName: pulumi.String(\"my-snapshot\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "The Consul snapshot resource allows users to manage Consul snapshots of an HCP Consul cluster. Snapshots currently have a retention policy of 30 days.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\n// Note: Snapshots currently have a retention policy of 30 days. After that time, any Terraform\n// state refresh will note that a new snapshot resource will be created.\nconst example = new hcp.ConsulSnapshot(\"example\", {\n    clusterId: \"consul-cluster\",\n    snapshotName: \"my-snapshot\",\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\n# Note: Snapshots currently have a retention policy of 30 days. After that time, any Terraform\n# state refresh will note that a new snapshot resource will be created.\nexample = hcp.ConsulSnapshot(\"example\",\n    cluster_id=\"consul-cluster\",\n    snapshot_name=\"my-snapshot\")\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        // Note: Snapshots currently have a retention policy of 30 days. After that time, any Terraform\n        // state refresh will note that a new snapshot resource will be created.\n        var example = new Hcp.ConsulSnapshot(\"example\", new Hcp.ConsulSnapshotArgs\n        {\n            ClusterId = \"consul-cluster\",\n            SnapshotName = \"my-snapshot\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.NewConsulSnapshot(ctx, \"example\", \u0026hcp.ConsulSnapshotArgs{\n\t\t\tClusterId:    pulumi.String(\"consul-cluster\"),\n\t\t\tSnapshotName: pulumi.String(\"my-snapshot\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "clusterId": {
                     "type": "string",
@@ -935,7 +1138,7 @@
             }
         },
         "hcp:index/hvn:Hvn": {
-            "description": "The HVN resource allows you to manage a HashiCorp Virtual Network in HCP.\n\nWe recommend the following when selecting the CIDR block of an HVN:\n\n- The CIDR block value must be a private IPv4 CIDR block within the [RFC1918](https://datatracker.ietf.org/doc/html/rfc1918) address space (10.*.*.*, 192.168.*.*, 172.[16-31].*.*).\n\n- The CIDR block value must be the first IP address of the desired CIDR block. The helper `cidrsubnet(\"172.16.1.1/24\", 0, 0)` will specify the first address of the CIDR block in the first argument.\n\n- The CIDR block value must end between /16 and /25.\n\n- If the CIDR block values for your HVN and VPCs overlap, then you will not be able to establish a connection. Ensure that any VPCs you plan to connect do not have overlapping values.\n\n- The default HVN CIDR block value does not overlap with the default CIDR block value for AWS VPCs (172.31.0.0/16). However, if you are planning to use this HVN in production, we recommend adding a custom value instead of using the default.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst example = new hcp.Hvn(\"example\", {\n    cidrBlock: \"172.25.16.0/20\",\n    cloudProvider: \"aws\",\n    hvnId: \"main-hvn\",\n    region: \"us-west-2\",\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample = hcp.Hvn(\"example\",\n    cidr_block=\"172.25.16.0/20\",\n    cloud_provider=\"aws\",\n    hvn_id=\"main-hvn\",\n    region=\"us-west-2\")\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Hcp.Hvn(\"example\", new Hcp.HvnArgs\n        {\n            CidrBlock = \"172.25.16.0/20\",\n            CloudProvider = \"aws\",\n            HvnId = \"main-hvn\",\n            Region = \"us-west-2\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.NewHvn(ctx, \"example\", \u0026hcp.HvnArgs{\n\t\t\tCidrBlock:     pulumi.String(\"172.25.16.0/20\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tHvnId:         pulumi.String(\"main-hvn\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID is {hvn_id}\n\n```sh\n $ pulumi import hcp:index/hvn:Hvn example main-hvn\n```\n\n ",
+            "description": "The HVN resource allows you to manage a HashiCorp Virtual Network in HCP.\n\nWe recommend the following when selecting the CIDR block of an HVN:\n\n- The CIDR block value must be a private IPv4 CIDR block within the [RFC1918](https://datatracker.ietf.org/doc/html/rfc1918) address space (10.*.*.*, 192.168.*.*, 172.[16-31].*.*).\n\n- The CIDR block value must be the first IP address of the desired CIDR block. The helper `cidrsubnet(\"172.16.1.1/24\", 0, 0)` will specify the first address of the CIDR block in the first argument.\n\n- The CIDR block value must end between /16 and /25.\n\n- If the CIDR block values for your HVN and VPCs overlap, then you will not be able to establish a connection. Ensure that any VPCs you plan to connect do not have overlapping values.\n\n- The default HVN CIDR block value does not overlap with the default CIDR block value for AWS VPCs (172.31.0.0/16). However, if you are planning to use this HVN in production, we recommend adding a custom value instead of using the default.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst example = new hcp.Hvn(\"example\", {\n    cidrBlock: \"172.25.16.0/20\",\n    cloudProvider: \"aws\",\n    hvnId: \"main-hvn\",\n    region: \"us-west-2\",\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample = hcp.Hvn(\"example\",\n    cidr_block=\"172.25.16.0/20\",\n    cloud_provider=\"aws\",\n    hvn_id=\"main-hvn\",\n    region=\"us-west-2\")\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Hcp.Hvn(\"example\", new Hcp.HvnArgs\n        {\n            CidrBlock = \"172.25.16.0/20\",\n            CloudProvider = \"aws\",\n            HvnId = \"main-hvn\",\n            Region = \"us-west-2\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.NewHvn(ctx, \"example\", \u0026hcp.HvnArgs{\n\t\t\tCidrBlock:     pulumi.String(\"172.25.16.0/20\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tHvnId:         pulumi.String(\"main-hvn\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID is {hvn_id}\n\n```sh\n $ pulumi import hcp:index/hvn:Hvn example main-hvn\n```\n\n ",
             "properties": {
                 "cidrBlock": {
                     "type": "string",
@@ -1052,7 +1255,7 @@
             }
         },
         "hcp:index/hvnPeeringConnection:HvnPeeringConnection": {
-            "description": "The HVN peering connection resource allows you to manage a peering connection between HVNs.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst hvn1 = new hcp.Hvn(\"hvn1\", {\n    hvnId: \"hvn-1\",\n    cloudProvider: \"aws\",\n    region: \"us-west-2\",\n    cidrBlock: \"172.25.16.0/20\",\n});\nconst hvn2 = new hcp.Hvn(\"hvn2\", {\n    hvnId: \"hvn-2\",\n    cloudProvider: \"aws\",\n    region: \"us-west-2\",\n    cidrBlock: \"172.18.16.0/20\",\n});\nconst peer1 = new hcp.HvnPeeringConnection(\"peer1\", {\n    hvn1: hvn1.selfLink,\n    hvn2: hvn2.selfLink,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nhvn1 = hcp.Hvn(\"hvn1\",\n    hvn_id=\"hvn-1\",\n    cloud_provider=\"aws\",\n    region=\"us-west-2\",\n    cidr_block=\"172.25.16.0/20\")\nhvn2 = hcp.Hvn(\"hvn2\",\n    hvn_id=\"hvn-2\",\n    cloud_provider=\"aws\",\n    region=\"us-west-2\",\n    cidr_block=\"172.18.16.0/20\")\npeer1 = hcp.HvnPeeringConnection(\"peer1\",\n    hvn1=hvn1.self_link,\n    hvn2=hvn2.self_link)\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var hvn1 = new Hcp.Hvn(\"hvn1\", new Hcp.HvnArgs\n        {\n            HvnId = \"hvn-1\",\n            CloudProvider = \"aws\",\n            Region = \"us-west-2\",\n            CidrBlock = \"172.25.16.0/20\",\n        });\n        var hvn2 = new Hcp.Hvn(\"hvn2\", new Hcp.HvnArgs\n        {\n            HvnId = \"hvn-2\",\n            CloudProvider = \"aws\",\n            Region = \"us-west-2\",\n            CidrBlock = \"172.18.16.0/20\",\n        });\n        var peer1 = new Hcp.HvnPeeringConnection(\"peer1\", new Hcp.HvnPeeringConnectionArgs\n        {\n            Hvn1 = hvn1.SelfLink,\n            Hvn2 = hvn2.SelfLink,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\thvn1, err := hcp.NewHvn(ctx, \"hvn1\", \u0026hcp.HvnArgs{\n\t\t\tHvnId:         pulumi.String(\"hvn-1\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t\tCidrBlock:     pulumi.String(\"172.25.16.0/20\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\thvn2, err := hcp.NewHvn(ctx, \"hvn2\", \u0026hcp.HvnArgs{\n\t\t\tHvnId:         pulumi.String(\"hvn-2\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t\tCidrBlock:     pulumi.String(\"172.18.16.0/20\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = hcp.NewHvnPeeringConnection(ctx, \"peer1\", \u0026hcp.HvnPeeringConnectionArgs{\n\t\t\tHvn1: hvn1.SelfLink,\n\t\t\tHvn2: hvn2.SelfLink,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID requires the first HVN ID in the format {hvn_1_id}:{peering_id}\n\n```sh\n $ pulumi import hcp:index/hvnPeeringConnection:HvnPeeringConnection peer_1 hvn-1:peer-1\n```\n\n ",
+            "description": "The HVN peering connection resource allows you to manage a peering connection between HVNs.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as pulumi_hcp from \"@grapl/pulumi-hcp\";\n\nconst hvn1 = new hcp.Hvn(\"hvn1\", {\n    hvnId: \"hvn-1\",\n    cloudProvider: \"aws\",\n    region: \"us-west-2\",\n    cidrBlock: \"172.25.16.0/20\",\n});\nconst hvn2 = new hcp.Hvn(\"hvn2\", {\n    hvnId: \"hvn-2\",\n    cloudProvider: \"aws\",\n    region: \"us-west-2\",\n    cidrBlock: \"172.18.16.0/20\",\n});\nconst peer1 = new hcp.HvnPeeringConnection(\"peer1\", {\n    hvn1: hvn1.selfLink,\n    hvn2: hvn2.selfLink,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nhvn1 = hcp.Hvn(\"hvn1\",\n    hvn_id=\"hvn-1\",\n    cloud_provider=\"aws\",\n    region=\"us-west-2\",\n    cidr_block=\"172.25.16.0/20\")\nhvn2 = hcp.Hvn(\"hvn2\",\n    hvn_id=\"hvn-2\",\n    cloud_provider=\"aws\",\n    region=\"us-west-2\",\n    cidr_block=\"172.18.16.0/20\")\npeer1 = hcp.HvnPeeringConnection(\"peer1\",\n    hvn1=hvn1.self_link,\n    hvn2=hvn2.self_link)\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var hvn1 = new Hcp.Hvn(\"hvn1\", new Hcp.HvnArgs\n        {\n            HvnId = \"hvn-1\",\n            CloudProvider = \"aws\",\n            Region = \"us-west-2\",\n            CidrBlock = \"172.25.16.0/20\",\n        });\n        var hvn2 = new Hcp.Hvn(\"hvn2\", new Hcp.HvnArgs\n        {\n            HvnId = \"hvn-2\",\n            CloudProvider = \"aws\",\n            Region = \"us-west-2\",\n            CidrBlock = \"172.18.16.0/20\",\n        });\n        var peer1 = new Hcp.HvnPeeringConnection(\"peer1\", new Hcp.HvnPeeringConnectionArgs\n        {\n            Hvn1 = hvn1.SelfLink,\n            Hvn2 = hvn2.SelfLink,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\thvn1, err := hcp.NewHvn(ctx, \"hvn1\", \u0026hcp.HvnArgs{\n\t\t\tHvnId:         pulumi.String(\"hvn-1\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t\tCidrBlock:     pulumi.String(\"172.25.16.0/20\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\thvn2, err := hcp.NewHvn(ctx, \"hvn2\", \u0026hcp.HvnArgs{\n\t\t\tHvnId:         pulumi.String(\"hvn-2\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t\tCidrBlock:     pulumi.String(\"172.18.16.0/20\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = hcp.NewHvnPeeringConnection(ctx, \"peer1\", \u0026hcp.HvnPeeringConnectionArgs{\n\t\t\tHvn1: hvn1.SelfLink,\n\t\t\tHvn2: hvn2.SelfLink,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID requires the first HVN ID in the format {hvn_1_id}:{peering_id}\n\n```sh\n $ pulumi import hcp:index/hvnPeeringConnection:HvnPeeringConnection peer_1 hvn-1:peer-1\n```\n\n ",
             "properties": {
                 "createdAt": {
                     "type": "string",
@@ -1151,7 +1354,7 @@
             }
         },
         "hcp:index/hvnRoute:HvnRoute": {
-            "description": "\n\n\n## Import\n\n# The import ID is {hvn_id}:{hvn_route_id}\n\n```sh\n $ pulumi import hcp:index/hvnRoute:HvnRoute example main-hvn:example-hvn-route\n```\n\n ",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as aws from \"@pulumi/aws\";\nimport * as pulumi_hcp from \"@grapl/pulumi-hcp\";\n\nconst main = new hcp.Hvn(\"main\", {\n    hvnId: \"main-hvn\",\n    cloudProvider: \"aws\",\n    region: \"us-west-2\",\n    cidrBlock: \"172.25.16.0/20\",\n});\n// Creating a peering and a route for it.\nconst peerVpc = new aws.ec2.Vpc(\"peerVpc\", {cidrBlock: \"192.168.0.0/20\"});\nconst example = new hcp.AwsNetworkPeering(\"example\", {\n    peeringId: \"peer-example\",\n    hvnId: main.hvnId,\n    peerVpcId: peerVpc.id,\n    peerAccountId: peerVpc.ownerId,\n    peerVpcRegion: \"us-west-2\",\n});\nconst peerVpcPeeringConnectionAccepter = new aws.ec2.VpcPeeringConnectionAccepter(\"peerVpcPeeringConnectionAccepter\", {\n    vpcPeeringConnectionId: example.providerPeeringId,\n    autoAccept: true,\n});\nconst example_peering_route = new hcp.HvnRoute(\"example-peering-route\", {\n    hvnLink: main.selfLink,\n    hvnRouteId: \"peering-route\",\n    destinationCidr: peerVpc.cidrBlock,\n    targetLink: example.selfLink,\n});\n```\n```python\nimport pulumi\nimport pulumi_aws as aws\nimport pulumi_hcp as hcp\n\nmain = hcp.Hvn(\"main\",\n    hvn_id=\"main-hvn\",\n    cloud_provider=\"aws\",\n    region=\"us-west-2\",\n    cidr_block=\"172.25.16.0/20\")\n# Creating a peering and a route for it.\npeer_vpc = aws.ec2.Vpc(\"peerVpc\", cidr_block=\"192.168.0.0/20\")\nexample = hcp.AwsNetworkPeering(\"example\",\n    peering_id=\"peer-example\",\n    hvn_id=main.hvn_id,\n    peer_vpc_id=peer_vpc.id,\n    peer_account_id=peer_vpc.owner_id,\n    peer_vpc_region=\"us-west-2\")\npeer_vpc_peering_connection_accepter = aws.ec2.VpcPeeringConnectionAccepter(\"peerVpcPeeringConnectionAccepter\",\n    vpc_peering_connection_id=example.provider_peering_id,\n    auto_accept=True)\nexample_peering_route = hcp.HvnRoute(\"example-peering-route\",\n    hvn_link=main.self_link,\n    hvn_route_id=\"peering-route\",\n    destination_cidr=peer_vpc.cidr_block,\n    target_link=example.self_link)\n```\n```csharp\nusing Pulumi;\nusing Aws = Pulumi.Aws;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var main = new Hcp.Hvn(\"main\", new Hcp.HvnArgs\n        {\n            HvnId = \"main-hvn\",\n            CloudProvider = \"aws\",\n            Region = \"us-west-2\",\n            CidrBlock = \"172.25.16.0/20\",\n        });\n        // Creating a peering and a route for it.\n        var peerVpc = new Aws.Ec2.Vpc(\"peerVpc\", new Aws.Ec2.VpcArgs\n        {\n            CidrBlock = \"192.168.0.0/20\",\n        });\n        var example = new Hcp.AwsNetworkPeering(\"example\", new Hcp.AwsNetworkPeeringArgs\n        {\n            PeeringId = \"peer-example\",\n            HvnId = main.HvnId,\n            PeerVpcId = peerVpc.Id,\n            PeerAccountId = peerVpc.OwnerId,\n            PeerVpcRegion = \"us-west-2\",\n        });\n        var peerVpcPeeringConnectionAccepter = new Aws.Ec2.VpcPeeringConnectionAccepter(\"peerVpcPeeringConnectionAccepter\", new Aws.Ec2.VpcPeeringConnectionAccepterArgs\n        {\n            VpcPeeringConnectionId = example.ProviderPeeringId,\n            AutoAccept = true,\n        });\n        var example_peering_route = new Hcp.HvnRoute(\"example-peering-route\", new Hcp.HvnRouteArgs\n        {\n            HvnLink = main.SelfLink,\n            HvnRouteId = \"peering-route\",\n            DestinationCidr = peerVpc.CidrBlock,\n            TargetLink = example.SelfLink,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := hcp.NewHvn(ctx, \"main\", \u0026hcp.HvnArgs{\n\t\t\tHvnId:         pulumi.String(\"main-hvn\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t\tCidrBlock:     pulumi.String(\"172.25.16.0/20\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tpeerVpc, err := ec2.NewVpc(ctx, \"peerVpc\", \u0026ec2.VpcArgs{\n\t\t\tCidrBlock: pulumi.String(\"192.168.0.0/20\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texample, err := hcp.NewAwsNetworkPeering(ctx, \"example\", \u0026hcp.AwsNetworkPeeringArgs{\n\t\t\tPeeringId:     pulumi.String(\"peer-example\"),\n\t\t\tHvnId:         main.HvnId,\n\t\t\tPeerVpcId:     peerVpc.ID(),\n\t\t\tPeerAccountId: peerVpc.OwnerId,\n\t\t\tPeerVpcRegion: pulumi.String(\"us-west-2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = ec2.NewVpcPeeringConnectionAccepter(ctx, \"peerVpcPeeringConnectionAccepter\", \u0026ec2.VpcPeeringConnectionAccepterArgs{\n\t\t\tVpcPeeringConnectionId: example.ProviderPeeringId,\n\t\t\tAutoAccept:             pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = hcp.NewHvnRoute(ctx, \"example-peering-route\", \u0026hcp.HvnRouteArgs{\n\t\t\tHvnLink:         main.SelfLink,\n\t\t\tHvnRouteId:      pulumi.String(\"peering-route\"),\n\t\t\tDestinationCidr: peerVpc.CidrBlock,\n\t\t\tTargetLink:      example.SelfLink,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID is {hvn_id}:{hvn_route_id}\n\n```sh\n $ pulumi import hcp:index/hvnRoute:HvnRoute example main-hvn:example-hvn-route\n```\n\n ",
             "properties": {
                 "createdAt": {
                     "type": "string",
@@ -1251,7 +1454,7 @@
             }
         },
         "hcp:index/vaultCluster:VaultCluster": {
-            "description": "The Vault cluster resource allows you to manage an HCP Vault cluster.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst exampleHvn = new hcp.Hvn(\"exampleHvn\", {\n    hvnId: \"hvn\",\n    cloudProvider: \"aws\",\n    region: \"us-west-2\",\n    cidrBlock: \"172.25.16.0/20\",\n});\nconst exampleVaultCluster = new hcp.VaultCluster(\"exampleVaultCluster\", {\n    clusterId: \"vault-cluster\",\n    hvnId: exampleHvn.hvnId,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample_hvn = hcp.Hvn(\"exampleHvn\",\n    hvn_id=\"hvn\",\n    cloud_provider=\"aws\",\n    region=\"us-west-2\",\n    cidr_block=\"172.25.16.0/20\")\nexample_vault_cluster = hcp.VaultCluster(\"exampleVaultCluster\",\n    cluster_id=\"vault-cluster\",\n    hvn_id=example_hvn.hvn_id)\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleHvn = new Hcp.Hvn(\"exampleHvn\", new Hcp.HvnArgs\n        {\n            HvnId = \"hvn\",\n            CloudProvider = \"aws\",\n            Region = \"us-west-2\",\n            CidrBlock = \"172.25.16.0/20\",\n        });\n        var exampleVaultCluster = new Hcp.VaultCluster(\"exampleVaultCluster\", new Hcp.VaultClusterArgs\n        {\n            ClusterId = \"vault-cluster\",\n            HvnId = exampleHvn.HvnId,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleHvn, err := hcp.NewHvn(ctx, \"exampleHvn\", \u0026hcp.HvnArgs{\n\t\t\tHvnId:         pulumi.String(\"hvn\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t\tCidrBlock:     pulumi.String(\"172.25.16.0/20\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = hcp.NewVaultCluster(ctx, \"exampleVaultCluster\", \u0026hcp.VaultClusterArgs{\n\t\t\tClusterId: pulumi.String(\"vault-cluster\"),\n\t\t\tHvnId:     exampleHvn.HvnId,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID is {cluster_id}\n\n```sh\n $ pulumi import hcp:index/vaultCluster:VaultCluster example vault-cluster\n```\n\n ",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as pulumi_hcp from \"@grapl/pulumi-hcp\";\n\nconst exampleHvn = new hcp.Hvn(\"exampleHvn\", {\n    hvnId: \"hvn\",\n    cloudProvider: \"aws\",\n    region: \"us-west-2\",\n    cidrBlock: \"172.25.16.0/20\",\n});\nconst exampleVaultCluster = new hcp.VaultCluster(\"exampleVaultCluster\", {\n    clusterId: \"vault-cluster\",\n    hvnId: exampleHvn.hvnId,\n    tier: \"standard_large\",\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample_hvn = hcp.Hvn(\"exampleHvn\",\n    hvn_id=\"hvn\",\n    cloud_provider=\"aws\",\n    region=\"us-west-2\",\n    cidr_block=\"172.25.16.0/20\")\nexample_vault_cluster = hcp.VaultCluster(\"exampleVaultCluster\",\n    cluster_id=\"vault-cluster\",\n    hvn_id=example_hvn.hvn_id,\n    tier=\"standard_large\")\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleHvn = new Hcp.Hvn(\"exampleHvn\", new Hcp.HvnArgs\n        {\n            HvnId = \"hvn\",\n            CloudProvider = \"aws\",\n            Region = \"us-west-2\",\n            CidrBlock = \"172.25.16.0/20\",\n        });\n        var exampleVaultCluster = new Hcp.VaultCluster(\"exampleVaultCluster\", new Hcp.VaultClusterArgs\n        {\n            ClusterId = \"vault-cluster\",\n            HvnId = exampleHvn.HvnId,\n            Tier = \"standard_large\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleHvn, err := hcp.NewHvn(ctx, \"exampleHvn\", \u0026hcp.HvnArgs{\n\t\t\tHvnId:         pulumi.String(\"hvn\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t\tCidrBlock:     pulumi.String(\"172.25.16.0/20\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = hcp.NewVaultCluster(ctx, \"exampleVaultCluster\", \u0026hcp.VaultClusterArgs{\n\t\t\tClusterId: pulumi.String(\"vault-cluster\"),\n\t\t\tHvnId:     exampleHvn.HvnId,\n\t\t\tTier:      pulumi.String(\"standard_large\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID is {cluster_id}\n\n```sh\n $ pulumi import hcp:index/vaultCluster:VaultCluster example vault-cluster\n```\n\n ",
             "properties": {
                 "cloudProvider": {
                     "type": "string",
@@ -1281,6 +1484,10 @@
                     "type": "string",
                     "description": "The ID of the organization this HCP Vault cluster is located in.\n"
                 },
+                "primaryLink": {
+                    "type": "string",
+                    "description": "The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.\n"
+                },
                 "projectId": {
                     "type": "string",
                     "description": "The ID of the project this HCP Vault cluster is located in.\n"
@@ -1293,9 +1500,13 @@
                     "type": "string",
                     "description": "The region where the HCP Vault cluster is located.\n"
                 },
+                "selfLink": {
+                    "type": "string",
+                    "description": "A unique URL identifying the Vault cluster.\n"
+                },
                 "tier": {
                     "type": "string",
-                    "description": "Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `standard_small`, `standard_medium`, `standard_large`, `starter_small`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).\n"
+                    "description": "Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`, `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).\n"
                 },
                 "vaultPrivateEndpointUrl": {
                     "type": "string",
@@ -1319,6 +1530,7 @@
                 "organizationId",
                 "projectId",
                 "region",
+                "selfLink",
                 "tier",
                 "vaultPrivateEndpointUrl",
                 "vaultPublicEndpointUrl",
@@ -1337,13 +1549,17 @@
                     "type": "string",
                     "description": "The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.\n"
                 },
+                "primaryLink": {
+                    "type": "string",
+                    "description": "The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.\n"
+                },
                 "publicEndpoint": {
                     "type": "boolean",
                     "description": "Denotes that the cluster has a public endpoint. Defaults to false.\n"
                 },
                 "tier": {
                     "type": "string",
-                    "description": "Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `standard_small`, `standard_medium`, `standard_large`, `starter_small`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).\n"
+                    "description": "Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`, `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).\n"
                 }
             },
             "requiredInputs": [
@@ -1381,6 +1597,10 @@
                         "type": "string",
                         "description": "The ID of the organization this HCP Vault cluster is located in.\n"
                     },
+                    "primaryLink": {
+                        "type": "string",
+                        "description": "The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.\n"
+                    },
                     "projectId": {
                         "type": "string",
                         "description": "The ID of the project this HCP Vault cluster is located in.\n"
@@ -1393,9 +1613,13 @@
                         "type": "string",
                         "description": "The region where the HCP Vault cluster is located.\n"
                     },
+                    "selfLink": {
+                        "type": "string",
+                        "description": "A unique URL identifying the Vault cluster.\n"
+                    },
                     "tier": {
                         "type": "string",
-                        "description": "Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `standard_small`, `standard_medium`, `standard_large`, `starter_small`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).\n"
+                        "description": "Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`, `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).\n"
                     },
                     "vaultPrivateEndpointUrl": {
                         "type": "string",
@@ -1414,6 +1638,7 @@
             }
         },
         "hcp:index/vaultClusterAdminToken:VaultClusterAdminToken": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst example = new hcp.VaultClusterAdminToken(\"example\", {\n    clusterId: \"test-vault-cluster\",\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample = hcp.VaultClusterAdminToken(\"example\", cluster_id=\"test-vault-cluster\")\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = new Hcp.VaultClusterAdminToken(\"example\", new Hcp.VaultClusterAdminTokenArgs\n        {\n            ClusterId = \"test-vault-cluster\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.NewVaultClusterAdminToken(ctx, \"example\", \u0026hcp.VaultClusterAdminTokenArgs{\n\t\t\tClusterId: pulumi.String(\"test-vault-cluster\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "clusterId": {
                     "type": "string",
@@ -1464,7 +1689,7 @@
     },
     "functions": {
         "hcp:index/getAwsNetworkPeering:getAwsNetworkPeering": {
-            "description": "The AWS network peering data source provides information about an existing network peering between an HVN and a peer AWS VPC.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst test = hcp.getAwsNetworkPeering({\n    hvnId: _var.hvn_id,\n    peeringId: _var.peering_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\ntest = hcp.get_aws_network_peering(hvn_id=var[\"hvn_id\"],\n    peering_id=var[\"peering_id\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = Output.Create(Hcp.GetAwsNetworkPeering.InvokeAsync(new Hcp.GetAwsNetworkPeeringArgs\n        {\n            HvnId = @var.Hvn_id,\n            PeeringId = @var.Peering_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupAwsNetworkPeering(ctx, \u0026GetAwsNetworkPeeringArgs{\n\t\t\tHvnId:     _var.Hvn_id,\n\t\t\tPeeringId: _var.Peering_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "The AWS network peering data source provides information about an existing network peering between an HVN and a peer AWS VPC.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst test = hcp.getAwsNetworkPeering({\n    hvnId: _var.hvn_id,\n    peeringId: _var.peering_id,\n    waitForActiveState: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\ntest = hcp.get_aws_network_peering(hvn_id=var[\"hvn_id\"],\n    peering_id=var[\"peering_id\"],\n    wait_for_active_state=True)\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = Output.Create(Hcp.GetAwsNetworkPeering.InvokeAsync(new Hcp.GetAwsNetworkPeeringArgs\n        {\n            HvnId = @var.Hvn_id,\n            PeeringId = @var.Peering_id,\n            WaitForActiveState = true,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupAwsNetworkPeering(ctx, \u0026GetAwsNetworkPeeringArgs{\n\t\t\tHvnId:              _var.Hvn_id,\n\t\t\tPeeringId:          _var.Peering_id,\n\t\t\tWaitForActiveState: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getAwsNetworkPeering.\n",
                 "properties": {
@@ -1475,6 +1700,9 @@
                     "peeringId": {
                         "type": "string",
                         "description": "The ID of the network peering.\n"
+                    },
+                    "waitForActiveState": {
+                        "type": "boolean"
                     }
                 },
                 "type": "object",
@@ -1533,6 +1761,9 @@
                     "selfLink": {
                         "type": "string",
                         "description": "A unique URL identifying the network peering.\n"
+                    },
+                    "waitForActiveState": {
+                        "type": "boolean"
                     }
                 },
                 "type": "object",
@@ -1553,7 +1784,7 @@
             }
         },
         "hcp:index/getAwsTransitGatewayAttachment:getAwsTransitGatewayAttachment": {
-            "description": "The AWS transit gateway attachment data source provides information about an existing transit gateway attachment.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst test = hcp.getAwsTransitGatewayAttachment({\n    hvnId: _var.hvn_id,\n    transitGatewayAttachmentId: _var.transit_gateway_attachment_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\ntest = hcp.get_aws_transit_gateway_attachment(hvn_id=var[\"hvn_id\"],\n    transit_gateway_attachment_id=var[\"transit_gateway_attachment_id\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = Output.Create(Hcp.GetAwsTransitGatewayAttachment.InvokeAsync(new Hcp.GetAwsTransitGatewayAttachmentArgs\n        {\n            HvnId = @var.Hvn_id,\n            TransitGatewayAttachmentId = @var.Transit_gateway_attachment_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupAwsTransitGatewayAttachment(ctx, \u0026GetAwsTransitGatewayAttachmentArgs{\n\t\t\tHvnId:                      _var.Hvn_id,\n\t\t\tTransitGatewayAttachmentId: _var.Transit_gateway_attachment_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "The AWS transit gateway attachment data source provides information about an existing transit gateway attachment.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst test = hcp.getAwsTransitGatewayAttachment({\n    hvnId: _var.hvn_id,\n    transitGatewayAttachmentId: _var.transit_gateway_attachment_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\ntest = hcp.get_aws_transit_gateway_attachment(hvn_id=var[\"hvn_id\"],\n    transit_gateway_attachment_id=var[\"transit_gateway_attachment_id\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = Output.Create(Hcp.GetAwsTransitGatewayAttachment.InvokeAsync(new Hcp.GetAwsTransitGatewayAttachmentArgs\n        {\n            HvnId = @var.Hvn_id,\n            TransitGatewayAttachmentId = @var.Transit_gateway_attachment_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupAwsTransitGatewayAttachment(ctx, \u0026GetAwsTransitGatewayAttachmentArgs{\n\t\t\tHvnId:                      _var.Hvn_id,\n\t\t\tTransitGatewayAttachmentId: _var.Transit_gateway_attachment_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getAwsTransitGatewayAttachment.\n",
                 "properties": {
@@ -1642,8 +1873,118 @@
                 ]
             }
         },
+        "hcp:index/getAzurePeeringConnection:getAzurePeeringConnection": {
+            "description": "\u003e **Note:** Azure support coming soon. This data source is currently in internal preview only.\n\nThe Azure peering connection data source provides information about a peering connection between an HVN and a peer Azure VNet.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst test = hcp.getAzurePeeringConnection({\n    hvnId: _var.hvn_id,\n    peeringId: _var.peering_id,\n    waitForActiveState: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\ntest = hcp.get_azure_peering_connection(hvn_id=var[\"hvn_id\"],\n    peering_id=var[\"peering_id\"],\n    wait_for_active_state=True)\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = Output.Create(Hcp.GetAzurePeeringConnection.InvokeAsync(new Hcp.GetAzurePeeringConnectionArgs\n        {\n            HvnId = @var.Hvn_id,\n            PeeringId = @var.Peering_id,\n            WaitForActiveState = true,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupAzurePeeringConnection(ctx, \u0026GetAzurePeeringConnectionArgs{\n\t\t\tHvnId:              _var.Hvn_id,\n\t\t\tPeeringId:          _var.Peering_id,\n\t\t\tWaitForActiveState: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getAzurePeeringConnection.\n",
+                "properties": {
+                    "hvnLink": {
+                        "type": "string",
+                        "description": "The `self_link` of the HashiCorp Virtual Network (HVN).\n"
+                    },
+                    "peeringId": {
+                        "type": "string",
+                        "description": "The ID of the peering connection.\n"
+                    },
+                    "waitForActiveState": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "hvnLink",
+                    "peeringId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getAzurePeeringConnection.\n",
+                "properties": {
+                    "applicationId": {
+                        "type": "string",
+                        "description": "The ID of the Azure application whose credentials are used to peer the HCP HVN's underlying VNet with the customer VNet.\n"
+                    },
+                    "azurePeeringId": {
+                        "type": "string",
+                        "description": "The peering connection ID used by Azure.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The time that the peering connection was created.\n"
+                    },
+                    "expiresAt": {
+                        "type": "string",
+                        "description": "The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.\n"
+                    },
+                    "hvnLink": {
+                        "type": "string",
+                        "description": "The `self_link` of the HashiCorp Virtual Network (HVN).\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The ID of the HCP organization where the peering connection is located. Always matches the HVN's organization.\n"
+                    },
+                    "peerResourceGroupName": {
+                        "type": "string",
+                        "description": "The resource group name of the peer VNet in Azure.\n"
+                    },
+                    "peerSubscriptionId": {
+                        "type": "string",
+                        "description": "The subscription ID of the peer VNet in Azure.\n"
+                    },
+                    "peerTenantId": {
+                        "type": "string",
+                        "description": "The tenant ID of the peer VNet in Azure.\n"
+                    },
+                    "peerVnetName": {
+                        "type": "string",
+                        "description": "The name of the peer VNet in Azure.\n"
+                    },
+                    "peerVnetRegion": {
+                        "type": "string",
+                        "description": "The region of the peer VNet in Azure.\n"
+                    },
+                    "peeringId": {
+                        "type": "string",
+                        "description": "The ID of the peering connection.\n"
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "The ID of the HCP project where the peering connection is located. Always matches the HVN's project.\n"
+                    },
+                    "selfLink": {
+                        "type": "string",
+                        "description": "A unique URL identifying the peering connection\n"
+                    },
+                    "waitForActiveState": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "applicationId",
+                    "azurePeeringId",
+                    "createdAt",
+                    "expiresAt",
+                    "hvnLink",
+                    "organizationId",
+                    "peerResourceGroupName",
+                    "peerSubscriptionId",
+                    "peerTenantId",
+                    "peerVnetName",
+                    "peerVnetRegion",
+                    "peeringId",
+                    "projectId",
+                    "selfLink",
+                    "id"
+                ]
+            }
+        },
         "hcp:index/getConsulAgentHelmConfig:getConsulAgentHelmConfig": {
-            "description": "The Consul agent Helm config data source provides Helm values for a Consul agent running in Kubernetes.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst example = hcp.getConsulAgentHelmConfig({\n    clusterId: _var.cluster_id,\n    kubernetesEndpoint: _var.kubernetes_endpoint,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample = hcp.get_consul_agent_helm_config(cluster_id=var[\"cluster_id\"],\n    kubernetes_endpoint=var[\"kubernetes_endpoint\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Hcp.GetConsulAgentHelmConfig.InvokeAsync(new Hcp.GetConsulAgentHelmConfigArgs\n        {\n            ClusterId = @var.Cluster_id,\n            KubernetesEndpoint = @var.Kubernetes_endpoint,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.GetConsulAgentHelmConfig(ctx, \u0026GetConsulAgentHelmConfigArgs{\n\t\t\tClusterId:          _var.Cluster_id,\n\t\t\tKubernetesEndpoint: _var.Kubernetes_endpoint,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "The Consul agent Helm config data source provides Helm values for a Consul agent running in Kubernetes.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst example = hcp.getConsulAgentHelmConfig({\n    clusterId: _var.cluster_id,\n    kubernetesEndpoint: _var.kubernetes_endpoint,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample = hcp.get_consul_agent_helm_config(cluster_id=var[\"cluster_id\"],\n    kubernetes_endpoint=var[\"kubernetes_endpoint\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Hcp.GetConsulAgentHelmConfig.InvokeAsync(new Hcp.GetConsulAgentHelmConfigArgs\n        {\n            ClusterId = @var.Cluster_id,\n            KubernetesEndpoint = @var.Kubernetes_endpoint,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.GetConsulAgentHelmConfig(ctx, \u0026GetConsulAgentHelmConfigArgs{\n\t\t\tClusterId:          _var.Cluster_id,\n\t\t\tKubernetesEndpoint: _var.Kubernetes_endpoint,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getConsulAgentHelmConfig.\n",
                 "properties": {
@@ -1700,7 +2041,7 @@
             }
         },
         "hcp:index/getConsulAgentKubernetesSecret:getConsulAgentKubernetesSecret": {
-            "description": "The agent config Kubernetes secret data source provides Consul agents running in Kubernetes the configuration needed to connect to the Consul cluster.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst test = hcp.getConsulAgentKubernetesSecret({\n    clusterId: _var.cluster_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\ntest = hcp.get_consul_agent_kubernetes_secret(cluster_id=var[\"cluster_id\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = Output.Create(Hcp.GetConsulAgentKubernetesSecret.InvokeAsync(new Hcp.GetConsulAgentKubernetesSecretArgs\n        {\n            ClusterId = @var.Cluster_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.GetConsulAgentKubernetesSecret(ctx, \u0026GetConsulAgentKubernetesSecretArgs{\n\t\t\tClusterId: _var.Cluster_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "The agent config Kubernetes secret data source provides Consul agents running in Kubernetes the configuration needed to connect to the Consul cluster.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst test = hcp.getConsulAgentKubernetesSecret({\n    clusterId: _var.cluster_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\ntest = hcp.get_consul_agent_kubernetes_secret(cluster_id=var[\"cluster_id\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = Output.Create(Hcp.GetConsulAgentKubernetesSecret.InvokeAsync(new Hcp.GetConsulAgentKubernetesSecretArgs\n        {\n            ClusterId = @var.Cluster_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.GetConsulAgentKubernetesSecret(ctx, \u0026GetConsulAgentKubernetesSecretArgs{\n\t\t\tClusterId: _var.Cluster_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getConsulAgentKubernetesSecret.\n",
                 "properties": {
@@ -1739,7 +2080,7 @@
             }
         },
         "hcp:index/getConsulCluster:getConsulCluster": {
-            "description": "The cluster data source provides information about an existing HCP Consul cluster.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst example = hcp.getConsulCluster({\n    clusterId: _var.cluster_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample = hcp.get_consul_cluster(cluster_id=var[\"cluster_id\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Hcp.GetConsulCluster.InvokeAsync(new Hcp.GetConsulClusterArgs\n        {\n            ClusterId = @var.Cluster_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupConsulCluster(ctx, \u0026GetConsulClusterArgs{\n\t\t\tClusterId: _var.Cluster_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "The cluster data source provides information about an existing HCP Consul cluster.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst example = hcp.getConsulCluster({\n    clusterId: _var.cluster_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample = hcp.get_consul_cluster(cluster_id=var[\"cluster_id\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Hcp.GetConsulCluster.InvokeAsync(new Hcp.GetConsulClusterArgs\n        {\n            ClusterId = @var.Cluster_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupConsulCluster(ctx, \u0026GetConsulClusterArgs{\n\t\t\tClusterId: _var.Cluster_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getConsulCluster.\n",
                 "properties": {
@@ -1883,7 +2224,7 @@
             }
         },
         "hcp:index/getConsulVersions:getConsulVersions": {
-            "description": "The Consul versions data source provides the Consul versions supported by HCP.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst defaultConsulVersions = pulumi.output(hcp.getConsulVersions());\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\ndefault = hcp.get_consul_versions()\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var @default = Output.Create(Hcp.GetConsulVersions.InvokeAsync());\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.GetConsulVersions(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "The Consul versions data source provides the Consul versions supported by HCP.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst defaultConsulVersions = pulumi.output(hcp.getConsulVersions());\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\ndefault = hcp.get_consul_versions()\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var @default = Output.Create(Hcp.GetConsulVersions.InvokeAsync());\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.GetConsulVersions(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "outputs": {
                 "description": "A collection of values returned by getConsulVersions.\n",
                 "properties": {
@@ -1920,7 +2261,7 @@
             }
         },
         "hcp:index/getHvn:getHvn": {
-            "description": "The HVN data source provides information about an existing HashiCorp Virtual Network.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst example = hcp.getHvn({\n    hvnId: _var.hvn_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample = hcp.get_hvn(hvn_id=var[\"hvn_id\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Hcp.GetHvn.InvokeAsync(new Hcp.GetHvnArgs\n        {\n            HvnId = @var.Hvn_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupHvn(ctx, \u0026GetHvnArgs{\n\t\t\tHvnId: _var.Hvn_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "The HVN data source provides information about an existing HashiCorp Virtual Network.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst example = hcp.getHvn({\n    hvnId: _var.hvn_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample = hcp.get_hvn(hvn_id=var[\"hvn_id\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Hcp.GetHvn.InvokeAsync(new Hcp.GetHvnArgs\n        {\n            HvnId = @var.Hvn_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupHvn(ctx, \u0026GetHvnArgs{\n\t\t\tHvnId: _var.Hvn_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getHvn.\n",
                 "properties": {
@@ -1994,7 +2335,7 @@
             }
         },
         "hcp:index/getHvnPeeringConnection:getHvnPeeringConnection": {
-            "description": "The HVN peering connection data source provides information about an existing peering connection between HVNs.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst test = hcp.getHvnPeeringConnection({\n    peeringId: _var.peering_id,\n    hvn1: _var.hvn_1,\n    hvn2: _var.hvn_2,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\ntest = hcp.get_hvn_peering_connection(peering_id=var[\"peering_id\"],\n    hvn1=var[\"hvn_1\"],\n    hvn2=var[\"hvn_2\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = Output.Create(Hcp.GetHvnPeeringConnection.InvokeAsync(new Hcp.GetHvnPeeringConnectionArgs\n        {\n            PeeringId = @var.Peering_id,\n            Hvn1 = @var.Hvn_1,\n            Hvn2 = @var.Hvn_2,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupHvnPeeringConnection(ctx, \u0026GetHvnPeeringConnectionArgs{\n\t\t\tPeeringId: _var.Peering_id,\n\t\t\tHvn1:      _var.Hvn_1,\n\t\t\tHvn2:      _var.Hvn_2,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "The HVN peering connection data source provides information about an existing peering connection between HVNs.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst test = hcp.getHvnPeeringConnection({\n    peeringId: _var.peering_id,\n    hvn1: _var.hvn_1,\n    hvn2: _var.hvn_2,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\ntest = hcp.get_hvn_peering_connection(peering_id=var[\"peering_id\"],\n    hvn1=var[\"hvn_1\"],\n    hvn2=var[\"hvn_2\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = Output.Create(Hcp.GetHvnPeeringConnection.InvokeAsync(new Hcp.GetHvnPeeringConnectionArgs\n        {\n            PeeringId = @var.Peering_id,\n            Hvn1 = @var.Hvn_1,\n            Hvn2 = @var.Hvn_2,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupHvnPeeringConnection(ctx, \u0026GetHvnPeeringConnectionArgs{\n\t\t\tPeeringId: _var.Peering_id,\n\t\t\tHvn1:      _var.Hvn_1,\n\t\t\tHvn2:      _var.Hvn_2,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getHvnPeeringConnection.\n",
                 "properties": {
@@ -2073,7 +2414,7 @@
             }
         },
         "hcp:index/getHvnRoute:getHvnRoute": {
-            "description": "The HVN route data source provides information about an existing HVN route.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst example = hcp.getHvnRoute({\n    hvnLink: _var.hvn_link,\n    destinationCidr: _var.hvn_route_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample = hcp.get_hvn_route(hvn_link=var[\"hvn_link\"],\n    destination_cidr=var[\"hvn_route_id\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Hcp.GetHvnRoute.InvokeAsync(new Hcp.GetHvnRouteArgs\n        {\n            HvnLink = @var.Hvn_link,\n            DestinationCidr = @var.Hvn_route_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupHvnRoute(ctx, \u0026GetHvnRouteArgs{\n\t\t\tHvnLink:         _var.Hvn_link,\n\t\t\tDestinationCidr: _var.Hvn_route_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "The HVN route data source provides information about an existing HVN route.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst example = hcp.getHvnRoute({\n    hvnLink: _var.hvn_link,\n    destinationCidr: _var.hvn_route_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample = hcp.get_hvn_route(hvn_link=var[\"hvn_link\"],\n    destination_cidr=var[\"hvn_route_id\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Hcp.GetHvnRoute.InvokeAsync(new Hcp.GetHvnRouteArgs\n        {\n            HvnLink = @var.Hvn_link,\n            DestinationCidr = @var.Hvn_route_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupHvnRoute(ctx, \u0026GetHvnRouteArgs{\n\t\t\tHvnLink:         _var.Hvn_link,\n\t\t\tDestinationCidr: _var.Hvn_route_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getHvnRoute.\n",
                 "properties": {
@@ -2142,7 +2483,7 @@
             }
         },
         "hcp:index/getPackerImage:getPackerImage": {
-            "description": "\u003e **Note:** This feature is currently in beta.\n\nThe Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst hardened-source = hcp.getPackerIteration({\n    bucketName: \"hardened-ubuntu-16-04\",\n    channel: \"production\",\n});\nconst foo = hardened_source.then(hardened_source =\u003e hcp.getPackerImage({\n    bucketName: \"hardened-ubuntu-16-04\",\n    cloudProvider: \"aws\",\n    iterationId: hardened_source.ulid,\n    region: \"us-east-1\",\n}));\nexport const packer_registry_ubuntu = foo.then(foo =\u003e foo.cloudImageId);\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nhardened_source = hcp.get_packer_iteration(bucket_name=\"hardened-ubuntu-16-04\",\n    channel=\"production\")\nfoo = hcp.get_packer_image(bucket_name=\"hardened-ubuntu-16-04\",\n    cloud_provider=\"aws\",\n    iteration_id=hardened_source.ulid,\n    region=\"us-east-1\")\npulumi.export(\"packer-registry-ubuntu\", foo.cloud_image_id)\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var hardened_source = Output.Create(Hcp.GetPackerIteration.InvokeAsync(new Hcp.GetPackerIterationArgs\n        {\n            BucketName = \"hardened-ubuntu-16-04\",\n            Channel = \"production\",\n        }));\n        var foo = hardened_source.Apply(hardened_source =\u003e Output.Create(Hcp.GetPackerImage.InvokeAsync(new Hcp.GetPackerImageArgs\n        {\n            BucketName = \"hardened-ubuntu-16-04\",\n            CloudProvider = \"aws\",\n            IterationId = hardened_source.Ulid,\n            Region = \"us-east-1\",\n        })));\n        this.Packer_registry_ubuntu = foo.Apply(foo =\u003e foo.CloudImageId);\n    }\n\n    [Output(\"packer-registry-ubuntu\")]\n    public Output\u003cstring\u003e Packer_registry_ubuntu { get; set; }\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\thardened_source, err := hcp.GetPackerIteration(ctx, \u0026GetPackerIterationArgs{\n\t\t\tBucketName: \"hardened-ubuntu-16-04\",\n\t\t\tChannel:    \"production\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tfoo, err := hcp.GetPackerImage(ctx, \u0026GetPackerImageArgs{\n\t\t\tBucketName:    \"hardened-ubuntu-16-04\",\n\t\t\tCloudProvider: \"aws\",\n\t\t\tIterationId:   hardened_source.Ulid,\n\t\t\tRegion:        \"us-east-1\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"packer-registry-ubuntu\", foo.CloudImageId)\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "The Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst hardened-source = hcp.getPackerIteration({\n    bucketName: \"hardened-ubuntu-16-04\",\n    channel: \"production\",\n});\nconst foo = hardened_source.then(hardened_source =\u003e hcp.getPackerImage({\n    bucketName: \"hardened-ubuntu-16-04\",\n    cloudProvider: \"aws\",\n    iterationId: hardened_source.ulid,\n    region: \"us-east-1\",\n}));\nexport const packer_registry_ubuntu = foo.then(foo =\u003e foo.cloudImageId);\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nhardened_source = hcp.get_packer_iteration(bucket_name=\"hardened-ubuntu-16-04\",\n    channel=\"production\")\nfoo = hcp.get_packer_image(bucket_name=\"hardened-ubuntu-16-04\",\n    cloud_provider=\"aws\",\n    iteration_id=hardened_source.ulid,\n    region=\"us-east-1\")\npulumi.export(\"packer-registry-ubuntu\", foo.cloud_image_id)\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var hardened_source = Output.Create(Hcp.GetPackerIteration.InvokeAsync(new Hcp.GetPackerIterationArgs\n        {\n            BucketName = \"hardened-ubuntu-16-04\",\n            Channel = \"production\",\n        }));\n        var foo = hardened_source.Apply(hardened_source =\u003e Output.Create(Hcp.GetPackerImage.InvokeAsync(new Hcp.GetPackerImageArgs\n        {\n            BucketName = \"hardened-ubuntu-16-04\",\n            CloudProvider = \"aws\",\n            IterationId = hardened_source.Ulid,\n            Region = \"us-east-1\",\n        })));\n        this.Packer_registry_ubuntu = foo.Apply(foo =\u003e foo.CloudImageId);\n    }\n\n    [Output(\"packer-registry-ubuntu\")]\n    public Output\u003cstring\u003e Packer_registry_ubuntu { get; set; }\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\thardened_source, err := hcp.GetPackerIteration(ctx, \u0026GetPackerIterationArgs{\n\t\t\tBucketName: \"hardened-ubuntu-16-04\",\n\t\t\tChannel:    \"production\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tfoo, err := hcp.GetPackerImage(ctx, \u0026GetPackerImageArgs{\n\t\t\tBucketName:    \"hardened-ubuntu-16-04\",\n\t\t\tCloudProvider: \"aws\",\n\t\t\tIterationId:   hardened_source.Ulid,\n\t\t\tRegion:        \"us-east-1\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"packer-registry-ubuntu\", foo.CloudImageId)\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getPackerImage.\n",
                 "properties": {
@@ -2249,7 +2590,7 @@
             }
         },
         "hcp:index/getPackerImageIteration:getPackerImageIteration": {
-            "description": "\u003e **Note:** This feature is currently in beta.\n\nThe Packer Image data source iteration gets the most recent iteration (or build) of an image, given a channel.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst alpine = pulumi.output(hcp.getPackerImageIteration({\n    bucketName: \"alpine\",\n    channel: \"production\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nalpine = hcp.get_packer_image_iteration(bucket_name=\"alpine\",\n    channel=\"production\")\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var alpine = Output.Create(Hcp.GetPackerImageIteration.InvokeAsync(new Hcp.GetPackerImageIterationArgs\n        {\n            BucketName = \"alpine\",\n            Channel = \"production\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.GetPackerImageIteration(ctx, \u0026GetPackerImageIterationArgs{\n\t\t\tBucketName: \"alpine\",\n\t\t\tChannel:    \"production\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "The Packer Image data source iteration gets the most recent iteration (or build) of an image, given a channel.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst alpine = pulumi.output(hcp.getPackerImageIteration({\n    bucketName: \"alpine\",\n    channel: \"production\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nalpine = hcp.get_packer_image_iteration(bucket_name=\"alpine\",\n    channel=\"production\")\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var alpine = Output.Create(Hcp.GetPackerImageIteration.InvokeAsync(new Hcp.GetPackerImageIterationArgs\n        {\n            BucketName = \"alpine\",\n            Channel = \"production\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.GetPackerImageIteration(ctx, \u0026GetPackerImageIterationArgs{\n\t\t\tBucketName: \"alpine\",\n\t\t\tChannel:    \"production\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getPackerImageIteration.\n",
                 "properties": {
@@ -2321,7 +2662,7 @@
             }
         },
         "hcp:index/getPackerIteration:getPackerIteration": {
-            "description": "\u003e **Note:** This feature is currently in beta.\n\nThe Packer Image data source iteration gets the most recent iteration (or build) of an image, given a channel.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst hardened_source = pulumi.output(hcp.getPackerIteration({\n    bucketName: \"hardened-ubuntu-16-04\",\n    channel: \"megan-test\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nhardened_source = hcp.get_packer_iteration(bucket_name=\"hardened-ubuntu-16-04\",\n    channel=\"megan-test\")\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var hardened_source = Output.Create(Hcp.GetPackerIteration.InvokeAsync(new Hcp.GetPackerIterationArgs\n        {\n            BucketName = \"hardened-ubuntu-16-04\",\n            Channel = \"megan-test\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.GetPackerIteration(ctx, \u0026GetPackerIterationArgs{\n\t\t\tBucketName: \"hardened-ubuntu-16-04\",\n\t\t\tChannel:    \"megan-test\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "The Packer Image data source iteration gets the most recent iteration (or build) of an image, given a channel.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst hardened_source = pulumi.output(hcp.getPackerIteration({\n    bucketName: \"hardened-ubuntu-16-04\",\n    channel: \"megan-test\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nhardened_source = hcp.get_packer_iteration(bucket_name=\"hardened-ubuntu-16-04\",\n    channel=\"megan-test\")\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var hardened_source = Output.Create(Hcp.GetPackerIteration.InvokeAsync(new Hcp.GetPackerIterationArgs\n        {\n            BucketName = \"hardened-ubuntu-16-04\",\n            Channel = \"megan-test\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.GetPackerIteration(ctx, \u0026GetPackerIterationArgs{\n\t\t\tBucketName: \"hardened-ubuntu-16-04\",\n\t\t\tChannel:    \"megan-test\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getPackerIteration.\n",
                 "properties": {
@@ -2405,7 +2746,7 @@
             }
         },
         "hcp:index/getVaultCluster:getVaultCluster": {
-            "description": "The cluster data source provides information about an existing HCP Vault cluster.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst example = hcp.getVaultCluster({\n    clusterId: _var.cluster_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample = hcp.get_vault_cluster(cluster_id=var[\"cluster_id\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Hcp.GetVaultCluster.InvokeAsync(new Hcp.GetVaultClusterArgs\n        {\n            ClusterId = @var.Cluster_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupVaultCluster(ctx, \u0026GetVaultClusterArgs{\n\t\t\tClusterId: _var.Cluster_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "The cluster data source provides information about an existing HCP Vault cluster.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst example = hcp.getVaultCluster({\n    clusterId: _var.cluster_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample = hcp.get_vault_cluster(cluster_id=var[\"cluster_id\"])\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Hcp.GetVaultCluster.InvokeAsync(new Hcp.GetVaultClusterArgs\n        {\n            ClusterId = @var.Cluster_id,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupVaultCluster(ctx, \u0026GetVaultClusterArgs{\n\t\t\tClusterId: _var.Cluster_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getVaultCluster.\n",
                 "properties": {
@@ -2454,6 +2795,10 @@
                         "type": "string",
                         "description": "The ID of the organization this HCP Vault cluster is located in.\n"
                     },
+                    "primaryLink": {
+                        "type": "string",
+                        "description": "The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.\n"
+                    },
                     "projectId": {
                         "type": "string",
                         "description": "The ID of the project this HCP Vault cluster is located in.\n"
@@ -2465,6 +2810,10 @@
                     "region": {
                         "type": "string",
                         "description": "The region where the HCP Vault cluster is located.\n"
+                    },
+                    "selfLink": {
+                        "type": "string",
+                        "description": "A unique URL identifying the Vault cluster.\n"
                     },
                     "tier": {
                         "type": "string",
@@ -2492,9 +2841,11 @@
                     "minVaultVersion",
                     "namespace",
                     "organizationId",
+                    "primaryLink",
                     "projectId",
                     "publicEndpoint",
                     "region",
+                    "selfLink",
                     "tier",
                     "vaultPrivateEndpointUrl",
                     "vaultPublicEndpointUrl",
@@ -2515,7 +2866,7 @@
         "go": {
             "generateExtraInputTypes": true,
             "generateResourceContainerTypes": true,
-            "importBasePath": "github.com/pulumi/pulumi-hcp/sdk/go/hcp"
+            "importBasePath": "github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
         },
         "nodejs": {
             "compatibility": "tfbridge20",
@@ -2527,8 +2878,8 @@
                 "@types/node": "^10.0.0"
             },
             "disableUnionOutputTypes": true,
-            "packageDescription": "A Pulumi package for creating and managing hcp cloud resources.",
-            "packageName": "",
+            "packageDescription": "A Pulumi package for creating and managing HCP cloud resources.",
+            "packageName": "@grapl/pulumi-hcp",
             "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hashicorp/terraform-provider-hcp)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-hcp` repo](https://github.com/pulumi/pulumi-hcp/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`hashicorp/terraform-provider-hcp` repo](https://github.com/hashicorp/terraform-provider-hcp/issues).",
             "typescriptVersion": ""
         },

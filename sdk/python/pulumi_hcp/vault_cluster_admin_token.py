@@ -97,7 +97,15 @@ class VaultClusterAdminToken(pulumi.CustomResource):
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a VaultClusterAdminToken resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_hcp as hcp
+
+        example = hcp.VaultClusterAdminToken("example", cluster_id="test-vault-cluster")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_id: The ID of the HCP Vault cluster.
@@ -109,7 +117,15 @@ class VaultClusterAdminToken(pulumi.CustomResource):
                  args: VaultClusterAdminTokenArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a VaultClusterAdminToken resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_hcp as hcp
+
+        example = hcp.VaultClusterAdminToken("example", cluster_id="test-vault-cluster")
+        ```
+
         :param str resource_name: The name of the resource.
         :param VaultClusterAdminTokenArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

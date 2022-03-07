@@ -16,6 +16,7 @@ import * as utilities from "./utilities";
  * const test = hcp.getAwsNetworkPeering({
  *     hvnId: _var.hvn_id,
  *     peeringId: _var.peering_id,
+ *     waitForActiveState: true,
  * });
  * ```
  */
@@ -28,6 +29,7 @@ export function getAwsNetworkPeering(args: GetAwsNetworkPeeringArgs, opts?: pulu
     return pulumi.runtime.invoke("hcp:index/getAwsNetworkPeering:getAwsNetworkPeering", {
         "hvnId": args.hvnId,
         "peeringId": args.peeringId,
+        "waitForActiveState": args.waitForActiveState,
     }, opts);
 }
 
@@ -43,6 +45,7 @@ export interface GetAwsNetworkPeeringArgs {
      * The ID of the network peering.
      */
     peeringId: string;
+    waitForActiveState?: boolean;
 }
 
 /**
@@ -97,6 +100,7 @@ export interface GetAwsNetworkPeeringResult {
      * A unique URL identifying the network peering.
      */
     readonly selfLink: string;
+    readonly waitForActiveState?: boolean;
 }
 
 export function getAwsNetworkPeeringOutput(args: GetAwsNetworkPeeringOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAwsNetworkPeeringResult> {
@@ -115,4 +119,5 @@ export interface GetAwsNetworkPeeringOutputArgs {
      * The ID of the network peering.
      */
     peeringId: pulumi.Input<string>;
+    waitForActiveState?: pulumi.Input<boolean>;
 }

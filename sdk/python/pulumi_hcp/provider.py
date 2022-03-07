@@ -20,8 +20,12 @@ class ProviderArgs:
         :param pulumi.Input[str] client_id: The OAuth2 Client ID for API operations.
         :param pulumi.Input[str] client_secret: The OAuth2 Client Secret for API operations.
         """
+        if client_id is None:
+            client_id = _utilities.get_env('HCP_CLIENT_ID')
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
+        if client_secret is None:
+            client_secret = _utilities.get_env('HCP_CLIENT_SECRET')
         if client_secret is not None:
             pulumi.set(__self__, "client_secret", client_secret)
 
@@ -112,8 +116,14 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
+            if client_id is None:
+                client_id = _utilities.get_env('HCP_CLIENT_ID')
             __props__.__dict__["client_id"] = client_id
-            __props__.__dict__["client_secret"] = client_secret
+            if client_secret is None:
+                client_secret = _utilities.get_env('HCP_CLIENT_SECRET')
+            __props__.__dict__["client_secret"] = None if client_secret is None else pulumi.Output.secret(client_secret)
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientSecret"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Provider, __self__).__init__(
             'hcp',
             resource_name,

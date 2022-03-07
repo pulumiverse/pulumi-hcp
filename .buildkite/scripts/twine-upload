@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# TODO: Install twine on the build agent (using `pipx`, preferably)
+pip install twine
+
+# export TWINE_REPOSITORY_URL=https://python.cloudsmith.io/grapl/raw/
+# export TWINE_USERNAME=grapl-cicd
+# export TWINE_PASSWORD="${CLOUDSMITH_API_KEY}"
+
+export TWINE_USERNAME="__token__"
+export TWINE_PASSWORD="${PYPI_API_TOKEN}"
+
+echo "--- :python: Uploading Python SDK"
+twine upload \
+      --verbose \
+      --non-interactive \
+      sdk/python/bin/dist/*

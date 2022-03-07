@@ -209,6 +209,36 @@ class HvnRoute(pulumi.CustomResource):
                  target_link: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_hcp as hcp
+
+        main = hcp.Hvn("main",
+            hvn_id="main-hvn",
+            cloud_provider="aws",
+            region="us-west-2",
+            cidr_block="172.25.16.0/20")
+        # Creating a peering and a route for it.
+        peer_vpc = aws.ec2.Vpc("peerVpc", cidr_block="192.168.0.0/20")
+        example = hcp.AwsNetworkPeering("example",
+            peering_id="peer-example",
+            hvn_id=main.hvn_id,
+            peer_vpc_id=peer_vpc.id,
+            peer_account_id=peer_vpc.owner_id,
+            peer_vpc_region="us-west-2")
+        peer_vpc_peering_connection_accepter = aws.ec2.VpcPeeringConnectionAccepter("peerVpcPeeringConnectionAccepter",
+            vpc_peering_connection_id=example.provider_peering_id,
+            auto_accept=True)
+        example_peering_route = hcp.HvnRoute("example-peering-route",
+            hvn_link=main.self_link,
+            hvn_route_id="peering-route",
+            destination_cidr=peer_vpc.cidr_block,
+            target_link=example.self_link)
+        ```
+
         ## Import
 
         # The import ID is {hvn_id}:{hvn_route_id}
@@ -231,6 +261,36 @@ class HvnRoute(pulumi.CustomResource):
                  args: HvnRouteArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_hcp as hcp
+
+        main = hcp.Hvn("main",
+            hvn_id="main-hvn",
+            cloud_provider="aws",
+            region="us-west-2",
+            cidr_block="172.25.16.0/20")
+        # Creating a peering and a route for it.
+        peer_vpc = aws.ec2.Vpc("peerVpc", cidr_block="192.168.0.0/20")
+        example = hcp.AwsNetworkPeering("example",
+            peering_id="peer-example",
+            hvn_id=main.hvn_id,
+            peer_vpc_id=peer_vpc.id,
+            peer_account_id=peer_vpc.owner_id,
+            peer_vpc_region="us-west-2")
+        peer_vpc_peering_connection_accepter = aws.ec2.VpcPeeringConnectionAccepter("peerVpcPeeringConnectionAccepter",
+            vpc_peering_connection_id=example.provider_peering_id,
+            auto_accept=True)
+        example_peering_route = hcp.HvnRoute("example-peering-route",
+            hvn_link=main.self_link,
+            hvn_route_id="peering-route",
+            destination_cidr=peer_vpc.cidr_block,
+            target_link=example.self_link)
+        ```
+
         ## Import
 
         # The import ID is {hvn_id}:{hvn_route_id}

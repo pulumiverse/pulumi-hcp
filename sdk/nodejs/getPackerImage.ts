@@ -5,8 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * > **Note:** This feature is currently in beta.
- *
  * The Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id.
  *
  * ## Example Usage
