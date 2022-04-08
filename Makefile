@@ -83,16 +83,8 @@ build-all-providers: export GORELEASER_CURRENT_TAG=$(version)
 build-all-providers: ## Just to ensure we can build across all platforms
 	goreleaser build --snapshot --rm-dist
 
-# NOTE: we actually don't *need* this, since nothing else depends on
-# it This is a simplification of the corresponding target from the
-# Pulumi Terraform Provider boilerplate repository, using `goreleaser`
-# to build the provider only for the current operating system. If it
-# truly turns out that we don't ever have a need for this, we can
-# remove it. However, for now, it has the nice effect of consolidating
-# all build logic within the .goreleaser.yml file.
-#
-# TODO: This may be necessary for running tests, though.
-
+# This is a shortcut for just building the provider for the current
+# machine's OS / architecture.
 bin/$(provider): export GORELEASER_CURRENT_TAG=$(version)
 bin/$(provider):
 	goreleaser build \
@@ -101,6 +93,7 @@ bin/$(provider):
 		--snapshot \
 		--rm-dist
 
+# This is just a helpful alias for the above target
 .PHONY: provider
 provider: bin/$(provider)
 

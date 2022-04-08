@@ -78,8 +78,6 @@ steps:
   # We're intentionally publishing the SDKs after this; see below.
   - label: ":github: Release!"
     command:
-      # TODO: we really want this queue to be bigger so we can build more quickly
-      # TODO: I don't really love the fact that we're having to build these artifacts _in the release pipeline_.
       - goreleaser release
     plugins:
       - grapl-security/vault-login#v0.1.2

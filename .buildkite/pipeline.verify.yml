@@ -57,7 +57,6 @@ steps:
               download:
                 - "bin/*"
           - improbable-eng/metahook#v0.4.1:
-              # TODO: Fix this chmod bit more formally
               pre-command: git fetch --unshallow && chmod a+x bin/*
           - docker#v3.11.0:
               image: "${BUILD_ENVIRONMENT_IMAGE}"
@@ -88,7 +87,6 @@ steps:
               download:
                 - "bin/*"
           - improbable-eng/metahook#v0.4.1:
-              # TODO: Fix this chmod bit more formally
               pre-command: git fetch --unshallow && chmod a+x bin/*
           - docker#v3.11.0:
               image: "${BUILD_ENVIRONMENT_IMAGE}"

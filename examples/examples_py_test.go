@@ -24,8 +24,6 @@ func getPythonBaseOptions(t *testing.T) integration.ProgramTestOptions {
 func TestVaultPy(t *testing.T) {
 	test := getPythonBaseOptions(t).
 		With(integration.ProgramTestOptions{
-			// TODO: Why does this need getCwd(t), but the
-			// Dependencies above doesn't?
 			Dir: filepath.Join(GetCwd(t), "hcp-vault", "py"),
 		})
 	integration.ProgramTest(t, &test)
