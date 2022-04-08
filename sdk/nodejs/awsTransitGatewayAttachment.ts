@@ -5,6 +5,52 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as pulumi_hcp from "@grapl/pulumi-hcp";
+ *
+ * const main = new hcp.Hvn("main", {
+ *     hvnId: "main-hvn",
+ *     cloudProvider: "aws",
+ *     region: "us-west-2",
+ *     cidrBlock: "172.25.16.0/20",
+ * });
+ * const exampleVpc = new aws.ec2.Vpc("exampleVpc", {cidrBlock: "172.31.0.0/16"});
+ * const exampleTransitGateway = new aws.ec2transitgateway.TransitGateway("exampleTransitGateway", {tags: {
+ *     Name: "example-tgw",
+ * }});
+ * const exampleResourceShare = new aws.ram.ResourceShare("exampleResourceShare", {allowExternalPrincipals: true});
+ * const examplePrincipalAssociation = new aws.ram.PrincipalAssociation("examplePrincipalAssociation", {
+ *     resourceShareArn: exampleResourceShare.arn,
+ *     principal: main.providerAccountId,
+ * });
+ * const exampleResourceAssociation = new aws.ram.ResourceAssociation("exampleResourceAssociation", {
+ *     resourceShareArn: exampleResourceShare.arn,
+ *     resourceArn: exampleTransitGateway.arn,
+ * });
+ * const exampleAwsTransitGatewayAttachment = new hcp.AwsTransitGatewayAttachment("exampleAwsTransitGatewayAttachment", {
+ *     hvnId: main.hvnId,
+ *     transitGatewayAttachmentId: "example-tgw-attachment",
+ *     transitGatewayId: exampleTransitGateway.id,
+ *     resourceShareArn: exampleResourceShare.arn,
+ * }, {
+ *     dependsOn: [
+ *         examplePrincipalAssociation,
+ *         exampleResourceAssociation,
+ *     ],
+ * });
+ * const route = new hcp.HvnRoute("route", {
+ *     hvnLink: main.selfLink,
+ *     hvnRouteId: "hvn-to-tgw-attachment",
+ *     destinationCidr: exampleVpc.cidrBlock,
+ *     targetLink: exampleAwsTransitGatewayAttachment.selfLink,
+ * });
+ * const exampleVpcAttachmentAccepter = new aws.ec2transitgateway.VpcAttachmentAccepter("exampleVpcAttachmentAccepter", {transitGatewayAttachmentId: exampleAwsTransitGatewayAttachment.providerTransitGatewayAttachmentId});
+ * ```
+ *
  * ## Import
  *
  * # The import ID is {hvn_id}:{transit_gateway_attachment_id}
@@ -140,9 +186,7 @@ export class AwsTransitGatewayAttachment extends pulumi.CustomResource {
             resourceInputs["selfLink"] = undefined /*out*/;
             resourceInputs["state"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AwsTransitGatewayAttachment.__pulumiType, name, resourceInputs, opts);
     }
 }

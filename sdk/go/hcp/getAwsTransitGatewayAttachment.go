@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -36,6 +37,7 @@ import (
 // }
 // ```
 func LookupAwsTransitGatewayAttachment(ctx *pulumi.Context, args *LookupAwsTransitGatewayAttachmentArgs, opts ...pulumi.InvokeOption) (*LookupAwsTransitGatewayAttachmentResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupAwsTransitGatewayAttachmentResult
 	err := ctx.Invoke("hcp:index/getAwsTransitGatewayAttachment:getAwsTransitGatewayAttachment", args, &rv, opts...)
 	if err != nil {

@@ -120,9 +120,7 @@ export class ConsulSnapshot extends pulumi.CustomResource {
             resourceInputs["size"] = undefined /*out*/;
             resourceInputs["snapshotId"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ConsulSnapshot.__pulumiType, name, resourceInputs, opts);
     }
 }

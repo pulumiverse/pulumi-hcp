@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -35,6 +36,7 @@ import (
 // }
 // ```
 func LookupVaultCluster(ctx *pulumi.Context, args *LookupVaultClusterArgs, opts ...pulumi.InvokeOption) (*LookupVaultClusterResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupVaultClusterResult
 	err := ctx.Invoke("hcp:index/getVaultCluster:getVaultCluster", args, &rv, opts...)
 	if err != nil {
@@ -67,12 +69,16 @@ type LookupVaultClusterResult struct {
 	Namespace string `pulumi:"namespace"`
 	// The ID of the organization this HCP Vault cluster is located in.
 	OrganizationId string `pulumi:"organizationId"`
+	// The `selfLink` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+	PrimaryLink string `pulumi:"primaryLink"`
 	// The ID of the project this HCP Vault cluster is located in.
 	ProjectId string `pulumi:"projectId"`
 	// Denotes that the cluster has a public endpoint. Defaults to false.
 	PublicEndpoint bool `pulumi:"publicEndpoint"`
 	// The region where the HCP Vault cluster is located.
 	Region string `pulumi:"region"`
+	// A unique URL identifying the Vault cluster.
+	SelfLink string `pulumi:"selfLink"`
 	// The tier that the HCP Vault cluster will be provisioned as.  Only 'development' is available at this time.
 	Tier string `pulumi:"tier"`
 	// The private URL for the Vault cluster.
@@ -157,6 +163,11 @@ func (o LookupVaultClusterResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
+// The `selfLink` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+func (o LookupVaultClusterResultOutput) PrimaryLink() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.PrimaryLink }).(pulumi.StringOutput)
+}
+
 // The ID of the project this HCP Vault cluster is located in.
 func (o LookupVaultClusterResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.ProjectId }).(pulumi.StringOutput)
@@ -170,6 +181,11 @@ func (o LookupVaultClusterResultOutput) PublicEndpoint() pulumi.BoolOutput {
 // The region where the HCP Vault cluster is located.
 func (o LookupVaultClusterResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// A unique URL identifying the Vault cluster.
+func (o LookupVaultClusterResultOutput) SelfLink() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.SelfLink }).(pulumi.StringOutput)
 }
 
 // The tier that the HCP Vault cluster will be provisioned as.  Only 'development' is available at this time.

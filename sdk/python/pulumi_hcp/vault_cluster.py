@@ -16,6 +16,7 @@ class VaultClusterArgs:
                  cluster_id: pulumi.Input[str],
                  hvn_id: pulumi.Input[str],
                  min_vault_version: Optional[pulumi.Input[str]] = None,
+                 primary_link: Optional[pulumi.Input[str]] = None,
                  public_endpoint: Optional[pulumi.Input[bool]] = None,
                  tier: Optional[pulumi.Input[str]] = None):
         """
@@ -23,13 +24,16 @@ class VaultClusterArgs:
         :param pulumi.Input[str] cluster_id: The ID of the HCP Vault cluster.
         :param pulumi.Input[str] hvn_id: The ID of the HVN this HCP Vault cluster is associated to.
         :param pulumi.Input[str] min_vault_version: The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
+        :param pulumi.Input[str] primary_link: The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
         :param pulumi.Input[bool] public_endpoint: Denotes that the cluster has a public endpoint. Defaults to false.
-        :param pulumi.Input[str] tier: Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `standard_small`, `standard_medium`, `standard_large`, `starter_small`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
+        :param pulumi.Input[str] tier: Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`, `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "hvn_id", hvn_id)
         if min_vault_version is not None:
             pulumi.set(__self__, "min_vault_version", min_vault_version)
+        if primary_link is not None:
+            pulumi.set(__self__, "primary_link", primary_link)
         if public_endpoint is not None:
             pulumi.set(__self__, "public_endpoint", public_endpoint)
         if tier is not None:
@@ -72,6 +76,18 @@ class VaultClusterArgs:
         pulumi.set(self, "min_vault_version", value)
 
     @property
+    @pulumi.getter(name="primaryLink")
+    def primary_link(self) -> Optional[pulumi.Input[str]]:
+        """
+        The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+        """
+        return pulumi.get(self, "primary_link")
+
+    @primary_link.setter
+    def primary_link(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "primary_link", value)
+
+    @property
     @pulumi.getter(name="publicEndpoint")
     def public_endpoint(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -87,7 +103,7 @@ class VaultClusterArgs:
     @pulumi.getter
     def tier(self) -> Optional[pulumi.Input[str]]:
         """
-        Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `standard_small`, `standard_medium`, `standard_large`, `starter_small`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
+        Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`, `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
         """
         return pulumi.get(self, "tier")
 
@@ -106,9 +122,11 @@ class _VaultClusterState:
                  min_vault_version: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
+                 primary_link: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  public_endpoint: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 self_link: Optional[pulumi.Input[str]] = None,
                  tier: Optional[pulumi.Input[str]] = None,
                  vault_private_endpoint_url: Optional[pulumi.Input[str]] = None,
                  vault_public_endpoint_url: Optional[pulumi.Input[str]] = None,
@@ -122,10 +140,12 @@ class _VaultClusterState:
         :param pulumi.Input[str] min_vault_version: The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
         :param pulumi.Input[str] namespace: The name of the customer namespace this HCP Vault cluster is located in.
         :param pulumi.Input[str] organization_id: The ID of the organization this HCP Vault cluster is located in.
+        :param pulumi.Input[str] primary_link: The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
         :param pulumi.Input[str] project_id: The ID of the project this HCP Vault cluster is located in.
         :param pulumi.Input[bool] public_endpoint: Denotes that the cluster has a public endpoint. Defaults to false.
         :param pulumi.Input[str] region: The region where the HCP Vault cluster is located.
-        :param pulumi.Input[str] tier: Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `standard_small`, `standard_medium`, `standard_large`, `starter_small`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
+        :param pulumi.Input[str] self_link: A unique URL identifying the Vault cluster.
+        :param pulumi.Input[str] tier: Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`, `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
         :param pulumi.Input[str] vault_private_endpoint_url: The private URL for the Vault cluster.
         :param pulumi.Input[str] vault_public_endpoint_url: The public URL for the Vault cluster. This will be empty if `public_endpoint` is `false`.
         :param pulumi.Input[str] vault_version: The Vault version of the cluster.
@@ -144,12 +164,16 @@ class _VaultClusterState:
             pulumi.set(__self__, "namespace", namespace)
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
+        if primary_link is not None:
+            pulumi.set(__self__, "primary_link", primary_link)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if public_endpoint is not None:
             pulumi.set(__self__, "public_endpoint", public_endpoint)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if self_link is not None:
+            pulumi.set(__self__, "self_link", self_link)
         if tier is not None:
             pulumi.set(__self__, "tier", tier)
         if vault_private_endpoint_url is not None:
@@ -244,6 +268,18 @@ class _VaultClusterState:
         pulumi.set(self, "organization_id", value)
 
     @property
+    @pulumi.getter(name="primaryLink")
+    def primary_link(self) -> Optional[pulumi.Input[str]]:
+        """
+        The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+        """
+        return pulumi.get(self, "primary_link")
+
+    @primary_link.setter
+    def primary_link(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "primary_link", value)
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -280,10 +316,22 @@ class _VaultClusterState:
         pulumi.set(self, "region", value)
 
     @property
+    @pulumi.getter(name="selfLink")
+    def self_link(self) -> Optional[pulumi.Input[str]]:
+        """
+        A unique URL identifying the Vault cluster.
+        """
+        return pulumi.get(self, "self_link")
+
+    @self_link.setter
+    def self_link(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "self_link", value)
+
+    @property
     @pulumi.getter
     def tier(self) -> Optional[pulumi.Input[str]]:
         """
-        Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `standard_small`, `standard_medium`, `standard_large`, `starter_small`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
+        Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`, `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
         """
         return pulumi.get(self, "tier")
 
@@ -336,12 +384,11 @@ class VaultCluster(pulumi.CustomResource):
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  hvn_id: Optional[pulumi.Input[str]] = None,
                  min_vault_version: Optional[pulumi.Input[str]] = None,
+                 primary_link: Optional[pulumi.Input[str]] = None,
                  public_endpoint: Optional[pulumi.Input[bool]] = None,
                  tier: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The Vault cluster resource allows you to manage an HCP Vault cluster.
-
         ## Example Usage
 
         ```python
@@ -355,7 +402,8 @@ class VaultCluster(pulumi.CustomResource):
             cidr_block="172.25.16.0/20")
         example_vault_cluster = hcp.VaultCluster("exampleVaultCluster",
             cluster_id="vault-cluster",
-            hvn_id=example_hvn.hvn_id)
+            hvn_id=example_hvn.hvn_id,
+            tier="standard_large")
         ```
 
         ## Import
@@ -371,8 +419,9 @@ class VaultCluster(pulumi.CustomResource):
         :param pulumi.Input[str] cluster_id: The ID of the HCP Vault cluster.
         :param pulumi.Input[str] hvn_id: The ID of the HVN this HCP Vault cluster is associated to.
         :param pulumi.Input[str] min_vault_version: The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
+        :param pulumi.Input[str] primary_link: The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
         :param pulumi.Input[bool] public_endpoint: Denotes that the cluster has a public endpoint. Defaults to false.
-        :param pulumi.Input[str] tier: Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `standard_small`, `standard_medium`, `standard_large`, `starter_small`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
+        :param pulumi.Input[str] tier: Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`, `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
         """
         ...
     @overload
@@ -381,8 +430,6 @@ class VaultCluster(pulumi.CustomResource):
                  args: VaultClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The Vault cluster resource allows you to manage an HCP Vault cluster.
-
         ## Example Usage
 
         ```python
@@ -396,7 +443,8 @@ class VaultCluster(pulumi.CustomResource):
             cidr_block="172.25.16.0/20")
         example_vault_cluster = hcp.VaultCluster("exampleVaultCluster",
             cluster_id="vault-cluster",
-            hvn_id=example_hvn.hvn_id)
+            hvn_id=example_hvn.hvn_id,
+            tier="standard_large")
         ```
 
         ## Import
@@ -425,6 +473,7 @@ class VaultCluster(pulumi.CustomResource):
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  hvn_id: Optional[pulumi.Input[str]] = None,
                  min_vault_version: Optional[pulumi.Input[str]] = None,
+                 primary_link: Optional[pulumi.Input[str]] = None,
                  public_endpoint: Optional[pulumi.Input[bool]] = None,
                  tier: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -434,6 +483,8 @@ class VaultCluster(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -446,6 +497,7 @@ class VaultCluster(pulumi.CustomResource):
                 raise TypeError("Missing required property 'hvn_id'")
             __props__.__dict__["hvn_id"] = hvn_id
             __props__.__dict__["min_vault_version"] = min_vault_version
+            __props__.__dict__["primary_link"] = primary_link
             __props__.__dict__["public_endpoint"] = public_endpoint
             __props__.__dict__["tier"] = tier
             __props__.__dict__["cloud_provider"] = None
@@ -454,6 +506,7 @@ class VaultCluster(pulumi.CustomResource):
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["project_id"] = None
             __props__.__dict__["region"] = None
+            __props__.__dict__["self_link"] = None
             __props__.__dict__["vault_private_endpoint_url"] = None
             __props__.__dict__["vault_public_endpoint_url"] = None
             __props__.__dict__["vault_version"] = None
@@ -474,9 +527,11 @@ class VaultCluster(pulumi.CustomResource):
             min_vault_version: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
+            primary_link: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             public_endpoint: Optional[pulumi.Input[bool]] = None,
             region: Optional[pulumi.Input[str]] = None,
+            self_link: Optional[pulumi.Input[str]] = None,
             tier: Optional[pulumi.Input[str]] = None,
             vault_private_endpoint_url: Optional[pulumi.Input[str]] = None,
             vault_public_endpoint_url: Optional[pulumi.Input[str]] = None,
@@ -495,10 +550,12 @@ class VaultCluster(pulumi.CustomResource):
         :param pulumi.Input[str] min_vault_version: The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
         :param pulumi.Input[str] namespace: The name of the customer namespace this HCP Vault cluster is located in.
         :param pulumi.Input[str] organization_id: The ID of the organization this HCP Vault cluster is located in.
+        :param pulumi.Input[str] primary_link: The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
         :param pulumi.Input[str] project_id: The ID of the project this HCP Vault cluster is located in.
         :param pulumi.Input[bool] public_endpoint: Denotes that the cluster has a public endpoint. Defaults to false.
         :param pulumi.Input[str] region: The region where the HCP Vault cluster is located.
-        :param pulumi.Input[str] tier: Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `standard_small`, `standard_medium`, `standard_large`, `starter_small`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
+        :param pulumi.Input[str] self_link: A unique URL identifying the Vault cluster.
+        :param pulumi.Input[str] tier: Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`, `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
         :param pulumi.Input[str] vault_private_endpoint_url: The private URL for the Vault cluster.
         :param pulumi.Input[str] vault_public_endpoint_url: The public URL for the Vault cluster. This will be empty if `public_endpoint` is `false`.
         :param pulumi.Input[str] vault_version: The Vault version of the cluster.
@@ -514,9 +571,11 @@ class VaultCluster(pulumi.CustomResource):
         __props__.__dict__["min_vault_version"] = min_vault_version
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["organization_id"] = organization_id
+        __props__.__dict__["primary_link"] = primary_link
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["public_endpoint"] = public_endpoint
         __props__.__dict__["region"] = region
+        __props__.__dict__["self_link"] = self_link
         __props__.__dict__["tier"] = tier
         __props__.__dict__["vault_private_endpoint_url"] = vault_private_endpoint_url
         __props__.__dict__["vault_public_endpoint_url"] = vault_public_endpoint_url
@@ -580,6 +639,14 @@ class VaultCluster(pulumi.CustomResource):
         return pulumi.get(self, "organization_id")
 
     @property
+    @pulumi.getter(name="primaryLink")
+    def primary_link(self) -> pulumi.Output[Optional[str]]:
+        """
+        The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+        """
+        return pulumi.get(self, "primary_link")
+
+    @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[str]:
         """
@@ -604,10 +671,18 @@ class VaultCluster(pulumi.CustomResource):
         return pulumi.get(self, "region")
 
     @property
+    @pulumi.getter(name="selfLink")
+    def self_link(self) -> pulumi.Output[str]:
+        """
+        A unique URL identifying the Vault cluster.
+        """
+        return pulumi.get(self, "self_link")
+
+    @property
     @pulumi.getter
     def tier(self) -> pulumi.Output[str]:
         """
-        Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `standard_small`, `standard_medium`, `standard_large`, `starter_small`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
+        Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`, `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
         """
         return pulumi.get(self, "tier")
 

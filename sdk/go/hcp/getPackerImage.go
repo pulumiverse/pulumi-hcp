@@ -10,8 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// > **Note:** This feature is currently in beta.
-//
 // The Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id.
 //
 // ## Example Usage
@@ -20,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -48,6 +47,7 @@ import (
 // }
 // ```
 func GetPackerImage(ctx *pulumi.Context, args *GetPackerImageArgs, opts ...pulumi.InvokeOption) (*GetPackerImageResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetPackerImageResult
 	err := ctx.Invoke("hcp:index/getPackerImage:getPackerImage", args, &rv, opts...)
 	if err != nil {

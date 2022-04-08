@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -36,6 +37,7 @@ import (
 // }
 // ```
 func GetConsulAgentHelmConfig(ctx *pulumi.Context, args *GetConsulAgentHelmConfigArgs, opts ...pulumi.InvokeOption) (*GetConsulAgentHelmConfigResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetConsulAgentHelmConfigResult
 	err := ctx.Invoke("hcp:index/getConsulAgentHelmConfig:getConsulAgentHelmConfig", args, &rv, opts...)
 	if err != nil {

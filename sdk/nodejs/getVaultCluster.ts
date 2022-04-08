@@ -23,9 +23,7 @@ export function getVaultCluster(args: GetVaultClusterArgs, opts?: pulumi.InvokeO
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("hcp:index/getVaultCluster:getVaultCluster", {
         "clusterId": args.clusterId,
     }, opts);
@@ -78,6 +76,10 @@ export interface GetVaultClusterResult {
      */
     readonly organizationId: string;
     /**
+     * The `selfLink` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+     */
+    readonly primaryLink: string;
+    /**
      * The ID of the project this HCP Vault cluster is located in.
      */
     readonly projectId: string;
@@ -89,6 +91,10 @@ export interface GetVaultClusterResult {
      * The region where the HCP Vault cluster is located.
      */
     readonly region: string;
+    /**
+     * A unique URL identifying the Vault cluster.
+     */
+    readonly selfLink: string;
     /**
      * The tier that the HCP Vault cluster will be provisioned as.  Only 'development' is available at this time.
      */

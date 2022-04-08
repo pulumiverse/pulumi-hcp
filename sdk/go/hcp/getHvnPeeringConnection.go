@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -37,6 +38,7 @@ import (
 // }
 // ```
 func LookupHvnPeeringConnection(ctx *pulumi.Context, args *LookupHvnPeeringConnectionArgs, opts ...pulumi.InvokeOption) (*LookupHvnPeeringConnectionResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupHvnPeeringConnectionResult
 	err := ctx.Invoke("hcp:index/getHvnPeeringConnection:getHvnPeeringConnection", args, &rv, opts...)
 	if err != nil {

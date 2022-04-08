@@ -6,8 +6,6 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * > **Note:** This feature is currently in beta.
- *
  * The Packer Image data source iteration gets the most recent iteration (or build) of an image, given a channel.
  *
  * ## Example Usage
@@ -27,9 +25,7 @@ export function getPackerImageIteration(args: GetPackerImageIterationArgs, opts?
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("hcp:index/getPackerImageIteration:getPackerImageIteration", {
         "bucketName": args.bucketName,
         "channel": args.channel,

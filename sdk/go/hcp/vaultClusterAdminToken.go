@@ -11,6 +11,28 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := hcp.NewVaultClusterAdminToken(ctx, "example", &hcp.VaultClusterAdminTokenArgs{
+// 			ClusterId: pulumi.String("test-vault-cluster"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type VaultClusterAdminToken struct {
 	pulumi.CustomResourceState
 
@@ -32,6 +54,7 @@ func NewVaultClusterAdminToken(ctx *pulumi.Context,
 	if args.ClusterId == nil {
 		return nil, errors.New("invalid value for required argument 'ClusterId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VaultClusterAdminToken
 	err := ctx.RegisterResource("hcp:index/vaultClusterAdminToken:VaultClusterAdminToken", name, args, &resource, opts...)
 	if err != nil {

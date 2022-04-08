@@ -24,9 +24,7 @@ export function getHvnRoute(args: GetHvnRouteArgs, opts?: pulumi.InvokeOptions):
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("hcp:index/getHvnRoute:getHvnRoute", {
         "hvnLink": args.hvnLink,
         "hvnRouteId": args.hvnRouteId,

@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -35,6 +36,7 @@ import (
 // }
 // ```
 func GetConsulAgentKubernetesSecret(ctx *pulumi.Context, args *GetConsulAgentKubernetesSecretArgs, opts ...pulumi.InvokeOption) (*GetConsulAgentKubernetesSecretResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetConsulAgentKubernetesSecretResult
 	err := ctx.Invoke("hcp:index/getConsulAgentKubernetesSecret:getConsulAgentKubernetesSecret", args, &rv, opts...)
 	if err != nil {

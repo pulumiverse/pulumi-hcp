@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -35,6 +36,7 @@ import (
 // }
 // ```
 func LookupConsulCluster(ctx *pulumi.Context, args *LookupConsulClusterArgs, opts ...pulumi.InvokeOption) (*LookupConsulClusterResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupConsulClusterResult
 	err := ctx.Invoke("hcp:index/getConsulCluster:getConsulCluster", args, &rv, opts...)
 	if err != nil {

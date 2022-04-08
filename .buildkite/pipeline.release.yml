@@ -1,0 +1,151 @@
+---
+env:
+  BUILD_ENVIRONMENT_IMAGE: "docker.cloudsmith.io/grapl/raw/pulumi-build-env:3.26.1"
+  BUILDKITE_PLUGIN_VAULT_ENV_SECRET_PREFIX: "secret/data/buildkite/env"
+
+steps:
+
+  # TODO: Add testing-only logic to this pipeline
+  # - only build the provider binaries; don't actually release
+  # - push SDKs to Cloudsmith, rather than PyPI / NPM
+  #
+  # We would still be creating a tag, which is unfortunate, but
+  # currently unavoidable.
+
+  - block: ":writing_hand: Release Information"
+    prompt: |
+      Please specify the following release parameters:
+    fields:
+      - text: Release Tag (start with a "v", please)
+        key: release-tag
+      # TODO: add options for pre-release, etc.?
+
+      # TODO: Add intelligence for automatically creating an
+      # appropriate release tag, based on what's already in the
+      # repository. If we just say "it's a new major/minor/patch
+      # release" here, then we can use that to compute the final tag
+      # elsewhere in code. That may be less for people to juggle in
+      # their heads.
+
+  - label: ":github: Create Release Tag"
+    command:
+      .buildkite/scripts/git-tag
+    env:
+      BUILDKITE_CLEAN_CHECKOUT: true
+    plugins:
+      - grapl-security/vault-login#v0.1.2
+      - grapl-security/vault-env#v0.1.0:
+          secrets:
+            - GITHUB_TOKEN
+    agents:
+      queue: github-release
+
+  - wait
+
+  - group: "Build SDKs"
+    steps:
+      - label: ":python: Build Python SDK"
+        key: build-python-sdk
+        command:
+          - make python-sdk
+        plugins:
+          - improbable-eng/metahook#v0.4.1:
+              # We need to ensure we have the tag we just created
+              pre-command: git fetch --unshallow --tags
+          - docker#v3.11.0:
+              image: "${BUILD_ENVIRONMENT_IMAGE}"
+        artifact_paths:
+          - sdk/python/bin/dist/*.tar.gz
+
+      - label: ":nodejs: Build NodeJS SDK"
+        key: build-nodejs-sdk
+        command:
+          - make nodejs-sdk
+        plugins:
+          - improbable-eng/metahook#v0.4.1:
+              # We need to ensure we have the tag we just created
+              pre-command: git fetch --unshallow --tags
+          - docker#v3.11.0:
+              image: "${BUILD_ENVIRONMENT_IMAGE}"
+        artifact_paths:
+          - sdk/nodejs/bin/dist/*.tgz
+
+  - wait
+
+  # This will build the providers, package them up, upload them to
+  # Github, and announce them.
+  #
+  # We're intentionally publishing the SDKs after this; see below.
+  - label: ":github: Release!"
+    command:
+      - goreleaser release
+    plugins:
+      - grapl-security/vault-login#v0.1.2
+      - grapl-security/vault-env#v0.1.0:
+          secrets:
+            - GITHUB_TOKEN
+      - improbable-eng/metahook#v0.4.1:
+          pre-command: git fetch --unshallow
+      - docker#v3.11.0:
+          image: "${BUILD_ENVIRONMENT_IMAGE}"
+          environment:
+            - GITHUB_TOKEN
+    agents:
+      queue: github-release
+
+  - wait
+
+  # We're publishing the SDKs *after* the Github release, because in
+  # order to *use* the SDKs, the binaries must be in the Github
+  # release first.
+  #
+  # This will hopefully save us from situations where we successfully
+  # publish the SDKs, but for whatever reason, the Github release
+  # fails.
+  - group: "Publish SDKs"
+    steps:
+      - label: ":python: Publish Python SDK"
+        depends_on: build-python-sdk
+        command:
+          - .buildkite/scripts/twine-upload
+        plugins:
+          - grapl-security/vault-login#v0.1.2
+          - grapl-security/vault-env#v0.1.0:
+              secrets:
+                - PYPI_API_TOKEN
+          - artifacts#v1.5.0:
+              download: sdk/python/bin/dist/*.tar.gz
+          - docker#v3.11.0:
+              # Strictly-speaking, we don't need the build environment
+              # image for this, but there are pathing issues for
+              # pip-installed `twine` on our agents; this is just a
+              # convenient way to get around that for the time being
+              # until this logic can be extracted.
+              #
+              # It also mirrors the publication job for the NodeJS
+              # SDK; see below.
+              image: "${BUILD_ENVIRONMENT_IMAGE}"
+              environment:
+                - PYPI_API_TOKEN
+        agents:
+          queue: artifact-uploaders
+
+      - label: ":npm: Publish NodeJS SDK"
+        depends_on: build-nodejs-sdk
+        command:
+          - .buildkite/scripts/npm-upload
+        plugins:
+          - grapl-security/vault-login#v0.1.2
+          - grapl-security/vault-env#v0.1.0:
+              secrets:
+                - NPM_API_TOKEN
+          - artifacts#v1.5.0:
+              download: sdk/nodejs/bin/dist/*.tgz
+          - docker#v3.11.0:
+              # We don't install `npm` on our build agents, so this is
+              # a convenient way to have it available.
+              image: "${BUILD_ENVIRONMENT_IMAGE}"
+              environment:
+                - NPM_API_TOKEN
+        agents:
+          queue: artifact-uploaders

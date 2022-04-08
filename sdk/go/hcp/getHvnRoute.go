@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -36,6 +37,7 @@ import (
 // }
 // ```
 func LookupHvnRoute(ctx *pulumi.Context, args *LookupHvnRouteArgs, opts ...pulumi.InvokeOption) (*LookupHvnRouteResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupHvnRouteResult
 	err := ctx.Invoke("hcp:index/getHvnRoute:getHvnRoute", args, &rv, opts...)
 	if err != nil {

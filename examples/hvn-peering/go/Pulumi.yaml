@@ -1,0 +1,3 @@
+name: hvn-peering-go
+runtime: go
+description: Peer an HCP HVN with an AWS VPC

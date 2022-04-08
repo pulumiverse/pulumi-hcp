@@ -289,6 +289,46 @@ class AwsTransitGatewayAttachment(pulumi.CustomResource):
                  transit_gateway_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_hcp as hcp
+
+        main = hcp.Hvn("main",
+            hvn_id="main-hvn",
+            cloud_provider="aws",
+            region="us-west-2",
+            cidr_block="172.25.16.0/20")
+        example_vpc = aws.ec2.Vpc("exampleVpc", cidr_block="172.31.0.0/16")
+        example_transit_gateway = aws.ec2transitgateway.TransitGateway("exampleTransitGateway", tags={
+            "Name": "example-tgw",
+        })
+        example_resource_share = aws.ram.ResourceShare("exampleResourceShare", allow_external_principals=True)
+        example_principal_association = aws.ram.PrincipalAssociation("examplePrincipalAssociation",
+            resource_share_arn=example_resource_share.arn,
+            principal=main.provider_account_id)
+        example_resource_association = aws.ram.ResourceAssociation("exampleResourceAssociation",
+            resource_share_arn=example_resource_share.arn,
+            resource_arn=example_transit_gateway.arn)
+        example_aws_transit_gateway_attachment = hcp.AwsTransitGatewayAttachment("exampleAwsTransitGatewayAttachment",
+            hvn_id=main.hvn_id,
+            transit_gateway_attachment_id="example-tgw-attachment",
+            transit_gateway_id=example_transit_gateway.id,
+            resource_share_arn=example_resource_share.arn,
+            opts=pulumi.ResourceOptions(depends_on=[
+                    example_principal_association,
+                    example_resource_association,
+                ]))
+        route = hcp.HvnRoute("route",
+            hvn_link=main.self_link,
+            hvn_route_id="hvn-to-tgw-attachment",
+            destination_cidr=example_vpc.cidr_block,
+            target_link=example_aws_transit_gateway_attachment.self_link)
+        example_vpc_attachment_accepter = aws.ec2transitgateway.VpcAttachmentAccepter("exampleVpcAttachmentAccepter", transit_gateway_attachment_id=example_aws_transit_gateway_attachment.provider_transit_gateway_attachment_id)
+        ```
+
         ## Import
 
         # The import ID is {hvn_id}:{transit_gateway_attachment_id}
@@ -315,6 +355,46 @@ class AwsTransitGatewayAttachment(pulumi.CustomResource):
                  args: AwsTransitGatewayAttachmentArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_hcp as hcp
+
+        main = hcp.Hvn("main",
+            hvn_id="main-hvn",
+            cloud_provider="aws",
+            region="us-west-2",
+            cidr_block="172.25.16.0/20")
+        example_vpc = aws.ec2.Vpc("exampleVpc", cidr_block="172.31.0.0/16")
+        example_transit_gateway = aws.ec2transitgateway.TransitGateway("exampleTransitGateway", tags={
+            "Name": "example-tgw",
+        })
+        example_resource_share = aws.ram.ResourceShare("exampleResourceShare", allow_external_principals=True)
+        example_principal_association = aws.ram.PrincipalAssociation("examplePrincipalAssociation",
+            resource_share_arn=example_resource_share.arn,
+            principal=main.provider_account_id)
+        example_resource_association = aws.ram.ResourceAssociation("exampleResourceAssociation",
+            resource_share_arn=example_resource_share.arn,
+            resource_arn=example_transit_gateway.arn)
+        example_aws_transit_gateway_attachment = hcp.AwsTransitGatewayAttachment("exampleAwsTransitGatewayAttachment",
+            hvn_id=main.hvn_id,
+            transit_gateway_attachment_id="example-tgw-attachment",
+            transit_gateway_id=example_transit_gateway.id,
+            resource_share_arn=example_resource_share.arn,
+            opts=pulumi.ResourceOptions(depends_on=[
+                    example_principal_association,
+                    example_resource_association,
+                ]))
+        route = hcp.HvnRoute("route",
+            hvn_link=main.self_link,
+            hvn_route_id="hvn-to-tgw-attachment",
+            destination_cidr=example_vpc.cidr_block,
+            target_link=example_aws_transit_gateway_attachment.self_link)
+        example_vpc_attachment_accepter = aws.ec2transitgateway.VpcAttachmentAccepter("exampleVpcAttachmentAccepter", transit_gateway_attachment_id=example_aws_transit_gateway_attachment.provider_transit_gateway_attachment_id)
+        ```
+
         ## Import
 
         # The import ID is {hvn_id}:{transit_gateway_attachment_id}
@@ -349,6 +429,8 @@ class AwsTransitGatewayAttachment(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')

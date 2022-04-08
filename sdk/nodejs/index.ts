@@ -7,11 +7,13 @@ import * as utilities from "./utilities";
 // Export members:
 export * from "./awsNetworkPeering";
 export * from "./awsTransitGatewayAttachment";
+export * from "./azurePeeringConnection";
 export * from "./consulCluster";
 export * from "./consulClusterRootToken";
 export * from "./consulSnapshot";
 export * from "./getAwsNetworkPeering";
 export * from "./getAwsTransitGatewayAttachment";
+export * from "./getAzurePeeringConnection";
 export * from "./getConsulAgentHelmConfig";
 export * from "./getConsulAgentKubernetesSecret";
 export * from "./getConsulCluster";
@@ -42,6 +44,7 @@ export {
 // Import resources to register:
 import { AwsNetworkPeering } from "./awsNetworkPeering";
 import { AwsTransitGatewayAttachment } from "./awsTransitGatewayAttachment";
+import { AzurePeeringConnection } from "./azurePeeringConnection";
 import { ConsulCluster } from "./consulCluster";
 import { ConsulClusterRootToken } from "./consulClusterRootToken";
 import { ConsulSnapshot } from "./consulSnapshot";
@@ -59,6 +62,8 @@ const _module = {
                 return new AwsNetworkPeering(name, <any>undefined, { urn })
             case "hcp:index/awsTransitGatewayAttachment:AwsTransitGatewayAttachment":
                 return new AwsTransitGatewayAttachment(name, <any>undefined, { urn })
+            case "hcp:index/azurePeeringConnection:AzurePeeringConnection":
+                return new AzurePeeringConnection(name, <any>undefined, { urn })
             case "hcp:index/consulCluster:ConsulCluster":
                 return new ConsulCluster(name, <any>undefined, { urn })
             case "hcp:index/consulClusterRootToken:ConsulClusterRootToken":
@@ -82,6 +87,7 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("hcp", "index/awsNetworkPeering", _module)
 pulumi.runtime.registerResourceModule("hcp", "index/awsTransitGatewayAttachment", _module)
+pulumi.runtime.registerResourceModule("hcp", "index/azurePeeringConnection", _module)
 pulumi.runtime.registerResourceModule("hcp", "index/consulCluster", _module)
 pulumi.runtime.registerResourceModule("hcp", "index/consulClusterRootToken", _module)
 pulumi.runtime.registerResourceModule("hcp", "index/consulSnapshot", _module)

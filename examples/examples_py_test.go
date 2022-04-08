@@ -11,7 +11,7 @@ import (
 )
 
 func getPythonBaseOptions(t *testing.T) integration.ProgramTestOptions {
-	base := getBaseOptions()
+	base := GetBaseOptions()
 	basePython := base.With(integration.ProgramTestOptions{
 		Dependencies: []string{
 			filepath.Join("..", "sdk", "python", "bin"),
@@ -19,4 +19,25 @@ func getPythonBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	})
 
 	return basePython
+}
+
+func TestVaultPy(t *testing.T) {
+	test := getPythonBaseOptions(t).
+		With(integration.ProgramTestOptions{
+			Dir: filepath.Join(GetCwd(t), "hcp-vault", "py"),
+		})
+	integration.ProgramTest(t, &test)
+}
+
+func TestHvnPeeringPy(t *testing.T) {
+	test := getPythonBaseOptions(t).
+		With(integration.ProgramTestOptions{
+			Dir:    filepath.Join(GetCwd(t), "hvn-peering", "py"),
+			Config: map[string]string{"aws:region": "us-east-1"},
+			// Sometimes (but not always!) refreshes will pick up a
+			// change of the peering accepter's status, which aren't
+			// interesting, and cause unnecessary spurious failures.
+			SkipRefresh: true,
+		})
+	integration.ProgramTest(t, &test)
 }

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+pip install twine
+
+export TWINE_USERNAME="__token__"
+export TWINE_PASSWORD="${PYPI_API_TOKEN}"
+
+echo "--- :python: Uploading Python SDK"
+twine upload \
+      --verbose \
+      --non-interactive \
+      sdk/python/bin/dist/*

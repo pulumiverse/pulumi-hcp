@@ -113,7 +113,15 @@ class ConsulClusterRootToken(pulumi.CustomResource):
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a ConsulClusterRootToken resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_hcp as hcp
+
+        example = hcp.ConsulClusterRootToken("example", cluster_id="consul-cluster")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_id: The ID of the HCP Consul cluster.
@@ -125,7 +133,15 @@ class ConsulClusterRootToken(pulumi.CustomResource):
                  args: ConsulClusterRootTokenArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ConsulClusterRootToken resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_hcp as hcp
+
+        example = hcp.ConsulClusterRootToken("example", cluster_id="consul-cluster")
+        ```
+
         :param str resource_name: The name of the resource.
         :param ConsulClusterRootTokenArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -149,6 +165,8 @@ class ConsulClusterRootToken(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')

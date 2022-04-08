@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
+// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -127,6 +127,7 @@ func NewConsulCluster(ctx *pulumi.Context,
 	if args.Tier == nil {
 		return nil, errors.New("invalid value for required argument 'Tier'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ConsulCluster
 	err := ctx.RegisterResource("hcp:index/consulCluster:ConsulCluster", name, args, &resource, opts...)
 	if err != nil {

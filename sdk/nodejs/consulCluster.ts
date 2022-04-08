@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as hcp from "@pulumi/hcp";
+ * import * as pulumi_hcp from "@grapl/pulumi-hcp";
  *
  * const exampleHvn = new hcp.Hvn("exampleHvn", {
  *     hvnId: "hvn",
@@ -244,9 +244,7 @@ export class ConsulCluster extends pulumi.CustomResource {
             resourceInputs["scale"] = undefined /*out*/;
             resourceInputs["selfLink"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ConsulCluster.__pulumiType, name, resourceInputs, opts);
     }
 }

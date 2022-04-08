@@ -5,8 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * > **Note:** This feature is currently in beta.
- *
  * The Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id.
  *
  * ## Example Usage
@@ -33,9 +31,7 @@ export function getPackerImage(args: GetPackerImageArgs, opts?: pulumi.InvokeOpt
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("hcp:index/getPackerImage:getPackerImage", {
         "bucketName": args.bucketName,
         "cloudProvider": args.cloudProvider,

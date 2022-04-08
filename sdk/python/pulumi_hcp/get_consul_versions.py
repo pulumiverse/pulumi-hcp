@@ -96,6 +96,8 @@ def get_consul_versions(opts: Optional[pulumi.InvokeOptions] = None) -> Awaitabl
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('hcp:index/getConsulVersions:getConsulVersions', __args__, opts=opts, typ=GetConsulVersionsResult).value
 
     return AwaitableGetConsulVersionsResult(

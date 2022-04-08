@@ -1,130 +1,245 @@
-PACK             := hcp
-NAME             := ${PACK}
-PROJECT_NAME     := ${PACK} Package
+# Lowercase variables are considered internal implementation details,
+# and shouldn't be modified.
+pack            := hcp
+project         := github.com/grapl-security/pulumi-$(pack)
+version_path    := provider/pkg/version.Version
+tfgen           := pulumi-tfgen-$(pack)
+provider        := pulumi-resource-$(pack)
+version         := $(shell pulumictl get version)
+nodejs_version  := $(shell pulumictl get version --language javascript)
+pypi_version    := $(shell pulumictl get version --language python)
+# dotnet_version := $(shell pulumictl get version --language dotnet)
 
-# TODO: ORG should be pulumi
-ORG              := grapl-security
+provider_readme := $(CURDIR)/README.md
 
-PROJECT          := github.com/${ORG}/pulumi-${PACK}
-NODE_MODULE_NAME := @pulumi/${PACK}
-TF_NAME          := ${PACK}
-PROVIDER_PATH    := provider
-VERSION_PATH     := ${PROVIDER_PATH}/pkg/version.Version
+# These are the plugins that are needed to generate our provider;
+# Pulumi >= 3.26.1 will pull in the current latest version.
+plugins := random aws
 
-REPOSITORY := ${PROJECT}
+# Supported SDKs we'll generate
+# TODO: add dotnet
+sdks := nodejs python go
+
+# All the `go.mod` files we care about
+go_mods = $(shell find . -type f -name go.mod -not -path "./sdk/*")
+
+# Uppercase variables can be modified as needed to work on your
+# system.
+TESTPARALLELISM := 4
+# Binary Tools; adjust these according to what you have installed locally.
+GOLANGCI_LINT := $(shell go env GOPATH)/bin/golangci-lint
+PYTHON        := python3
+
+########################################################################
 
 SHELL := bash
+.ONESHELL:
+.SHELLFLAGS := -o errexit -o nounset -o pipefail -c
 
-TFGEN           := pulumi-tfgen-${PACK}
-PROVIDER        := pulumi-resource-${PACK}
-VERSION         := $(shell pulumictl get version)
+.DEFAULT_GOAL := all
 
-TESTPARALLELISM := 4
+# Providers can be built without the SDKs, and SDKs can be built
+# without the providers.
+.PHONY: all
+all: build-all-providers
+all: sdks
 
-WORKING_DIR     := $(shell pwd)
+# Build Provider
+########################################################################
 
-OS := $(shell uname)
-EMPTY_TO_AVOID_SED := ""
+bin/$(tfgen): provider/cmd/pulumi-tfgen-hcp/main.go
+# TODO: fold this command into the goreleaser file?
+	cd provider
+	go build \
+		-o $(CURDIR)/bin/$(tfgen) \
+		-ldflags "-X $(project)/$(version_path)=$(version)" \
+		$(project)/provider/cmd/$(tfgen)
 
-prepare::
-	@if test -z "${NAME}"; then echo "NAME not set"; exit 1; fi
-	@if test -z "${REPOSITORY}"; then echo "REPOSITORY not set"; exit 1; fi
-	@if test ! -d "provider/cmd/pulumi-tfgen-x${EMPTY_TO_AVOID_SED}yz"; then "Project already prepared"; exit 1; fi
+provider/cmd/$(provider)/schema.json: install-plugins
+provider/cmd/$(provider)/schema.json: bin/$(tfgen)
+provider/cmd/$(provider)/schema.json: provider/resources.go
+provider/cmd/$(provider)/schema.json: provider/shim/go.mod
+	cd provider
+	$(CURDIR)/bin/$(tfgen) schema -v=2 --out cmd/$(provider)
 
-	mv "provider/cmd/pulumi-tfgen-x${EMPTY_TO_AVOID_SED}yz" provider/cmd/pulumi-tfgen-${NAME}
-	mv "provider/cmd/pulumi-resource-x${EMPTY_TO_AVOID_SED}yz" provider/cmd/pulumi-resource-${NAME}
+provider/cmd/$(provider)/schema.go: provider/cmd/$(provider)/schema.json
+	cd provider
+	VERSION=$(version) go generate -v -x cmd/$(provider)/main.go
 
-	if [[ "${OS}" != "Darwin" ]]; then \
-		sed -i 's,github.com/grapl-security/pulumi-hcp,${REPOSITORY},g' provider/go.mod; \
-		find ./ ! -path './.git/*' -type f -exec sed -i 's/[x]yz/${NAME}/g' {} \; &> /dev/null; \
-	fi
+.PHONY: lint
+# We must have schema.go present for our code to lint properly
+lint: provider/cmd/$(provider)/schema.go
+lint: # Lint the provider code
+	(cd provider && $(GOLANGCI_LINT) run -v)
+	(cd examples && $(GOLANGCI_LINT) run -v)
 
-	# In MacOS the -i parameter needs an empty string to execute in place.
-	if [[ "${OS}" == "Darwin" ]]; then \
-		sed -i '' 's,github.com/grapl-security/pulumi-hcp,${REPOSITORY},g' provider/go.mod; \
-		find ./ ! -path './.git/*' -type f -exec sed -i '' 's/[x]yz/${NAME}/g' {} \; &> /dev/null; \
-	fi
+.PHONY: format
+format: # Format all code
+	gofmt -s -w provider
+	gofmt -s -w examples
 
-.PHONY: development provider build_sdks build_nodejs build_dotnet build_go build_python cleanup
+.PHONY: build-all-providers
+build-all-providers: export GORELEASER_CURRENT_TAG=$(version)
+build-all-providers: ## Just to ensure we can build across all platforms
+	goreleaser build --snapshot --rm-dist
 
-development:: install_plugins provider lint_provider build_sdks install_sdks cleanup # Build the provider & SDKs for a development environment
+# This is a shortcut for just building the provider for the current
+# machine's OS / architecture.
+bin/$(provider): export GORELEASER_CURRENT_TAG=$(version)
+bin/$(provider):
+	goreleaser build \
+		--output=bin/$(provider) \
+		--single-target \
+		--snapshot \
+		--rm-dist
 
-# Required for the codegen action that runs in pulumi/pulumi and pulumi/pulumi-terraform-bridge
-build:: install_plugins provider build_sdks install_sdks
-only_build:: build
+# This is just a helpful alias for the above target
+.PHONY: provider
+provider: bin/$(provider)
 
-tfgen:: install_plugins
-	(cd provider && go build -a -o $(WORKING_DIR)/bin/${TFGEN} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${TFGEN})
-	$(WORKING_DIR)/bin/${TFGEN} schema --out provider/cmd/${PROVIDER}
-	(cd provider && VERSION=$(VERSION) go generate cmd/${PROVIDER}/main.go)
+# Build all SDKs
+########################################################################
 
-provider:: tfgen install_plugins # build the provider binary
-	(cd provider && go build -a -o $(WORKING_DIR)/bin/${PROVIDER} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${PROVIDER})
+sdk_deps := bin/$(tfgen) provider/cmd/$(provider)/schema.go
 
-build_sdks:: install_plugins provider build_nodejs build_python build_go build_dotnet # build all the sdks
+.PHONY: sdks
+sdks: $(addsuffix -sdk,$(sdks))
+sdks: # Build all the SDKs
 
-build_nodejs:: VERSION := $(shell pulumictl get version --language javascript)
-build_nodejs:: install_plugins tfgen # build the node sdk
-	$(WORKING_DIR)/bin/$(TFGEN) nodejs --overlays provider/overlays/nodejs --out sdk/nodejs/
-	cd sdk/nodejs/ && \
-		yarn install && \
-		yarn run tsc && \
-		cp ../../README.md ../../LICENSE package.json yarn.lock ./bin/ && \
-		sed -i.bak -e "s/\$${VERSION}/$(VERSION)/g" ./bin/package.json
+.PHONY: nodejs-sdk
+nodejs-sdk: $(sdk_deps)
+nodejs-sdk: # Build the Node SDK
+	bin/$(tfgen) nodejs \
+		--overlays provider/overlays/nodejs \
+		--out sdk/nodejs
+	cd sdk/nodejs
+	yarn install
+	yarn run tsc
+	cp $(provider_readme) ./bin/README.md
+	cp ../../LICENSE \
+		package.json \
+		yarn.lock \
+		./bin/
+	sed -i.bak \
+		-e "s/\$${VERSION}/$(nodejs_version)/g" \
+		./bin/package.json
+	rm bin/package.json.bak
+	cd bin
+	npm pack
+	mkdir dist
+	mv *.tgz dist
 
-build_python:: PYPI_VERSION := $(shell pulumictl get version --language python)
-build_python:: install_plugins tfgen # build the python sdk
-	$(WORKING_DIR)/bin/$(TFGEN) python --overlays provider/overlays/python --out sdk/python/
-	cd sdk/python/ && \
-		cp ../../README.md . && \
-		python3 setup.py clean --all 2>/dev/null && \
-		rm -rf ./bin/ ../python.bin/ && cp -R . ../python.bin && mv ../python.bin ./bin && \
-		sed -i.bak -e 's/^VERSION = .*/VERSION = "$(PYPI_VERSION)"/g' -e 's/^PLUGIN_VERSION = .*/PLUGIN_VERSION = "$(VERSION)"/g' ./bin/setup.py && \
-		rm ./bin/setup.py.bak && \
-		cd ./bin && python3 setup.py build sdist
+.PHONY: python-sdk
+python-sdk: $(sdk_deps)
+python-sdk: # Build the Python SDK
+	bin/$(tfgen) python \
+		--overlays provider/overlays/python \
+		--out sdk/python
+	cd sdk/python
+	cp $(provider_readme) README.md
+	$(PYTHON) setup.py clean --all
+	rm -rf ./bin/ ../python.bin/
+# Conceptually, we'd want something like `cp -R . ./bin`, but that's
+# not allowed.
+	cp -R . ../python.bin
+	mv ../python.bin ./bin
+	cd ./bin
+	sed -i.bak \
+		-e 's/^VERSION = .*/VERSION = "$(pypi_version)"/g' \
+		-e 's/^PLUGIN_VERSION = .*/PLUGIN_VERSION = "$(version)"/g' \
+		setup.py
+	rm setup.py.bak
+	$(PYTHON) setup.py build sdist
 
-build_dotnet:: DOTNET_VERSION := $(shell pulumictl get version --language dotnet)
-build_dotnet:: install_plugins tfgen # build the dotnet sdk
-	pulumictl get version --language dotnet
-	$(WORKING_DIR)/bin/$(TFGEN) dotnet --overlays provider/overlays/dotnet --out sdk/dotnet/
-	cd sdk/dotnet/ && \
-		echo "${DOTNET_VERSION}" >version.txt && \
-		dotnet build /p:Version=${DOTNET_VERSION}
+.PHONY: go-sdk
+go-sdk: $(sdk_deps)
+go-sdk: # Build the Go SDK
+	bin/$(tfgen) go \
+		--overlays provider/overlays/go \
+		--out sdk/go
 
-build_go:: install_plugins tfgen # build the go sdk
-	$(WORKING_DIR)/bin/$(TFGEN) go --overlays provider/overlays/go --out sdk/go/
+# Clean Targets
+########################################################################
 
-lint_provider:: provider # lint the provider code
-	cd provider && golangci-lint run -c ../.golangci.yml
+.PHONY: clean
+clean: clean-sdks
+	rm -f provider/cmd/$(provider)/schema.go
+	rm -f provider/cmd/$(provider)/schema.json
+	rm -Rf bin
+# Generated by goreleaser
+	rm -Rf dist
+	rm -f install-plugins
 
-cleanup:: # cleans up the temporary directory
-	rm -r $(WORKING_DIR)/bin
-	rm -f provider/cmd/${PROVIDER}/schema.go
+.PHONY: clean-sdks
+clean-sdks: ## Remove all generated SDK code
 
-help::
-	@grep '^[^.#]\+:\s\+.*#' Makefile | \
-	sed "s/\(.\+\):\s*\(.*\) #\s*\(.*\)/`printf "\033[93m"`\1`printf "\033[0m"`	\3 [\2]/" | \
-	expand -t20
+define clean-sdk =
+clean-sdks: clean-$1-sdk
 
-clean::
-	rm -rf sdk/{dotnet,nodejs,go,python}
+.PHONY: clean-$1-sdk
+clean-$1-sdk:
+	rm -Rf sdk/$1
+endef
 
-install_plugins::
-	[ -x $(shell which pulumi) ] || curl -fsSL https://get.pulumi.com | sh
-	pulumi plugin install resource random 4.3.1
+$(foreach sdk,$(sdks),$(eval $(call clean-sdk,$(sdk))))
 
-install_dotnet_sdk::
-	mkdir -p $(WORKING_DIR)/nuget
-	find . -name '*.nupkg' -print -exec cp -p {} ${WORKING_DIR}/nuget \;
+# Install Targets
+########################################################################
 
-install_python_sdk::
+.PHONY: install-sdks
+install-sdks: install-go-sdk
+install-sdks: install-nodejs-sdk
+install-sdks: install-python-sdk
 
-install_go_sdk::
+# No-op, but exists to ensure a consistent interface
+.PHONY: install-go-sdk
+install-go-sdk:
 
-install_nodejs_sdk::
-	yarn link --cwd $(WORKING_DIR)/sdk/nodejs/bin
+.PHONY: install-nodejs-sdk
+install-nodejs-sdk:
+	yarn link --cwd sdk/nodejs/bin
 
-install_sdks:: install_dotnet_sdk install_python_sdk install_nodejs_sdk
+# No-op, but exists to ensure a consistent interface
+.PHONY: install-python-sdk
+install-python-sdk:
 
-test::
-	cd examples && go test -v -tags=all -parallel ${TESTPARALLELISM} -timeout 2h
+# Testing
+########################################################################
+
+.PHONY: test
+test:
+
+define gen-tests =
+test: test-$1
+
+.PHONY: test-$1
+test-$1: bin/$(provider)
+test-$1: install-$1-sdk
+# Ensure the compiled provider binary is on the path
+test-$1: export PATH=$(CURDIR)/bin:${PATH}
+test-$1:
+	cd examples
+	go test -v \
+		-count=1 \
+		-cover \
+		-timeout 2h \
+		-tags=$1 \
+		-parallel $(TESTPARALLELISM) \
+		.
+endef
+
+$(foreach sdk,$(sdks),$(eval $(call gen-tests,$(sdk))))
+
+# Utility Tasks
+########################################################################
+
+# NOTE: if new versions of the plugins are released, this won't
+# automatically re-run; you'll need to either do a `make clean` or
+# remove the `install-plugins` file and then rebuild.
+install-plugins: ## Install all required Pulumi plugins
+	$(foreach plugin,$(plugins),pulumi plugin install resource $(plugin);)
+	touch $@
+
+.PHONY: tidy
+tidy: ## Run `go mod tidy` in all places necessary
+	@$(foreach d,$(dir $(go_mods)),cd $d; go mod tidy; cd -;)

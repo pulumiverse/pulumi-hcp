@@ -31,7 +31,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
+// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -97,6 +97,7 @@ func NewHvn(ctx *pulumi.Context,
 	if args.Region == nil {
 		return nil, errors.New("invalid value for required argument 'Region'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Hvn
 	err := ctx.RegisterResource("hcp:index/hvn:Hvn", name, args, &resource, opts...)
 	if err != nil {

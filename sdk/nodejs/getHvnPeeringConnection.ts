@@ -25,9 +25,7 @@ export function getHvnPeeringConnection(args: GetHvnPeeringConnectionArgs, opts?
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("hcp:index/getHvnPeeringConnection:getHvnPeeringConnection", {
         "hvn1": args.hvn1,
         "hvn2": args.hvn2,

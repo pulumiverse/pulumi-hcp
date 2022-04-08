@@ -4,6 +4,18 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as hcp from "@pulumi/hcp";
+ *
+ * const example = new hcp.VaultClusterAdminToken("example", {
+ *     clusterId: "test-vault-cluster",
+ * });
+ * ```
+ */
 export class VaultClusterAdminToken extends pulumi.CustomResource {
     /**
      * Get an existing VaultClusterAdminToken resource's state with the given name, ID, and optional extra
@@ -70,9 +82,7 @@ export class VaultClusterAdminToken extends pulumi.CustomResource {
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["token"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(VaultClusterAdminToken.__pulumiType, name, resourceInputs, opts);
     }
 }

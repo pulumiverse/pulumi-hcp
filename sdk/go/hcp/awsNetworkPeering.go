@@ -19,9 +19,9 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws"
-// 	"github.com/pulumi/pulumi-aws/sdk/v4/go/aws/ec2"
-// 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
+// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
+// 	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws"
+// 	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -134,6 +134,7 @@ func NewAwsNetworkPeering(ctx *pulumi.Context,
 	if args.PeeringId == nil {
 		return nil, errors.New("invalid value for required argument 'PeeringId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource AwsNetworkPeering
 	err := ctx.RegisterResource("hcp:index/awsNetworkPeering:AwsNetworkPeering", name, args, &resource, opts...)
 	if err != nil {

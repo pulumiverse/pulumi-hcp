@@ -23,9 +23,7 @@ export function getHvn(args: GetHvnArgs, opts?: pulumi.InvokeOptions): Promise<G
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("hcp:index/getHvn:getHvn", {
         "hvnId": args.hvnId,
     }, opts);

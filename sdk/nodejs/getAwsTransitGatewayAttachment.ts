@@ -24,9 +24,7 @@ export function getAwsTransitGatewayAttachment(args: GetAwsTransitGatewayAttachm
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("hcp:index/getAwsTransitGatewayAttachment:getAwsTransitGatewayAttachment", {
         "hvnId": args.hvnId,
         "transitGatewayAttachmentId": args.transitGatewayAttachmentId,
