@@ -97,7 +97,7 @@ steps:
 
   - wait
 
-  # We're publishing the SDKs *after* the github release, because in
+  # We're publishing the SDKs *after* the Github release, because in
   # order to *use* the SDKs, the binaries must be in the Github
   # release first.
   #
@@ -106,7 +106,6 @@ steps:
   # fails.
   - group: "Publish SDKs"
     steps:
-      # TODO: Push to PyPI instead
       - label: ":python: Publish Python SDK"
         depends_on: build-python-sdk
         command:
@@ -119,14 +118,20 @@ steps:
           - artifacts#v1.5.0:
               download: sdk/python/bin/dist/*.tar.gz
           - docker#v3.11.0:
-              # TODO: Only adding this for now so `twine` will be available on the PATH
+              # Strictly-speaking, we don't need the build environment
+              # image for this, but there are pathing issues for
+              # pip-installed `twine` on our agents; this is just a
+              # convenient way to get around that for the time being
+              # until this logic can be extracted.
+              #
+              # It also mirrors the publication job for the NodeJS
+              # SDK; see below.
               image: "${BUILD_ENVIRONMENT_IMAGE}"
               environment:
                 - PYPI_API_TOKEN
         agents:
           queue: artifact-uploaders
 
-      # TODO: Push to NPM instead
       - label: ":npm: Publish NodeJS SDK"
         depends_on: build-nodejs-sdk
         command:
@@ -139,7 +144,8 @@ steps:
           - artifacts#v1.5.0:
               download: sdk/nodejs/bin/dist/*.tgz
           - docker#v3.11.0:
-              # TODO: Only adding this for now so `npm` will be available
+              # We don't install `npm` on our build agents, so this is
+              # a convenient way to have it available.
               image: "${BUILD_ENVIRONMENT_IMAGE}"
               environment:
                 - NPM_API_TOKEN

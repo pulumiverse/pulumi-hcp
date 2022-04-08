@@ -30,8 +30,6 @@ steps:
     # This will pick up tfgen, but that's OK
     artifact_paths:
       - "bin/*"
-      # We also need this to get into the "SDK Checks"
-      # - "provider/cmd/*/schema.go"
 
   - label: ":hammer_and_wrench: Build all Providers"
     command:
@@ -58,7 +56,6 @@ steps:
               # need to do something a bit different.
               download:
                 - "bin/*"
-                # - "provider/cmd/*/schema.go"
           - improbable-eng/metahook#v0.4.1:
               # TODO: Fix this chmod bit more formally
               pre-command: git fetch --unshallow && chmod a+x bin/*
@@ -75,9 +72,7 @@ steps:
     steps:
       - label: ":{{ matrix.language }}: Test"
         depends_on: provider
-        # TODO: depends on SDK check, too?
         command:
-          # TODO: Ugh, this MUST be better
           - make {{matrix.language}}-sdk test-{{matrix.language}}
         plugins:
           - grapl-security/vault-login#v0.1.2
@@ -92,7 +87,6 @@ steps:
               # need to do something a bit different.
               download:
                 - "bin/*"
-                # - "provider/cmd/*/schema.go"
           - improbable-eng/metahook#v0.4.1:
               # TODO: Fix this chmod bit more formally
               pre-command: git fetch --unshallow && chmod a+x bin/*
