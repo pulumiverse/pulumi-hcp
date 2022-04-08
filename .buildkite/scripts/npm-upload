@@ -7,7 +7,6 @@ echo "--- :nodejs: Uploading NodeJS SDK"
 NPM_CONFIG_USERCONFIG=$(pwd)/buildkite-npmrc
 export NPM_CONFIG_USERCONFIG
 
-# npm config set registry https://npm.cloudsmith.io/grapl/raw
 npm config set _authToken "${NPM_API_TOKEN}"
 
 npm publish \
