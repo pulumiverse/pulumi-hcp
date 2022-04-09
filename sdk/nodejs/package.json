@@ -24,6 +24,6 @@
     },
     "pulumi": {
         "resource": true,
-        "pluginDownloadURL": "https://github.com/grapl-security/pulumi-hcp/releases/download/${VERSION}"
+        "pluginDownloadURL": "https://github.com/grapl-security/pulumi-hcp/releases/download/v${VERSION}"
     }
 }

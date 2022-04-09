@@ -66,7 +66,9 @@ func Provider() tfbridge.ProviderInfo {
 		DisplayName: "HashiCorp Cloud Platform (HCP)",
 		// Binaries for the plugin will be stored as Github Releases
 		// (recommended by Pulumi).
-		PluginDownloadURL: "https://github.com/grapl-security/pulumi-hcp/releases/download/${VERSION}",
+		// NOTE: the added 'v' in front of `${VERSION}` is a temporary
+		// workaround for (what I think is) a `pulumi plugin install` issue.
+		PluginDownloadURL: "https://github.com/grapl-security/pulumi-hcp/releases/download/v${VERSION}",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"client_id": {
 				Default: &tfbridge.DefaultInfo{

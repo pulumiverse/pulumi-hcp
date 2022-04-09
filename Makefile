@@ -109,12 +109,14 @@ sdks: # Build all the SDKs
 .PHONY: nodejs-sdk
 nodejs-sdk: $(sdk_deps)
 nodejs-sdk: # Build the Node SDK
+	rm -Rf sdk/nodejs/bin/dist
 	bin/$(tfgen) nodejs \
 		--overlays provider/overlays/nodejs \
 		--out sdk/nodejs
 	cd sdk/nodejs
 	yarn install
 	yarn run tsc
+	cp -R scripts bin
 	cp $(provider_readme) ./bin/README.md
 	cp ../../LICENSE \
 		package.json \
