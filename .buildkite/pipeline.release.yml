@@ -147,27 +147,15 @@ steps:
     steps:
       - label: ":python: Publish Python SDK"
         depends_on: build-python-sdk
-        command:
-          - .buildkite/scripts/twine-upload
         plugins:
           - grapl-security/vault-login#v0.1.2
           - grapl-security/vault-env#v0.1.0:
               secrets:
                 - PYPI_API_TOKEN
           - artifacts#v1.5.0:
-              download: sdk/python/bin/dist/*.tar.gz
-          - docker#v3.11.0:
-              # Strictly-speaking, we don't need the build environment
-              # image for this, but there are pathing issues for
-              # pip-installed `twine` on our agents; this is just a
-              # convenient way to get around that for the time being
-              # until this logic can be extracted.
-              #
-              # It also mirrors the publication job for the NodeJS
-              # SDK; see below.
-              image: "${BUILD_ENVIRONMENT_IMAGE}"
-              environment:
-                - PYPI_API_TOKEN
+              download: sdk/python/bin/dist/*
+          - grapl-security/pypi#v0.1.0:
+              file: sdk/python/bin/dist/*
         agents:
           queue: artifact-uploaders
 
