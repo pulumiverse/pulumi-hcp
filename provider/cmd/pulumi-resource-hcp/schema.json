@@ -12,7 +12,7 @@
     "attribution": "This Pulumi package is based on the [`hcp` Terraform Provider](https://github.com/hashicorp/terraform-provider-hcp).",
     "repository": "https://github.com/grapl-security/pulumi-hcp",
     "logoUrl": "https://raw.githubusercontent.com/grapl-security/pulumi-hcp/main/assets/hcp.svg",
-    "pluginDownloadURL": "https://github.com/grapl-security/pulumi-hcp/releases/download/${VERSION}",
+    "pluginDownloadURL": "https://github.com/grapl-security/pulumi-hcp/releases/download/v${VERSION}",
     "publisher": "Grapl Security",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
