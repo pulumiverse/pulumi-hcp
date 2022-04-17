@@ -127,7 +127,12 @@ steps:
           - docker#v3.11.0:
               image: "${BUILD_ENVIRONMENT_IMAGE}"
 
-      # TODO: go
+      - label: ":go: SDK Installation Validation"
+        command:
+          - .buildkite/scripts/validate-go-sdk-install $(buildkite-agent meta-data get release-tag)
+        plugins:
+          - docker#v3.11.0:
+              image: "${BUILD_ENVIRONMENT_IMAGE}"
 
   - wait
 

@@ -20,6 +20,9 @@
 
 set -euo pipefail
 
+# shellcheck source-path=SCRIPTDIR
+source "$(dirname "${BASH_SOURCE[0]}")/lib/validate.sh"
+
 readonly sdk="${1}"
 
 # We're going to change directories in this script, so we need to
@@ -70,15 +73,5 @@ trap cleanup EXIT
     esac
     ls -alh # Just for visibility
 
-    echo "--- :pulumi: Contents of \$PULUMI_HOME (${PULUMI_HOME}) plugin directory"
-    ls -alh "${PULUMI_HOME}/plugins"
-
-    echo "--- :white_check_mark: Confirming installed plugin version is '${version}'"
-    installed_version="$("${PULUMI_HOME}/plugins/resource-hcp-${version}/pulumi-resource-hcp" -version)"
-    readonly installed_version
-
-    if [ "${installed_version}" != "${version}" ]; then
-        echo "--- :rotating_light: Version mismatch! Expected '${version}' but got '${installed_version}'"
-        exit 1
-    fi
+    validate_plugin "${version}"
 )
