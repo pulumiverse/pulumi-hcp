@@ -63,13 +63,18 @@ type VaultCluster struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The ID of the HVN this HCP Vault cluster is associated to.
 	HvnId pulumi.StringOutput `pulumi:"hvnId"`
-	// The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
+	// The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
+	// currently recommended by HCP.
 	MinVaultVersion pulumi.StringPtrOutput `pulumi:"minVaultVersion"`
 	// The name of the customer namespace this HCP Vault cluster is located in.
 	Namespace pulumi.StringOutput `pulumi:"namespace"`
 	// The ID of the organization this HCP Vault cluster is located in.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The `selfLink` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+	// The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to
+	// performance replication secondaries only and operates in "deny" mode only.
+	PathsFilters pulumi.StringArrayOutput `pulumi:"pathsFilters"`
+	// The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this
+	// HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
 	PrimaryLink pulumi.StringPtrOutput `pulumi:"primaryLink"`
 	// The ID of the project this HCP Vault cluster is located in.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -79,11 +84,13 @@ type VaultCluster struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 	// A unique URL identifying the Vault cluster.
 	SelfLink pulumi.StringOutput `pulumi:"selfLink"`
-	// Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starterSmall`, `standardSmall`, `standardMedium`, `standardLarge`, `plusSmall`, `plusMedium`, `plusLarge`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
+	// Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,
+	// `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing
+	// information](https://cloud.hashicorp.com/pricing/vault).
 	Tier pulumi.StringOutput `pulumi:"tier"`
 	// The private URL for the Vault cluster.
 	VaultPrivateEndpointUrl pulumi.StringOutput `pulumi:"vaultPrivateEndpointUrl"`
-	// The public URL for the Vault cluster. This will be empty if `publicEndpoint` is `false`.
+	// The public URL for the Vault cluster. This will be empty if `public_endpoint` is `false`.
 	VaultPublicEndpointUrl pulumi.StringOutput `pulumi:"vaultPublicEndpointUrl"`
 	// The Vault version of the cluster.
 	VaultVersion pulumi.StringOutput `pulumi:"vaultVersion"`
@@ -133,13 +140,18 @@ type vaultClusterState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// The ID of the HVN this HCP Vault cluster is associated to.
 	HvnId *string `pulumi:"hvnId"`
-	// The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
+	// The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
+	// currently recommended by HCP.
 	MinVaultVersion *string `pulumi:"minVaultVersion"`
 	// The name of the customer namespace this HCP Vault cluster is located in.
 	Namespace *string `pulumi:"namespace"`
 	// The ID of the organization this HCP Vault cluster is located in.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The `selfLink` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+	// The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to
+	// performance replication secondaries only and operates in "deny" mode only.
+	PathsFilters []string `pulumi:"pathsFilters"`
+	// The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this
+	// HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
 	PrimaryLink *string `pulumi:"primaryLink"`
 	// The ID of the project this HCP Vault cluster is located in.
 	ProjectId *string `pulumi:"projectId"`
@@ -149,11 +161,13 @@ type vaultClusterState struct {
 	Region *string `pulumi:"region"`
 	// A unique URL identifying the Vault cluster.
 	SelfLink *string `pulumi:"selfLink"`
-	// Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starterSmall`, `standardSmall`, `standardMedium`, `standardLarge`, `plusSmall`, `plusMedium`, `plusLarge`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
+	// Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,
+	// `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing
+	// information](https://cloud.hashicorp.com/pricing/vault).
 	Tier *string `pulumi:"tier"`
 	// The private URL for the Vault cluster.
 	VaultPrivateEndpointUrl *string `pulumi:"vaultPrivateEndpointUrl"`
-	// The public URL for the Vault cluster. This will be empty if `publicEndpoint` is `false`.
+	// The public URL for the Vault cluster. This will be empty if `public_endpoint` is `false`.
 	VaultPublicEndpointUrl *string `pulumi:"vaultPublicEndpointUrl"`
 	// The Vault version of the cluster.
 	VaultVersion *string `pulumi:"vaultVersion"`
@@ -168,13 +182,18 @@ type VaultClusterState struct {
 	CreatedAt pulumi.StringPtrInput
 	// The ID of the HVN this HCP Vault cluster is associated to.
 	HvnId pulumi.StringPtrInput
-	// The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
+	// The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
+	// currently recommended by HCP.
 	MinVaultVersion pulumi.StringPtrInput
 	// The name of the customer namespace this HCP Vault cluster is located in.
 	Namespace pulumi.StringPtrInput
 	// The ID of the organization this HCP Vault cluster is located in.
 	OrganizationId pulumi.StringPtrInput
-	// The `selfLink` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+	// The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to
+	// performance replication secondaries only and operates in "deny" mode only.
+	PathsFilters pulumi.StringArrayInput
+	// The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this
+	// HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
 	PrimaryLink pulumi.StringPtrInput
 	// The ID of the project this HCP Vault cluster is located in.
 	ProjectId pulumi.StringPtrInput
@@ -184,11 +203,13 @@ type VaultClusterState struct {
 	Region pulumi.StringPtrInput
 	// A unique URL identifying the Vault cluster.
 	SelfLink pulumi.StringPtrInput
-	// Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starterSmall`, `standardSmall`, `standardMedium`, `standardLarge`, `plusSmall`, `plusMedium`, `plusLarge`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
+	// Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,
+	// `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing
+	// information](https://cloud.hashicorp.com/pricing/vault).
 	Tier pulumi.StringPtrInput
 	// The private URL for the Vault cluster.
 	VaultPrivateEndpointUrl pulumi.StringPtrInput
-	// The public URL for the Vault cluster. This will be empty if `publicEndpoint` is `false`.
+	// The public URL for the Vault cluster. This will be empty if `public_endpoint` is `false`.
 	VaultPublicEndpointUrl pulumi.StringPtrInput
 	// The Vault version of the cluster.
 	VaultVersion pulumi.StringPtrInput
@@ -203,13 +224,20 @@ type vaultClusterArgs struct {
 	ClusterId string `pulumi:"clusterId"`
 	// The ID of the HVN this HCP Vault cluster is associated to.
 	HvnId string `pulumi:"hvnId"`
-	// The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
+	// The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
+	// currently recommended by HCP.
 	MinVaultVersion *string `pulumi:"minVaultVersion"`
-	// The `selfLink` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+	// The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to
+	// performance replication secondaries only and operates in "deny" mode only.
+	PathsFilters []string `pulumi:"pathsFilters"`
+	// The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this
+	// HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
 	PrimaryLink *string `pulumi:"primaryLink"`
 	// Denotes that the cluster has a public endpoint. Defaults to false.
 	PublicEndpoint *bool `pulumi:"publicEndpoint"`
-	// Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starterSmall`, `standardSmall`, `standardMedium`, `standardLarge`, `plusSmall`, `plusMedium`, `plusLarge`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
+	// Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,
+	// `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing
+	// information](https://cloud.hashicorp.com/pricing/vault).
 	Tier *string `pulumi:"tier"`
 }
 
@@ -219,13 +247,20 @@ type VaultClusterArgs struct {
 	ClusterId pulumi.StringInput
 	// The ID of the HVN this HCP Vault cluster is associated to.
 	HvnId pulumi.StringInput
-	// The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
+	// The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
+	// currently recommended by HCP.
 	MinVaultVersion pulumi.StringPtrInput
-	// The `selfLink` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+	// The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to
+	// performance replication secondaries only and operates in "deny" mode only.
+	PathsFilters pulumi.StringArrayInput
+	// The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this
+	// HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
 	PrimaryLink pulumi.StringPtrInput
 	// Denotes that the cluster has a public endpoint. Defaults to false.
 	PublicEndpoint pulumi.BoolPtrInput
-	// Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starterSmall`, `standardSmall`, `standardMedium`, `standardLarge`, `plusSmall`, `plusMedium`, `plusLarge`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
+	// Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,
+	// `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing
+	// information](https://cloud.hashicorp.com/pricing/vault).
 	Tier pulumi.StringPtrInput
 }
 

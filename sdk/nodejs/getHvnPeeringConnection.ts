@@ -37,17 +37,8 @@ export function getHvnPeeringConnection(args: GetHvnPeeringConnectionArgs, opts?
  * A collection of arguments for invoking getHvnPeeringConnection.
  */
 export interface GetHvnPeeringConnectionArgs {
-    /**
-     * The unique URL of one of the HVNs being peered.
-     */
     hvn1: string;
-    /**
-     * The unique URL of one of the HVNs being peered.
-     */
     hvn2: string;
-    /**
-     * The ID of the peering connection.
-     */
     peeringId: string;
 }
 
@@ -55,41 +46,17 @@ export interface GetHvnPeeringConnectionArgs {
  * A collection of values returned by getHvnPeeringConnection.
  */
 export interface GetHvnPeeringConnectionResult {
-    /**
-     * The time that the peering connection was created.
-     */
     readonly createdAt: string;
-    /**
-     * The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
-     */
     readonly expiresAt: string;
-    /**
-     * The unique URL of one of the HVNs being peered.
-     */
     readonly hvn1: string;
-    /**
-     * The unique URL of one of the HVNs being peered.
-     */
     readonly hvn2: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * The ID of the HCP organization where the peering connection is located. Always matches the HVNs' organization.
-     */
     readonly organizationId: string;
-    /**
-     * The ID of the peering connection.
-     */
     readonly peeringId: string;
-    /**
-     * The ID of the HCP project where the peering connection is located. Always matches the HVNs' project.
-     */
     readonly projectId: string;
-    /**
-     * A unique URL identifying the peering connection
-     */
     readonly selfLink: string;
 }
 
@@ -101,16 +68,7 @@ export function getHvnPeeringConnectionOutput(args: GetHvnPeeringConnectionOutpu
  * A collection of arguments for invoking getHvnPeeringConnection.
  */
 export interface GetHvnPeeringConnectionOutputArgs {
-    /**
-     * The unique URL of one of the HVNs being peered.
-     */
     hvn1: pulumi.Input<string>;
-    /**
-     * The unique URL of one of the HVNs being peered.
-     */
     hvn2: pulumi.Input<string>;
-    /**
-     * The ID of the peering connection.
-     */
     peeringId: pulumi.Input<string>;
 }

@@ -34,9 +34,6 @@ class GetConsulAgentKubernetesSecretResult:
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> str:
-        """
-        The ID of the HCP Consul cluster.
-        """
         return pulumi.get(self, "cluster_id")
 
     @property
@@ -50,9 +47,6 @@ class GetConsulAgentKubernetesSecretResult:
     @property
     @pulumi.getter
     def secret(self) -> str:
-        """
-        The Consul agent configuration in the format of a Kubernetes secret (YAML).
-        """
         return pulumi.get(self, "secret")
 
 
@@ -80,9 +74,6 @@ def get_consul_agent_kubernetes_secret(cluster_id: Optional[str] = None,
 
     test = hcp.get_consul_agent_kubernetes_secret(cluster_id=var["cluster_id"])
     ```
-
-
-    :param str cluster_id: The ID of the HCP Consul cluster.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -114,8 +105,5 @@ def get_consul_agent_kubernetes_secret_output(cluster_id: Optional[pulumi.Input[
 
     test = hcp.get_consul_agent_kubernetes_secret(cluster_id=var["cluster_id"])
     ```
-
-
-    :param str cluster_id: The ID of the HCP Consul cluster.
     """
     ...

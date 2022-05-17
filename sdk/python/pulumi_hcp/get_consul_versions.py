@@ -36,9 +36,6 @@ class GetConsulVersionsResult:
     @property
     @pulumi.getter
     def availables(self) -> Sequence[str]:
-        """
-        The Consul versions available on HCP.
-        """
         return pulumi.get(self, "availables")
 
     @property
@@ -52,17 +49,11 @@ class GetConsulVersionsResult:
     @property
     @pulumi.getter
     def previews(self) -> Sequence[str]:
-        """
-        The preview versions of Consul available on HCP.
-        """
         return pulumi.get(self, "previews")
 
     @property
     @pulumi.getter
     def recommended(self) -> str:
-        """
-        The recommended Consul version for HCP clusters.
-        """
         return pulumi.get(self, "recommended")
 
 

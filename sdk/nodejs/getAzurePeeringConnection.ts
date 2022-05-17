@@ -39,13 +39,7 @@ export function getAzurePeeringConnection(args: GetAzurePeeringConnectionArgs, o
  * A collection of arguments for invoking getAzurePeeringConnection.
  */
 export interface GetAzurePeeringConnectionArgs {
-    /**
-     * The `selfLink` of the HashiCorp Virtual Network (HVN).
-     */
     hvnLink: string;
-    /**
-     * The ID of the peering connection.
-     */
     peeringId: string;
     waitForActiveState?: boolean;
 }
@@ -54,65 +48,23 @@ export interface GetAzurePeeringConnectionArgs {
  * A collection of values returned by getAzurePeeringConnection.
  */
 export interface GetAzurePeeringConnectionResult {
-    /**
-     * The ID of the Azure application whose credentials are used to peer the HCP HVN's underlying VNet with the customer VNet.
-     */
     readonly applicationId: string;
-    /**
-     * The peering connection ID used by Azure.
-     */
     readonly azurePeeringId: string;
-    /**
-     * The time that the peering connection was created.
-     */
     readonly createdAt: string;
-    /**
-     * The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
-     */
     readonly expiresAt: string;
-    /**
-     * The `selfLink` of the HashiCorp Virtual Network (HVN).
-     */
     readonly hvnLink: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * The ID of the HCP organization where the peering connection is located. Always matches the HVN's organization.
-     */
     readonly organizationId: string;
-    /**
-     * The resource group name of the peer VNet in Azure.
-     */
     readonly peerResourceGroupName: string;
-    /**
-     * The subscription ID of the peer VNet in Azure.
-     */
     readonly peerSubscriptionId: string;
-    /**
-     * The tenant ID of the peer VNet in Azure.
-     */
     readonly peerTenantId: string;
-    /**
-     * The name of the peer VNet in Azure.
-     */
     readonly peerVnetName: string;
-    /**
-     * The region of the peer VNet in Azure.
-     */
     readonly peerVnetRegion: string;
-    /**
-     * The ID of the peering connection.
-     */
     readonly peeringId: string;
-    /**
-     * The ID of the HCP project where the peering connection is located. Always matches the HVN's project.
-     */
     readonly projectId: string;
-    /**
-     * A unique URL identifying the peering connection
-     */
     readonly selfLink: string;
     readonly waitForActiveState?: boolean;
 }
@@ -125,13 +77,7 @@ export function getAzurePeeringConnectionOutput(args: GetAzurePeeringConnectionO
  * A collection of arguments for invoking getAzurePeeringConnection.
  */
 export interface GetAzurePeeringConnectionOutputArgs {
-    /**
-     * The `selfLink` of the HashiCorp Virtual Network (HVN).
-     */
     hvnLink: pulumi.Input<string>;
-    /**
-     * The ID of the peering connection.
-     */
     peeringId: pulumi.Input<string>;
     waitForActiveState?: pulumi.Input<boolean>;
 }

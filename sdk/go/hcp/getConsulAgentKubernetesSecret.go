@@ -47,17 +47,14 @@ func GetConsulAgentKubernetesSecret(ctx *pulumi.Context, args *GetConsulAgentKub
 
 // A collection of arguments for invoking getConsulAgentKubernetesSecret.
 type GetConsulAgentKubernetesSecretArgs struct {
-	// The ID of the HCP Consul cluster.
 	ClusterId string `pulumi:"clusterId"`
 }
 
 // A collection of values returned by getConsulAgentKubernetesSecret.
 type GetConsulAgentKubernetesSecretResult struct {
-	// The ID of the HCP Consul cluster.
 	ClusterId string `pulumi:"clusterId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// The Consul agent configuration in the format of a Kubernetes secret (YAML).
+	Id     string `pulumi:"id"`
 	Secret string `pulumi:"secret"`
 }
 
@@ -72,7 +69,6 @@ func GetConsulAgentKubernetesSecretOutput(ctx *pulumi.Context, args GetConsulAge
 
 // A collection of arguments for invoking getConsulAgentKubernetesSecret.
 type GetConsulAgentKubernetesSecretOutputArgs struct {
-	// The ID of the HCP Consul cluster.
 	ClusterId pulumi.StringInput `pulumi:"clusterId"`
 }
 
@@ -95,7 +91,6 @@ func (o GetConsulAgentKubernetesSecretResultOutput) ToGetConsulAgentKubernetesSe
 	return o
 }
 
-// The ID of the HCP Consul cluster.
 func (o GetConsulAgentKubernetesSecretResultOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetConsulAgentKubernetesSecretResult) string { return v.ClusterId }).(pulumi.StringOutput)
 }
@@ -105,7 +100,6 @@ func (o GetConsulAgentKubernetesSecretResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetConsulAgentKubernetesSecretResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The Consul agent configuration in the format of a Kubernetes secret (YAML).
 func (o GetConsulAgentKubernetesSecretResultOutput) Secret() pulumi.StringOutput {
 	return o.ApplyT(func(v GetConsulAgentKubernetesSecretResult) string { return v.Secret }).(pulumi.StringOutput)
 }

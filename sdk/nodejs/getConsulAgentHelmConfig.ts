@@ -36,17 +36,8 @@ export function getConsulAgentHelmConfig(args: GetConsulAgentHelmConfigArgs, opt
  * A collection of arguments for invoking getConsulAgentHelmConfig.
  */
 export interface GetConsulAgentHelmConfigArgs {
-    /**
-     * The ID of the HCP Consul cluster.
-     */
     clusterId: string;
-    /**
-     * Denotes that the gossip ports should be exposed.
-     */
     exposeGossipPorts?: boolean;
-    /**
-     * The FQDN for the Kubernetes API.
-     */
     kubernetesEndpoint: string;
 }
 
@@ -54,25 +45,13 @@ export interface GetConsulAgentHelmConfigArgs {
  * A collection of values returned by getConsulAgentHelmConfig.
  */
 export interface GetConsulAgentHelmConfigResult {
-    /**
-     * The ID of the HCP Consul cluster.
-     */
     readonly clusterId: string;
-    /**
-     * The agent Helm config.
-     */
     readonly config: string;
-    /**
-     * Denotes that the gossip ports should be exposed.
-     */
     readonly exposeGossipPorts?: boolean;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * The FQDN for the Kubernetes API.
-     */
     readonly kubernetesEndpoint: string;
 }
 
@@ -84,16 +63,7 @@ export function getConsulAgentHelmConfigOutput(args: GetConsulAgentHelmConfigOut
  * A collection of arguments for invoking getConsulAgentHelmConfig.
  */
 export interface GetConsulAgentHelmConfigOutputArgs {
-    /**
-     * The ID of the HCP Consul cluster.
-     */
     clusterId: pulumi.Input<string>;
-    /**
-     * Denotes that the gossip ports should be exposed.
-     */
     exposeGossipPorts?: pulumi.Input<boolean>;
-    /**
-     * The FQDN for the Kubernetes API.
-     */
     kubernetesEndpoint: pulumi.Input<string>;
 }

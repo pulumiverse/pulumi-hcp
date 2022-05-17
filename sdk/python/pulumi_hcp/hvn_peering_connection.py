@@ -62,7 +62,8 @@ class _HvnPeeringConnectionState:
         """
         Input properties used for looking up and filtering HvnPeeringConnection resources.
         :param pulumi.Input[str] created_at: The time that the peering connection was created.
-        :param pulumi.Input[str] expires_at: The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
+        :param pulumi.Input[str] expires_at: The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or
+               `ACTIVE` state.
         :param pulumi.Input[str] hvn1: The unique URL of one of the HVNs being peered.
         :param pulumi.Input[str] hvn2: The unique URL of one of the HVNs being peered.
         :param pulumi.Input[str] organization_id: The ID of the HCP organization where the peering connection is located. Always matches the HVNs' organization.
@@ -103,7 +104,8 @@ class _HvnPeeringConnectionState:
     @pulumi.getter(name="expiresAt")
     def expires_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
+        The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or
+        `ACTIVE` state.
         """
         return pulumi.get(self, "expires_at")
 
@@ -336,7 +338,8 @@ class HvnPeeringConnection(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] created_at: The time that the peering connection was created.
-        :param pulumi.Input[str] expires_at: The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
+        :param pulumi.Input[str] expires_at: The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or
+               `ACTIVE` state.
         :param pulumi.Input[str] hvn1: The unique URL of one of the HVNs being peered.
         :param pulumi.Input[str] hvn2: The unique URL of one of the HVNs being peered.
         :param pulumi.Input[str] organization_id: The ID of the HCP organization where the peering connection is located. Always matches the HVNs' organization.
@@ -370,7 +373,8 @@ class HvnPeeringConnection(pulumi.CustomResource):
     @pulumi.getter(name="expiresAt")
     def expires_at(self) -> pulumi.Output[str]:
         """
-        The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
+        The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or
+        `ACTIVE` state.
         """
         return pulumi.get(self, "expires_at")
 

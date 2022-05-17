@@ -25,6 +25,8 @@ import * as utilities from "./utilities";
  * }));
  * export const packer_registry_ubuntu = foo.then(foo => foo.cloudImageId);
  * ```
+ *
+ * > **Note:** This data source only returns the first found image's metadata filtered by the given schema values, from the returned list of images associated with the specified iteration. Therefore, if multiple images exist in the same region, it will only pick one of them. If that's the case, you may consider separating your builds into different buckets.
  */
 export function getPackerImage(args: GetPackerImageArgs, opts?: pulumi.InvokeOptions): Promise<GetPackerImageResult> {
     if (!opts) {
@@ -44,21 +46,9 @@ export function getPackerImage(args: GetPackerImageArgs, opts?: pulumi.InvokeOpt
  * A collection of arguments for invoking getPackerImage.
  */
 export interface GetPackerImageArgs {
-    /**
-     * The slug of the HCP Packer Registry image bucket to pull from.
-     */
     bucketName: string;
-    /**
-     * Name of the cloud provider this image is stored-in.
-     */
     cloudProvider: string;
-    /**
-     * HCP ID of this image.
-     */
     iterationId: string;
-    /**
-     * Region this image is stored in, if any.
-     */
     region: string;
 }
 
@@ -66,57 +56,21 @@ export interface GetPackerImageArgs {
  * A collection of values returned by getPackerImage.
  */
 export interface GetPackerImageResult {
-    /**
-     * The slug of the HCP Packer Registry image bucket to pull from.
-     */
     readonly bucketName: string;
-    /**
-     * HCP ID of this build.
-     */
     readonly buildId: string;
-    /**
-     * Cloud Image ID or URL string identifying this image for the builder that built it.
-     */
     readonly cloudImageId: string;
-    /**
-     * Name of the cloud provider this image is stored-in.
-     */
     readonly cloudProvider: string;
-    /**
-     * Name of the builder that built this. Ex: 'amazon-ebs.example'
-     */
     readonly componentType: string;
-    /**
-     * Creation time of this build.
-     */
     readonly createdAt: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * HCP ID of this image.
-     */
     readonly iterationId: string;
-    /**
-     * Labels associated with this build.
-     */
     readonly labels: {[key: string]: any};
-    /**
-     * The ID of the organization this HCP Packer registry is located in.
-     */
     readonly organizationId: string;
-    /**
-     * UUID of this build.
-     */
     readonly packerRunUuid: string;
-    /**
-     * The ID of the project this HCP Packer registry is located in.
-     */
     readonly projectId: string;
-    /**
-     * Region this image is stored in, if any.
-     */
     readonly region: string;
 }
 
@@ -128,20 +82,8 @@ export function getPackerImageOutput(args: GetPackerImageOutputArgs, opts?: pulu
  * A collection of arguments for invoking getPackerImage.
  */
 export interface GetPackerImageOutputArgs {
-    /**
-     * The slug of the HCP Packer Registry image bucket to pull from.
-     */
     bucketName: pulumi.Input<string>;
-    /**
-     * Name of the cloud provider this image is stored-in.
-     */
     cloudProvider: pulumi.Input<string>;
-    /**
-     * HCP ID of this image.
-     */
     iterationId: pulumi.Input<string>;
-    /**
-     * Region this image is stored in, if any.
-     */
     region: pulumi.Input<string>;
 }

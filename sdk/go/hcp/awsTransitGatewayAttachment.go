@@ -113,7 +113,8 @@ type AwsTransitGatewayAttachment struct {
 
 	// The time that the transit gateway attachment was created.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The time after which the transit gateway attachment will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
+	// The time after which the transit gateway attachment will be considered expired if it hasn't transitioned into `ACCEPTED`
+	// or `ACTIVE` state.
 	ExpiresAt pulumi.StringOutput `pulumi:"expiresAt"`
 	// The ID of the HashiCorp Virtual Network (HVN).
 	HvnId pulumi.StringOutput `pulumi:"hvnId"`
@@ -183,7 +184,8 @@ func GetAwsTransitGatewayAttachment(ctx *pulumi.Context,
 type awsTransitGatewayAttachmentState struct {
 	// The time that the transit gateway attachment was created.
 	CreatedAt *string `pulumi:"createdAt"`
-	// The time after which the transit gateway attachment will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
+	// The time after which the transit gateway attachment will be considered expired if it hasn't transitioned into `ACCEPTED`
+	// or `ACTIVE` state.
 	ExpiresAt *string `pulumi:"expiresAt"`
 	// The ID of the HashiCorp Virtual Network (HVN).
 	HvnId *string `pulumi:"hvnId"`
@@ -212,7 +214,8 @@ type awsTransitGatewayAttachmentState struct {
 type AwsTransitGatewayAttachmentState struct {
 	// The time that the transit gateway attachment was created.
 	CreatedAt pulumi.StringPtrInput
-	// The time after which the transit gateway attachment will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
+	// The time after which the transit gateway attachment will be considered expired if it hasn't transitioned into `ACCEPTED`
+	// or `ACTIVE` state.
 	ExpiresAt pulumi.StringPtrInput
 	// The ID of the HashiCorp Virtual Network (HVN).
 	HvnId pulumi.StringPtrInput

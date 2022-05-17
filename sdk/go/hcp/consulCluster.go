@@ -57,13 +57,15 @@ import (
 type ConsulCluster struct {
 	pulumi.CustomResourceState
 
-	// Enables automatic HVN to HVN peering when creating a secondary cluster in a federation. The alternative to using the auto-accept feature is to create an `HvnPeeringConnection` resource that explicitly defines the HVN resources that are allowed to communicate with each other.
+	// Enables automatic HVN to HVN peering when creating a secondary cluster in a federation. The alternative to using the
+	// auto-accept feature is to create an [`hcp_hvn_peering_connection`](hvn_peering_connection.md) resource that explicitly
+	// defines the HVN resources that are allowed to communicate with each other.
 	AutoHvnToHvnPeering pulumi.BoolOutput `pulumi:"autoHvnToHvnPeering"`
 	// The provider where the HCP Consul cluster is located.
 	CloudProvider pulumi.StringOutput `pulumi:"cloudProvider"`
 	// The ID of the HCP Consul cluster.
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
-	// Denotes the Consul connect feature should be enabled for this cluster.  Default to true.
+	// Denotes the Consul connect feature should be enabled for this cluster. Default to true.
 	ConnectEnabled pulumi.BoolPtrOutput `pulumi:"connectEnabled"`
 	// Denotes that automatic Consul upgrades are enabled.
 	ConsulAutomaticUpgrades pulumi.BoolOutput `pulumi:"consulAutomaticUpgrades"`
@@ -73,11 +75,13 @@ type ConsulCluster struct {
 	ConsulConfigFile pulumi.StringOutput `pulumi:"consulConfigFile"`
 	// The private URL for the Consul UI.
 	ConsulPrivateEndpointUrl pulumi.StringOutput `pulumi:"consulPrivateEndpointUrl"`
-	// The public URL for the Consul UI. This will be empty if `publicEndpoint` is `false`.
+	// The public URL for the Consul UI. This will be empty if `public_endpoint` is `false`.
 	ConsulPublicEndpointUrl pulumi.StringOutput `pulumi:"consulPublicEndpointUrl"`
-	// The accessor ID of the root ACL token that is generated upon cluster creation. If a new root token is generated using the `hcpConsulRootToken` resource, this field is no longer valid.
+	// The accessor ID of the root ACL token that is generated upon cluster creation. If a new root token is generated using
+	// the `hcp_consul_root_token` resource, this field is no longer valid.
 	ConsulRootTokenAccessorId pulumi.StringOutput `pulumi:"consulRootTokenAccessorId"`
-	// The secret ID of the root ACL token that is generated upon cluster creation. If a new root token is generated using the `hcpConsulRootToken` resource, this field is no longer valid.
+	// The secret ID of the root ACL token that is generated upon cluster creation. If a new root token is generated using the
+	// `hcp_consul_root_token` resource, this field is no longer valid.
 	ConsulRootTokenSecretId pulumi.StringOutput `pulumi:"consulRootTokenSecretId"`
 	// The Consul snapshot interval.
 	ConsulSnapshotInterval pulumi.StringOutput `pulumi:"consulSnapshotInterval"`
@@ -85,15 +89,17 @@ type ConsulCluster struct {
 	ConsulSnapshotRetention pulumi.StringOutput `pulumi:"consulSnapshotRetention"`
 	// The Consul version of the cluster.
 	ConsulVersion pulumi.StringOutput `pulumi:"consulVersion"`
-	// The Consul data center name of the cluster. If not specified, it is defaulted to the value of `clusterId`.
+	// The Consul data center name of the cluster. If not specified, it is defaulted to the value of `cluster_id`.
 	Datacenter pulumi.StringOutput `pulumi:"datacenter"`
 	// The ID of the HVN this HCP Consul cluster is associated to.
 	HvnId pulumi.StringOutput `pulumi:"hvnId"`
-	// The minimum Consul version of the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
+	// The minimum Consul version of the cluster. If not specified, it is defaulted to the version that is currently
+	// recommended by HCP.
 	MinConsulVersion pulumi.StringPtrOutput `pulumi:"minConsulVersion"`
 	// The ID of the organization this HCP Consul cluster is located in.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The `selfLink` of the HCP Consul cluster which is the primary in the federation setup with this HCP Consul cluster. If not specified, it is a standalone cluster.
+	// The `self_link` of the HCP Consul cluster which is the primary in the federation setup with this HCP Consul cluster. If
+	// not specified, it is a standalone cluster.
 	PrimaryLink pulumi.StringPtrOutput `pulumi:"primaryLink"`
 	// The ID of the project this HCP Consul cluster is located in.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -105,9 +111,12 @@ type ConsulCluster struct {
 	Scale pulumi.IntOutput `pulumi:"scale"`
 	// A unique URL identifying the HCP Consul cluster.
 	SelfLink pulumi.StringOutput `pulumi:"selfLink"`
-	// The t-shirt size representation of each server VM that this Consul cluster is provisioned with. Valid option for development tier - `xSmall`. Valid options for other tiers - `small`, `medium`, `large`. For more details - https://cloud.hashicorp.com/pricing/consul. Upgrading the size of a cluster after creation is allowed.
+	// The t-shirt size representation of each server VM that this Consul cluster is provisioned with. Valid option for
+	// development tier - `x_small`. Valid options for other tiers - `small`, `medium`, `large`. For more details -
+	// https://cloud.hashicorp.com/pricing/consul. Upgrading the size of a cluster after creation is allowed.
 	Size pulumi.StringOutput `pulumi:"size"`
-	// The tier that the HCP Consul cluster will be provisioned as.  Only `development`, `standard` and `plus` are available at this time. See [pricing information](https://cloud.hashicorp.com/pricing/consul).
+	// The tier that the HCP Consul cluster will be provisioned as. Only `development`, `standard` and `plus` are available at
+	// this time. See [pricing information](https://cloud.hashicorp.com/pricing/consul).
 	Tier pulumi.StringOutput `pulumi:"tier"`
 }
 
@@ -150,13 +159,15 @@ func GetConsulCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ConsulCluster resources.
 type consulClusterState struct {
-	// Enables automatic HVN to HVN peering when creating a secondary cluster in a federation. The alternative to using the auto-accept feature is to create an `HvnPeeringConnection` resource that explicitly defines the HVN resources that are allowed to communicate with each other.
+	// Enables automatic HVN to HVN peering when creating a secondary cluster in a federation. The alternative to using the
+	// auto-accept feature is to create an [`hcp_hvn_peering_connection`](hvn_peering_connection.md) resource that explicitly
+	// defines the HVN resources that are allowed to communicate with each other.
 	AutoHvnToHvnPeering *bool `pulumi:"autoHvnToHvnPeering"`
 	// The provider where the HCP Consul cluster is located.
 	CloudProvider *string `pulumi:"cloudProvider"`
 	// The ID of the HCP Consul cluster.
 	ClusterId *string `pulumi:"clusterId"`
-	// Denotes the Consul connect feature should be enabled for this cluster.  Default to true.
+	// Denotes the Consul connect feature should be enabled for this cluster. Default to true.
 	ConnectEnabled *bool `pulumi:"connectEnabled"`
 	// Denotes that automatic Consul upgrades are enabled.
 	ConsulAutomaticUpgrades *bool `pulumi:"consulAutomaticUpgrades"`
@@ -166,11 +177,13 @@ type consulClusterState struct {
 	ConsulConfigFile *string `pulumi:"consulConfigFile"`
 	// The private URL for the Consul UI.
 	ConsulPrivateEndpointUrl *string `pulumi:"consulPrivateEndpointUrl"`
-	// The public URL for the Consul UI. This will be empty if `publicEndpoint` is `false`.
+	// The public URL for the Consul UI. This will be empty if `public_endpoint` is `false`.
 	ConsulPublicEndpointUrl *string `pulumi:"consulPublicEndpointUrl"`
-	// The accessor ID of the root ACL token that is generated upon cluster creation. If a new root token is generated using the `hcpConsulRootToken` resource, this field is no longer valid.
+	// The accessor ID of the root ACL token that is generated upon cluster creation. If a new root token is generated using
+	// the `hcp_consul_root_token` resource, this field is no longer valid.
 	ConsulRootTokenAccessorId *string `pulumi:"consulRootTokenAccessorId"`
-	// The secret ID of the root ACL token that is generated upon cluster creation. If a new root token is generated using the `hcpConsulRootToken` resource, this field is no longer valid.
+	// The secret ID of the root ACL token that is generated upon cluster creation. If a new root token is generated using the
+	// `hcp_consul_root_token` resource, this field is no longer valid.
 	ConsulRootTokenSecretId *string `pulumi:"consulRootTokenSecretId"`
 	// The Consul snapshot interval.
 	ConsulSnapshotInterval *string `pulumi:"consulSnapshotInterval"`
@@ -178,15 +191,17 @@ type consulClusterState struct {
 	ConsulSnapshotRetention *string `pulumi:"consulSnapshotRetention"`
 	// The Consul version of the cluster.
 	ConsulVersion *string `pulumi:"consulVersion"`
-	// The Consul data center name of the cluster. If not specified, it is defaulted to the value of `clusterId`.
+	// The Consul data center name of the cluster. If not specified, it is defaulted to the value of `cluster_id`.
 	Datacenter *string `pulumi:"datacenter"`
 	// The ID of the HVN this HCP Consul cluster is associated to.
 	HvnId *string `pulumi:"hvnId"`
-	// The minimum Consul version of the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
+	// The minimum Consul version of the cluster. If not specified, it is defaulted to the version that is currently
+	// recommended by HCP.
 	MinConsulVersion *string `pulumi:"minConsulVersion"`
 	// The ID of the organization this HCP Consul cluster is located in.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The `selfLink` of the HCP Consul cluster which is the primary in the federation setup with this HCP Consul cluster. If not specified, it is a standalone cluster.
+	// The `self_link` of the HCP Consul cluster which is the primary in the federation setup with this HCP Consul cluster. If
+	// not specified, it is a standalone cluster.
 	PrimaryLink *string `pulumi:"primaryLink"`
 	// The ID of the project this HCP Consul cluster is located in.
 	ProjectId *string `pulumi:"projectId"`
@@ -198,20 +213,25 @@ type consulClusterState struct {
 	Scale *int `pulumi:"scale"`
 	// A unique URL identifying the HCP Consul cluster.
 	SelfLink *string `pulumi:"selfLink"`
-	// The t-shirt size representation of each server VM that this Consul cluster is provisioned with. Valid option for development tier - `xSmall`. Valid options for other tiers - `small`, `medium`, `large`. For more details - https://cloud.hashicorp.com/pricing/consul. Upgrading the size of a cluster after creation is allowed.
+	// The t-shirt size representation of each server VM that this Consul cluster is provisioned with. Valid option for
+	// development tier - `x_small`. Valid options for other tiers - `small`, `medium`, `large`. For more details -
+	// https://cloud.hashicorp.com/pricing/consul. Upgrading the size of a cluster after creation is allowed.
 	Size *string `pulumi:"size"`
-	// The tier that the HCP Consul cluster will be provisioned as.  Only `development`, `standard` and `plus` are available at this time. See [pricing information](https://cloud.hashicorp.com/pricing/consul).
+	// The tier that the HCP Consul cluster will be provisioned as. Only `development`, `standard` and `plus` are available at
+	// this time. See [pricing information](https://cloud.hashicorp.com/pricing/consul).
 	Tier *string `pulumi:"tier"`
 }
 
 type ConsulClusterState struct {
-	// Enables automatic HVN to HVN peering when creating a secondary cluster in a federation. The alternative to using the auto-accept feature is to create an `HvnPeeringConnection` resource that explicitly defines the HVN resources that are allowed to communicate with each other.
+	// Enables automatic HVN to HVN peering when creating a secondary cluster in a federation. The alternative to using the
+	// auto-accept feature is to create an [`hcp_hvn_peering_connection`](hvn_peering_connection.md) resource that explicitly
+	// defines the HVN resources that are allowed to communicate with each other.
 	AutoHvnToHvnPeering pulumi.BoolPtrInput
 	// The provider where the HCP Consul cluster is located.
 	CloudProvider pulumi.StringPtrInput
 	// The ID of the HCP Consul cluster.
 	ClusterId pulumi.StringPtrInput
-	// Denotes the Consul connect feature should be enabled for this cluster.  Default to true.
+	// Denotes the Consul connect feature should be enabled for this cluster. Default to true.
 	ConnectEnabled pulumi.BoolPtrInput
 	// Denotes that automatic Consul upgrades are enabled.
 	ConsulAutomaticUpgrades pulumi.BoolPtrInput
@@ -221,11 +241,13 @@ type ConsulClusterState struct {
 	ConsulConfigFile pulumi.StringPtrInput
 	// The private URL for the Consul UI.
 	ConsulPrivateEndpointUrl pulumi.StringPtrInput
-	// The public URL for the Consul UI. This will be empty if `publicEndpoint` is `false`.
+	// The public URL for the Consul UI. This will be empty if `public_endpoint` is `false`.
 	ConsulPublicEndpointUrl pulumi.StringPtrInput
-	// The accessor ID of the root ACL token that is generated upon cluster creation. If a new root token is generated using the `hcpConsulRootToken` resource, this field is no longer valid.
+	// The accessor ID of the root ACL token that is generated upon cluster creation. If a new root token is generated using
+	// the `hcp_consul_root_token` resource, this field is no longer valid.
 	ConsulRootTokenAccessorId pulumi.StringPtrInput
-	// The secret ID of the root ACL token that is generated upon cluster creation. If a new root token is generated using the `hcpConsulRootToken` resource, this field is no longer valid.
+	// The secret ID of the root ACL token that is generated upon cluster creation. If a new root token is generated using the
+	// `hcp_consul_root_token` resource, this field is no longer valid.
 	ConsulRootTokenSecretId pulumi.StringPtrInput
 	// The Consul snapshot interval.
 	ConsulSnapshotInterval pulumi.StringPtrInput
@@ -233,15 +255,17 @@ type ConsulClusterState struct {
 	ConsulSnapshotRetention pulumi.StringPtrInput
 	// The Consul version of the cluster.
 	ConsulVersion pulumi.StringPtrInput
-	// The Consul data center name of the cluster. If not specified, it is defaulted to the value of `clusterId`.
+	// The Consul data center name of the cluster. If not specified, it is defaulted to the value of `cluster_id`.
 	Datacenter pulumi.StringPtrInput
 	// The ID of the HVN this HCP Consul cluster is associated to.
 	HvnId pulumi.StringPtrInput
-	// The minimum Consul version of the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
+	// The minimum Consul version of the cluster. If not specified, it is defaulted to the version that is currently
+	// recommended by HCP.
 	MinConsulVersion pulumi.StringPtrInput
 	// The ID of the organization this HCP Consul cluster is located in.
 	OrganizationId pulumi.StringPtrInput
-	// The `selfLink` of the HCP Consul cluster which is the primary in the federation setup with this HCP Consul cluster. If not specified, it is a standalone cluster.
+	// The `self_link` of the HCP Consul cluster which is the primary in the federation setup with this HCP Consul cluster. If
+	// not specified, it is a standalone cluster.
 	PrimaryLink pulumi.StringPtrInput
 	// The ID of the project this HCP Consul cluster is located in.
 	ProjectId pulumi.StringPtrInput
@@ -253,9 +277,12 @@ type ConsulClusterState struct {
 	Scale pulumi.IntPtrInput
 	// A unique URL identifying the HCP Consul cluster.
 	SelfLink pulumi.StringPtrInput
-	// The t-shirt size representation of each server VM that this Consul cluster is provisioned with. Valid option for development tier - `xSmall`. Valid options for other tiers - `small`, `medium`, `large`. For more details - https://cloud.hashicorp.com/pricing/consul. Upgrading the size of a cluster after creation is allowed.
+	// The t-shirt size representation of each server VM that this Consul cluster is provisioned with. Valid option for
+	// development tier - `x_small`. Valid options for other tiers - `small`, `medium`, `large`. For more details -
+	// https://cloud.hashicorp.com/pricing/consul. Upgrading the size of a cluster after creation is allowed.
 	Size pulumi.StringPtrInput
-	// The tier that the HCP Consul cluster will be provisioned as.  Only `development`, `standard` and `plus` are available at this time. See [pricing information](https://cloud.hashicorp.com/pricing/consul).
+	// The tier that the HCP Consul cluster will be provisioned as. Only `development`, `standard` and `plus` are available at
+	// this time. See [pricing information](https://cloud.hashicorp.com/pricing/consul).
 	Tier pulumi.StringPtrInput
 }
 
@@ -264,49 +291,63 @@ func (ConsulClusterState) ElementType() reflect.Type {
 }
 
 type consulClusterArgs struct {
-	// Enables automatic HVN to HVN peering when creating a secondary cluster in a federation. The alternative to using the auto-accept feature is to create an `HvnPeeringConnection` resource that explicitly defines the HVN resources that are allowed to communicate with each other.
+	// Enables automatic HVN to HVN peering when creating a secondary cluster in a federation. The alternative to using the
+	// auto-accept feature is to create an [`hcp_hvn_peering_connection`](hvn_peering_connection.md) resource that explicitly
+	// defines the HVN resources that are allowed to communicate with each other.
 	AutoHvnToHvnPeering *bool `pulumi:"autoHvnToHvnPeering"`
 	// The ID of the HCP Consul cluster.
 	ClusterId string `pulumi:"clusterId"`
-	// Denotes the Consul connect feature should be enabled for this cluster.  Default to true.
+	// Denotes the Consul connect feature should be enabled for this cluster. Default to true.
 	ConnectEnabled *bool `pulumi:"connectEnabled"`
-	// The Consul data center name of the cluster. If not specified, it is defaulted to the value of `clusterId`.
+	// The Consul data center name of the cluster. If not specified, it is defaulted to the value of `cluster_id`.
 	Datacenter *string `pulumi:"datacenter"`
 	// The ID of the HVN this HCP Consul cluster is associated to.
 	HvnId string `pulumi:"hvnId"`
-	// The minimum Consul version of the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
+	// The minimum Consul version of the cluster. If not specified, it is defaulted to the version that is currently
+	// recommended by HCP.
 	MinConsulVersion *string `pulumi:"minConsulVersion"`
-	// The `selfLink` of the HCP Consul cluster which is the primary in the federation setup with this HCP Consul cluster. If not specified, it is a standalone cluster.
+	// The `self_link` of the HCP Consul cluster which is the primary in the federation setup with this HCP Consul cluster. If
+	// not specified, it is a standalone cluster.
 	PrimaryLink *string `pulumi:"primaryLink"`
 	// Denotes that the cluster has a public endpoint for the Consul UI. Defaults to false.
 	PublicEndpoint *bool `pulumi:"publicEndpoint"`
-	// The t-shirt size representation of each server VM that this Consul cluster is provisioned with. Valid option for development tier - `xSmall`. Valid options for other tiers - `small`, `medium`, `large`. For more details - https://cloud.hashicorp.com/pricing/consul. Upgrading the size of a cluster after creation is allowed.
+	// The t-shirt size representation of each server VM that this Consul cluster is provisioned with. Valid option for
+	// development tier - `x_small`. Valid options for other tiers - `small`, `medium`, `large`. For more details -
+	// https://cloud.hashicorp.com/pricing/consul. Upgrading the size of a cluster after creation is allowed.
 	Size *string `pulumi:"size"`
-	// The tier that the HCP Consul cluster will be provisioned as.  Only `development`, `standard` and `plus` are available at this time. See [pricing information](https://cloud.hashicorp.com/pricing/consul).
+	// The tier that the HCP Consul cluster will be provisioned as. Only `development`, `standard` and `plus` are available at
+	// this time. See [pricing information](https://cloud.hashicorp.com/pricing/consul).
 	Tier string `pulumi:"tier"`
 }
 
 // The set of arguments for constructing a ConsulCluster resource.
 type ConsulClusterArgs struct {
-	// Enables automatic HVN to HVN peering when creating a secondary cluster in a federation. The alternative to using the auto-accept feature is to create an `HvnPeeringConnection` resource that explicitly defines the HVN resources that are allowed to communicate with each other.
+	// Enables automatic HVN to HVN peering when creating a secondary cluster in a federation. The alternative to using the
+	// auto-accept feature is to create an [`hcp_hvn_peering_connection`](hvn_peering_connection.md) resource that explicitly
+	// defines the HVN resources that are allowed to communicate with each other.
 	AutoHvnToHvnPeering pulumi.BoolPtrInput
 	// The ID of the HCP Consul cluster.
 	ClusterId pulumi.StringInput
-	// Denotes the Consul connect feature should be enabled for this cluster.  Default to true.
+	// Denotes the Consul connect feature should be enabled for this cluster. Default to true.
 	ConnectEnabled pulumi.BoolPtrInput
-	// The Consul data center name of the cluster. If not specified, it is defaulted to the value of `clusterId`.
+	// The Consul data center name of the cluster. If not specified, it is defaulted to the value of `cluster_id`.
 	Datacenter pulumi.StringPtrInput
 	// The ID of the HVN this HCP Consul cluster is associated to.
 	HvnId pulumi.StringInput
-	// The minimum Consul version of the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
+	// The minimum Consul version of the cluster. If not specified, it is defaulted to the version that is currently
+	// recommended by HCP.
 	MinConsulVersion pulumi.StringPtrInput
-	// The `selfLink` of the HCP Consul cluster which is the primary in the federation setup with this HCP Consul cluster. If not specified, it is a standalone cluster.
+	// The `self_link` of the HCP Consul cluster which is the primary in the federation setup with this HCP Consul cluster. If
+	// not specified, it is a standalone cluster.
 	PrimaryLink pulumi.StringPtrInput
 	// Denotes that the cluster has a public endpoint for the Consul UI. Defaults to false.
 	PublicEndpoint pulumi.BoolPtrInput
-	// The t-shirt size representation of each server VM that this Consul cluster is provisioned with. Valid option for development tier - `xSmall`. Valid options for other tiers - `small`, `medium`, `large`. For more details - https://cloud.hashicorp.com/pricing/consul. Upgrading the size of a cluster after creation is allowed.
+	// The t-shirt size representation of each server VM that this Consul cluster is provisioned with. Valid option for
+	// development tier - `x_small`. Valid options for other tiers - `small`, `medium`, `large`. For more details -
+	// https://cloud.hashicorp.com/pricing/consul. Upgrading the size of a cluster after creation is allowed.
 	Size pulumi.StringPtrInput
-	// The tier that the HCP Consul cluster will be provisioned as.  Only `development`, `standard` and `plus` are available at this time. See [pricing information](https://cloud.hashicorp.com/pricing/consul).
+	// The tier that the HCP Consul cluster will be provisioned as. Only `development`, `standard` and `plus` are available at
+	// this time. See [pricing information](https://cloud.hashicorp.com/pricing/consul).
 	Tier pulumi.StringInput
 }
 

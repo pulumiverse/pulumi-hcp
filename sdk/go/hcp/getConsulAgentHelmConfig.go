@@ -48,25 +48,18 @@ func GetConsulAgentHelmConfig(ctx *pulumi.Context, args *GetConsulAgentHelmConfi
 
 // A collection of arguments for invoking getConsulAgentHelmConfig.
 type GetConsulAgentHelmConfigArgs struct {
-	// The ID of the HCP Consul cluster.
-	ClusterId string `pulumi:"clusterId"`
-	// Denotes that the gossip ports should be exposed.
-	ExposeGossipPorts *bool `pulumi:"exposeGossipPorts"`
-	// The FQDN for the Kubernetes API.
+	ClusterId          string `pulumi:"clusterId"`
+	ExposeGossipPorts  *bool  `pulumi:"exposeGossipPorts"`
 	KubernetesEndpoint string `pulumi:"kubernetesEndpoint"`
 }
 
 // A collection of values returned by getConsulAgentHelmConfig.
 type GetConsulAgentHelmConfigResult struct {
-	// The ID of the HCP Consul cluster.
-	ClusterId string `pulumi:"clusterId"`
-	// The agent Helm config.
-	Config string `pulumi:"config"`
-	// Denotes that the gossip ports should be exposed.
-	ExposeGossipPorts *bool `pulumi:"exposeGossipPorts"`
+	ClusterId         string `pulumi:"clusterId"`
+	Config            string `pulumi:"config"`
+	ExposeGossipPorts *bool  `pulumi:"exposeGossipPorts"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// The FQDN for the Kubernetes API.
+	Id                 string `pulumi:"id"`
 	KubernetesEndpoint string `pulumi:"kubernetesEndpoint"`
 }
 
@@ -81,12 +74,9 @@ func GetConsulAgentHelmConfigOutput(ctx *pulumi.Context, args GetConsulAgentHelm
 
 // A collection of arguments for invoking getConsulAgentHelmConfig.
 type GetConsulAgentHelmConfigOutputArgs struct {
-	// The ID of the HCP Consul cluster.
-	ClusterId pulumi.StringInput `pulumi:"clusterId"`
-	// Denotes that the gossip ports should be exposed.
-	ExposeGossipPorts pulumi.BoolPtrInput `pulumi:"exposeGossipPorts"`
-	// The FQDN for the Kubernetes API.
-	KubernetesEndpoint pulumi.StringInput `pulumi:"kubernetesEndpoint"`
+	ClusterId          pulumi.StringInput  `pulumi:"clusterId"`
+	ExposeGossipPorts  pulumi.BoolPtrInput `pulumi:"exposeGossipPorts"`
+	KubernetesEndpoint pulumi.StringInput  `pulumi:"kubernetesEndpoint"`
 }
 
 func (GetConsulAgentHelmConfigOutputArgs) ElementType() reflect.Type {
@@ -108,17 +98,14 @@ func (o GetConsulAgentHelmConfigResultOutput) ToGetConsulAgentHelmConfigResultOu
 	return o
 }
 
-// The ID of the HCP Consul cluster.
 func (o GetConsulAgentHelmConfigResultOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetConsulAgentHelmConfigResult) string { return v.ClusterId }).(pulumi.StringOutput)
 }
 
-// The agent Helm config.
 func (o GetConsulAgentHelmConfigResultOutput) Config() pulumi.StringOutput {
 	return o.ApplyT(func(v GetConsulAgentHelmConfigResult) string { return v.Config }).(pulumi.StringOutput)
 }
 
-// Denotes that the gossip ports should be exposed.
 func (o GetConsulAgentHelmConfigResultOutput) ExposeGossipPorts() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetConsulAgentHelmConfigResult) *bool { return v.ExposeGossipPorts }).(pulumi.BoolPtrOutput)
 }
@@ -128,7 +115,6 @@ func (o GetConsulAgentHelmConfigResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetConsulAgentHelmConfigResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The FQDN for the Kubernetes API.
 func (o GetConsulAgentHelmConfigResultOutput) KubernetesEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetConsulAgentHelmConfigResult) string { return v.KubernetesEndpoint }).(pulumi.StringOutput)
 }
