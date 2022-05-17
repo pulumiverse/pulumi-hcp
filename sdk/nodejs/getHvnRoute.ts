@@ -35,13 +35,7 @@ export function getHvnRoute(args: GetHvnRouteArgs, opts?: pulumi.InvokeOptions):
  * A collection of arguments for invoking getHvnRoute.
  */
 export interface GetHvnRouteArgs {
-    /**
-     * The `selfLink` of the HashiCorp Virtual Network (HVN).
-     */
     hvnLink: string;
-    /**
-     * The ID of the HVN route.
-     */
     hvnRouteId: string;
 }
 
@@ -49,37 +43,16 @@ export interface GetHvnRouteArgs {
  * A collection of values returned by getHvnRoute.
  */
 export interface GetHvnRouteResult {
-    /**
-     * The time that the HVN route was created.
-     */
     readonly createdAt: string;
-    /**
-     * The destination CIDR of the HVN route.
-     */
     readonly destinationCidr: string;
-    /**
-     * The `selfLink` of the HashiCorp Virtual Network (HVN).
-     */
     readonly hvnLink: string;
-    /**
-     * The ID of the HVN route.
-     */
     readonly hvnRouteId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * A unique URL identifying the HVN route.
-     */
     readonly selfLink: string;
-    /**
-     * The state of the HVN route.
-     */
     readonly state: string;
-    /**
-     * A unique URL identifying the target of the HVN route.
-     */
     readonly targetLink: string;
 }
 
@@ -91,12 +64,6 @@ export function getHvnRouteOutput(args: GetHvnRouteOutputArgs, opts?: pulumi.Inv
  * A collection of arguments for invoking getHvnRoute.
  */
 export interface GetHvnRouteOutputArgs {
-    /**
-     * The `selfLink` of the HashiCorp Virtual Network (HVN).
-     */
     hvnLink: pulumi.Input<string>;
-    /**
-     * The ID of the HVN route.
-     */
     hvnRouteId: pulumi.Input<string>;
 }

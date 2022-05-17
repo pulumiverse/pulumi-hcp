@@ -22,7 +22,8 @@ class HvnRouteArgs:
         :param pulumi.Input[str] destination_cidr: The destination CIDR of the HVN route.
         :param pulumi.Input[str] hvn_link: The `self_link` of the HashiCorp Virtual Network (HVN).
         :param pulumi.Input[str] hvn_route_id: The ID of the HVN route.
-        :param pulumi.Input[str] target_link: A unique URL identifying the target of the HVN route. Examples of the target: `aws_network_peering`, `aws_transit_gateway_attachment`
+        :param pulumi.Input[str] target_link: A unique URL identifying the target of the HVN route. Examples of the target:
+               [`aws_network_peering`](aws_network_peering.md), [`aws_transit_gateway_attachment`](aws_transit_gateway_attachment.md)
         """
         pulumi.set(__self__, "destination_cidr", destination_cidr)
         pulumi.set(__self__, "hvn_link", hvn_link)
@@ -69,7 +70,8 @@ class HvnRouteArgs:
     @pulumi.getter(name="targetLink")
     def target_link(self) -> pulumi.Input[str]:
         """
-        A unique URL identifying the target of the HVN route. Examples of the target: `aws_network_peering`, `aws_transit_gateway_attachment`
+        A unique URL identifying the target of the HVN route. Examples of the target:
+        [`aws_network_peering`](aws_network_peering.md), [`aws_transit_gateway_attachment`](aws_transit_gateway_attachment.md)
         """
         return pulumi.get(self, "target_link")
 
@@ -96,7 +98,8 @@ class _HvnRouteState:
         :param pulumi.Input[str] hvn_route_id: The ID of the HVN route.
         :param pulumi.Input[str] self_link: A unique URL identifying the HVN route.
         :param pulumi.Input[str] state: The state of the HVN route.
-        :param pulumi.Input[str] target_link: A unique URL identifying the target of the HVN route. Examples of the target: `aws_network_peering`, `aws_transit_gateway_attachment`
+        :param pulumi.Input[str] target_link: A unique URL identifying the target of the HVN route. Examples of the target:
+               [`aws_network_peering`](aws_network_peering.md), [`aws_transit_gateway_attachment`](aws_transit_gateway_attachment.md)
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -189,7 +192,8 @@ class _HvnRouteState:
     @pulumi.getter(name="targetLink")
     def target_link(self) -> Optional[pulumi.Input[str]]:
         """
-        A unique URL identifying the target of the HVN route. Examples of the target: `aws_network_peering`, `aws_transit_gateway_attachment`
+        A unique URL identifying the target of the HVN route. Examples of the target:
+        [`aws_network_peering`](aws_network_peering.md), [`aws_transit_gateway_attachment`](aws_transit_gateway_attachment.md)
         """
         return pulumi.get(self, "target_link")
 
@@ -252,7 +256,8 @@ class HvnRoute(pulumi.CustomResource):
         :param pulumi.Input[str] destination_cidr: The destination CIDR of the HVN route.
         :param pulumi.Input[str] hvn_link: The `self_link` of the HashiCorp Virtual Network (HVN).
         :param pulumi.Input[str] hvn_route_id: The ID of the HVN route.
-        :param pulumi.Input[str] target_link: A unique URL identifying the target of the HVN route. Examples of the target: `aws_network_peering`, `aws_transit_gateway_attachment`
+        :param pulumi.Input[str] target_link: A unique URL identifying the target of the HVN route. Examples of the target:
+               [`aws_network_peering`](aws_network_peering.md), [`aws_transit_gateway_attachment`](aws_transit_gateway_attachment.md)
         """
         ...
     @overload
@@ -377,7 +382,8 @@ class HvnRoute(pulumi.CustomResource):
         :param pulumi.Input[str] hvn_route_id: The ID of the HVN route.
         :param pulumi.Input[str] self_link: A unique URL identifying the HVN route.
         :param pulumi.Input[str] state: The state of the HVN route.
-        :param pulumi.Input[str] target_link: A unique URL identifying the target of the HVN route. Examples of the target: `aws_network_peering`, `aws_transit_gateway_attachment`
+        :param pulumi.Input[str] target_link: A unique URL identifying the target of the HVN route. Examples of the target:
+               [`aws_network_peering`](aws_network_peering.md), [`aws_transit_gateway_attachment`](aws_transit_gateway_attachment.md)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -444,7 +450,8 @@ class HvnRoute(pulumi.CustomResource):
     @pulumi.getter(name="targetLink")
     def target_link(self) -> pulumi.Output[str]:
         """
-        A unique URL identifying the target of the HVN route. Examples of the target: `aws_network_peering`, `aws_transit_gateway_attachment`
+        A unique URL identifying the target of the HVN route. Examples of the target:
+        [`aws_network_peering`](aws_network_peering.md), [`aws_transit_gateway_attachment`](aws_transit_gateway_attachment.md)
         """
         return pulumi.get(self, "target_link")
 

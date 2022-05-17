@@ -58,41 +58,26 @@ class GetPackerIterationResult:
     @property
     @pulumi.getter(name="authorId")
     def author_id(self) -> str:
-        """
-        The name of the person who created this iteration.
-        """
         return pulumi.get(self, "author_id")
 
     @property
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> str:
-        """
-        The slug of the HCP Packer Registry image bucket to pull from.
-        """
         return pulumi.get(self, "bucket_name")
 
     @property
     @pulumi.getter
     def channel(self) -> str:
-        """
-        The channel that points to the version of the image you want.
-        """
         return pulumi.get(self, "channel")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
-        """
-        Creation time of this iteration
-        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def fingerprint(self) -> str:
-        """
-        The unique fingerprint associated with this iteration; often a git sha.
-        """
         return pulumi.get(self, "fingerprint")
 
     @property
@@ -106,41 +91,26 @@ class GetPackerIterationResult:
     @property
     @pulumi.getter(name="incrementalVersion")
     def incremental_version(self) -> int:
-        """
-        Incremental version of this iteration
-        """
         return pulumi.get(self, "incremental_version")
 
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
-        """
-        The ID of the organization this HCP Packer registry is located in.
-        """
         return pulumi.get(self, "organization_id")
 
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
-        """
-        The ID of the project this HCP Packer registry is located in.
-        """
         return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter
     def ulid(self) -> str:
-        """
-        The ULID of this iteration.
-        """
         return pulumi.get(self, "ulid")
 
     @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
-        """
-        Time this build was last updated.
-        """
         return pulumi.get(self, "updated_at")
 
 
@@ -178,10 +148,6 @@ def get_packer_iteration(bucket_name: Optional[str] = None,
     hardened_source = hcp.get_packer_iteration(bucket_name="hardened-ubuntu-16-04",
         channel="megan-test")
     ```
-
-
-    :param str bucket_name: The slug of the HCP Packer Registry image bucket to pull from.
-    :param str channel: The channel that points to the version of the image you want.
     """
     __args__ = dict()
     __args__['bucketName'] = bucket_name
@@ -224,9 +190,5 @@ def get_packer_iteration_output(bucket_name: Optional[pulumi.Input[str]] = None,
     hardened_source = hcp.get_packer_iteration(bucket_name="hardened-ubuntu-16-04",
         channel="megan-test")
     ```
-
-
-    :param str bucket_name: The slug of the HCP Packer Registry image bucket to pull from.
-    :param str channel: The channel that points to the version of the image you want.
     """
     ...
