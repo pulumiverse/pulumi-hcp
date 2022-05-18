@@ -4,7 +4,7 @@ go 1.16
 
 require (
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.16.0
-	github.com/hashicorp/terraform-provider-hcp v0.28.0
+	github.com/hashicorp/terraform-provider-hcp v0.29.0
 )
 
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20220505215311-795430389fa7
