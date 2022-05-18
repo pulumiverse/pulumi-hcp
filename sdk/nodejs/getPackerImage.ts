@@ -13,17 +13,22 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as hcp from "@pulumi/hcp";
  *
- * const hardened-source = hcp.getPackerIteration({
- *     bucketName: "hardened-ubuntu-16-04",
- *     channel: "production",
- * });
- * const foo = hardened_source.then(hardened_source => hcp.getPackerImage({
- *     bucketName: "hardened-ubuntu-16-04",
- *     cloudProvider: "aws",
- *     iterationId: hardened_source.ulid,
- *     region: "us-east-1",
- * }));
- * export const packer_registry_ubuntu = foo.then(foo => foo.cloudImageId);
+ * export = async () => {
+ *     const hardened-source = await hcp.getPackerIteration({
+ *         bucketName: "hardened-ubuntu-16-04",
+ *         channel: "production",
+ *     });
+ *     const foo = await hcp.getPackerImage({
+ *         bucketName: "hardened-ubuntu-16-04",
+ *         cloudProvider: "aws",
+ *         iterationId: hardened_source.ulid,
+ *         region: "us-east-1",
+ *     });
+ *     const packer_registry_ubuntu = foo.cloudImageId;
+ *     return {
+ *         "packer-registry-ubuntu": packer_registry_ubuntu,
+ *     };
+ * }
  * ```
  *
  * > **Note:** This data source only returns the first found image's metadata filtered by the given schema values, from the returned list of images associated with the specified iteration. Therefore, if multiple images exist in the same region, it will only pick one of them. If that's the case, you may consider separating your builds into different buckets.
