@@ -35,13 +35,7 @@ export function getPackerIteration(args: GetPackerIterationArgs, opts?: pulumi.I
  * A collection of arguments for invoking getPackerIteration.
  */
 export interface GetPackerIterationArgs {
-    /**
-     * The slug of the HCP Packer Registry image bucket to pull from.
-     */
     bucketName: string;
-    /**
-     * The channel that points to the version of the image you want.
-     */
     channel: string;
 }
 
@@ -49,49 +43,19 @@ export interface GetPackerIterationArgs {
  * A collection of values returned by getPackerIteration.
  */
 export interface GetPackerIterationResult {
-    /**
-     * The name of the person who created this iteration.
-     */
     readonly authorId: string;
-    /**
-     * The slug of the HCP Packer Registry image bucket to pull from.
-     */
     readonly bucketName: string;
-    /**
-     * The channel that points to the version of the image you want.
-     */
     readonly channel: string;
-    /**
-     * Creation time of this iteration
-     */
     readonly createdAt: string;
-    /**
-     * The unique fingerprint associated with this iteration; often a git sha.
-     */
     readonly fingerprint: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * Incremental version of this iteration
-     */
     readonly incrementalVersion: number;
-    /**
-     * The ID of the organization this HCP Packer registry is located in.
-     */
     readonly organizationId: string;
-    /**
-     * The ID of the project this HCP Packer registry is located in.
-     */
     readonly projectId: string;
-    /**
-     * The ULID of this iteration.
-     */
     readonly ulid: string;
-    /**
-     * Time this build was last updated.
-     */
     readonly updatedAt: string;
 }
 
@@ -103,12 +67,6 @@ export function getPackerIterationOutput(args: GetPackerIterationOutputArgs, opt
  * A collection of arguments for invoking getPackerIteration.
  */
 export interface GetPackerIterationOutputArgs {
-    /**
-     * The slug of the HCP Packer Registry image bucket to pull from.
-     */
     bucketName: pulumi.Input<string>;
-    /**
-     * The channel that points to the version of the image you want.
-     */
     channel: pulumi.Input<string>;
 }

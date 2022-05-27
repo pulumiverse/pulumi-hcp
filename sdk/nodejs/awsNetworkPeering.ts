@@ -84,7 +84,8 @@ export class AwsNetworkPeering extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The time after which the network peering will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
+     * The time after which the network peering will be considered expired if it hasn't transitioned into `ACCEPTED` or
+     * `ACTIVE` state.
      */
     public /*out*/ readonly expiresAt!: pulumi.Output<string>;
     /**
@@ -191,7 +192,8 @@ export interface AwsNetworkPeeringState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The time after which the network peering will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
+     * The time after which the network peering will be considered expired if it hasn't transitioned into `ACCEPTED` or
+     * `ACTIVE` state.
      */
     expiresAt?: pulumi.Input<string>;
     /**

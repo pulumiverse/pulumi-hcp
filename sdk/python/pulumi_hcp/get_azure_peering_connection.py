@@ -73,41 +73,26 @@ class GetAzurePeeringConnectionResult:
     @property
     @pulumi.getter(name="applicationId")
     def application_id(self) -> str:
-        """
-        The ID of the Azure application whose credentials are used to peer the HCP HVN's underlying VNet with the customer VNet.
-        """
         return pulumi.get(self, "application_id")
 
     @property
     @pulumi.getter(name="azurePeeringId")
     def azure_peering_id(self) -> str:
-        """
-        The peering connection ID used by Azure.
-        """
         return pulumi.get(self, "azure_peering_id")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
-        """
-        The time that the peering connection was created.
-        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="expiresAt")
     def expires_at(self) -> str:
-        """
-        The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
-        """
         return pulumi.get(self, "expires_at")
 
     @property
     @pulumi.getter(name="hvnLink")
     def hvn_link(self) -> str:
-        """
-        The `self_link` of the HashiCorp Virtual Network (HVN).
-        """
         return pulumi.get(self, "hvn_link")
 
     @property
@@ -121,73 +106,46 @@ class GetAzurePeeringConnectionResult:
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
-        """
-        The ID of the HCP organization where the peering connection is located. Always matches the HVN's organization.
-        """
         return pulumi.get(self, "organization_id")
 
     @property
     @pulumi.getter(name="peerResourceGroupName")
     def peer_resource_group_name(self) -> str:
-        """
-        The resource group name of the peer VNet in Azure.
-        """
         return pulumi.get(self, "peer_resource_group_name")
 
     @property
     @pulumi.getter(name="peerSubscriptionId")
     def peer_subscription_id(self) -> str:
-        """
-        The subscription ID of the peer VNet in Azure.
-        """
         return pulumi.get(self, "peer_subscription_id")
 
     @property
     @pulumi.getter(name="peerTenantId")
     def peer_tenant_id(self) -> str:
-        """
-        The tenant ID of the peer VNet in Azure.
-        """
         return pulumi.get(self, "peer_tenant_id")
 
     @property
     @pulumi.getter(name="peerVnetName")
     def peer_vnet_name(self) -> str:
-        """
-        The name of the peer VNet in Azure.
-        """
         return pulumi.get(self, "peer_vnet_name")
 
     @property
     @pulumi.getter(name="peerVnetRegion")
     def peer_vnet_region(self) -> str:
-        """
-        The region of the peer VNet in Azure.
-        """
         return pulumi.get(self, "peer_vnet_region")
 
     @property
     @pulumi.getter(name="peeringId")
     def peering_id(self) -> str:
-        """
-        The ID of the peering connection.
-        """
         return pulumi.get(self, "peering_id")
 
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
-        """
-        The ID of the HCP project where the peering connection is located. Always matches the HVN's project.
-        """
         return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter(name="selfLink")
     def self_link(self) -> str:
-        """
-        A unique URL identifying the peering connection
-        """
         return pulumi.get(self, "self_link")
 
     @property
@@ -239,10 +197,6 @@ def get_azure_peering_connection(hvn_link: Optional[str] = None,
         peering_id=var["peering_id"],
         wait_for_active_state=True)
     ```
-
-
-    :param str hvn_link: The `self_link` of the HashiCorp Virtual Network (HVN).
-    :param str peering_id: The ID of the peering connection.
     """
     __args__ = dict()
     __args__['hvnLink'] = hvn_link
@@ -295,9 +249,5 @@ def get_azure_peering_connection_output(hvn_link: Optional[pulumi.Input[str]] = 
         peering_id=var["peering_id"],
         wait_for_active_state=True)
     ```
-
-
-    :param str hvn_link: The `self_link` of the HashiCorp Virtual Network (HVN).
-    :param str peering_id: The ID of the peering connection.
     """
     ...

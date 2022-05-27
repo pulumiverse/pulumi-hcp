@@ -64,25 +64,16 @@ class GetAwsNetworkPeeringResult:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
-        """
-        The time that the network peering was created.
-        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="expiresAt")
     def expires_at(self) -> str:
-        """
-        The time after which the network peering will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
-        """
         return pulumi.get(self, "expires_at")
 
     @property
     @pulumi.getter(name="hvnId")
     def hvn_id(self) -> str:
-        """
-        The ID of the HashiCorp Virtual Network (HVN).
-        """
         return pulumi.get(self, "hvn_id")
 
     @property
@@ -96,65 +87,41 @@ class GetAwsNetworkPeeringResult:
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
-        """
-        The ID of the HCP organization where the network peering is located. Always matches the HVN's organization.
-        """
         return pulumi.get(self, "organization_id")
 
     @property
     @pulumi.getter(name="peerAccountId")
     def peer_account_id(self) -> str:
-        """
-        The account ID of the peer VPC in AWS.
-        """
         return pulumi.get(self, "peer_account_id")
 
     @property
     @pulumi.getter(name="peerVpcId")
     def peer_vpc_id(self) -> str:
-        """
-        The ID of the peer VPC in AWS.
-        """
         return pulumi.get(self, "peer_vpc_id")
 
     @property
     @pulumi.getter(name="peerVpcRegion")
     def peer_vpc_region(self) -> str:
-        """
-        The region of the peer VPC in AWS.
-        """
         return pulumi.get(self, "peer_vpc_region")
 
     @property
     @pulumi.getter(name="peeringId")
     def peering_id(self) -> str:
-        """
-        The ID of the network peering.
-        """
         return pulumi.get(self, "peering_id")
 
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
-        """
-        The ID of the HCP project where the network peering is located. Always matches the HVN's project.
-        """
         return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter(name="providerPeeringId")
     def provider_peering_id(self) -> str:
-        """
-        The peering connection ID used by AWS.
-        """
         return pulumi.get(self, "provider_peering_id")
 
     @property
     @pulumi.getter(name="selfLink")
     def self_link(self) -> str:
-        """
-        A unique URL identifying the network peering.
-        """
         return pulumi.get(self, "self_link")
 
     @property
@@ -201,10 +168,6 @@ def get_aws_network_peering(hvn_id: Optional[str] = None,
         peering_id=var["peering_id"],
         wait_for_active_state=True)
     ```
-
-
-    :param str hvn_id: The ID of the HashiCorp Virtual Network (HVN).
-    :param str peering_id: The ID of the network peering.
     """
     __args__ = dict()
     __args__['hvnId'] = hvn_id
@@ -252,9 +215,5 @@ def get_aws_network_peering_output(hvn_id: Optional[pulumi.Input[str]] = None,
         peering_id=var["peering_id"],
         wait_for_active_state=True)
     ```
-
-
-    :param str hvn_id: The ID of the HashiCorp Virtual Network (HVN).
-    :param str peering_id: The ID of the network peering.
     """
     ...

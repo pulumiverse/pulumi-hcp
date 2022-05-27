@@ -61,25 +61,16 @@ class GetAwsTransitGatewayAttachmentResult:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
-        """
-        The time that the transit gateway attachment was created.
-        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="expiresAt")
     def expires_at(self) -> str:
-        """
-        The time after which the transit gateway attachment will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
-        """
         return pulumi.get(self, "expires_at")
 
     @property
     @pulumi.getter(name="hvnId")
     def hvn_id(self) -> str:
-        """
-        The ID of the HashiCorp Virtual Network (HVN).
-        """
         return pulumi.get(self, "hvn_id")
 
     @property
@@ -93,57 +84,36 @@ class GetAwsTransitGatewayAttachmentResult:
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
-        """
-        The ID of the HCP organization where the transit gateway attachment is located. Always matches the HVN's organization.
-        """
         return pulumi.get(self, "organization_id")
 
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
-        """
-        The ID of the HCP project where the transit gateway attachment is located. Always matches the HVN's project.
-        """
         return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter(name="providerTransitGatewayAttachmentId")
     def provider_transit_gateway_attachment_id(self) -> str:
-        """
-        The transit gateway attachment ID used by AWS.
-        """
         return pulumi.get(self, "provider_transit_gateway_attachment_id")
 
     @property
     @pulumi.getter(name="selfLink")
     def self_link(self) -> str:
-        """
-        A unique URL identifying the transit gateway attachment.
-        """
         return pulumi.get(self, "self_link")
 
     @property
     @pulumi.getter
     def state(self) -> str:
-        """
-        The state of the transit gateway attachment.
-        """
         return pulumi.get(self, "state")
 
     @property
     @pulumi.getter(name="transitGatewayAttachmentId")
     def transit_gateway_attachment_id(self) -> str:
-        """
-        The user-settable name of the transit gateway attachment in HCP.
-        """
         return pulumi.get(self, "transit_gateway_attachment_id")
 
     @property
     @pulumi.getter(name="transitGatewayId")
     def transit_gateway_id(self) -> str:
-        """
-        The ID of the user-owned transit gateway in AWS.
-        """
         return pulumi.get(self, "transit_gateway_id")
 
     @property
@@ -188,10 +158,6 @@ def get_aws_transit_gateway_attachment(hvn_id: Optional[str] = None,
     test = hcp.get_aws_transit_gateway_attachment(hvn_id=var["hvn_id"],
         transit_gateway_attachment_id=var["transit_gateway_attachment_id"])
     ```
-
-
-    :param str hvn_id: The ID of the HashiCorp Virtual Network (HVN).
-    :param str transit_gateway_attachment_id: The user-settable name of the transit gateway attachment in HCP.
     """
     __args__ = dict()
     __args__['hvnId'] = hvn_id
@@ -237,9 +203,5 @@ def get_aws_transit_gateway_attachment_output(hvn_id: Optional[pulumi.Input[str]
     test = hcp.get_aws_transit_gateway_attachment(hvn_id=var["hvn_id"],
         transit_gateway_attachment_id=var["transit_gateway_attachment_id"])
     ```
-
-
-    :param str hvn_id: The ID of the HashiCorp Virtual Network (HVN).
-    :param str transit_gateway_attachment_id: The user-settable name of the transit gateway attachment in HCP.
     """
     ...

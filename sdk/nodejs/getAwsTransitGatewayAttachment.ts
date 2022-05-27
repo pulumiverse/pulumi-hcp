@@ -36,13 +36,7 @@ export function getAwsTransitGatewayAttachment(args: GetAwsTransitGatewayAttachm
  * A collection of arguments for invoking getAwsTransitGatewayAttachment.
  */
 export interface GetAwsTransitGatewayAttachmentArgs {
-    /**
-     * The ID of the HashiCorp Virtual Network (HVN).
-     */
     hvnId: string;
-    /**
-     * The user-settable name of the transit gateway attachment in HCP.
-     */
     transitGatewayAttachmentId: string;
     waitForActiveState?: boolean;
 }
@@ -51,49 +45,19 @@ export interface GetAwsTransitGatewayAttachmentArgs {
  * A collection of values returned by getAwsTransitGatewayAttachment.
  */
 export interface GetAwsTransitGatewayAttachmentResult {
-    /**
-     * The time that the transit gateway attachment was created.
-     */
     readonly createdAt: string;
-    /**
-     * The time after which the transit gateway attachment will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
-     */
     readonly expiresAt: string;
-    /**
-     * The ID of the HashiCorp Virtual Network (HVN).
-     */
     readonly hvnId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * The ID of the HCP organization where the transit gateway attachment is located. Always matches the HVN's organization.
-     */
     readonly organizationId: string;
-    /**
-     * The ID of the HCP project where the transit gateway attachment is located. Always matches the HVN's project.
-     */
     readonly projectId: string;
-    /**
-     * The transit gateway attachment ID used by AWS.
-     */
     readonly providerTransitGatewayAttachmentId: string;
-    /**
-     * A unique URL identifying the transit gateway attachment.
-     */
     readonly selfLink: string;
-    /**
-     * The state of the transit gateway attachment.
-     */
     readonly state: string;
-    /**
-     * The user-settable name of the transit gateway attachment in HCP.
-     */
     readonly transitGatewayAttachmentId: string;
-    /**
-     * The ID of the user-owned transit gateway in AWS.
-     */
     readonly transitGatewayId: string;
     readonly waitForActiveState?: boolean;
 }
@@ -106,13 +70,7 @@ export function getAwsTransitGatewayAttachmentOutput(args: GetAwsTransitGatewayA
  * A collection of arguments for invoking getAwsTransitGatewayAttachment.
  */
 export interface GetAwsTransitGatewayAttachmentOutputArgs {
-    /**
-     * The ID of the HashiCorp Virtual Network (HVN).
-     */
     hvnId: pulumi.Input<string>;
-    /**
-     * The user-settable name of the transit gateway attachment in HCP.
-     */
     transitGatewayAttachmentId: pulumi.Input<string>;
     waitForActiveState?: pulumi.Input<boolean>;
 }

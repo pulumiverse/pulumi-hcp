@@ -97,113 +97,71 @@ class GetConsulClusterResult:
     @property
     @pulumi.getter(name="autoHvnToHvnPeering")
     def auto_hvn_to_hvn_peering(self) -> bool:
-        """
-        Enables automatic HVN to HVN peering when creating a secondary cluster in a federation.
-        """
         return pulumi.get(self, "auto_hvn_to_hvn_peering")
 
     @property
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> str:
-        """
-        The provider where the HCP Consul cluster is located. Only 'aws' is available at this time.
-        """
         return pulumi.get(self, "cloud_provider")
 
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> str:
-        """
-        The ID of the HCP Consul cluster.
-        """
         return pulumi.get(self, "cluster_id")
 
     @property
     @pulumi.getter(name="connectEnabled")
     def connect_enabled(self) -> bool:
-        """
-        Denotes the Consul connect feature should be enabled for this cluster.  Default to true.
-        """
         return pulumi.get(self, "connect_enabled")
 
     @property
     @pulumi.getter(name="consulAutomaticUpgrades")
     def consul_automatic_upgrades(self) -> bool:
-        """
-        Denotes that automatic Consul upgrades are enabled.
-        """
         return pulumi.get(self, "consul_automatic_upgrades")
 
     @property
     @pulumi.getter(name="consulCaFile")
     def consul_ca_file(self) -> str:
-        """
-        The cluster CA file encoded as a Base64 string.
-        """
         return pulumi.get(self, "consul_ca_file")
 
     @property
     @pulumi.getter(name="consulConfigFile")
     def consul_config_file(self) -> str:
-        """
-        The cluster config encoded as a Base64 string.
-        """
         return pulumi.get(self, "consul_config_file")
 
     @property
     @pulumi.getter(name="consulPrivateEndpointUrl")
     def consul_private_endpoint_url(self) -> str:
-        """
-        The private URL for the Consul UI.
-        """
         return pulumi.get(self, "consul_private_endpoint_url")
 
     @property
     @pulumi.getter(name="consulPublicEndpointUrl")
     def consul_public_endpoint_url(self) -> str:
-        """
-        The public URL for the Consul UI. This will be empty if `public_endpoint` is `false`.
-        """
         return pulumi.get(self, "consul_public_endpoint_url")
 
     @property
     @pulumi.getter(name="consulSnapshotInterval")
     def consul_snapshot_interval(self) -> str:
-        """
-        The Consul snapshot interval.
-        """
         return pulumi.get(self, "consul_snapshot_interval")
 
     @property
     @pulumi.getter(name="consulSnapshotRetention")
     def consul_snapshot_retention(self) -> str:
-        """
-        The retention policy for Consul snapshots.
-        """
         return pulumi.get(self, "consul_snapshot_retention")
 
     @property
     @pulumi.getter(name="consulVersion")
     def consul_version(self) -> str:
-        """
-        The Consul version of the cluster.
-        """
         return pulumi.get(self, "consul_version")
 
     @property
     @pulumi.getter
     def datacenter(self) -> str:
-        """
-        The Consul data center name of the cluster. If not specified, it is defaulted to the value of `cluster_id`.
-        """
         return pulumi.get(self, "datacenter")
 
     @property
     @pulumi.getter(name="hvnId")
     def hvn_id(self) -> str:
-        """
-        The ID of the HVN this HCP Consul cluster is associated to.
-        """
         return pulumi.get(self, "hvn_id")
 
     @property
@@ -217,73 +175,46 @@ class GetConsulClusterResult:
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
-        """
-        The ID of the organization the project for this HCP Consul cluster is located.
-        """
         return pulumi.get(self, "organization_id")
 
     @property
     @pulumi.getter(name="primaryLink")
     def primary_link(self) -> str:
-        """
-        The `self_link` of the HCP Consul cluster which is the primary in the federation setup with this HCP Consul cluster. If not specified, it is a standalone cluster.
-        """
         return pulumi.get(self, "primary_link")
 
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
-        """
-        The ID of the project this HCP Consul cluster is located.
-        """
         return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter(name="publicEndpoint")
     def public_endpoint(self) -> bool:
-        """
-        Denotes that the cluster has a public endpoint for the Consul UI. Defaults to false.
-        """
         return pulumi.get(self, "public_endpoint")
 
     @property
     @pulumi.getter
     def region(self) -> str:
-        """
-        The region where the HCP Consul cluster is located.
-        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter
     def scale(self) -> int:
-        """
-        The the number of Consul server nodes in the cluster.
-        """
         return pulumi.get(self, "scale")
 
     @property
     @pulumi.getter(name="selfLink")
     def self_link(self) -> str:
-        """
-        A unique URL identifying the HCP Consul cluster.
-        """
         return pulumi.get(self, "self_link")
 
     @property
     @pulumi.getter
     def size(self) -> str:
-        """
-        The t-shirt size representation of each server VM that this Consul cluster is provisioned with. Valid option for development tier - `x_small`. Valid options for other tiers - `small`, `medium`, `large`. For more details - https://cloud.hashicorp.com/pricing/consul
-        """
         return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
     def tier(self) -> str:
-        """
-        The tier that the HCP Consul cluster will be provisioned as.  Only `development`, `standard` and `plus` are available at this time.
-        """
         return pulumi.get(self, "tier")
 
 
@@ -332,9 +263,6 @@ def get_consul_cluster(cluster_id: Optional[str] = None,
 
     example = hcp.get_consul_cluster(cluster_id=var["cluster_id"])
     ```
-
-
-    :param str cluster_id: The ID of the HCP Consul cluster.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -387,8 +315,5 @@ def get_consul_cluster_output(cluster_id: Optional[pulumi.Input[str]] = None,
 
     example = hcp.get_consul_cluster(cluster_id=var["cluster_id"])
     ```
-
-
-    :param str cluster_id: The ID of the HCP Consul cluster.
     """
     ...
