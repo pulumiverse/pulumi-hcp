@@ -7,6 +7,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['VaultClusterArgs', 'VaultCluster']
 
@@ -15,6 +17,8 @@ class VaultClusterArgs:
     def __init__(__self__, *,
                  cluster_id: pulumi.Input[str],
                  hvn_id: pulumi.Input[str],
+                 audit_log_config: Optional[pulumi.Input['VaultClusterAuditLogConfigArgs']] = None,
+                 metrics_config: Optional[pulumi.Input['VaultClusterMetricsConfigArgs']] = None,
                  min_vault_version: Optional[pulumi.Input[str]] = None,
                  paths_filters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  primary_link: Optional[pulumi.Input[str]] = None,
@@ -24,6 +28,10 @@ class VaultClusterArgs:
         The set of arguments for constructing a VaultCluster resource.
         :param pulumi.Input[str] cluster_id: The ID of the HCP Vault cluster.
         :param pulumi.Input[str] hvn_id: The ID of the HVN this HCP Vault cluster is associated to.
+        :param pulumi.Input['VaultClusterAuditLogConfigArgs'] audit_log_config: The audit logs configuration for export.
+               (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+        :param pulumi.Input['VaultClusterMetricsConfigArgs'] metrics_config: The metrics configuration for export.
+               (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
         :param pulumi.Input[str] min_vault_version: The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
                currently recommended by HCP.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] paths_filters: The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to
@@ -37,6 +45,10 @@ class VaultClusterArgs:
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "hvn_id", hvn_id)
+        if audit_log_config is not None:
+            pulumi.set(__self__, "audit_log_config", audit_log_config)
+        if metrics_config is not None:
+            pulumi.set(__self__, "metrics_config", metrics_config)
         if min_vault_version is not None:
             pulumi.set(__self__, "min_vault_version", min_vault_version)
         if paths_filters is not None:
@@ -71,6 +83,32 @@ class VaultClusterArgs:
     @hvn_id.setter
     def hvn_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "hvn_id", value)
+
+    @property
+    @pulumi.getter(name="auditLogConfig")
+    def audit_log_config(self) -> Optional[pulumi.Input['VaultClusterAuditLogConfigArgs']]:
+        """
+        The audit logs configuration for export.
+        (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+        """
+        return pulumi.get(self, "audit_log_config")
+
+    @audit_log_config.setter
+    def audit_log_config(self, value: Optional[pulumi.Input['VaultClusterAuditLogConfigArgs']]):
+        pulumi.set(self, "audit_log_config", value)
+
+    @property
+    @pulumi.getter(name="metricsConfig")
+    def metrics_config(self) -> Optional[pulumi.Input['VaultClusterMetricsConfigArgs']]:
+        """
+        The metrics configuration for export.
+        (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+        """
+        return pulumi.get(self, "metrics_config")
+
+    @metrics_config.setter
+    def metrics_config(self, value: Optional[pulumi.Input['VaultClusterMetricsConfigArgs']]):
+        pulumi.set(self, "metrics_config", value)
 
     @property
     @pulumi.getter(name="minVaultVersion")
@@ -141,10 +179,12 @@ class VaultClusterArgs:
 @pulumi.input_type
 class _VaultClusterState:
     def __init__(__self__, *,
+                 audit_log_config: Optional[pulumi.Input['VaultClusterAuditLogConfigArgs']] = None,
                  cloud_provider: Optional[pulumi.Input[str]] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  hvn_id: Optional[pulumi.Input[str]] = None,
+                 metrics_config: Optional[pulumi.Input['VaultClusterMetricsConfigArgs']] = None,
                  min_vault_version: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
@@ -160,10 +200,14 @@ class _VaultClusterState:
                  vault_version: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering VaultCluster resources.
+        :param pulumi.Input['VaultClusterAuditLogConfigArgs'] audit_log_config: The audit logs configuration for export.
+               (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
         :param pulumi.Input[str] cloud_provider: The provider where the HCP Vault cluster is located.
         :param pulumi.Input[str] cluster_id: The ID of the HCP Vault cluster.
         :param pulumi.Input[str] created_at: The time that the Vault cluster was created.
         :param pulumi.Input[str] hvn_id: The ID of the HVN this HCP Vault cluster is associated to.
+        :param pulumi.Input['VaultClusterMetricsConfigArgs'] metrics_config: The metrics configuration for export.
+               (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
         :param pulumi.Input[str] min_vault_version: The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
                currently recommended by HCP.
         :param pulumi.Input[str] namespace: The name of the customer namespace this HCP Vault cluster is located in.
@@ -183,6 +227,8 @@ class _VaultClusterState:
         :param pulumi.Input[str] vault_public_endpoint_url: The public URL for the Vault cluster. This will be empty if `public_endpoint` is `false`.
         :param pulumi.Input[str] vault_version: The Vault version of the cluster.
         """
+        if audit_log_config is not None:
+            pulumi.set(__self__, "audit_log_config", audit_log_config)
         if cloud_provider is not None:
             pulumi.set(__self__, "cloud_provider", cloud_provider)
         if cluster_id is not None:
@@ -191,6 +237,8 @@ class _VaultClusterState:
             pulumi.set(__self__, "created_at", created_at)
         if hvn_id is not None:
             pulumi.set(__self__, "hvn_id", hvn_id)
+        if metrics_config is not None:
+            pulumi.set(__self__, "metrics_config", metrics_config)
         if min_vault_version is not None:
             pulumi.set(__self__, "min_vault_version", min_vault_version)
         if namespace is not None:
@@ -217,6 +265,19 @@ class _VaultClusterState:
             pulumi.set(__self__, "vault_public_endpoint_url", vault_public_endpoint_url)
         if vault_version is not None:
             pulumi.set(__self__, "vault_version", vault_version)
+
+    @property
+    @pulumi.getter(name="auditLogConfig")
+    def audit_log_config(self) -> Optional[pulumi.Input['VaultClusterAuditLogConfigArgs']]:
+        """
+        The audit logs configuration for export.
+        (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+        """
+        return pulumi.get(self, "audit_log_config")
+
+    @audit_log_config.setter
+    def audit_log_config(self, value: Optional[pulumi.Input['VaultClusterAuditLogConfigArgs']]):
+        pulumi.set(self, "audit_log_config", value)
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -265,6 +326,19 @@ class _VaultClusterState:
     @hvn_id.setter
     def hvn_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "hvn_id", value)
+
+    @property
+    @pulumi.getter(name="metricsConfig")
+    def metrics_config(self) -> Optional[pulumi.Input['VaultClusterMetricsConfigArgs']]:
+        """
+        The metrics configuration for export.
+        (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+        """
+        return pulumi.get(self, "metrics_config")
+
+    @metrics_config.setter
+    def metrics_config(self, value: Optional[pulumi.Input['VaultClusterMetricsConfigArgs']]):
+        pulumi.set(self, "metrics_config", value)
 
     @property
     @pulumi.getter(name="minVaultVersion")
@@ -433,8 +507,10 @@ class VaultCluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 audit_log_config: Optional[pulumi.Input[pulumi.InputType['VaultClusterAuditLogConfigArgs']]] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  hvn_id: Optional[pulumi.Input[str]] = None,
+                 metrics_config: Optional[pulumi.Input[pulumi.InputType['VaultClusterMetricsConfigArgs']]] = None,
                  min_vault_version: Optional[pulumi.Input[str]] = None,
                  paths_filters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  primary_link: Optional[pulumi.Input[str]] = None,
@@ -456,7 +532,15 @@ class VaultCluster(pulumi.CustomResource):
         example_vault_cluster = hcp.VaultCluster("exampleVaultCluster",
             cluster_id="vault-cluster",
             hvn_id=example_hvn.hvn_id,
-            tier="standard_large")
+            tier="standard_large",
+            metrics_config=hcp.VaultClusterMetricsConfigArgs(
+                datadog_api_key="test_datadog",
+                datadog_region="us1",
+            ),
+            audit_log_config=hcp.VaultClusterAuditLogConfigArgs(
+                datadog_api_key="test_datadog",
+                datadog_region="us1",
+            ))
         ```
 
         ## Import
@@ -469,8 +553,12 @@ class VaultCluster(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['VaultClusterAuditLogConfigArgs']] audit_log_config: The audit logs configuration for export.
+               (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
         :param pulumi.Input[str] cluster_id: The ID of the HCP Vault cluster.
         :param pulumi.Input[str] hvn_id: The ID of the HVN this HCP Vault cluster is associated to.
+        :param pulumi.Input[pulumi.InputType['VaultClusterMetricsConfigArgs']] metrics_config: The metrics configuration for export.
+               (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
         :param pulumi.Input[str] min_vault_version: The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
                currently recommended by HCP.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] paths_filters: The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to
@@ -503,7 +591,15 @@ class VaultCluster(pulumi.CustomResource):
         example_vault_cluster = hcp.VaultCluster("exampleVaultCluster",
             cluster_id="vault-cluster",
             hvn_id=example_hvn.hvn_id,
-            tier="standard_large")
+            tier="standard_large",
+            metrics_config=hcp.VaultClusterMetricsConfigArgs(
+                datadog_api_key="test_datadog",
+                datadog_region="us1",
+            ),
+            audit_log_config=hcp.VaultClusterAuditLogConfigArgs(
+                datadog_api_key="test_datadog",
+                datadog_region="us1",
+            ))
         ```
 
         ## Import
@@ -529,8 +625,10 @@ class VaultCluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 audit_log_config: Optional[pulumi.Input[pulumi.InputType['VaultClusterAuditLogConfigArgs']]] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  hvn_id: Optional[pulumi.Input[str]] = None,
+                 metrics_config: Optional[pulumi.Input[pulumi.InputType['VaultClusterMetricsConfigArgs']]] = None,
                  min_vault_version: Optional[pulumi.Input[str]] = None,
                  paths_filters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  primary_link: Optional[pulumi.Input[str]] = None,
@@ -550,12 +648,14 @@ class VaultCluster(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = VaultClusterArgs.__new__(VaultClusterArgs)
 
+            __props__.__dict__["audit_log_config"] = audit_log_config
             if cluster_id is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_id'")
             __props__.__dict__["cluster_id"] = cluster_id
             if hvn_id is None and not opts.urn:
                 raise TypeError("Missing required property 'hvn_id'")
             __props__.__dict__["hvn_id"] = hvn_id
+            __props__.__dict__["metrics_config"] = metrics_config
             __props__.__dict__["min_vault_version"] = min_vault_version
             __props__.__dict__["paths_filters"] = paths_filters
             __props__.__dict__["primary_link"] = primary_link
@@ -581,10 +681,12 @@ class VaultCluster(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            audit_log_config: Optional[pulumi.Input[pulumi.InputType['VaultClusterAuditLogConfigArgs']]] = None,
             cloud_provider: Optional[pulumi.Input[str]] = None,
             cluster_id: Optional[pulumi.Input[str]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             hvn_id: Optional[pulumi.Input[str]] = None,
+            metrics_config: Optional[pulumi.Input[pulumi.InputType['VaultClusterMetricsConfigArgs']]] = None,
             min_vault_version: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
@@ -605,10 +707,14 @@ class VaultCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['VaultClusterAuditLogConfigArgs']] audit_log_config: The audit logs configuration for export.
+               (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
         :param pulumi.Input[str] cloud_provider: The provider where the HCP Vault cluster is located.
         :param pulumi.Input[str] cluster_id: The ID of the HCP Vault cluster.
         :param pulumi.Input[str] created_at: The time that the Vault cluster was created.
         :param pulumi.Input[str] hvn_id: The ID of the HVN this HCP Vault cluster is associated to.
+        :param pulumi.Input[pulumi.InputType['VaultClusterMetricsConfigArgs']] metrics_config: The metrics configuration for export.
+               (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
         :param pulumi.Input[str] min_vault_version: The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
                currently recommended by HCP.
         :param pulumi.Input[str] namespace: The name of the customer namespace this HCP Vault cluster is located in.
@@ -632,10 +738,12 @@ class VaultCluster(pulumi.CustomResource):
 
         __props__ = _VaultClusterState.__new__(_VaultClusterState)
 
+        __props__.__dict__["audit_log_config"] = audit_log_config
         __props__.__dict__["cloud_provider"] = cloud_provider
         __props__.__dict__["cluster_id"] = cluster_id
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["hvn_id"] = hvn_id
+        __props__.__dict__["metrics_config"] = metrics_config
         __props__.__dict__["min_vault_version"] = min_vault_version
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["organization_id"] = organization_id
@@ -650,6 +758,15 @@ class VaultCluster(pulumi.CustomResource):
         __props__.__dict__["vault_public_endpoint_url"] = vault_public_endpoint_url
         __props__.__dict__["vault_version"] = vault_version
         return VaultCluster(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="auditLogConfig")
+    def audit_log_config(self) -> pulumi.Output[Optional['outputs.VaultClusterAuditLogConfig']]:
+        """
+        The audit logs configuration for export.
+        (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+        """
+        return pulumi.get(self, "audit_log_config")
 
     @property
     @pulumi.getter(name="cloudProvider")
@@ -682,6 +799,15 @@ class VaultCluster(pulumi.CustomResource):
         The ID of the HVN this HCP Vault cluster is associated to.
         """
         return pulumi.get(self, "hvn_id")
+
+    @property
+    @pulumi.getter(name="metricsConfig")
+    def metrics_config(self) -> pulumi.Output[Optional['outputs.VaultClusterMetricsConfig']]:
+        """
+        The metrics configuration for export.
+        (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+        """
+        return pulumi.get(self, "metrics_config")
 
     @property
     @pulumi.getter(name="minVaultVersion")

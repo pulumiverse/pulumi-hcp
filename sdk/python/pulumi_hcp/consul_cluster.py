@@ -648,6 +648,8 @@ class ConsulCluster(pulumi.CustomResource):
                  tier: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        > Consul on Azure is now available in public beta. [Get started with end-to-end deployment configuration](https://learn.hashicorp.com/tutorials/cloud/consul-end-to-end-overview).
+
         The Consul cluster resource allows you to manage an HCP Consul cluster.
 
         ## Example Usage
@@ -702,6 +704,8 @@ class ConsulCluster(pulumi.CustomResource):
                  args: ConsulClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        > Consul on Azure is now available in public beta. [Get started with end-to-end deployment configuration](https://learn.hashicorp.com/tutorials/cloud/consul-end-to-end-overview).
+
         The Consul cluster resource allows you to manage an HCP Consul cluster.
 
         ## Example Usage

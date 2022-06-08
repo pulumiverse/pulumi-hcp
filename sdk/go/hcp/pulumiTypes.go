@@ -10,6 +10,452 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+type VaultClusterAuditLogConfig struct {
+	DatadogApiKey     *string `pulumi:"datadogApiKey"`
+	DatadogRegion     *string `pulumi:"datadogRegion"`
+	GrafanaEndpoint   *string `pulumi:"grafanaEndpoint"`
+	GrafanaPassword   *string `pulumi:"grafanaPassword"`
+	GrafanaUser       *string `pulumi:"grafanaUser"`
+	SplunkHecendpoint *string `pulumi:"splunkHecendpoint"`
+	SplunkToken       *string `pulumi:"splunkToken"`
+}
+
+// VaultClusterAuditLogConfigInput is an input type that accepts VaultClusterAuditLogConfigArgs and VaultClusterAuditLogConfigOutput values.
+// You can construct a concrete instance of `VaultClusterAuditLogConfigInput` via:
+//
+//          VaultClusterAuditLogConfigArgs{...}
+type VaultClusterAuditLogConfigInput interface {
+	pulumi.Input
+
+	ToVaultClusterAuditLogConfigOutput() VaultClusterAuditLogConfigOutput
+	ToVaultClusterAuditLogConfigOutputWithContext(context.Context) VaultClusterAuditLogConfigOutput
+}
+
+type VaultClusterAuditLogConfigArgs struct {
+	DatadogApiKey     pulumi.StringPtrInput `pulumi:"datadogApiKey"`
+	DatadogRegion     pulumi.StringPtrInput `pulumi:"datadogRegion"`
+	GrafanaEndpoint   pulumi.StringPtrInput `pulumi:"grafanaEndpoint"`
+	GrafanaPassword   pulumi.StringPtrInput `pulumi:"grafanaPassword"`
+	GrafanaUser       pulumi.StringPtrInput `pulumi:"grafanaUser"`
+	SplunkHecendpoint pulumi.StringPtrInput `pulumi:"splunkHecendpoint"`
+	SplunkToken       pulumi.StringPtrInput `pulumi:"splunkToken"`
+}
+
+func (VaultClusterAuditLogConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VaultClusterAuditLogConfig)(nil)).Elem()
+}
+
+func (i VaultClusterAuditLogConfigArgs) ToVaultClusterAuditLogConfigOutput() VaultClusterAuditLogConfigOutput {
+	return i.ToVaultClusterAuditLogConfigOutputWithContext(context.Background())
+}
+
+func (i VaultClusterAuditLogConfigArgs) ToVaultClusterAuditLogConfigOutputWithContext(ctx context.Context) VaultClusterAuditLogConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VaultClusterAuditLogConfigOutput)
+}
+
+func (i VaultClusterAuditLogConfigArgs) ToVaultClusterAuditLogConfigPtrOutput() VaultClusterAuditLogConfigPtrOutput {
+	return i.ToVaultClusterAuditLogConfigPtrOutputWithContext(context.Background())
+}
+
+func (i VaultClusterAuditLogConfigArgs) ToVaultClusterAuditLogConfigPtrOutputWithContext(ctx context.Context) VaultClusterAuditLogConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VaultClusterAuditLogConfigOutput).ToVaultClusterAuditLogConfigPtrOutputWithContext(ctx)
+}
+
+// VaultClusterAuditLogConfigPtrInput is an input type that accepts VaultClusterAuditLogConfigArgs, VaultClusterAuditLogConfigPtr and VaultClusterAuditLogConfigPtrOutput values.
+// You can construct a concrete instance of `VaultClusterAuditLogConfigPtrInput` via:
+//
+//          VaultClusterAuditLogConfigArgs{...}
+//
+//  or:
+//
+//          nil
+type VaultClusterAuditLogConfigPtrInput interface {
+	pulumi.Input
+
+	ToVaultClusterAuditLogConfigPtrOutput() VaultClusterAuditLogConfigPtrOutput
+	ToVaultClusterAuditLogConfigPtrOutputWithContext(context.Context) VaultClusterAuditLogConfigPtrOutput
+}
+
+type vaultClusterAuditLogConfigPtrType VaultClusterAuditLogConfigArgs
+
+func VaultClusterAuditLogConfigPtr(v *VaultClusterAuditLogConfigArgs) VaultClusterAuditLogConfigPtrInput {
+	return (*vaultClusterAuditLogConfigPtrType)(v)
+}
+
+func (*vaultClusterAuditLogConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**VaultClusterAuditLogConfig)(nil)).Elem()
+}
+
+func (i *vaultClusterAuditLogConfigPtrType) ToVaultClusterAuditLogConfigPtrOutput() VaultClusterAuditLogConfigPtrOutput {
+	return i.ToVaultClusterAuditLogConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *vaultClusterAuditLogConfigPtrType) ToVaultClusterAuditLogConfigPtrOutputWithContext(ctx context.Context) VaultClusterAuditLogConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VaultClusterAuditLogConfigPtrOutput)
+}
+
+type VaultClusterAuditLogConfigOutput struct{ *pulumi.OutputState }
+
+func (VaultClusterAuditLogConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VaultClusterAuditLogConfig)(nil)).Elem()
+}
+
+func (o VaultClusterAuditLogConfigOutput) ToVaultClusterAuditLogConfigOutput() VaultClusterAuditLogConfigOutput {
+	return o
+}
+
+func (o VaultClusterAuditLogConfigOutput) ToVaultClusterAuditLogConfigOutputWithContext(ctx context.Context) VaultClusterAuditLogConfigOutput {
+	return o
+}
+
+func (o VaultClusterAuditLogConfigOutput) ToVaultClusterAuditLogConfigPtrOutput() VaultClusterAuditLogConfigPtrOutput {
+	return o.ToVaultClusterAuditLogConfigPtrOutputWithContext(context.Background())
+}
+
+func (o VaultClusterAuditLogConfigOutput) ToVaultClusterAuditLogConfigPtrOutputWithContext(ctx context.Context) VaultClusterAuditLogConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v VaultClusterAuditLogConfig) *VaultClusterAuditLogConfig {
+		return &v
+	}).(VaultClusterAuditLogConfigPtrOutput)
+}
+
+func (o VaultClusterAuditLogConfigOutput) DatadogApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VaultClusterAuditLogConfig) *string { return v.DatadogApiKey }).(pulumi.StringPtrOutput)
+}
+
+func (o VaultClusterAuditLogConfigOutput) DatadogRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VaultClusterAuditLogConfig) *string { return v.DatadogRegion }).(pulumi.StringPtrOutput)
+}
+
+func (o VaultClusterAuditLogConfigOutput) GrafanaEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VaultClusterAuditLogConfig) *string { return v.GrafanaEndpoint }).(pulumi.StringPtrOutput)
+}
+
+func (o VaultClusterAuditLogConfigOutput) GrafanaPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VaultClusterAuditLogConfig) *string { return v.GrafanaPassword }).(pulumi.StringPtrOutput)
+}
+
+func (o VaultClusterAuditLogConfigOutput) GrafanaUser() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VaultClusterAuditLogConfig) *string { return v.GrafanaUser }).(pulumi.StringPtrOutput)
+}
+
+func (o VaultClusterAuditLogConfigOutput) SplunkHecendpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VaultClusterAuditLogConfig) *string { return v.SplunkHecendpoint }).(pulumi.StringPtrOutput)
+}
+
+func (o VaultClusterAuditLogConfigOutput) SplunkToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VaultClusterAuditLogConfig) *string { return v.SplunkToken }).(pulumi.StringPtrOutput)
+}
+
+type VaultClusterAuditLogConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (VaultClusterAuditLogConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VaultClusterAuditLogConfig)(nil)).Elem()
+}
+
+func (o VaultClusterAuditLogConfigPtrOutput) ToVaultClusterAuditLogConfigPtrOutput() VaultClusterAuditLogConfigPtrOutput {
+	return o
+}
+
+func (o VaultClusterAuditLogConfigPtrOutput) ToVaultClusterAuditLogConfigPtrOutputWithContext(ctx context.Context) VaultClusterAuditLogConfigPtrOutput {
+	return o
+}
+
+func (o VaultClusterAuditLogConfigPtrOutput) Elem() VaultClusterAuditLogConfigOutput {
+	return o.ApplyT(func(v *VaultClusterAuditLogConfig) VaultClusterAuditLogConfig {
+		if v != nil {
+			return *v
+		}
+		var ret VaultClusterAuditLogConfig
+		return ret
+	}).(VaultClusterAuditLogConfigOutput)
+}
+
+func (o VaultClusterAuditLogConfigPtrOutput) DatadogApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VaultClusterAuditLogConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DatadogApiKey
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VaultClusterAuditLogConfigPtrOutput) DatadogRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VaultClusterAuditLogConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DatadogRegion
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VaultClusterAuditLogConfigPtrOutput) GrafanaEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VaultClusterAuditLogConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GrafanaEndpoint
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VaultClusterAuditLogConfigPtrOutput) GrafanaPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VaultClusterAuditLogConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GrafanaPassword
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VaultClusterAuditLogConfigPtrOutput) GrafanaUser() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VaultClusterAuditLogConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GrafanaUser
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VaultClusterAuditLogConfigPtrOutput) SplunkHecendpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VaultClusterAuditLogConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SplunkHecendpoint
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VaultClusterAuditLogConfigPtrOutput) SplunkToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VaultClusterAuditLogConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SplunkToken
+	}).(pulumi.StringPtrOutput)
+}
+
+type VaultClusterMetricsConfig struct {
+	DatadogApiKey     *string `pulumi:"datadogApiKey"`
+	DatadogRegion     *string `pulumi:"datadogRegion"`
+	GrafanaEndpoint   *string `pulumi:"grafanaEndpoint"`
+	GrafanaPassword   *string `pulumi:"grafanaPassword"`
+	GrafanaUser       *string `pulumi:"grafanaUser"`
+	SplunkHecendpoint *string `pulumi:"splunkHecendpoint"`
+	SplunkToken       *string `pulumi:"splunkToken"`
+}
+
+// VaultClusterMetricsConfigInput is an input type that accepts VaultClusterMetricsConfigArgs and VaultClusterMetricsConfigOutput values.
+// You can construct a concrete instance of `VaultClusterMetricsConfigInput` via:
+//
+//          VaultClusterMetricsConfigArgs{...}
+type VaultClusterMetricsConfigInput interface {
+	pulumi.Input
+
+	ToVaultClusterMetricsConfigOutput() VaultClusterMetricsConfigOutput
+	ToVaultClusterMetricsConfigOutputWithContext(context.Context) VaultClusterMetricsConfigOutput
+}
+
+type VaultClusterMetricsConfigArgs struct {
+	DatadogApiKey     pulumi.StringPtrInput `pulumi:"datadogApiKey"`
+	DatadogRegion     pulumi.StringPtrInput `pulumi:"datadogRegion"`
+	GrafanaEndpoint   pulumi.StringPtrInput `pulumi:"grafanaEndpoint"`
+	GrafanaPassword   pulumi.StringPtrInput `pulumi:"grafanaPassword"`
+	GrafanaUser       pulumi.StringPtrInput `pulumi:"grafanaUser"`
+	SplunkHecendpoint pulumi.StringPtrInput `pulumi:"splunkHecendpoint"`
+	SplunkToken       pulumi.StringPtrInput `pulumi:"splunkToken"`
+}
+
+func (VaultClusterMetricsConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VaultClusterMetricsConfig)(nil)).Elem()
+}
+
+func (i VaultClusterMetricsConfigArgs) ToVaultClusterMetricsConfigOutput() VaultClusterMetricsConfigOutput {
+	return i.ToVaultClusterMetricsConfigOutputWithContext(context.Background())
+}
+
+func (i VaultClusterMetricsConfigArgs) ToVaultClusterMetricsConfigOutputWithContext(ctx context.Context) VaultClusterMetricsConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VaultClusterMetricsConfigOutput)
+}
+
+func (i VaultClusterMetricsConfigArgs) ToVaultClusterMetricsConfigPtrOutput() VaultClusterMetricsConfigPtrOutput {
+	return i.ToVaultClusterMetricsConfigPtrOutputWithContext(context.Background())
+}
+
+func (i VaultClusterMetricsConfigArgs) ToVaultClusterMetricsConfigPtrOutputWithContext(ctx context.Context) VaultClusterMetricsConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VaultClusterMetricsConfigOutput).ToVaultClusterMetricsConfigPtrOutputWithContext(ctx)
+}
+
+// VaultClusterMetricsConfigPtrInput is an input type that accepts VaultClusterMetricsConfigArgs, VaultClusterMetricsConfigPtr and VaultClusterMetricsConfigPtrOutput values.
+// You can construct a concrete instance of `VaultClusterMetricsConfigPtrInput` via:
+//
+//          VaultClusterMetricsConfigArgs{...}
+//
+//  or:
+//
+//          nil
+type VaultClusterMetricsConfigPtrInput interface {
+	pulumi.Input
+
+	ToVaultClusterMetricsConfigPtrOutput() VaultClusterMetricsConfigPtrOutput
+	ToVaultClusterMetricsConfigPtrOutputWithContext(context.Context) VaultClusterMetricsConfigPtrOutput
+}
+
+type vaultClusterMetricsConfigPtrType VaultClusterMetricsConfigArgs
+
+func VaultClusterMetricsConfigPtr(v *VaultClusterMetricsConfigArgs) VaultClusterMetricsConfigPtrInput {
+	return (*vaultClusterMetricsConfigPtrType)(v)
+}
+
+func (*vaultClusterMetricsConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**VaultClusterMetricsConfig)(nil)).Elem()
+}
+
+func (i *vaultClusterMetricsConfigPtrType) ToVaultClusterMetricsConfigPtrOutput() VaultClusterMetricsConfigPtrOutput {
+	return i.ToVaultClusterMetricsConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *vaultClusterMetricsConfigPtrType) ToVaultClusterMetricsConfigPtrOutputWithContext(ctx context.Context) VaultClusterMetricsConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VaultClusterMetricsConfigPtrOutput)
+}
+
+type VaultClusterMetricsConfigOutput struct{ *pulumi.OutputState }
+
+func (VaultClusterMetricsConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VaultClusterMetricsConfig)(nil)).Elem()
+}
+
+func (o VaultClusterMetricsConfigOutput) ToVaultClusterMetricsConfigOutput() VaultClusterMetricsConfigOutput {
+	return o
+}
+
+func (o VaultClusterMetricsConfigOutput) ToVaultClusterMetricsConfigOutputWithContext(ctx context.Context) VaultClusterMetricsConfigOutput {
+	return o
+}
+
+func (o VaultClusterMetricsConfigOutput) ToVaultClusterMetricsConfigPtrOutput() VaultClusterMetricsConfigPtrOutput {
+	return o.ToVaultClusterMetricsConfigPtrOutputWithContext(context.Background())
+}
+
+func (o VaultClusterMetricsConfigOutput) ToVaultClusterMetricsConfigPtrOutputWithContext(ctx context.Context) VaultClusterMetricsConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v VaultClusterMetricsConfig) *VaultClusterMetricsConfig {
+		return &v
+	}).(VaultClusterMetricsConfigPtrOutput)
+}
+
+func (o VaultClusterMetricsConfigOutput) DatadogApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VaultClusterMetricsConfig) *string { return v.DatadogApiKey }).(pulumi.StringPtrOutput)
+}
+
+func (o VaultClusterMetricsConfigOutput) DatadogRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VaultClusterMetricsConfig) *string { return v.DatadogRegion }).(pulumi.StringPtrOutput)
+}
+
+func (o VaultClusterMetricsConfigOutput) GrafanaEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VaultClusterMetricsConfig) *string { return v.GrafanaEndpoint }).(pulumi.StringPtrOutput)
+}
+
+func (o VaultClusterMetricsConfigOutput) GrafanaPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VaultClusterMetricsConfig) *string { return v.GrafanaPassword }).(pulumi.StringPtrOutput)
+}
+
+func (o VaultClusterMetricsConfigOutput) GrafanaUser() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VaultClusterMetricsConfig) *string { return v.GrafanaUser }).(pulumi.StringPtrOutput)
+}
+
+func (o VaultClusterMetricsConfigOutput) SplunkHecendpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VaultClusterMetricsConfig) *string { return v.SplunkHecendpoint }).(pulumi.StringPtrOutput)
+}
+
+func (o VaultClusterMetricsConfigOutput) SplunkToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VaultClusterMetricsConfig) *string { return v.SplunkToken }).(pulumi.StringPtrOutput)
+}
+
+type VaultClusterMetricsConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (VaultClusterMetricsConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VaultClusterMetricsConfig)(nil)).Elem()
+}
+
+func (o VaultClusterMetricsConfigPtrOutput) ToVaultClusterMetricsConfigPtrOutput() VaultClusterMetricsConfigPtrOutput {
+	return o
+}
+
+func (o VaultClusterMetricsConfigPtrOutput) ToVaultClusterMetricsConfigPtrOutputWithContext(ctx context.Context) VaultClusterMetricsConfigPtrOutput {
+	return o
+}
+
+func (o VaultClusterMetricsConfigPtrOutput) Elem() VaultClusterMetricsConfigOutput {
+	return o.ApplyT(func(v *VaultClusterMetricsConfig) VaultClusterMetricsConfig {
+		if v != nil {
+			return *v
+		}
+		var ret VaultClusterMetricsConfig
+		return ret
+	}).(VaultClusterMetricsConfigOutput)
+}
+
+func (o VaultClusterMetricsConfigPtrOutput) DatadogApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VaultClusterMetricsConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DatadogApiKey
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VaultClusterMetricsConfigPtrOutput) DatadogRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VaultClusterMetricsConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DatadogRegion
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VaultClusterMetricsConfigPtrOutput) GrafanaEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VaultClusterMetricsConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GrafanaEndpoint
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VaultClusterMetricsConfigPtrOutput) GrafanaPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VaultClusterMetricsConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GrafanaPassword
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VaultClusterMetricsConfigPtrOutput) GrafanaUser() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VaultClusterMetricsConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GrafanaUser
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VaultClusterMetricsConfigPtrOutput) SplunkHecendpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VaultClusterMetricsConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SplunkHecendpoint
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VaultClusterMetricsConfigPtrOutput) SplunkToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VaultClusterMetricsConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SplunkToken
+	}).(pulumi.StringPtrOutput)
+}
+
 type GetPackerImageIterationBuild struct {
 	// Name of the cloud provider this image is stored-in, if any.
 	CloudProvider string `pulumi:"cloudProvider"`
@@ -294,13 +740,253 @@ func (o GetPackerImageIterationBuildImageArrayOutput) Index(i pulumi.IntInput) G
 	}).(GetPackerImageIterationBuildImageOutput)
 }
 
+type GetVaultClusterAuditLogConfig struct {
+	DatadogRegion     string `pulumi:"datadogRegion"`
+	GrafanaEndpoint   string `pulumi:"grafanaEndpoint"`
+	GrafanaUser       string `pulumi:"grafanaUser"`
+	SplunkHecendpoint string `pulumi:"splunkHecendpoint"`
+}
+
+// GetVaultClusterAuditLogConfigInput is an input type that accepts GetVaultClusterAuditLogConfigArgs and GetVaultClusterAuditLogConfigOutput values.
+// You can construct a concrete instance of `GetVaultClusterAuditLogConfigInput` via:
+//
+//          GetVaultClusterAuditLogConfigArgs{...}
+type GetVaultClusterAuditLogConfigInput interface {
+	pulumi.Input
+
+	ToGetVaultClusterAuditLogConfigOutput() GetVaultClusterAuditLogConfigOutput
+	ToGetVaultClusterAuditLogConfigOutputWithContext(context.Context) GetVaultClusterAuditLogConfigOutput
+}
+
+type GetVaultClusterAuditLogConfigArgs struct {
+	DatadogRegion     pulumi.StringInput `pulumi:"datadogRegion"`
+	GrafanaEndpoint   pulumi.StringInput `pulumi:"grafanaEndpoint"`
+	GrafanaUser       pulumi.StringInput `pulumi:"grafanaUser"`
+	SplunkHecendpoint pulumi.StringInput `pulumi:"splunkHecendpoint"`
+}
+
+func (GetVaultClusterAuditLogConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVaultClusterAuditLogConfig)(nil)).Elem()
+}
+
+func (i GetVaultClusterAuditLogConfigArgs) ToGetVaultClusterAuditLogConfigOutput() GetVaultClusterAuditLogConfigOutput {
+	return i.ToGetVaultClusterAuditLogConfigOutputWithContext(context.Background())
+}
+
+func (i GetVaultClusterAuditLogConfigArgs) ToGetVaultClusterAuditLogConfigOutputWithContext(ctx context.Context) GetVaultClusterAuditLogConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVaultClusterAuditLogConfigOutput)
+}
+
+// GetVaultClusterAuditLogConfigArrayInput is an input type that accepts GetVaultClusterAuditLogConfigArray and GetVaultClusterAuditLogConfigArrayOutput values.
+// You can construct a concrete instance of `GetVaultClusterAuditLogConfigArrayInput` via:
+//
+//          GetVaultClusterAuditLogConfigArray{ GetVaultClusterAuditLogConfigArgs{...} }
+type GetVaultClusterAuditLogConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetVaultClusterAuditLogConfigArrayOutput() GetVaultClusterAuditLogConfigArrayOutput
+	ToGetVaultClusterAuditLogConfigArrayOutputWithContext(context.Context) GetVaultClusterAuditLogConfigArrayOutput
+}
+
+type GetVaultClusterAuditLogConfigArray []GetVaultClusterAuditLogConfigInput
+
+func (GetVaultClusterAuditLogConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVaultClusterAuditLogConfig)(nil)).Elem()
+}
+
+func (i GetVaultClusterAuditLogConfigArray) ToGetVaultClusterAuditLogConfigArrayOutput() GetVaultClusterAuditLogConfigArrayOutput {
+	return i.ToGetVaultClusterAuditLogConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetVaultClusterAuditLogConfigArray) ToGetVaultClusterAuditLogConfigArrayOutputWithContext(ctx context.Context) GetVaultClusterAuditLogConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVaultClusterAuditLogConfigArrayOutput)
+}
+
+type GetVaultClusterAuditLogConfigOutput struct{ *pulumi.OutputState }
+
+func (GetVaultClusterAuditLogConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVaultClusterAuditLogConfig)(nil)).Elem()
+}
+
+func (o GetVaultClusterAuditLogConfigOutput) ToGetVaultClusterAuditLogConfigOutput() GetVaultClusterAuditLogConfigOutput {
+	return o
+}
+
+func (o GetVaultClusterAuditLogConfigOutput) ToGetVaultClusterAuditLogConfigOutputWithContext(ctx context.Context) GetVaultClusterAuditLogConfigOutput {
+	return o
+}
+
+func (o GetVaultClusterAuditLogConfigOutput) DatadogRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVaultClusterAuditLogConfig) string { return v.DatadogRegion }).(pulumi.StringOutput)
+}
+
+func (o GetVaultClusterAuditLogConfigOutput) GrafanaEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVaultClusterAuditLogConfig) string { return v.GrafanaEndpoint }).(pulumi.StringOutput)
+}
+
+func (o GetVaultClusterAuditLogConfigOutput) GrafanaUser() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVaultClusterAuditLogConfig) string { return v.GrafanaUser }).(pulumi.StringOutput)
+}
+
+func (o GetVaultClusterAuditLogConfigOutput) SplunkHecendpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVaultClusterAuditLogConfig) string { return v.SplunkHecendpoint }).(pulumi.StringOutput)
+}
+
+type GetVaultClusterAuditLogConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVaultClusterAuditLogConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVaultClusterAuditLogConfig)(nil)).Elem()
+}
+
+func (o GetVaultClusterAuditLogConfigArrayOutput) ToGetVaultClusterAuditLogConfigArrayOutput() GetVaultClusterAuditLogConfigArrayOutput {
+	return o
+}
+
+func (o GetVaultClusterAuditLogConfigArrayOutput) ToGetVaultClusterAuditLogConfigArrayOutputWithContext(ctx context.Context) GetVaultClusterAuditLogConfigArrayOutput {
+	return o
+}
+
+func (o GetVaultClusterAuditLogConfigArrayOutput) Index(i pulumi.IntInput) GetVaultClusterAuditLogConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVaultClusterAuditLogConfig {
+		return vs[0].([]GetVaultClusterAuditLogConfig)[vs[1].(int)]
+	}).(GetVaultClusterAuditLogConfigOutput)
+}
+
+type GetVaultClusterMetricsConfig struct {
+	DatadogRegion     string `pulumi:"datadogRegion"`
+	GrafanaEndpoint   string `pulumi:"grafanaEndpoint"`
+	GrafanaUser       string `pulumi:"grafanaUser"`
+	SplunkHecendpoint string `pulumi:"splunkHecendpoint"`
+}
+
+// GetVaultClusterMetricsConfigInput is an input type that accepts GetVaultClusterMetricsConfigArgs and GetVaultClusterMetricsConfigOutput values.
+// You can construct a concrete instance of `GetVaultClusterMetricsConfigInput` via:
+//
+//          GetVaultClusterMetricsConfigArgs{...}
+type GetVaultClusterMetricsConfigInput interface {
+	pulumi.Input
+
+	ToGetVaultClusterMetricsConfigOutput() GetVaultClusterMetricsConfigOutput
+	ToGetVaultClusterMetricsConfigOutputWithContext(context.Context) GetVaultClusterMetricsConfigOutput
+}
+
+type GetVaultClusterMetricsConfigArgs struct {
+	DatadogRegion     pulumi.StringInput `pulumi:"datadogRegion"`
+	GrafanaEndpoint   pulumi.StringInput `pulumi:"grafanaEndpoint"`
+	GrafanaUser       pulumi.StringInput `pulumi:"grafanaUser"`
+	SplunkHecendpoint pulumi.StringInput `pulumi:"splunkHecendpoint"`
+}
+
+func (GetVaultClusterMetricsConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVaultClusterMetricsConfig)(nil)).Elem()
+}
+
+func (i GetVaultClusterMetricsConfigArgs) ToGetVaultClusterMetricsConfigOutput() GetVaultClusterMetricsConfigOutput {
+	return i.ToGetVaultClusterMetricsConfigOutputWithContext(context.Background())
+}
+
+func (i GetVaultClusterMetricsConfigArgs) ToGetVaultClusterMetricsConfigOutputWithContext(ctx context.Context) GetVaultClusterMetricsConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVaultClusterMetricsConfigOutput)
+}
+
+// GetVaultClusterMetricsConfigArrayInput is an input type that accepts GetVaultClusterMetricsConfigArray and GetVaultClusterMetricsConfigArrayOutput values.
+// You can construct a concrete instance of `GetVaultClusterMetricsConfigArrayInput` via:
+//
+//          GetVaultClusterMetricsConfigArray{ GetVaultClusterMetricsConfigArgs{...} }
+type GetVaultClusterMetricsConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetVaultClusterMetricsConfigArrayOutput() GetVaultClusterMetricsConfigArrayOutput
+	ToGetVaultClusterMetricsConfigArrayOutputWithContext(context.Context) GetVaultClusterMetricsConfigArrayOutput
+}
+
+type GetVaultClusterMetricsConfigArray []GetVaultClusterMetricsConfigInput
+
+func (GetVaultClusterMetricsConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVaultClusterMetricsConfig)(nil)).Elem()
+}
+
+func (i GetVaultClusterMetricsConfigArray) ToGetVaultClusterMetricsConfigArrayOutput() GetVaultClusterMetricsConfigArrayOutput {
+	return i.ToGetVaultClusterMetricsConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetVaultClusterMetricsConfigArray) ToGetVaultClusterMetricsConfigArrayOutputWithContext(ctx context.Context) GetVaultClusterMetricsConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVaultClusterMetricsConfigArrayOutput)
+}
+
+type GetVaultClusterMetricsConfigOutput struct{ *pulumi.OutputState }
+
+func (GetVaultClusterMetricsConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVaultClusterMetricsConfig)(nil)).Elem()
+}
+
+func (o GetVaultClusterMetricsConfigOutput) ToGetVaultClusterMetricsConfigOutput() GetVaultClusterMetricsConfigOutput {
+	return o
+}
+
+func (o GetVaultClusterMetricsConfigOutput) ToGetVaultClusterMetricsConfigOutputWithContext(ctx context.Context) GetVaultClusterMetricsConfigOutput {
+	return o
+}
+
+func (o GetVaultClusterMetricsConfigOutput) DatadogRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVaultClusterMetricsConfig) string { return v.DatadogRegion }).(pulumi.StringOutput)
+}
+
+func (o GetVaultClusterMetricsConfigOutput) GrafanaEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVaultClusterMetricsConfig) string { return v.GrafanaEndpoint }).(pulumi.StringOutput)
+}
+
+func (o GetVaultClusterMetricsConfigOutput) GrafanaUser() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVaultClusterMetricsConfig) string { return v.GrafanaUser }).(pulumi.StringOutput)
+}
+
+func (o GetVaultClusterMetricsConfigOutput) SplunkHecendpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVaultClusterMetricsConfig) string { return v.SplunkHecendpoint }).(pulumi.StringOutput)
+}
+
+type GetVaultClusterMetricsConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVaultClusterMetricsConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVaultClusterMetricsConfig)(nil)).Elem()
+}
+
+func (o GetVaultClusterMetricsConfigArrayOutput) ToGetVaultClusterMetricsConfigArrayOutput() GetVaultClusterMetricsConfigArrayOutput {
+	return o
+}
+
+func (o GetVaultClusterMetricsConfigArrayOutput) ToGetVaultClusterMetricsConfigArrayOutputWithContext(ctx context.Context) GetVaultClusterMetricsConfigArrayOutput {
+	return o
+}
+
+func (o GetVaultClusterMetricsConfigArrayOutput) Index(i pulumi.IntInput) GetVaultClusterMetricsConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVaultClusterMetricsConfig {
+		return vs[0].([]GetVaultClusterMetricsConfig)[vs[1].(int)]
+	}).(GetVaultClusterMetricsConfigOutput)
+}
+
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*VaultClusterAuditLogConfigInput)(nil)).Elem(), VaultClusterAuditLogConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VaultClusterAuditLogConfigPtrInput)(nil)).Elem(), VaultClusterAuditLogConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VaultClusterMetricsConfigInput)(nil)).Elem(), VaultClusterMetricsConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VaultClusterMetricsConfigPtrInput)(nil)).Elem(), VaultClusterMetricsConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPackerImageIterationBuildInput)(nil)).Elem(), GetPackerImageIterationBuildArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPackerImageIterationBuildArrayInput)(nil)).Elem(), GetPackerImageIterationBuildArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPackerImageIterationBuildImageInput)(nil)).Elem(), GetPackerImageIterationBuildImageArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPackerImageIterationBuildImageArrayInput)(nil)).Elem(), GetPackerImageIterationBuildImageArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVaultClusterAuditLogConfigInput)(nil)).Elem(), GetVaultClusterAuditLogConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVaultClusterAuditLogConfigArrayInput)(nil)).Elem(), GetVaultClusterAuditLogConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVaultClusterMetricsConfigInput)(nil)).Elem(), GetVaultClusterMetricsConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVaultClusterMetricsConfigArrayInput)(nil)).Elem(), GetVaultClusterMetricsConfigArray{})
+	pulumi.RegisterOutputType(VaultClusterAuditLogConfigOutput{})
+	pulumi.RegisterOutputType(VaultClusterAuditLogConfigPtrOutput{})
+	pulumi.RegisterOutputType(VaultClusterMetricsConfigOutput{})
+	pulumi.RegisterOutputType(VaultClusterMetricsConfigPtrOutput{})
 	pulumi.RegisterOutputType(GetPackerImageIterationBuildOutput{})
 	pulumi.RegisterOutputType(GetPackerImageIterationBuildArrayOutput{})
 	pulumi.RegisterOutputType(GetPackerImageIterationBuildImageOutput{})
 	pulumi.RegisterOutputType(GetPackerImageIterationBuildImageArrayOutput{})
+	pulumi.RegisterOutputType(GetVaultClusterAuditLogConfigOutput{})
+	pulumi.RegisterOutputType(GetVaultClusterAuditLogConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetVaultClusterMetricsConfigOutput{})
+	pulumi.RegisterOutputType(GetVaultClusterMetricsConfigArrayOutput{})
 }

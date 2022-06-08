@@ -371,7 +371,7 @@ class AzurePeeringConnection(pulumi.CustomResource):
                  peering_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        > **Note:** Azure support coming soon. This resource is currently in internal preview only.
+        > **Note:** This data source is currently in public beta.
 
         The Azure peering connection resource allows you to manage a peering connection between an HVN and a peer Azure VNet.
 
@@ -400,7 +400,7 @@ class AzurePeeringConnection(pulumi.CustomResource):
                  args: AzurePeeringConnectionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        > **Note:** Azure support coming soon. This resource is currently in internal preview only.
+        > **Note:** This data source is currently in public beta.
 
         The Azure peering connection resource allows you to manage a peering connection between an HVN and a peer Azure VNet.
 

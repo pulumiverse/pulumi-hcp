@@ -18,6 +18,7 @@ import (
 //
 // import (
 // 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
+// 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -36,6 +37,14 @@ import (
 // 			ClusterId: pulumi.String("vault-cluster"),
 // 			HvnId:     exampleHvn.HvnId,
 // 			Tier:      pulumi.String("standard_large"),
+// 			MetricsConfig: &VaultClusterMetricsConfigArgs{
+// 				DatadogApiKey: pulumi.String("test_datadog"),
+// 				DatadogRegion: pulumi.String("us1"),
+// 			},
+// 			AuditLogConfig: &VaultClusterAuditLogConfigArgs{
+// 				DatadogApiKey: pulumi.String("test_datadog"),
+// 				DatadogRegion: pulumi.String("us1"),
+// 			},
 // 		})
 // 		if err != nil {
 // 			return err
@@ -55,6 +64,9 @@ import (
 type VaultCluster struct {
 	pulumi.CustomResourceState
 
+	// The audit logs configuration for export.
+	// (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+	AuditLogConfig VaultClusterAuditLogConfigPtrOutput `pulumi:"auditLogConfig"`
 	// The provider where the HCP Vault cluster is located.
 	CloudProvider pulumi.StringOutput `pulumi:"cloudProvider"`
 	// The ID of the HCP Vault cluster.
@@ -63,6 +75,9 @@ type VaultCluster struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The ID of the HVN this HCP Vault cluster is associated to.
 	HvnId pulumi.StringOutput `pulumi:"hvnId"`
+	// The metrics configuration for export.
+	// (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+	MetricsConfig VaultClusterMetricsConfigPtrOutput `pulumi:"metricsConfig"`
 	// The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
 	// currently recommended by HCP.
 	MinVaultVersion pulumi.StringPtrOutput `pulumi:"minVaultVersion"`
@@ -132,6 +147,9 @@ func GetVaultCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VaultCluster resources.
 type vaultClusterState struct {
+	// The audit logs configuration for export.
+	// (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+	AuditLogConfig *VaultClusterAuditLogConfig `pulumi:"auditLogConfig"`
 	// The provider where the HCP Vault cluster is located.
 	CloudProvider *string `pulumi:"cloudProvider"`
 	// The ID of the HCP Vault cluster.
@@ -140,6 +158,9 @@ type vaultClusterState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// The ID of the HVN this HCP Vault cluster is associated to.
 	HvnId *string `pulumi:"hvnId"`
+	// The metrics configuration for export.
+	// (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+	MetricsConfig *VaultClusterMetricsConfig `pulumi:"metricsConfig"`
 	// The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
 	// currently recommended by HCP.
 	MinVaultVersion *string `pulumi:"minVaultVersion"`
@@ -174,6 +195,9 @@ type vaultClusterState struct {
 }
 
 type VaultClusterState struct {
+	// The audit logs configuration for export.
+	// (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+	AuditLogConfig VaultClusterAuditLogConfigPtrInput
 	// The provider where the HCP Vault cluster is located.
 	CloudProvider pulumi.StringPtrInput
 	// The ID of the HCP Vault cluster.
@@ -182,6 +206,9 @@ type VaultClusterState struct {
 	CreatedAt pulumi.StringPtrInput
 	// The ID of the HVN this HCP Vault cluster is associated to.
 	HvnId pulumi.StringPtrInput
+	// The metrics configuration for export.
+	// (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+	MetricsConfig VaultClusterMetricsConfigPtrInput
 	// The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
 	// currently recommended by HCP.
 	MinVaultVersion pulumi.StringPtrInput
@@ -220,10 +247,16 @@ func (VaultClusterState) ElementType() reflect.Type {
 }
 
 type vaultClusterArgs struct {
+	// The audit logs configuration for export.
+	// (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+	AuditLogConfig *VaultClusterAuditLogConfig `pulumi:"auditLogConfig"`
 	// The ID of the HCP Vault cluster.
 	ClusterId string `pulumi:"clusterId"`
 	// The ID of the HVN this HCP Vault cluster is associated to.
 	HvnId string `pulumi:"hvnId"`
+	// The metrics configuration for export.
+	// (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+	MetricsConfig *VaultClusterMetricsConfig `pulumi:"metricsConfig"`
 	// The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
 	// currently recommended by HCP.
 	MinVaultVersion *string `pulumi:"minVaultVersion"`
@@ -243,10 +276,16 @@ type vaultClusterArgs struct {
 
 // The set of arguments for constructing a VaultCluster resource.
 type VaultClusterArgs struct {
+	// The audit logs configuration for export.
+	// (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+	AuditLogConfig VaultClusterAuditLogConfigPtrInput
 	// The ID of the HCP Vault cluster.
 	ClusterId pulumi.StringInput
 	// The ID of the HVN this HCP Vault cluster is associated to.
 	HvnId pulumi.StringInput
+	// The metrics configuration for export.
+	// (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+	MetricsConfig VaultClusterMetricsConfigPtrInput
 	// The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
 	// currently recommended by HCP.
 	MinVaultVersion pulumi.StringPtrInput
@@ -351,6 +390,12 @@ func (o VaultClusterOutput) ToVaultClusterOutputWithContext(ctx context.Context)
 	return o
 }
 
+// The audit logs configuration for export.
+// (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+func (o VaultClusterOutput) AuditLogConfig() VaultClusterAuditLogConfigPtrOutput {
+	return o.ApplyT(func(v *VaultCluster) VaultClusterAuditLogConfigPtrOutput { return v.AuditLogConfig }).(VaultClusterAuditLogConfigPtrOutput)
+}
+
 // The provider where the HCP Vault cluster is located.
 func (o VaultClusterOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v *VaultCluster) pulumi.StringOutput { return v.CloudProvider }).(pulumi.StringOutput)
@@ -369,6 +414,12 @@ func (o VaultClusterOutput) CreatedAt() pulumi.StringOutput {
 // The ID of the HVN this HCP Vault cluster is associated to.
 func (o VaultClusterOutput) HvnId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VaultCluster) pulumi.StringOutput { return v.HvnId }).(pulumi.StringOutput)
+}
+
+// The metrics configuration for export.
+// (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+func (o VaultClusterOutput) MetricsConfig() VaultClusterMetricsConfigPtrOutput {
+	return o.ApplyT(func(v *VaultCluster) VaultClusterMetricsConfigPtrOutput { return v.MetricsConfig }).(VaultClusterMetricsConfigPtrOutput)
 }
 
 // The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is

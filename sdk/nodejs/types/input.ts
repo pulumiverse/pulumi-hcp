@@ -4,3 +4,50 @@
 import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 
+export interface GetVaultClusterAuditLogConfig {
+    datadogRegion?: string;
+    grafanaEndpoint?: string;
+    grafanaUser?: string;
+    splunkHecendpoint?: string;
+}
+
+export interface GetVaultClusterAuditLogConfigArgs {
+    datadogRegion?: pulumi.Input<string>;
+    grafanaEndpoint?: pulumi.Input<string>;
+    grafanaUser?: pulumi.Input<string>;
+    splunkHecendpoint?: pulumi.Input<string>;
+}
+
+export interface GetVaultClusterMetricsConfig {
+    datadogRegion?: string;
+    grafanaEndpoint?: string;
+    grafanaUser?: string;
+    splunkHecendpoint?: string;
+}
+
+export interface GetVaultClusterMetricsConfigArgs {
+    datadogRegion?: pulumi.Input<string>;
+    grafanaEndpoint?: pulumi.Input<string>;
+    grafanaUser?: pulumi.Input<string>;
+    splunkHecendpoint?: pulumi.Input<string>;
+}
+
+export interface VaultClusterAuditLogConfig {
+    datadogApiKey?: pulumi.Input<string>;
+    datadogRegion?: pulumi.Input<string>;
+    grafanaEndpoint?: pulumi.Input<string>;
+    grafanaPassword?: pulumi.Input<string>;
+    grafanaUser?: pulumi.Input<string>;
+    splunkHecendpoint?: pulumi.Input<string>;
+    splunkToken?: pulumi.Input<string>;
+}
+
+export interface VaultClusterMetricsConfig {
+    datadogApiKey?: pulumi.Input<string>;
+    datadogRegion?: pulumi.Input<string>;
+    grafanaEndpoint?: pulumi.Input<string>;
+    grafanaPassword?: pulumi.Input<string>;
+    grafanaUser?: pulumi.Input<string>;
+    splunkHecendpoint?: pulumi.Input<string>;
+    splunkToken?: pulumi.Input<string>;
+}

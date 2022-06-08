@@ -53,3 +53,37 @@ export interface GetPackerImageIterationBuildImage {
     region: string;
 }
 
+export interface GetVaultClusterAuditLogConfig {
+    datadogRegion: string;
+    grafanaEndpoint: string;
+    grafanaUser: string;
+    splunkHecendpoint: string;
+}
+
+export interface GetVaultClusterMetricsConfig {
+    datadogRegion: string;
+    grafanaEndpoint: string;
+    grafanaUser: string;
+    splunkHecendpoint: string;
+}
+
+export interface VaultClusterAuditLogConfig {
+    datadogApiKey?: string;
+    datadogRegion?: string;
+    grafanaEndpoint?: string;
+    grafanaPassword?: string;
+    grafanaUser?: string;
+    splunkHecendpoint?: string;
+    splunkToken?: string;
+}
+
+export interface VaultClusterMetricsConfig {
+    datadogApiKey?: string;
+    datadogRegion?: string;
+    grafanaEndpoint?: string;
+    grafanaPassword?: string;
+    grafanaUser?: string;
+    splunkHecendpoint?: string;
+    splunkToken?: string;
+}
+

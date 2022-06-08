@@ -2,6 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -25,7 +26,9 @@ export function getVaultCluster(args: GetVaultClusterArgs, opts?: pulumi.InvokeO
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("hcp:index/getVaultCluster:getVaultCluster", {
+        "auditLogConfigs": args.auditLogConfigs,
         "clusterId": args.clusterId,
+        "metricsConfigs": args.metricsConfigs,
     }, opts);
 }
 
@@ -33,13 +36,16 @@ export function getVaultCluster(args: GetVaultClusterArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getVaultCluster.
  */
 export interface GetVaultClusterArgs {
+    auditLogConfigs?: inputs.GetVaultClusterAuditLogConfig[];
     clusterId: string;
+    metricsConfigs?: inputs.GetVaultClusterMetricsConfig[];
 }
 
 /**
  * A collection of values returned by getVaultCluster.
  */
 export interface GetVaultClusterResult {
+    readonly auditLogConfigs: outputs.GetVaultClusterAuditLogConfig[];
     readonly cloudProvider: string;
     readonly clusterId: string;
     readonly createdAt: string;
@@ -48,6 +54,7 @@ export interface GetVaultClusterResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly metricsConfigs: outputs.GetVaultClusterMetricsConfig[];
     readonly minVaultVersion: string;
     readonly namespace: string;
     readonly organizationId: string;
@@ -71,5 +78,7 @@ export function getVaultClusterOutput(args: GetVaultClusterOutputArgs, opts?: pu
  * A collection of arguments for invoking getVaultCluster.
  */
 export interface GetVaultClusterOutputArgs {
+    auditLogConfigs?: pulumi.Input<pulumi.Input<inputs.GetVaultClusterAuditLogConfigArgs>[]>;
     clusterId: pulumi.Input<string>;
+    metricsConfigs?: pulumi.Input<pulumi.Input<inputs.GetVaultClusterMetricsConfigArgs>[]>;
 }

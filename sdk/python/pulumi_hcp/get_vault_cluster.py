@@ -7,6 +7,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetVaultClusterResult',
@@ -20,7 +22,10 @@ class GetVaultClusterResult:
     """
     A collection of values returned by getVaultCluster.
     """
-    def __init__(__self__, cloud_provider=None, cluster_id=None, created_at=None, hvn_id=None, id=None, min_vault_version=None, namespace=None, organization_id=None, paths_filters=None, primary_link=None, project_id=None, public_endpoint=None, region=None, self_link=None, tier=None, vault_private_endpoint_url=None, vault_public_endpoint_url=None, vault_version=None):
+    def __init__(__self__, audit_log_configs=None, cloud_provider=None, cluster_id=None, created_at=None, hvn_id=None, id=None, metrics_configs=None, min_vault_version=None, namespace=None, organization_id=None, paths_filters=None, primary_link=None, project_id=None, public_endpoint=None, region=None, self_link=None, tier=None, vault_private_endpoint_url=None, vault_public_endpoint_url=None, vault_version=None):
+        if audit_log_configs and not isinstance(audit_log_configs, list):
+            raise TypeError("Expected argument 'audit_log_configs' to be a list")
+        pulumi.set(__self__, "audit_log_configs", audit_log_configs)
         if cloud_provider and not isinstance(cloud_provider, str):
             raise TypeError("Expected argument 'cloud_provider' to be a str")
         pulumi.set(__self__, "cloud_provider", cloud_provider)
@@ -36,6 +41,9 @@ class GetVaultClusterResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if metrics_configs and not isinstance(metrics_configs, list):
+            raise TypeError("Expected argument 'metrics_configs' to be a list")
+        pulumi.set(__self__, "metrics_configs", metrics_configs)
         if min_vault_version and not isinstance(min_vault_version, str):
             raise TypeError("Expected argument 'min_vault_version' to be a str")
         pulumi.set(__self__, "min_vault_version", min_vault_version)
@@ -77,6 +85,11 @@ class GetVaultClusterResult:
         pulumi.set(__self__, "vault_version", vault_version)
 
     @property
+    @pulumi.getter(name="auditLogConfigs")
+    def audit_log_configs(self) -> Sequence['outputs.GetVaultClusterAuditLogConfigResult']:
+        return pulumi.get(self, "audit_log_configs")
+
+    @property
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> str:
         return pulumi.get(self, "cloud_provider")
@@ -103,6 +116,11 @@ class GetVaultClusterResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="metricsConfigs")
+    def metrics_configs(self) -> Sequence['outputs.GetVaultClusterMetricsConfigResult']:
+        return pulumi.get(self, "metrics_configs")
 
     @property
     @pulumi.getter(name="minVaultVersion")
@@ -176,11 +194,13 @@ class AwaitableGetVaultClusterResult(GetVaultClusterResult):
         if False:
             yield self
         return GetVaultClusterResult(
+            audit_log_configs=self.audit_log_configs,
             cloud_provider=self.cloud_provider,
             cluster_id=self.cluster_id,
             created_at=self.created_at,
             hvn_id=self.hvn_id,
             id=self.id,
+            metrics_configs=self.metrics_configs,
             min_vault_version=self.min_vault_version,
             namespace=self.namespace,
             organization_id=self.organization_id,
@@ -196,7 +216,9 @@ class AwaitableGetVaultClusterResult(GetVaultClusterResult):
             vault_version=self.vault_version)
 
 
-def get_vault_cluster(cluster_id: Optional[str] = None,
+def get_vault_cluster(audit_log_configs: Optional[Sequence[pulumi.InputType['GetVaultClusterAuditLogConfigArgs']]] = None,
+                      cluster_id: Optional[str] = None,
+                      metrics_configs: Optional[Sequence[pulumi.InputType['GetVaultClusterMetricsConfigArgs']]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVaultClusterResult:
     """
     The cluster data source provides information about an existing HCP Vault cluster.
@@ -211,7 +233,9 @@ def get_vault_cluster(cluster_id: Optional[str] = None,
     ```
     """
     __args__ = dict()
+    __args__['auditLogConfigs'] = audit_log_configs
     __args__['clusterId'] = cluster_id
+    __args__['metricsConfigs'] = metrics_configs
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
@@ -221,11 +245,13 @@ def get_vault_cluster(cluster_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('hcp:index/getVaultCluster:getVaultCluster', __args__, opts=opts, typ=GetVaultClusterResult).value
 
     return AwaitableGetVaultClusterResult(
+        audit_log_configs=__ret__.audit_log_configs,
         cloud_provider=__ret__.cloud_provider,
         cluster_id=__ret__.cluster_id,
         created_at=__ret__.created_at,
         hvn_id=__ret__.hvn_id,
         id=__ret__.id,
+        metrics_configs=__ret__.metrics_configs,
         min_vault_version=__ret__.min_vault_version,
         namespace=__ret__.namespace,
         organization_id=__ret__.organization_id,
@@ -242,7 +268,9 @@ def get_vault_cluster(cluster_id: Optional[str] = None,
 
 
 @_utilities.lift_output_func(get_vault_cluster)
-def get_vault_cluster_output(cluster_id: Optional[pulumi.Input[str]] = None,
+def get_vault_cluster_output(audit_log_configs: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetVaultClusterAuditLogConfigArgs']]]]] = None,
+                             cluster_id: Optional[pulumi.Input[str]] = None,
+                             metrics_configs: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetVaultClusterMetricsConfigArgs']]]]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVaultClusterResult]:
     """
     The cluster data source provides information about an existing HCP Vault cluster.

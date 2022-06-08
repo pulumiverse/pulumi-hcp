@@ -10,9 +10,193 @@ from . import _utilities
 from . import outputs
 
 __all__ = [
+    'VaultClusterAuditLogConfig',
+    'VaultClusterMetricsConfig',
     'GetPackerImageIterationBuildResult',
     'GetPackerImageIterationBuildImageResult',
+    'GetVaultClusterAuditLogConfigResult',
+    'GetVaultClusterMetricsConfigResult',
 ]
+
+@pulumi.output_type
+class VaultClusterAuditLogConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "datadogApiKey":
+            suggest = "datadog_api_key"
+        elif key == "datadogRegion":
+            suggest = "datadog_region"
+        elif key == "grafanaEndpoint":
+            suggest = "grafana_endpoint"
+        elif key == "grafanaPassword":
+            suggest = "grafana_password"
+        elif key == "grafanaUser":
+            suggest = "grafana_user"
+        elif key == "splunkHecendpoint":
+            suggest = "splunk_hecendpoint"
+        elif key == "splunkToken":
+            suggest = "splunk_token"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in VaultClusterAuditLogConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        VaultClusterAuditLogConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        VaultClusterAuditLogConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 datadog_api_key: Optional[str] = None,
+                 datadog_region: Optional[str] = None,
+                 grafana_endpoint: Optional[str] = None,
+                 grafana_password: Optional[str] = None,
+                 grafana_user: Optional[str] = None,
+                 splunk_hecendpoint: Optional[str] = None,
+                 splunk_token: Optional[str] = None):
+        if datadog_api_key is not None:
+            pulumi.set(__self__, "datadog_api_key", datadog_api_key)
+        if datadog_region is not None:
+            pulumi.set(__self__, "datadog_region", datadog_region)
+        if grafana_endpoint is not None:
+            pulumi.set(__self__, "grafana_endpoint", grafana_endpoint)
+        if grafana_password is not None:
+            pulumi.set(__self__, "grafana_password", grafana_password)
+        if grafana_user is not None:
+            pulumi.set(__self__, "grafana_user", grafana_user)
+        if splunk_hecendpoint is not None:
+            pulumi.set(__self__, "splunk_hecendpoint", splunk_hecendpoint)
+        if splunk_token is not None:
+            pulumi.set(__self__, "splunk_token", splunk_token)
+
+    @property
+    @pulumi.getter(name="datadogApiKey")
+    def datadog_api_key(self) -> Optional[str]:
+        return pulumi.get(self, "datadog_api_key")
+
+    @property
+    @pulumi.getter(name="datadogRegion")
+    def datadog_region(self) -> Optional[str]:
+        return pulumi.get(self, "datadog_region")
+
+    @property
+    @pulumi.getter(name="grafanaEndpoint")
+    def grafana_endpoint(self) -> Optional[str]:
+        return pulumi.get(self, "grafana_endpoint")
+
+    @property
+    @pulumi.getter(name="grafanaPassword")
+    def grafana_password(self) -> Optional[str]:
+        return pulumi.get(self, "grafana_password")
+
+    @property
+    @pulumi.getter(name="grafanaUser")
+    def grafana_user(self) -> Optional[str]:
+        return pulumi.get(self, "grafana_user")
+
+    @property
+    @pulumi.getter(name="splunkHecendpoint")
+    def splunk_hecendpoint(self) -> Optional[str]:
+        return pulumi.get(self, "splunk_hecendpoint")
+
+    @property
+    @pulumi.getter(name="splunkToken")
+    def splunk_token(self) -> Optional[str]:
+        return pulumi.get(self, "splunk_token")
+
+
+@pulumi.output_type
+class VaultClusterMetricsConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "datadogApiKey":
+            suggest = "datadog_api_key"
+        elif key == "datadogRegion":
+            suggest = "datadog_region"
+        elif key == "grafanaEndpoint":
+            suggest = "grafana_endpoint"
+        elif key == "grafanaPassword":
+            suggest = "grafana_password"
+        elif key == "grafanaUser":
+            suggest = "grafana_user"
+        elif key == "splunkHecendpoint":
+            suggest = "splunk_hecendpoint"
+        elif key == "splunkToken":
+            suggest = "splunk_token"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in VaultClusterMetricsConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        VaultClusterMetricsConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        VaultClusterMetricsConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 datadog_api_key: Optional[str] = None,
+                 datadog_region: Optional[str] = None,
+                 grafana_endpoint: Optional[str] = None,
+                 grafana_password: Optional[str] = None,
+                 grafana_user: Optional[str] = None,
+                 splunk_hecendpoint: Optional[str] = None,
+                 splunk_token: Optional[str] = None):
+        if datadog_api_key is not None:
+            pulumi.set(__self__, "datadog_api_key", datadog_api_key)
+        if datadog_region is not None:
+            pulumi.set(__self__, "datadog_region", datadog_region)
+        if grafana_endpoint is not None:
+            pulumi.set(__self__, "grafana_endpoint", grafana_endpoint)
+        if grafana_password is not None:
+            pulumi.set(__self__, "grafana_password", grafana_password)
+        if grafana_user is not None:
+            pulumi.set(__self__, "grafana_user", grafana_user)
+        if splunk_hecendpoint is not None:
+            pulumi.set(__self__, "splunk_hecendpoint", splunk_hecendpoint)
+        if splunk_token is not None:
+            pulumi.set(__self__, "splunk_token", splunk_token)
+
+    @property
+    @pulumi.getter(name="datadogApiKey")
+    def datadog_api_key(self) -> Optional[str]:
+        return pulumi.get(self, "datadog_api_key")
+
+    @property
+    @pulumi.getter(name="datadogRegion")
+    def datadog_region(self) -> Optional[str]:
+        return pulumi.get(self, "datadog_region")
+
+    @property
+    @pulumi.getter(name="grafanaEndpoint")
+    def grafana_endpoint(self) -> Optional[str]:
+        return pulumi.get(self, "grafana_endpoint")
+
+    @property
+    @pulumi.getter(name="grafanaPassword")
+    def grafana_password(self) -> Optional[str]:
+        return pulumi.get(self, "grafana_password")
+
+    @property
+    @pulumi.getter(name="grafanaUser")
+    def grafana_user(self) -> Optional[str]:
+        return pulumi.get(self, "grafana_user")
+
+    @property
+    @pulumi.getter(name="splunkHecendpoint")
+    def splunk_hecendpoint(self) -> Optional[str]:
+        return pulumi.get(self, "splunk_hecendpoint")
+
+    @property
+    @pulumi.getter(name="splunkToken")
+    def splunk_token(self) -> Optional[str]:
+        return pulumi.get(self, "splunk_token")
+
 
 @pulumi.output_type
 class GetPackerImageIterationBuildResult(dict):
@@ -157,5 +341,71 @@ class GetPackerImageIterationBuildImageResult(dict):
     @pulumi.getter
     def region(self) -> str:
         return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class GetVaultClusterAuditLogConfigResult(dict):
+    def __init__(__self__, *,
+                 datadog_region: str,
+                 grafana_endpoint: str,
+                 grafana_user: str,
+                 splunk_hecendpoint: str):
+        pulumi.set(__self__, "datadog_region", datadog_region)
+        pulumi.set(__self__, "grafana_endpoint", grafana_endpoint)
+        pulumi.set(__self__, "grafana_user", grafana_user)
+        pulumi.set(__self__, "splunk_hecendpoint", splunk_hecendpoint)
+
+    @property
+    @pulumi.getter(name="datadogRegion")
+    def datadog_region(self) -> str:
+        return pulumi.get(self, "datadog_region")
+
+    @property
+    @pulumi.getter(name="grafanaEndpoint")
+    def grafana_endpoint(self) -> str:
+        return pulumi.get(self, "grafana_endpoint")
+
+    @property
+    @pulumi.getter(name="grafanaUser")
+    def grafana_user(self) -> str:
+        return pulumi.get(self, "grafana_user")
+
+    @property
+    @pulumi.getter(name="splunkHecendpoint")
+    def splunk_hecendpoint(self) -> str:
+        return pulumi.get(self, "splunk_hecendpoint")
+
+
+@pulumi.output_type
+class GetVaultClusterMetricsConfigResult(dict):
+    def __init__(__self__, *,
+                 datadog_region: str,
+                 grafana_endpoint: str,
+                 grafana_user: str,
+                 splunk_hecendpoint: str):
+        pulumi.set(__self__, "datadog_region", datadog_region)
+        pulumi.set(__self__, "grafana_endpoint", grafana_endpoint)
+        pulumi.set(__self__, "grafana_user", grafana_user)
+        pulumi.set(__self__, "splunk_hecendpoint", splunk_hecendpoint)
+
+    @property
+    @pulumi.getter(name="datadogRegion")
+    def datadog_region(self) -> str:
+        return pulumi.get(self, "datadog_region")
+
+    @property
+    @pulumi.getter(name="grafanaEndpoint")
+    def grafana_endpoint(self) -> str:
+        return pulumi.get(self, "grafana_endpoint")
+
+    @property
+    @pulumi.getter(name="grafanaUser")
+    def grafana_user(self) -> str:
+        return pulumi.get(self, "grafana_user")
+
+    @property
+    @pulumi.getter(name="splunkHecendpoint")
+    def splunk_hecendpoint(self) -> str:
+        return pulumi.get(self, "splunk_hecendpoint")
 
 
