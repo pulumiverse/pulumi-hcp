@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// > **Note:** Azure support coming soon. This data source is currently in internal preview only.
+// > **Note:** This data source is currently in public beta.
 //
 // The Azure peering connection data source provides information about a peering connection between an HVN and a peer Azure VNet.
 //

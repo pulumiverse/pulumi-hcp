@@ -183,7 +183,7 @@ def get_azure_peering_connection(hvn_link: Optional[str] = None,
                                  wait_for_active_state: Optional[bool] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAzurePeeringConnectionResult:
     """
-    > **Note:** Azure support coming soon. This data source is currently in internal preview only.
+    > **Note:** This data source is currently in public beta.
 
     The Azure peering connection data source provides information about a peering connection between an HVN and a peer Azure VNet.
 
@@ -235,7 +235,7 @@ def get_azure_peering_connection_output(hvn_link: Optional[pulumi.Input[str]] = 
                                         wait_for_active_state: Optional[pulumi.Input[Optional[bool]]] = None,
                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAzurePeeringConnectionResult]:
     """
-    > **Note:** Azure support coming soon. This data source is currently in internal preview only.
+    > **Note:** This data source is currently in public beta.
 
     The Azure peering connection data source provides information about a peering connection between an HVN and a peer Azure VNet.
 

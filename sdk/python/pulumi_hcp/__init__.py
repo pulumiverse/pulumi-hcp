@@ -31,6 +31,7 @@ from .hvn_route import *
 from .provider import *
 from .vault_cluster import *
 from .vault_cluster_admin_token import *
+from ._inputs import *
 from . import outputs
 
 # Make subpackages available:

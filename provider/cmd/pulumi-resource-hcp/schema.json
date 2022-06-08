@@ -41,6 +41,128 @@
         }
     },
     "types": {
+        "hcp:index/VaultClusterAuditLogConfig:VaultClusterAuditLogConfig": {
+            "properties": {
+                "datadogApiKey": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "datadogRegion": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "grafanaEndpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "grafanaPassword": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "grafanaUser": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "splunkHecendpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "splunkToken": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "hcp:index/VaultClusterMetricsConfig:VaultClusterMetricsConfig": {
+            "properties": {
+                "datadogApiKey": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "datadogRegion": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "grafanaEndpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "grafanaPassword": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "grafanaUser": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "splunkHecendpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "splunkToken": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
         "hcp:index/getPackerImageIterationBuild:getPackerImageIterationBuild": {
             "properties": {
                 "cloudProvider": {
@@ -191,6 +313,102 @@
                 "id",
                 "imageId",
                 "region"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "hcp:index/getVaultClusterAuditLogConfig:getVaultClusterAuditLogConfig": {
+            "properties": {
+                "datadogRegion": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "grafanaEndpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "grafanaUser": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "splunkHecendpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "datadogRegion",
+                "grafanaEndpoint",
+                "grafanaUser",
+                "splunkHecendpoint"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "hcp:index/getVaultClusterMetricsConfig:getVaultClusterMetricsConfig": {
+            "properties": {
+                "datadogRegion": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "grafanaEndpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "grafanaUser": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "splunkHecendpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "datadogRegion",
+                "grafanaEndpoint",
+                "grafanaUser",
+                "splunkHecendpoint"
             ],
             "language": {
                 "nodejs": {
@@ -531,7 +749,7 @@
             }
         },
         "hcp:index/azurePeeringConnection:AzurePeeringConnection": {
-            "description": "\u003e **Note:** Azure support coming soon. This resource is currently in internal preview only.\n\nThe Azure peering connection resource allows you to manage a peering connection between an HVN and a peer Azure VNet.\n\n\n## Import\n\n# The import ID is {hvn_id}:{peering_id}\n\n```sh\n $ pulumi import hcp:index/azurePeeringConnection:AzurePeeringConnection peer main-hvn:199e7e96-4d5f-4456-91f3-b6cc71f1e561\n```\n\n ",
+            "description": "\u003e **Note:** This data source is currently in public beta.\n\nThe Azure peering connection resource allows you to manage a peering connection between an HVN and a peer Azure VNet.\n\n\n## Import\n\n# The import ID is {hvn_id}:{peering_id}\n\n```sh\n $ pulumi import hcp:index/azurePeeringConnection:AzurePeeringConnection peer main-hvn:199e7e96-4d5f-4456-91f3-b6cc71f1e561\n```\n\n ",
             "properties": {
                 "applicationId": {
                     "type": "string",
@@ -723,7 +941,7 @@
             }
         },
         "hcp:index/consulCluster:ConsulCluster": {
-            "description": "The Consul cluster resource allows you to manage an HCP Consul cluster.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as pulumi_hcp from \"@grapl/pulumi-hcp\";\n\nconst exampleHvn = new hcp.Hvn(\"exampleHvn\", {\n    hvnId: \"hvn\",\n    cloudProvider: \"aws\",\n    region: \"us-west-2\",\n    cidrBlock: \"172.25.16.0/20\",\n});\nconst exampleConsulCluster = new hcp.ConsulCluster(\"exampleConsulCluster\", {\n    clusterId: \"consul-cluster\",\n    hvnId: exampleHvn.hvnId,\n    tier: \"development\",\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample_hvn = hcp.Hvn(\"exampleHvn\",\n    hvn_id=\"hvn\",\n    cloud_provider=\"aws\",\n    region=\"us-west-2\",\n    cidr_block=\"172.25.16.0/20\")\nexample_consul_cluster = hcp.ConsulCluster(\"exampleConsulCluster\",\n    cluster_id=\"consul-cluster\",\n    hvn_id=example_hvn.hvn_id,\n    tier=\"development\")\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleHvn = new Hcp.Hvn(\"exampleHvn\", new Hcp.HvnArgs\n        {\n            HvnId = \"hvn\",\n            CloudProvider = \"aws\",\n            Region = \"us-west-2\",\n            CidrBlock = \"172.25.16.0/20\",\n        });\n        var exampleConsulCluster = new Hcp.ConsulCluster(\"exampleConsulCluster\", new Hcp.ConsulClusterArgs\n        {\n            ClusterId = \"consul-cluster\",\n            HvnId = exampleHvn.HvnId,\n            Tier = \"development\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleHvn, err := hcp.NewHvn(ctx, \"exampleHvn\", \u0026hcp.HvnArgs{\n\t\t\tHvnId:         pulumi.String(\"hvn\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t\tCidrBlock:     pulumi.String(\"172.25.16.0/20\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = hcp.NewConsulCluster(ctx, \"exampleConsulCluster\", \u0026hcp.ConsulClusterArgs{\n\t\t\tClusterId: pulumi.String(\"consul-cluster\"),\n\t\t\tHvnId:     exampleHvn.HvnId,\n\t\t\tTier:      pulumi.String(\"development\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleHvn = new Hvn(\"exampleHvn\", HvnArgs.builder()        \n            .hvnId(\"hvn\")\n            .cloudProvider(\"aws\")\n            .region(\"us-west-2\")\n            .cidrBlock(\"172.25.16.0/20\")\n            .build());\n\n        var exampleConsulCluster = new ConsulCluster(\"exampleConsulCluster\", ConsulClusterArgs.builder()        \n            .clusterId(\"consul-cluster\")\n            .hvnId(exampleHvn.hvnId())\n            .tier(\"development\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleHvn:\n    type: hcp:Hvn\n    properties:\n      hvnId: hvn\n      cloudProvider: aws\n      region: us-west-2\n      cidrBlock: 172.25.16.0/20\n  exampleConsulCluster:\n    type: hcp:ConsulCluster\n    properties:\n      clusterId: consul-cluster\n      hvnId: ${exampleHvn.hvnId}\n      tier: development\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID is {cluster_id}\n\n```sh\n $ pulumi import hcp:index/consulCluster:ConsulCluster example consul-cluster\n```\n\n ",
+            "description": "\u003e Consul on Azure is now available in public beta. [Get started with end-to-end deployment configuration](https://learn.hashicorp.com/tutorials/cloud/consul-end-to-end-overview).\n\nThe Consul cluster resource allows you to manage an HCP Consul cluster.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as pulumi_hcp from \"@grapl/pulumi-hcp\";\n\nconst exampleHvn = new hcp.Hvn(\"exampleHvn\", {\n    hvnId: \"hvn\",\n    cloudProvider: \"aws\",\n    region: \"us-west-2\",\n    cidrBlock: \"172.25.16.0/20\",\n});\nconst exampleConsulCluster = new hcp.ConsulCluster(\"exampleConsulCluster\", {\n    clusterId: \"consul-cluster\",\n    hvnId: exampleHvn.hvnId,\n    tier: \"development\",\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample_hvn = hcp.Hvn(\"exampleHvn\",\n    hvn_id=\"hvn\",\n    cloud_provider=\"aws\",\n    region=\"us-west-2\",\n    cidr_block=\"172.25.16.0/20\")\nexample_consul_cluster = hcp.ConsulCluster(\"exampleConsulCluster\",\n    cluster_id=\"consul-cluster\",\n    hvn_id=example_hvn.hvn_id,\n    tier=\"development\")\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleHvn = new Hcp.Hvn(\"exampleHvn\", new Hcp.HvnArgs\n        {\n            HvnId = \"hvn\",\n            CloudProvider = \"aws\",\n            Region = \"us-west-2\",\n            CidrBlock = \"172.25.16.0/20\",\n        });\n        var exampleConsulCluster = new Hcp.ConsulCluster(\"exampleConsulCluster\", new Hcp.ConsulClusterArgs\n        {\n            ClusterId = \"consul-cluster\",\n            HvnId = exampleHvn.HvnId,\n            Tier = \"development\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleHvn, err := hcp.NewHvn(ctx, \"exampleHvn\", \u0026hcp.HvnArgs{\n\t\t\tHvnId:         pulumi.String(\"hvn\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t\tCidrBlock:     pulumi.String(\"172.25.16.0/20\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = hcp.NewConsulCluster(ctx, \"exampleConsulCluster\", \u0026hcp.ConsulClusterArgs{\n\t\t\tClusterId: pulumi.String(\"consul-cluster\"),\n\t\t\tHvnId:     exampleHvn.HvnId,\n\t\t\tTier:      pulumi.String(\"development\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleHvn = new Hvn(\"exampleHvn\", HvnArgs.builder()        \n            .hvnId(\"hvn\")\n            .cloudProvider(\"aws\")\n            .region(\"us-west-2\")\n            .cidrBlock(\"172.25.16.0/20\")\n            .build());\n\n        var exampleConsulCluster = new ConsulCluster(\"exampleConsulCluster\", ConsulClusterArgs.builder()        \n            .clusterId(\"consul-cluster\")\n            .hvnId(exampleHvn.hvnId())\n            .tier(\"development\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleHvn:\n    type: hcp:Hvn\n    properties:\n      hvnId: hvn\n      cloudProvider: aws\n      region: us-west-2\n      cidrBlock: 172.25.16.0/20\n  exampleConsulCluster:\n    type: hcp:ConsulCluster\n    properties:\n      clusterId: consul-cluster\n      hvnId: ${exampleHvn.hvnId}\n      tier: development\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID is {cluster_id}\n\n```sh\n $ pulumi import hcp:index/consulCluster:ConsulCluster example consul-cluster\n```\n\n ",
             "properties": {
                 "autoHvnToHvnPeering": {
                     "type": "boolean",
@@ -1526,8 +1744,12 @@
             }
         },
         "hcp:index/vaultCluster:VaultCluster": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as pulumi_hcp from \"@grapl/pulumi-hcp\";\n\nconst exampleHvn = new hcp.Hvn(\"exampleHvn\", {\n    hvnId: \"hvn\",\n    cloudProvider: \"aws\",\n    region: \"us-west-2\",\n    cidrBlock: \"172.25.16.0/20\",\n});\nconst exampleVaultCluster = new hcp.VaultCluster(\"exampleVaultCluster\", {\n    clusterId: \"vault-cluster\",\n    hvnId: exampleHvn.hvnId,\n    tier: \"standard_large\",\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample_hvn = hcp.Hvn(\"exampleHvn\",\n    hvn_id=\"hvn\",\n    cloud_provider=\"aws\",\n    region=\"us-west-2\",\n    cidr_block=\"172.25.16.0/20\")\nexample_vault_cluster = hcp.VaultCluster(\"exampleVaultCluster\",\n    cluster_id=\"vault-cluster\",\n    hvn_id=example_hvn.hvn_id,\n    tier=\"standard_large\")\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleHvn = new Hcp.Hvn(\"exampleHvn\", new Hcp.HvnArgs\n        {\n            HvnId = \"hvn\",\n            CloudProvider = \"aws\",\n            Region = \"us-west-2\",\n            CidrBlock = \"172.25.16.0/20\",\n        });\n        var exampleVaultCluster = new Hcp.VaultCluster(\"exampleVaultCluster\", new Hcp.VaultClusterArgs\n        {\n            ClusterId = \"vault-cluster\",\n            HvnId = exampleHvn.HvnId,\n            Tier = \"standard_large\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleHvn, err := hcp.NewHvn(ctx, \"exampleHvn\", \u0026hcp.HvnArgs{\n\t\t\tHvnId:         pulumi.String(\"hvn\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t\tCidrBlock:     pulumi.String(\"172.25.16.0/20\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = hcp.NewVaultCluster(ctx, \"exampleVaultCluster\", \u0026hcp.VaultClusterArgs{\n\t\t\tClusterId: pulumi.String(\"vault-cluster\"),\n\t\t\tHvnId:     exampleHvn.HvnId,\n\t\t\tTier:      pulumi.String(\"standard_large\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleHvn = new Hvn(\"exampleHvn\", HvnArgs.builder()        \n            .hvnId(\"hvn\")\n            .cloudProvider(\"aws\")\n            .region(\"us-west-2\")\n            .cidrBlock(\"172.25.16.0/20\")\n            .build());\n\n        var exampleVaultCluster = new VaultCluster(\"exampleVaultCluster\", VaultClusterArgs.builder()        \n            .clusterId(\"vault-cluster\")\n            .hvnId(exampleHvn.hvnId())\n            .tier(\"standard_large\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleHvn:\n    type: hcp:Hvn\n    properties:\n      hvnId: hvn\n      cloudProvider: aws\n      region: us-west-2\n      cidrBlock: 172.25.16.0/20\n  exampleVaultCluster:\n    type: hcp:VaultCluster\n    properties:\n      clusterId: vault-cluster\n      hvnId: ${exampleHvn.hvnId}\n      tier: standard_large\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID is {cluster_id}\n\n```sh\n $ pulumi import hcp:index/vaultCluster:VaultCluster example vault-cluster\n```\n\n ",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as pulumi_hcp from \"@grapl/pulumi-hcp\";\n\nconst exampleHvn = new hcp.Hvn(\"exampleHvn\", {\n    hvnId: \"hvn\",\n    cloudProvider: \"aws\",\n    region: \"us-west-2\",\n    cidrBlock: \"172.25.16.0/20\",\n});\nconst exampleVaultCluster = new hcp.VaultCluster(\"exampleVaultCluster\", {\n    clusterId: \"vault-cluster\",\n    hvnId: exampleHvn.hvnId,\n    tier: \"standard_large\",\n    metricsConfig: {\n        datadogApiKey: \"test_datadog\",\n        datadogRegion: \"us1\",\n    },\n    auditLogConfig: {\n        datadogApiKey: \"test_datadog\",\n        datadogRegion: \"us1\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample_hvn = hcp.Hvn(\"exampleHvn\",\n    hvn_id=\"hvn\",\n    cloud_provider=\"aws\",\n    region=\"us-west-2\",\n    cidr_block=\"172.25.16.0/20\")\nexample_vault_cluster = hcp.VaultCluster(\"exampleVaultCluster\",\n    cluster_id=\"vault-cluster\",\n    hvn_id=example_hvn.hvn_id,\n    tier=\"standard_large\",\n    metrics_config=hcp.VaultClusterMetricsConfigArgs(\n        datadog_api_key=\"test_datadog\",\n        datadog_region=\"us1\",\n    ),\n    audit_log_config=hcp.VaultClusterAuditLogConfigArgs(\n        datadog_api_key=\"test_datadog\",\n        datadog_region=\"us1\",\n    ))\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleHvn = new Hcp.Hvn(\"exampleHvn\", new Hcp.HvnArgs\n        {\n            HvnId = \"hvn\",\n            CloudProvider = \"aws\",\n            Region = \"us-west-2\",\n            CidrBlock = \"172.25.16.0/20\",\n        });\n        var exampleVaultCluster = new Hcp.VaultCluster(\"exampleVaultCluster\", new Hcp.VaultClusterArgs\n        {\n            ClusterId = \"vault-cluster\",\n            HvnId = exampleHvn.HvnId,\n            Tier = \"standard_large\",\n            MetricsConfig = new Hcp.Inputs.VaultClusterMetricsConfigArgs\n            {\n                DatadogApiKey = \"test_datadog\",\n                DatadogRegion = \"us1\",\n            },\n            AuditLogConfig = new Hcp.Inputs.VaultClusterAuditLogConfigArgs\n            {\n                DatadogApiKey = \"test_datadog\",\n                DatadogRegion = \"us1\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleHvn, err := hcp.NewHvn(ctx, \"exampleHvn\", \u0026hcp.HvnArgs{\n\t\t\tHvnId:         pulumi.String(\"hvn\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t\tCidrBlock:     pulumi.String(\"172.25.16.0/20\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = hcp.NewVaultCluster(ctx, \"exampleVaultCluster\", \u0026hcp.VaultClusterArgs{\n\t\t\tClusterId: pulumi.String(\"vault-cluster\"),\n\t\t\tHvnId:     exampleHvn.HvnId,\n\t\t\tTier:      pulumi.String(\"standard_large\"),\n\t\t\tMetricsConfig: \u0026VaultClusterMetricsConfigArgs{\n\t\t\t\tDatadogApiKey: pulumi.String(\"test_datadog\"),\n\t\t\t\tDatadogRegion: pulumi.String(\"us1\"),\n\t\t\t},\n\t\t\tAuditLogConfig: \u0026VaultClusterAuditLogConfigArgs{\n\t\t\t\tDatadogApiKey: pulumi.String(\"test_datadog\"),\n\t\t\t\tDatadogRegion: pulumi.String(\"us1\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleHvn = new Hvn(\"exampleHvn\", HvnArgs.builder()        \n            .hvnId(\"hvn\")\n            .cloudProvider(\"aws\")\n            .region(\"us-west-2\")\n            .cidrBlock(\"172.25.16.0/20\")\n            .build());\n\n        var exampleVaultCluster = new VaultCluster(\"exampleVaultCluster\", VaultClusterArgs.builder()        \n            .clusterId(\"vault-cluster\")\n            .hvnId(exampleHvn.hvnId())\n            .tier(\"standard_large\")\n            .metricsConfig(VaultClusterMetricsConfigArgs.builder()\n                .datadogApiKey(\"test_datadog\")\n                .datadogRegion(\"us1\")\n                .build())\n            .auditLogConfig(VaultClusterAuditLogConfigArgs.builder()\n                .datadogApiKey(\"test_datadog\")\n                .datadogRegion(\"us1\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleHvn:\n    type: hcp:Hvn\n    properties:\n      hvnId: hvn\n      cloudProvider: aws\n      region: us-west-2\n      cidrBlock: 172.25.16.0/20\n  exampleVaultCluster:\n    type: hcp:VaultCluster\n    properties:\n      clusterId: vault-cluster\n      hvnId: ${exampleHvn.hvnId}\n      tier: standard_large\n      metricsConfig:\n        datadogApiKey: test_datadog\n        datadogRegion: us1\n      auditLogConfig:\n        datadogApiKey: test_datadog\n        datadogRegion: us1\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID is {cluster_id}\n\n```sh\n $ pulumi import hcp:index/vaultCluster:VaultCluster example vault-cluster\n```\n\n ",
             "properties": {
+                "auditLogConfig": {
+                    "$ref": "#/types/hcp:index/VaultClusterAuditLogConfig:VaultClusterAuditLogConfig",
+                    "description": "The audit logs configuration for export.\n(https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)\n"
+                },
                 "cloudProvider": {
                     "type": "string",
                     "description": "The provider where the HCP Vault cluster is located.\n"
@@ -1543,6 +1765,10 @@
                 "hvnId": {
                     "type": "string",
                     "description": "The ID of the HVN this HCP Vault cluster is associated to.\n"
+                },
+                "metricsConfig": {
+                    "$ref": "#/types/hcp:index/VaultClusterMetricsConfig:VaultClusterMetricsConfig",
+                    "description": "The metrics configuration for export.\n(https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)\n"
                 },
                 "minVaultVersion": {
                     "type": "string",
@@ -1616,6 +1842,10 @@
                 "vaultVersion"
             ],
             "inputProperties": {
+                "auditLogConfig": {
+                    "$ref": "#/types/hcp:index/VaultClusterAuditLogConfig:VaultClusterAuditLogConfig",
+                    "description": "The audit logs configuration for export.\n(https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)\n"
+                },
                 "clusterId": {
                     "type": "string",
                     "description": "The ID of the HCP Vault cluster.\n",
@@ -1625,6 +1855,10 @@
                     "type": "string",
                     "description": "The ID of the HVN this HCP Vault cluster is associated to.\n",
                     "willReplaceOnChanges": true
+                },
+                "metricsConfig": {
+                    "$ref": "#/types/hcp:index/VaultClusterMetricsConfig:VaultClusterMetricsConfig",
+                    "description": "The metrics configuration for export.\n(https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)\n"
                 },
                 "minVaultVersion": {
                     "type": "string",
@@ -1659,6 +1893,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering VaultCluster resources.\n",
                 "properties": {
+                    "auditLogConfig": {
+                        "$ref": "#/types/hcp:index/VaultClusterAuditLogConfig:VaultClusterAuditLogConfig",
+                        "description": "The audit logs configuration for export.\n(https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)\n"
+                    },
                     "cloudProvider": {
                         "type": "string",
                         "description": "The provider where the HCP Vault cluster is located.\n"
@@ -1676,6 +1914,10 @@
                         "type": "string",
                         "description": "The ID of the HVN this HCP Vault cluster is associated to.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "metricsConfig": {
+                        "$ref": "#/types/hcp:index/VaultClusterMetricsConfig:VaultClusterMetricsConfig",
+                        "description": "The metrics configuration for export.\n(https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)\n"
                     },
                     "minVaultVersion": {
                         "type": "string",
@@ -1952,7 +2194,7 @@
             }
         },
         "hcp:index/getAzurePeeringConnection:getAzurePeeringConnection": {
-            "description": "\u003e **Note:** Azure support coming soon. This data source is currently in internal preview only.\n\nThe Azure peering connection data source provides information about a peering connection between an HVN and a peer Azure VNet.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst test = hcp.getAzurePeeringConnection({\n    hvnId: _var.hvn_id,\n    peeringId: _var.peering_id,\n    waitForActiveState: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\ntest = hcp.get_azure_peering_connection(hvn_id=var[\"hvn_id\"],\n    peering_id=var[\"peering_id\"],\n    wait_for_active_state=True)\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = Output.Create(Hcp.GetAzurePeeringConnection.InvokeAsync(new Hcp.GetAzurePeeringConnectionArgs\n        {\n            HvnId = @var.Hvn_id,\n            PeeringId = @var.Peering_id,\n            WaitForActiveState = true,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupAzurePeeringConnection(ctx, \u0026GetAzurePeeringConnectionArgs{\n\t\t\tHvnId:              _var.Hvn_id,\n\t\t\tPeeringId:          _var.Peering_id,\n\t\t\tWaitForActiveState: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var test = Output.of(HcpFunctions.getAzurePeeringConnection(GetAzurePeeringConnectionArgs.builder()\n            .hvnId(var_.hvn_id())\n            .peeringId(var_.peering_id())\n            .waitForActiveState(true)\n            .build()));\n\n    }\n}\n```\n```yaml\nvariables:\n  test:\n    Fn::Invoke:\n      Function: hcp:getAzurePeeringConnection\n      Arguments:\n        hvnId: ${var.hvn_id}\n        peeringId: ${var.peering_id}\n        waitForActiveState: true\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "\u003e **Note:** This data source is currently in public beta.\n\nThe Azure peering connection data source provides information about a peering connection between an HVN and a peer Azure VNet.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst test = hcp.getAzurePeeringConnection({\n    hvnId: _var.hvn_id,\n    peeringId: _var.peering_id,\n    waitForActiveState: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\ntest = hcp.get_azure_peering_connection(hvn_id=var[\"hvn_id\"],\n    peering_id=var[\"peering_id\"],\n    wait_for_active_state=True)\n```\n```csharp\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var test = Output.Create(Hcp.GetAzurePeeringConnection.InvokeAsync(new Hcp.GetAzurePeeringConnectionArgs\n        {\n            HvnId = @var.Hvn_id,\n            PeeringId = @var.Peering_id,\n            WaitForActiveState = true,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupAzurePeeringConnection(ctx, \u0026GetAzurePeeringConnectionArgs{\n\t\t\tHvnId:              _var.Hvn_id,\n\t\t\tPeeringId:          _var.Peering_id,\n\t\t\tWaitForActiveState: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport java.util.*;\nimport java.io.*;\nimport java.nio.*;\nimport com.pulumi.*;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var test = Output.of(HcpFunctions.getAzurePeeringConnection(GetAzurePeeringConnectionArgs.builder()\n            .hvnId(var_.hvn_id())\n            .peeringId(var_.peering_id())\n            .waitForActiveState(true)\n            .build()));\n\n    }\n}\n```\n```yaml\nvariables:\n  test:\n    Fn::Invoke:\n      Function: hcp:getAzurePeeringConnection\n      Arguments:\n        hvnId: ${var.hvn_id}\n        peeringId: ${var.peering_id}\n        waitForActiveState: true\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getAzurePeeringConnection.\n",
                 "properties": {
@@ -2717,8 +2959,20 @@
             "inputs": {
                 "description": "A collection of arguments for invoking getVaultCluster.\n",
                 "properties": {
+                    "auditLogConfigs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/hcp:index/getVaultClusterAuditLogConfig:getVaultClusterAuditLogConfig"
+                        }
+                    },
                     "clusterId": {
                         "type": "string"
+                    },
+                    "metricsConfigs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/hcp:index/getVaultClusterMetricsConfig:getVaultClusterMetricsConfig"
+                        }
                     }
                 },
                 "type": "object",
@@ -2729,6 +2983,12 @@
             "outputs": {
                 "description": "A collection of values returned by getVaultCluster.\n",
                 "properties": {
+                    "auditLogConfigs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/hcp:index/getVaultClusterAuditLogConfig:getVaultClusterAuditLogConfig"
+                        }
+                    },
                     "cloudProvider": {
                         "type": "string"
                     },
@@ -2744,6 +3004,12 @@
                     "id": {
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "metricsConfigs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/hcp:index/getVaultClusterMetricsConfig:getVaultClusterMetricsConfig"
+                        }
                     },
                     "minVaultVersion": {
                         "type": "string"
@@ -2790,10 +3056,12 @@
                 },
                 "type": "object",
                 "required": [
+                    "auditLogConfigs",
                     "cloudProvider",
                     "clusterId",
                     "createdAt",
                     "hvnId",
+                    "metricsConfigs",
                     "minVaultVersion",
                     "namespace",
                     "organizationId",

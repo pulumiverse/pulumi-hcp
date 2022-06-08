@@ -47,30 +47,34 @@ func LookupVaultCluster(ctx *pulumi.Context, args *LookupVaultClusterArgs, opts 
 
 // A collection of arguments for invoking getVaultCluster.
 type LookupVaultClusterArgs struct {
-	ClusterId string `pulumi:"clusterId"`
+	AuditLogConfigs []GetVaultClusterAuditLogConfig `pulumi:"auditLogConfigs"`
+	ClusterId       string                          `pulumi:"clusterId"`
+	MetricsConfigs  []GetVaultClusterMetricsConfig  `pulumi:"metricsConfigs"`
 }
 
 // A collection of values returned by getVaultCluster.
 type LookupVaultClusterResult struct {
-	CloudProvider string `pulumi:"cloudProvider"`
-	ClusterId     string `pulumi:"clusterId"`
-	CreatedAt     string `pulumi:"createdAt"`
-	HvnId         string `pulumi:"hvnId"`
+	AuditLogConfigs []GetVaultClusterAuditLogConfig `pulumi:"auditLogConfigs"`
+	CloudProvider   string                          `pulumi:"cloudProvider"`
+	ClusterId       string                          `pulumi:"clusterId"`
+	CreatedAt       string                          `pulumi:"createdAt"`
+	HvnId           string                          `pulumi:"hvnId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                      string   `pulumi:"id"`
-	MinVaultVersion         string   `pulumi:"minVaultVersion"`
-	Namespace               string   `pulumi:"namespace"`
-	OrganizationId          string   `pulumi:"organizationId"`
-	PathsFilters            []string `pulumi:"pathsFilters"`
-	PrimaryLink             string   `pulumi:"primaryLink"`
-	ProjectId               string   `pulumi:"projectId"`
-	PublicEndpoint          bool     `pulumi:"publicEndpoint"`
-	Region                  string   `pulumi:"region"`
-	SelfLink                string   `pulumi:"selfLink"`
-	Tier                    string   `pulumi:"tier"`
-	VaultPrivateEndpointUrl string   `pulumi:"vaultPrivateEndpointUrl"`
-	VaultPublicEndpointUrl  string   `pulumi:"vaultPublicEndpointUrl"`
-	VaultVersion            string   `pulumi:"vaultVersion"`
+	Id                      string                         `pulumi:"id"`
+	MetricsConfigs          []GetVaultClusterMetricsConfig `pulumi:"metricsConfigs"`
+	MinVaultVersion         string                         `pulumi:"minVaultVersion"`
+	Namespace               string                         `pulumi:"namespace"`
+	OrganizationId          string                         `pulumi:"organizationId"`
+	PathsFilters            []string                       `pulumi:"pathsFilters"`
+	PrimaryLink             string                         `pulumi:"primaryLink"`
+	ProjectId               string                         `pulumi:"projectId"`
+	PublicEndpoint          bool                           `pulumi:"publicEndpoint"`
+	Region                  string                         `pulumi:"region"`
+	SelfLink                string                         `pulumi:"selfLink"`
+	Tier                    string                         `pulumi:"tier"`
+	VaultPrivateEndpointUrl string                         `pulumi:"vaultPrivateEndpointUrl"`
+	VaultPublicEndpointUrl  string                         `pulumi:"vaultPublicEndpointUrl"`
+	VaultVersion            string                         `pulumi:"vaultVersion"`
 }
 
 func LookupVaultClusterOutput(ctx *pulumi.Context, args LookupVaultClusterOutputArgs, opts ...pulumi.InvokeOption) LookupVaultClusterResultOutput {
@@ -88,7 +92,9 @@ func LookupVaultClusterOutput(ctx *pulumi.Context, args LookupVaultClusterOutput
 
 // A collection of arguments for invoking getVaultCluster.
 type LookupVaultClusterOutputArgs struct {
-	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	AuditLogConfigs GetVaultClusterAuditLogConfigArrayInput `pulumi:"auditLogConfigs"`
+	ClusterId       pulumi.StringInput                      `pulumi:"clusterId"`
+	MetricsConfigs  GetVaultClusterMetricsConfigArrayInput  `pulumi:"metricsConfigs"`
 }
 
 func (LookupVaultClusterOutputArgs) ElementType() reflect.Type {
@@ -110,6 +116,10 @@ func (o LookupVaultClusterResultOutput) ToLookupVaultClusterResultOutputWithCont
 	return o
 }
 
+func (o LookupVaultClusterResultOutput) AuditLogConfigs() GetVaultClusterAuditLogConfigArrayOutput {
+	return o.ApplyT(func(v LookupVaultClusterResult) []GetVaultClusterAuditLogConfig { return v.AuditLogConfigs }).(GetVaultClusterAuditLogConfigArrayOutput)
+}
+
 func (o LookupVaultClusterResultOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
@@ -129,6 +139,10 @@ func (o LookupVaultClusterResultOutput) HvnId() pulumi.StringOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o LookupVaultClusterResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupVaultClusterResultOutput) MetricsConfigs() GetVaultClusterMetricsConfigArrayOutput {
+	return o.ApplyT(func(v LookupVaultClusterResult) []GetVaultClusterMetricsConfig { return v.MetricsConfigs }).(GetVaultClusterMetricsConfigArrayOutput)
 }
 
 func (o LookupVaultClusterResultOutput) MinVaultVersion() pulumi.StringOutput {

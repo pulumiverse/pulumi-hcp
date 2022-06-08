@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * > **Note:** Azure support coming soon. This data source is currently in internal preview only.
+ * > **Note:** This data source is currently in public beta.
  *
  * The Azure peering connection data source provides information about a peering connection between an HVN and a peer Azure VNet.
  *

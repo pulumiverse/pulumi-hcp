@@ -2,6 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -21,6 +22,14 @@ import * as utilities from "./utilities";
  *     clusterId: "vault-cluster",
  *     hvnId: exampleHvn.hvnId,
  *     tier: "standard_large",
+ *     metricsConfig: {
+ *         datadogApiKey: "test_datadog",
+ *         datadogRegion: "us1",
+ *     },
+ *     auditLogConfig: {
+ *         datadogApiKey: "test_datadog",
+ *         datadogRegion: "us1",
+ *     },
  * });
  * ```
  *
@@ -61,6 +70,11 @@ export class VaultCluster extends pulumi.CustomResource {
     }
 
     /**
+     * The audit logs configuration for export.
+     * (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+     */
+    public readonly auditLogConfig!: pulumi.Output<outputs.VaultClusterAuditLogConfig | undefined>;
+    /**
      * The provider where the HCP Vault cluster is located.
      */
     public /*out*/ readonly cloudProvider!: pulumi.Output<string>;
@@ -76,6 +90,11 @@ export class VaultCluster extends pulumi.CustomResource {
      * The ID of the HVN this HCP Vault cluster is associated to.
      */
     public readonly hvnId!: pulumi.Output<string>;
+    /**
+     * The metrics configuration for export.
+     * (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+     */
+    public readonly metricsConfig!: pulumi.Output<outputs.VaultClusterMetricsConfig | undefined>;
     /**
      * The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
      * currently recommended by HCP.
@@ -147,10 +166,12 @@ export class VaultCluster extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VaultClusterState | undefined;
+            resourceInputs["auditLogConfig"] = state ? state.auditLogConfig : undefined;
             resourceInputs["cloudProvider"] = state ? state.cloudProvider : undefined;
             resourceInputs["clusterId"] = state ? state.clusterId : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["hvnId"] = state ? state.hvnId : undefined;
+            resourceInputs["metricsConfig"] = state ? state.metricsConfig : undefined;
             resourceInputs["minVaultVersion"] = state ? state.minVaultVersion : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
@@ -172,8 +193,10 @@ export class VaultCluster extends pulumi.CustomResource {
             if ((!args || args.hvnId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'hvnId'");
             }
+            resourceInputs["auditLogConfig"] = args ? args.auditLogConfig : undefined;
             resourceInputs["clusterId"] = args ? args.clusterId : undefined;
             resourceInputs["hvnId"] = args ? args.hvnId : undefined;
+            resourceInputs["metricsConfig"] = args ? args.metricsConfig : undefined;
             resourceInputs["minVaultVersion"] = args ? args.minVaultVersion : undefined;
             resourceInputs["pathsFilters"] = args ? args.pathsFilters : undefined;
             resourceInputs["primaryLink"] = args ? args.primaryLink : undefined;
@@ -200,6 +223,11 @@ export class VaultCluster extends pulumi.CustomResource {
  */
 export interface VaultClusterState {
     /**
+     * The audit logs configuration for export.
+     * (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+     */
+    auditLogConfig?: pulumi.Input<inputs.VaultClusterAuditLogConfig>;
+    /**
      * The provider where the HCP Vault cluster is located.
      */
     cloudProvider?: pulumi.Input<string>;
@@ -215,6 +243,11 @@ export interface VaultClusterState {
      * The ID of the HVN this HCP Vault cluster is associated to.
      */
     hvnId?: pulumi.Input<string>;
+    /**
+     * The metrics configuration for export.
+     * (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+     */
+    metricsConfig?: pulumi.Input<inputs.VaultClusterMetricsConfig>;
     /**
      * The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
      * currently recommended by HCP.
@@ -279,6 +312,11 @@ export interface VaultClusterState {
  */
 export interface VaultClusterArgs {
     /**
+     * The audit logs configuration for export.
+     * (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+     */
+    auditLogConfig?: pulumi.Input<inputs.VaultClusterAuditLogConfig>;
+    /**
      * The ID of the HCP Vault cluster.
      */
     clusterId: pulumi.Input<string>;
@@ -286,6 +324,11 @@ export interface VaultClusterArgs {
      * The ID of the HVN this HCP Vault cluster is associated to.
      */
     hvnId: pulumi.Input<string>;
+    /**
+     * The metrics configuration for export.
+     * (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+     */
+    metricsConfig?: pulumi.Input<inputs.VaultClusterMetricsConfig>;
     /**
      * The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
      * currently recommended by HCP.
