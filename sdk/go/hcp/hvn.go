@@ -63,7 +63,7 @@ type Hvn struct {
 
 	// The CIDR range of the HVN. If this is not provided, the service will provide a default value.
 	CidrBlock pulumi.StringOutput `pulumi:"cidrBlock"`
-	// The provider where the HVN is located. Only 'aws' is available at this time.
+	// The provider where the HVN is located. The provider 'aws' is generally available and 'azure' is in public beta.
 	CloudProvider pulumi.StringOutput `pulumi:"cloudProvider"`
 	// The time that the HVN was created.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
@@ -122,7 +122,7 @@ func GetHvn(ctx *pulumi.Context,
 type hvnState struct {
 	// The CIDR range of the HVN. If this is not provided, the service will provide a default value.
 	CidrBlock *string `pulumi:"cidrBlock"`
-	// The provider where the HVN is located. Only 'aws' is available at this time.
+	// The provider where the HVN is located. The provider 'aws' is generally available and 'azure' is in public beta.
 	CloudProvider *string `pulumi:"cloudProvider"`
 	// The time that the HVN was created.
 	CreatedAt *string `pulumi:"createdAt"`
@@ -143,7 +143,7 @@ type hvnState struct {
 type HvnState struct {
 	// The CIDR range of the HVN. If this is not provided, the service will provide a default value.
 	CidrBlock pulumi.StringPtrInput
-	// The provider where the HVN is located. Only 'aws' is available at this time.
+	// The provider where the HVN is located. The provider 'aws' is generally available and 'azure' is in public beta.
 	CloudProvider pulumi.StringPtrInput
 	// The time that the HVN was created.
 	CreatedAt pulumi.StringPtrInput
@@ -168,7 +168,7 @@ func (HvnState) ElementType() reflect.Type {
 type hvnArgs struct {
 	// The CIDR range of the HVN. If this is not provided, the service will provide a default value.
 	CidrBlock *string `pulumi:"cidrBlock"`
-	// The provider where the HVN is located. Only 'aws' is available at this time.
+	// The provider where the HVN is located. The provider 'aws' is generally available and 'azure' is in public beta.
 	CloudProvider string `pulumi:"cloudProvider"`
 	// The ID of the HashiCorp Virtual Network (HVN).
 	HvnId string `pulumi:"hvnId"`
@@ -180,7 +180,7 @@ type hvnArgs struct {
 type HvnArgs struct {
 	// The CIDR range of the HVN. If this is not provided, the service will provide a default value.
 	CidrBlock pulumi.StringPtrInput
-	// The provider where the HVN is located. Only 'aws' is available at this time.
+	// The provider where the HVN is located. The provider 'aws' is generally available and 'azure' is in public beta.
 	CloudProvider pulumi.StringInput
 	// The ID of the HashiCorp Virtual Network (HVN).
 	HvnId pulumi.StringInput
@@ -280,7 +280,7 @@ func (o HvnOutput) CidrBlock() pulumi.StringOutput {
 	return o.ApplyT(func(v *Hvn) pulumi.StringOutput { return v.CidrBlock }).(pulumi.StringOutput)
 }
 
-// The provider where the HVN is located. Only 'aws' is available at this time.
+// The provider where the HVN is located. The provider 'aws' is generally available and 'azure' is in public beta.
 func (o HvnOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v *Hvn) pulumi.StringOutput { return v.CloudProvider }).(pulumi.StringOutput)
 }

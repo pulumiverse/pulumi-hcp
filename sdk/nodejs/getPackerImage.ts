@@ -77,6 +77,7 @@ export interface GetPackerImageResult {
     readonly packerRunUuid: string;
     readonly projectId: string;
     readonly region: string;
+    readonly revokeAt: string;
 }
 
 export function getPackerImageOutput(args: GetPackerImageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPackerImageResult> {

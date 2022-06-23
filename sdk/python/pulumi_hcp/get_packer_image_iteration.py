@@ -21,7 +21,7 @@ class GetPackerImageIterationResult:
     """
     A collection of values returned by getPackerImageIteration.
     """
-    def __init__(__self__, bucket_name=None, builds=None, channel=None, created_at=None, id=None, incremental_version=None, organization_id=None, project_id=None):
+    def __init__(__self__, bucket_name=None, builds=None, channel=None, created_at=None, id=None, incremental_version=None, organization_id=None, project_id=None, revoke_at=None):
         if bucket_name and not isinstance(bucket_name, str):
             raise TypeError("Expected argument 'bucket_name' to be a str")
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -46,6 +46,9 @@ class GetPackerImageIterationResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if revoke_at and not isinstance(revoke_at, str):
+            raise TypeError("Expected argument 'revoke_at' to be a str")
+        pulumi.set(__self__, "revoke_at", revoke_at)
 
     @property
     @pulumi.getter(name="bucketName")
@@ -111,6 +114,11 @@ class GetPackerImageIterationResult:
         """
         return pulumi.get(self, "project_id")
 
+    @property
+    @pulumi.getter(name="revokeAt")
+    def revoke_at(self) -> str:
+        return pulumi.get(self, "revoke_at")
+
 
 class AwaitableGetPackerImageIterationResult(GetPackerImageIterationResult):
     # pylint: disable=using-constant-test
@@ -125,7 +133,8 @@ class AwaitableGetPackerImageIterationResult(GetPackerImageIterationResult):
             id=self.id,
             incremental_version=self.incremental_version,
             organization_id=self.organization_id,
-            project_id=self.project_id)
+            project_id=self.project_id,
+            revoke_at=self.revoke_at)
 
 
 def get_packer_image_iteration(bucket_name: Optional[str] = None,
@@ -167,7 +176,8 @@ def get_packer_image_iteration(bucket_name: Optional[str] = None,
         id=__ret__.id,
         incremental_version=__ret__.incremental_version,
         organization_id=__ret__.organization_id,
-        project_id=__ret__.project_id)
+        project_id=__ret__.project_id,
+        revoke_at=__ret__.revoke_at)
 
 
 @_utilities.lift_output_func(get_packer_image_iteration)

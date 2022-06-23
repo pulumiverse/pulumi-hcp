@@ -20,7 +20,7 @@ class GetPackerImageResult:
     """
     A collection of values returned by getPackerImage.
     """
-    def __init__(__self__, bucket_name=None, build_id=None, cloud_image_id=None, cloud_provider=None, component_type=None, created_at=None, id=None, iteration_id=None, labels=None, organization_id=None, packer_run_uuid=None, project_id=None, region=None):
+    def __init__(__self__, bucket_name=None, build_id=None, cloud_image_id=None, cloud_provider=None, component_type=None, created_at=None, id=None, iteration_id=None, labels=None, organization_id=None, packer_run_uuid=None, project_id=None, region=None, revoke_at=None):
         if bucket_name and not isinstance(bucket_name, str):
             raise TypeError("Expected argument 'bucket_name' to be a str")
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -60,6 +60,9 @@ class GetPackerImageResult:
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
+        if revoke_at and not isinstance(revoke_at, str):
+            raise TypeError("Expected argument 'revoke_at' to be a str")
+        pulumi.set(__self__, "revoke_at", revoke_at)
 
     @property
     @pulumi.getter(name="bucketName")
@@ -129,6 +132,11 @@ class GetPackerImageResult:
     def region(self) -> str:
         return pulumi.get(self, "region")
 
+    @property
+    @pulumi.getter(name="revokeAt")
+    def revoke_at(self) -> str:
+        return pulumi.get(self, "revoke_at")
+
 
 class AwaitableGetPackerImageResult(GetPackerImageResult):
     # pylint: disable=using-constant-test
@@ -148,7 +156,8 @@ class AwaitableGetPackerImageResult(GetPackerImageResult):
             organization_id=self.organization_id,
             packer_run_uuid=self.packer_run_uuid,
             project_id=self.project_id,
-            region=self.region)
+            region=self.region,
+            revoke_at=self.revoke_at)
 
 
 def get_packer_image(bucket_name: Optional[str] = None,
@@ -202,7 +211,8 @@ def get_packer_image(bucket_name: Optional[str] = None,
         organization_id=__ret__.organization_id,
         packer_run_uuid=__ret__.packer_run_uuid,
         project_id=__ret__.project_id,
-        region=__ret__.region)
+        region=__ret__.region,
+        revoke_at=__ret__.revoke_at)
 
 
 @_utilities.lift_output_func(get_packer_image)

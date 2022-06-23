@@ -82,6 +82,7 @@ export interface GetPackerImageIterationResult {
      * The ID of the project this HCP Packer registry is located in.
      */
     readonly projectId: string;
+    readonly revokeAt: string;
 }
 
 export function getPackerImageIterationOutput(args: GetPackerImageIterationOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPackerImageIterationResult> {

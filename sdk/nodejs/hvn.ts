@@ -74,7 +74,7 @@ export class Hvn extends pulumi.CustomResource {
      */
     public readonly cidrBlock!: pulumi.Output<string>;
     /**
-     * The provider where the HVN is located. Only 'aws' is available at this time.
+     * The provider where the HVN is located. The provider 'aws' is generally available and 'azure' is in public beta.
      */
     public readonly cloudProvider!: pulumi.Output<string>;
     /**
@@ -163,7 +163,7 @@ export interface HvnState {
      */
     cidrBlock?: pulumi.Input<string>;
     /**
-     * The provider where the HVN is located. Only 'aws' is available at this time.
+     * The provider where the HVN is located. The provider 'aws' is generally available and 'azure' is in public beta.
      */
     cloudProvider?: pulumi.Input<string>;
     /**
@@ -205,7 +205,7 @@ export interface HvnArgs {
      */
     cidrBlock?: pulumi.Input<string>;
     /**
-     * The provider where the HVN is located. Only 'aws' is available at this time.
+     * The provider where the HVN is located. The provider 'aws' is generally available and 'azure' is in public beta.
      */
     cloudProvider: pulumi.Input<string>;
     /**

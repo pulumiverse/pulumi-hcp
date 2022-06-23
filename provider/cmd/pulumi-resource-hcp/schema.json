@@ -1416,7 +1416,7 @@
                 },
                 "cloudProvider": {
                     "type": "string",
-                    "description": "The provider where the HVN is located. Only 'aws' is available at this time.\n"
+                    "description": "The provider where the HVN is located. The provider 'aws' is generally available and 'azure' is in public beta.\n"
                 },
                 "createdAt": {
                     "type": "string",
@@ -1466,7 +1466,7 @@
                 },
                 "cloudProvider": {
                     "type": "string",
-                    "description": "The provider where the HVN is located. Only 'aws' is available at this time.\n",
+                    "description": "The provider where the HVN is located. The provider 'aws' is generally available and 'azure' is in public beta.\n",
                     "willReplaceOnChanges": true
                 },
                 "hvnId": {
@@ -1495,7 +1495,7 @@
                     },
                     "cloudProvider": {
                         "type": "string",
-                        "description": "The provider where the HVN is located. Only 'aws' is available at this time.\n",
+                        "description": "The provider where the HVN is located. The provider 'aws' is generally available and 'azure' is in public beta.\n",
                         "willReplaceOnChanges": true
                     },
                     "createdAt": {
@@ -2790,6 +2790,9 @@
                     },
                     "region": {
                         "type": "string"
+                    },
+                    "revokeAt": {
+                        "type": "string"
                     }
                 },
                 "type": "object",
@@ -2806,6 +2809,7 @@
                     "packerRunUuid",
                     "projectId",
                     "region",
+                    "revokeAt",
                     "id"
                 ]
             }
@@ -2867,6 +2871,9 @@
                     "projectId": {
                         "type": "string",
                         "description": "The ID of the project this HCP Packer registry is located in.\n"
+                    },
+                    "revokeAt": {
+                        "type": "string"
                     }
                 },
                 "type": "object",
@@ -2878,6 +2885,7 @@
                     "incrementalVersion",
                     "organizationId",
                     "projectId",
+                    "revokeAt",
                     "id"
                 ]
             }
@@ -2931,6 +2939,9 @@
                     "projectId": {
                         "type": "string"
                     },
+                    "revokeAt": {
+                        "type": "string"
+                    },
                     "ulid": {
                         "type": "string"
                     },
@@ -2948,6 +2959,7 @@
                     "incrementalVersion",
                     "organizationId",
                     "projectId",
+                    "revokeAt",
                     "ulid",
                     "updatedAt",
                     "id"

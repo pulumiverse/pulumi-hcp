@@ -72,6 +72,7 @@ type GetPackerImageIterationResult struct {
 	OrganizationId string `pulumi:"organizationId"`
 	// The ID of the project this HCP Packer registry is located in.
 	ProjectId string `pulumi:"projectId"`
+	RevokeAt  string `pulumi:"revokeAt"`
 }
 
 func GetPackerImageIterationOutput(ctx *pulumi.Context, args GetPackerImageIterationOutputArgs, opts ...pulumi.InvokeOption) GetPackerImageIterationResultOutput {
@@ -152,6 +153,10 @@ func (o GetPackerImageIterationResultOutput) OrganizationId() pulumi.StringOutpu
 // The ID of the project this HCP Packer registry is located in.
 func (o GetPackerImageIterationResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerImageIterationResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func (o GetPackerImageIterationResultOutput) RevokeAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPackerImageIterationResult) string { return v.RevokeAt }).(pulumi.StringOutput)
 }
 
 func init() {

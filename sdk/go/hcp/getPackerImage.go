@@ -82,6 +82,7 @@ type GetPackerImageResult struct {
 	PackerRunUuid  string                 `pulumi:"packerRunUuid"`
 	ProjectId      string                 `pulumi:"projectId"`
 	Region         string                 `pulumi:"region"`
+	RevokeAt       string                 `pulumi:"revokeAt"`
 }
 
 func GetPackerImageOutput(ctx *pulumi.Context, args GetPackerImageOutputArgs, opts ...pulumi.InvokeOption) GetPackerImageResultOutput {
@@ -175,6 +176,10 @@ func (o GetPackerImageResultOutput) ProjectId() pulumi.StringOutput {
 
 func (o GetPackerImageResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerImageResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
+func (o GetPackerImageResultOutput) RevokeAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPackerImageResult) string { return v.RevokeAt }).(pulumi.StringOutput)
 }
 
 func init() {
