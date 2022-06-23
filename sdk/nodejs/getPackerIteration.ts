@@ -55,6 +55,7 @@ export interface GetPackerIterationResult {
     readonly incrementalVersion: number;
     readonly organizationId: string;
     readonly projectId: string;
+    readonly revokeAt: string;
     readonly ulid: string;
     readonly updatedAt: string;
 }

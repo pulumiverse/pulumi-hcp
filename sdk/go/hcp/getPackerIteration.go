@@ -64,6 +64,7 @@ type GetPackerIterationResult struct {
 	IncrementalVersion int    `pulumi:"incrementalVersion"`
 	OrganizationId     string `pulumi:"organizationId"`
 	ProjectId          string `pulumi:"projectId"`
+	RevokeAt           string `pulumi:"revokeAt"`
 	Ulid               string `pulumi:"ulid"`
 	UpdatedAt          string `pulumi:"updatedAt"`
 }
@@ -141,6 +142,10 @@ func (o GetPackerIterationResultOutput) OrganizationId() pulumi.StringOutput {
 
 func (o GetPackerIterationResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerIterationResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+func (o GetPackerIterationResultOutput) RevokeAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPackerIterationResult) string { return v.RevokeAt }).(pulumi.StringOutput)
 }
 
 func (o GetPackerIterationResultOutput) Ulid() pulumi.StringOutput {

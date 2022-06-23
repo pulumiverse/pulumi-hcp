@@ -19,7 +19,7 @@ class HvnArgs:
                  cidr_block: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Hvn resource.
-        :param pulumi.Input[str] cloud_provider: The provider where the HVN is located. Only 'aws' is available at this time.
+        :param pulumi.Input[str] cloud_provider: The provider where the HVN is located. The provider 'aws' is generally available and 'azure' is in public beta.
         :param pulumi.Input[str] hvn_id: The ID of the HashiCorp Virtual Network (HVN).
         :param pulumi.Input[str] region: The region where the HVN is located.
         :param pulumi.Input[str] cidr_block: The CIDR range of the HVN. If this is not provided, the service will provide a default value.
@@ -34,7 +34,7 @@ class HvnArgs:
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> pulumi.Input[str]:
         """
-        The provider where the HVN is located. Only 'aws' is available at this time.
+        The provider where the HVN is located. The provider 'aws' is generally available and 'azure' is in public beta.
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -94,7 +94,7 @@ class _HvnState:
         """
         Input properties used for looking up and filtering Hvn resources.
         :param pulumi.Input[str] cidr_block: The CIDR range of the HVN. If this is not provided, the service will provide a default value.
-        :param pulumi.Input[str] cloud_provider: The provider where the HVN is located. Only 'aws' is available at this time.
+        :param pulumi.Input[str] cloud_provider: The provider where the HVN is located. The provider 'aws' is generally available and 'azure' is in public beta.
         :param pulumi.Input[str] created_at: The time that the HVN was created.
         :param pulumi.Input[str] hvn_id: The ID of the HashiCorp Virtual Network (HVN).
         :param pulumi.Input[str] organization_id: The ID of the HCP organization where the HVN is located.
@@ -138,7 +138,7 @@ class _HvnState:
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> Optional[pulumi.Input[str]]:
         """
-        The provider where the HVN is located. Only 'aws' is available at this time.
+        The provider where the HVN is located. The provider 'aws' is generally available and 'azure' is in public beta.
         """
         return pulumi.get(self, "cloud_provider")
 
@@ -280,7 +280,7 @@ class Hvn(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cidr_block: The CIDR range of the HVN. If this is not provided, the service will provide a default value.
-        :param pulumi.Input[str] cloud_provider: The provider where the HVN is located. Only 'aws' is available at this time.
+        :param pulumi.Input[str] cloud_provider: The provider where the HVN is located. The provider 'aws' is generally available and 'azure' is in public beta.
         :param pulumi.Input[str] hvn_id: The ID of the HashiCorp Virtual Network (HVN).
         :param pulumi.Input[str] region: The region where the HVN is located.
         """
@@ -401,7 +401,7 @@ class Hvn(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cidr_block: The CIDR range of the HVN. If this is not provided, the service will provide a default value.
-        :param pulumi.Input[str] cloud_provider: The provider where the HVN is located. Only 'aws' is available at this time.
+        :param pulumi.Input[str] cloud_provider: The provider where the HVN is located. The provider 'aws' is generally available and 'azure' is in public beta.
         :param pulumi.Input[str] created_at: The time that the HVN was created.
         :param pulumi.Input[str] hvn_id: The ID of the HashiCorp Virtual Network (HVN).
         :param pulumi.Input[str] organization_id: The ID of the HCP organization where the HVN is located.
@@ -437,7 +437,7 @@ class Hvn(pulumi.CustomResource):
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> pulumi.Output[str]:
         """
-        The provider where the HVN is located. Only 'aws' is available at this time.
+        The provider where the HVN is located. The provider 'aws' is generally available and 'azure' is in public beta.
         """
         return pulumi.get(self, "cloud_provider")
 

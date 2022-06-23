@@ -20,7 +20,7 @@ class GetPackerIterationResult:
     """
     A collection of values returned by getPackerIteration.
     """
-    def __init__(__self__, author_id=None, bucket_name=None, channel=None, created_at=None, fingerprint=None, id=None, incremental_version=None, organization_id=None, project_id=None, ulid=None, updated_at=None):
+    def __init__(__self__, author_id=None, bucket_name=None, channel=None, created_at=None, fingerprint=None, id=None, incremental_version=None, organization_id=None, project_id=None, revoke_at=None, ulid=None, updated_at=None):
         if author_id and not isinstance(author_id, str):
             raise TypeError("Expected argument 'author_id' to be a str")
         pulumi.set(__self__, "author_id", author_id)
@@ -48,6 +48,9 @@ class GetPackerIterationResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if revoke_at and not isinstance(revoke_at, str):
+            raise TypeError("Expected argument 'revoke_at' to be a str")
+        pulumi.set(__self__, "revoke_at", revoke_at)
         if ulid and not isinstance(ulid, str):
             raise TypeError("Expected argument 'ulid' to be a str")
         pulumi.set(__self__, "ulid", ulid)
@@ -104,6 +107,11 @@ class GetPackerIterationResult:
         return pulumi.get(self, "project_id")
 
     @property
+    @pulumi.getter(name="revokeAt")
+    def revoke_at(self) -> str:
+        return pulumi.get(self, "revoke_at")
+
+    @property
     @pulumi.getter
     def ulid(self) -> str:
         return pulumi.get(self, "ulid")
@@ -129,6 +137,7 @@ class AwaitableGetPackerIterationResult(GetPackerIterationResult):
             incremental_version=self.incremental_version,
             organization_id=self.organization_id,
             project_id=self.project_id,
+            revoke_at=self.revoke_at,
             ulid=self.ulid,
             updated_at=self.updated_at)
 
@@ -170,6 +179,7 @@ def get_packer_iteration(bucket_name: Optional[str] = None,
         incremental_version=__ret__.incremental_version,
         organization_id=__ret__.organization_id,
         project_id=__ret__.project_id,
+        revoke_at=__ret__.revoke_at,
         ulid=__ret__.ulid,
         updated_at=__ret__.updated_at)
 
