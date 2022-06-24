@@ -187,17 +187,6 @@ def get_azure_peering_connection(hvn_link: Optional[str] = None,
     > **Note:** This data source is currently in public beta.
 
     The Azure peering connection data source provides information about a peering connection between an HVN and a peer Azure VNet.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_hcp as hcp
-
-    test = hcp.get_azure_peering_connection(hvn_id=var["hvn_id"],
-        peering_id=var["peering_id"],
-        wait_for_active_state=True)
-    ```
     """
     __args__ = dict()
     __args__['hvnLink'] = hvn_link
@@ -234,16 +223,5 @@ def get_azure_peering_connection_output(hvn_link: Optional[pulumi.Input[str]] = 
     > **Note:** This data source is currently in public beta.
 
     The Azure peering connection data source provides information about a peering connection between an HVN and a peer Azure VNet.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_hcp as hcp
-
-    test = hcp.get_azure_peering_connection(hvn_id=var["hvn_id"],
-        peering_id=var["peering_id"],
-        wait_for_active_state=True)
-    ```
     """
     ...

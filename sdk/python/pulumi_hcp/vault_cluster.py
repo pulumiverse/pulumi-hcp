@@ -519,31 +519,6 @@ class VaultCluster(pulumi.CustomResource):
                  tier: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_hcp as hcp
-
-        example_hvn = hcp.Hvn("exampleHvn",
-            hvn_id="hvn",
-            cloud_provider="aws",
-            region="us-west-2",
-            cidr_block="172.25.16.0/20")
-        example_vault_cluster = hcp.VaultCluster("exampleVaultCluster",
-            cluster_id="vault-cluster",
-            hvn_id=example_hvn.hvn_id,
-            tier="standard_large",
-            metrics_config=hcp.VaultClusterMetricsConfigArgs(
-                datadog_api_key="test_datadog",
-                datadog_region="us1",
-            ),
-            audit_log_config=hcp.VaultClusterAuditLogConfigArgs(
-                datadog_api_key="test_datadog",
-                datadog_region="us1",
-            ))
-        ```
-
         ## Import
 
         # The import ID is {cluster_id}
@@ -578,31 +553,6 @@ class VaultCluster(pulumi.CustomResource):
                  args: VaultClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_hcp as hcp
-
-        example_hvn = hcp.Hvn("exampleHvn",
-            hvn_id="hvn",
-            cloud_provider="aws",
-            region="us-west-2",
-            cidr_block="172.25.16.0/20")
-        example_vault_cluster = hcp.VaultCluster("exampleVaultCluster",
-            cluster_id="vault-cluster",
-            hvn_id=example_hvn.hvn_id,
-            tier="standard_large",
-            metrics_config=hcp.VaultClusterMetricsConfigArgs(
-                datadog_api_key="test_datadog",
-                datadog_region="us1",
-            ),
-            audit_log_config=hcp.VaultClusterAuditLogConfigArgs(
-                datadog_api_key="test_datadog",
-                datadog_region="us1",
-            ))
-        ```
-
         ## Import
 
         # The import ID is {cluster_id}

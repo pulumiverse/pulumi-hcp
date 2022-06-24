@@ -6,33 +6,6 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_hcp from "@grapl/pulumi-hcp";
- *
- * const exampleHvn = new hcp.Hvn("exampleHvn", {
- *     hvnId: "hvn",
- *     cloudProvider: "aws",
- *     region: "us-west-2",
- *     cidrBlock: "172.25.16.0/20",
- * });
- * const exampleVaultCluster = new hcp.VaultCluster("exampleVaultCluster", {
- *     clusterId: "vault-cluster",
- *     hvnId: exampleHvn.hvnId,
- *     tier: "standard_large",
- *     metricsConfig: {
- *         datadogApiKey: "test_datadog",
- *         datadogRegion: "us1",
- *     },
- *     auditLogConfig: {
- *         datadogApiKey: "test_datadog",
- *         datadogRegion: "us1",
- *     },
- * });
- * ```
- *
  * ## Import
  *
  * # The import ID is {cluster_id}

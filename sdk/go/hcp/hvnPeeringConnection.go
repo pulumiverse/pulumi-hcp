@@ -13,48 +13,6 @@ import (
 
 // The HVN peering connection resource allows you to manage a peering connection between HVNs.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		hvn1, err := hcp.NewHvn(ctx, "hvn1", &hcp.HvnArgs{
-// 			HvnId:         pulumi.String("hvn-1"),
-// 			CloudProvider: pulumi.String("aws"),
-// 			Region:        pulumi.String("us-west-2"),
-// 			CidrBlock:     pulumi.String("172.25.16.0/20"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		hvn2, err := hcp.NewHvn(ctx, "hvn2", &hcp.HvnArgs{
-// 			HvnId:         pulumi.String("hvn-2"),
-// 			CloudProvider: pulumi.String("aws"),
-// 			Region:        pulumi.String("us-west-2"),
-// 			CidrBlock:     pulumi.String("172.18.16.0/20"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = hcp.NewHvnPeeringConnection(ctx, "peer1", &hcp.HvnPeeringConnectionArgs{
-// 			Hvn1: hvn1.SelfLink,
-// 			Hvn2: hvn2.SelfLink,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
 // ## Import
 //
 // # The import ID requires the first HVN ID in the format {hvn_1_id}:{peering_id}

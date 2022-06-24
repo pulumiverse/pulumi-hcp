@@ -7,17 +7,6 @@ import * as utilities from "./utilities";
 
 /**
  * The cluster data source provides information about an existing HCP Vault cluster.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as hcp from "@pulumi/hcp";
- *
- * const example = hcp.getVaultCluster({
- *     clusterId: _var.cluster_id,
- * });
- * ```
  */
 export function getVaultCluster(args: GetVaultClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetVaultClusterResult> {
     if (!opts) {

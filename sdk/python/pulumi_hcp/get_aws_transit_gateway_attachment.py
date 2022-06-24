@@ -149,16 +149,6 @@ def get_aws_transit_gateway_attachment(hvn_id: Optional[str] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAwsTransitGatewayAttachmentResult:
     """
     The AWS transit gateway attachment data source provides information about an existing transit gateway attachment.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_hcp as hcp
-
-    test = hcp.get_aws_transit_gateway_attachment(hvn_id=var["hvn_id"],
-        transit_gateway_attachment_id=var["transit_gateway_attachment_id"])
-    ```
     """
     __args__ = dict()
     __args__['hvnId'] = hvn_id
@@ -189,15 +179,5 @@ def get_aws_transit_gateway_attachment_output(hvn_id: Optional[pulumi.Input[str]
                                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAwsTransitGatewayAttachmentResult]:
     """
     The AWS transit gateway attachment data source provides information about an existing transit gateway attachment.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_hcp as hcp
-
-    test = hcp.get_aws_transit_gateway_attachment(hvn_id=var["hvn_id"],
-        transit_gateway_attachment_id=var["transit_gateway_attachment_id"])
-    ```
     """
     ...

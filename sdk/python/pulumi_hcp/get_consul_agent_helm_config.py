@@ -86,16 +86,6 @@ def get_consul_agent_helm_config(cluster_id: Optional[str] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetConsulAgentHelmConfigResult:
     """
     The Consul agent Helm config data source provides Helm values for a Consul agent running in Kubernetes.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_hcp as hcp
-
-    example = hcp.get_consul_agent_helm_config(cluster_id=var["cluster_id"],
-        kubernetes_endpoint=var["kubernetes_endpoint"])
-    ```
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -119,15 +109,5 @@ def get_consul_agent_helm_config_output(cluster_id: Optional[pulumi.Input[str]] 
                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetConsulAgentHelmConfigResult]:
     """
     The Consul agent Helm config data source provides Helm values for a Consul agent running in Kubernetes.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_hcp as hcp
-
-    example = hcp.get_consul_agent_helm_config(cluster_id=var["cluster_id"],
-        kubernetes_endpoint=var["kubernetes_endpoint"])
-    ```
     """
     ...

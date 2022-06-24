@@ -168,23 +168,6 @@ def get_packer_image(bucket_name: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPackerImageResult:
     """
     The Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_hcp as hcp
-
-    hardened_source = hcp.get_packer_iteration(bucket_name="hardened-ubuntu-16-04",
-        channel="production")
-    foo = hcp.get_packer_image(bucket_name="hardened-ubuntu-16-04",
-        cloud_provider="aws",
-        iteration_id=hardened_source.ulid,
-        region="us-east-1")
-    pulumi.export("packer-registry-ubuntu", foo.cloud_image_id)
-    ```
-
-    > **Note:** This data source only returns the first found image's metadata filtered by the given schema values, from the returned list of images associated with the specified iteration. Therefore, if multiple images exist in the same region, it will only pick one of them. If that's the case, you may consider separating your builds into different buckets.
     """
     __args__ = dict()
     __args__['bucketName'] = bucket_name
@@ -219,22 +202,5 @@ def get_packer_image_output(bucket_name: Optional[pulumi.Input[str]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPackerImageResult]:
     """
     The Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_hcp as hcp
-
-    hardened_source = hcp.get_packer_iteration(bucket_name="hardened-ubuntu-16-04",
-        channel="production")
-    foo = hcp.get_packer_image(bucket_name="hardened-ubuntu-16-04",
-        cloud_provider="aws",
-        iteration_id=hardened_source.ulid,
-        region="us-east-1")
-    pulumi.export("packer-registry-ubuntu", foo.cloud_image_id)
-    ```
-
-    > **Note:** This data source only returns the first found image's metadata filtered by the given schema values, from the returned list of images associated with the specified iteration. Therefore, if multiple images exist in the same region, it will only pick one of them. If that's the case, you may consider separating your builds into different buckets.
     """
     ...

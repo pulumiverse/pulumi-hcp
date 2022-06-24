@@ -198,27 +198,6 @@ class HvnPeeringConnection(pulumi.CustomResource):
         """
         The HVN peering connection resource allows you to manage a peering connection between HVNs.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_hcp as hcp
-
-        hvn1 = hcp.Hvn("hvn1",
-            hvn_id="hvn-1",
-            cloud_provider="aws",
-            region="us-west-2",
-            cidr_block="172.25.16.0/20")
-        hvn2 = hcp.Hvn("hvn2",
-            hvn_id="hvn-2",
-            cloud_provider="aws",
-            region="us-west-2",
-            cidr_block="172.18.16.0/20")
-        peer1 = hcp.HvnPeeringConnection("peer1",
-            hvn1=hvn1.self_link,
-            hvn2=hvn2.self_link)
-        ```
-
         ## Import
 
         # The import ID requires the first HVN ID in the format {hvn_1_id}:{peering_id}
@@ -240,27 +219,6 @@ class HvnPeeringConnection(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The HVN peering connection resource allows you to manage a peering connection between HVNs.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_hcp as hcp
-
-        hvn1 = hcp.Hvn("hvn1",
-            hvn_id="hvn-1",
-            cloud_provider="aws",
-            region="us-west-2",
-            cidr_block="172.25.16.0/20")
-        hvn2 = hcp.Hvn("hvn2",
-            hvn_id="hvn-2",
-            cloud_provider="aws",
-            region="us-west-2",
-            cidr_block="172.18.16.0/20")
-        peer1 = hcp.HvnPeeringConnection("peer1",
-            hvn1=hvn1.self_link,
-            hvn2=hvn2.self_link)
-        ```
 
         ## Import
 

@@ -6,17 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * The agent config Kubernetes secret data source provides Consul agents running in Kubernetes the configuration needed to connect to the Consul cluster.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as hcp from "@pulumi/hcp";
- *
- * const test = hcp.getConsulAgentKubernetesSecret({
- *     clusterId: _var.cluster_id,
- * });
- * ```
  */
 export function getConsulAgentKubernetesSecret(args: GetConsulAgentKubernetesSecretArgs, opts?: pulumi.InvokeOptions): Promise<GetConsulAgentKubernetesSecretResult> {
     if (!opts) {

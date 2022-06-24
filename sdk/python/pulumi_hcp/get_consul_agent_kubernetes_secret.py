@@ -66,15 +66,6 @@ def get_consul_agent_kubernetes_secret(cluster_id: Optional[str] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetConsulAgentKubernetesSecretResult:
     """
     The agent config Kubernetes secret data source provides Consul agents running in Kubernetes the configuration needed to connect to the Consul cluster.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_hcp as hcp
-
-    test = hcp.get_consul_agent_kubernetes_secret(cluster_id=var["cluster_id"])
-    ```
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -92,14 +83,5 @@ def get_consul_agent_kubernetes_secret_output(cluster_id: Optional[pulumi.Input[
                                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetConsulAgentKubernetesSecretResult]:
     """
     The agent config Kubernetes secret data source provides Consul agents running in Kubernetes the configuration needed to connect to the Consul cluster.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_hcp as hcp
-
-    test = hcp.get_consul_agent_kubernetes_secret(cluster_id=var["cluster_id"])
-    ```
     """
     ...

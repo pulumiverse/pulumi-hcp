@@ -25,32 +25,6 @@ import (
 //
 // - The default HVN CIDR block value does not overlap with the default CIDR block value for AWS VPCs (172.31.0.0/16). However, if you are planning to use this HVN in production, we recommend adding a custom value instead of using the default.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := hcp.NewHvn(ctx, "example", &hcp.HvnArgs{
-// 			CidrBlock:     pulumi.String("172.25.16.0/20"),
-// 			CloudProvider: pulumi.String("aws"),
-// 			HvnId:         pulumi.String("main-hvn"),
-// 			Region:        pulumi.String("us-west-2"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
 // ## Import
 //
 // # The import ID is {hvn_id}

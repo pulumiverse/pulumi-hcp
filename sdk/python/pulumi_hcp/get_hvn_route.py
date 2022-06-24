@@ -112,16 +112,6 @@ def get_hvn_route(hvn_link: Optional[str] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetHvnRouteResult:
     """
     The HVN route data source provides information about an existing HVN route.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_hcp as hcp
-
-    example = hcp.get_hvn_route(hvn_link=var["hvn_link"],
-        destination_cidr=var["hvn_route_id"])
-    ```
     """
     __args__ = dict()
     __args__['hvnLink'] = hvn_link
@@ -146,15 +136,5 @@ def get_hvn_route_output(hvn_link: Optional[pulumi.Input[str]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetHvnRouteResult]:
     """
     The HVN route data source provides information about an existing HVN route.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_hcp as hcp
-
-    example = hcp.get_hvn_route(hvn_link=var["hvn_link"],
-        destination_cidr=var["hvn_route_id"])
-    ```
     """
     ...

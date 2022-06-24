@@ -73,15 +73,6 @@ class AwaitableGetConsulVersionsResult(GetConsulVersionsResult):
 def get_consul_versions(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetConsulVersionsResult:
     """
     The Consul versions data source provides the Consul versions supported by HCP.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_hcp as hcp
-
-    default = hcp.get_consul_versions()
-    ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

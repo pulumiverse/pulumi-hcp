@@ -12,30 +12,6 @@ import (
 )
 
 // The Consul snapshot resource allows users to manage Consul snapshots of an HCP Consul cluster. Snapshots currently have a retention policy of 30 days.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := hcp.NewConsulSnapshot(ctx, "example", &hcp.ConsulSnapshotArgs{
-// 			ClusterId:    pulumi.String("consul-cluster"),
-// 			SnapshotName: pulumi.String("my-snapshot"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type ConsulSnapshot struct {
 	pulumi.CustomResourceState
 

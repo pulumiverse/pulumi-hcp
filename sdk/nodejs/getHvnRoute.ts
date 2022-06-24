@@ -6,18 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * The HVN route data source provides information about an existing HVN route.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as hcp from "@pulumi/hcp";
- *
- * const example = hcp.getHvnRoute({
- *     hvnLink: _var.hvn_link,
- *     destinationCidr: _var.hvn_route_id,
- * });
- * ```
  */
 export function getHvnRoute(args: GetHvnRouteArgs, opts?: pulumi.InvokeOptions): Promise<GetHvnRouteResult> {
     if (!opts) {

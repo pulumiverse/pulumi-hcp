@@ -148,16 +148,6 @@ def get_packer_iteration(bucket_name: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPackerIterationResult:
     """
     The Packer Image data source iteration gets the most recent iteration (or build) of an image, given a channel.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_hcp as hcp
-
-    hardened_source = hcp.get_packer_iteration(bucket_name="hardened-ubuntu-16-04",
-        channel="megan-test")
-    ```
     """
     __args__ = dict()
     __args__['bucketName'] = bucket_name
@@ -186,15 +176,5 @@ def get_packer_iteration_output(bucket_name: Optional[pulumi.Input[str]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPackerIterationResult]:
     """
     The Packer Image data source iteration gets the most recent iteration (or build) of an image, given a channel.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_hcp as hcp
-
-    hardened_source = hcp.get_packer_iteration(bucket_name="hardened-ubuntu-16-04",
-        channel="megan-test")
-    ```
     """
     ...

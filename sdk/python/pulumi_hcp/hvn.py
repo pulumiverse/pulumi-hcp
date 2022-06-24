@@ -257,19 +257,6 @@ class Hvn(pulumi.CustomResource):
 
         - The default HVN CIDR block value does not overlap with the default CIDR block value for AWS VPCs (172.31.0.0/16). However, if you are planning to use this HVN in production, we recommend adding a custom value instead of using the default.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_hcp as hcp
-
-        example = hcp.Hvn("example",
-            cidr_block="172.25.16.0/20",
-            cloud_provider="aws",
-            hvn_id="main-hvn",
-            region="us-west-2")
-        ```
-
         ## Import
 
         # The import ID is {hvn_id}
@@ -305,19 +292,6 @@ class Hvn(pulumi.CustomResource):
         - If the CIDR block values for your HVN and VPCs overlap, then you will not be able to establish a connection. Ensure that any VPCs you plan to connect do not have overlapping values.
 
         - The default HVN CIDR block value does not overlap with the default CIDR block value for AWS VPCs (172.31.0.0/16). However, if you are planning to use this HVN in production, we recommend adding a custom value instead of using the default.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_hcp as hcp
-
-        example = hcp.Hvn("example",
-            cidr_block="172.25.16.0/20",
-            cloud_provider="aws",
-            hvn_id="main-hvn",
-            region="us-west-2")
-        ```
 
         ## Import
 

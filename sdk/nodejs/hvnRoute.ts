@@ -5,40 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * import * as pulumi_hcp from "@grapl/pulumi-hcp";
- *
- * const main = new hcp.Hvn("main", {
- *     hvnId: "main-hvn",
- *     cloudProvider: "aws",
- *     region: "us-west-2",
- *     cidrBlock: "172.25.16.0/20",
- * });
- * // Creating a peering and a route for it.
- * const peerVpc = new aws.ec2.Vpc("peerVpc", {cidrBlock: "192.168.0.0/20"});
- * const example = new hcp.AwsNetworkPeering("example", {
- *     peeringId: "peer-example",
- *     hvnId: main.hvnId,
- *     peerVpcId: peerVpc.id,
- *     peerAccountId: peerVpc.ownerId,
- *     peerVpcRegion: "us-west-2",
- * });
- * const peerVpcPeeringConnectionAccepter = new aws.ec2.VpcPeeringConnectionAccepter("peerVpcPeeringConnectionAccepter", {
- *     vpcPeeringConnectionId: example.providerPeeringId,
- *     autoAccept: true,
- * });
- * const example_peering_route = new hcp.HvnRoute("example-peering-route", {
- *     hvnLink: main.selfLink,
- *     hvnRouteId: "peering-route",
- *     destinationCidr: peerVpc.cidrBlock,
- *     targetLink: example.selfLink,
- * });
- * ```
- *
  * ## Import
  *
  * # The import ID is {hvn_id}:{hvn_route_id}

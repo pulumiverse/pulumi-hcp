@@ -11,30 +11,6 @@ import (
 )
 
 // The cluster data source provides information about an existing HCP Vault cluster.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := hcp.LookupVaultCluster(ctx, &GetVaultClusterArgs{
-// 			ClusterId: _var.Cluster_id,
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 func LookupVaultCluster(ctx *pulumi.Context, args *LookupVaultClusterArgs, opts ...pulumi.InvokeOption) (*LookupVaultClusterResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupVaultClusterResult

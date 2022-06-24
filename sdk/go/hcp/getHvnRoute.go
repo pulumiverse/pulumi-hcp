@@ -11,31 +11,6 @@ import (
 )
 
 // The HVN route data source provides information about an existing HVN route.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := hcp.LookupHvnRoute(ctx, &GetHvnRouteArgs{
-// 			HvnLink:         _var.Hvn_link,
-// 			DestinationCidr: _var.Hvn_route_id,
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 func LookupHvnRoute(ctx *pulumi.Context, args *LookupHvnRouteArgs, opts ...pulumi.InvokeOption) (*LookupHvnRouteResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupHvnRouteResult

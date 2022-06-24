@@ -653,23 +653,6 @@ class ConsulCluster(pulumi.CustomResource):
 
         The Consul cluster resource allows you to manage an HCP Consul cluster.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_hcp as hcp
-
-        example_hvn = hcp.Hvn("exampleHvn",
-            hvn_id="hvn",
-            cloud_provider="aws",
-            region="us-west-2",
-            cidr_block="172.25.16.0/20")
-        example_consul_cluster = hcp.ConsulCluster("exampleConsulCluster",
-            cluster_id="consul-cluster",
-            hvn_id=example_hvn.hvn_id,
-            tier="development")
-        ```
-
         ## Import
 
         # The import ID is {cluster_id}
@@ -708,23 +691,6 @@ class ConsulCluster(pulumi.CustomResource):
         > Consul on Azure is now available in public beta. [Get started with end-to-end deployment configuration](https://learn.hashicorp.com/tutorials/cloud/consul-end-to-end-overview).
 
         The Consul cluster resource allows you to manage an HCP Consul cluster.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_hcp as hcp
-
-        example_hvn = hcp.Hvn("exampleHvn",
-            hvn_id="hvn",
-            cloud_provider="aws",
-            region="us-west-2",
-            cidr_block="172.25.16.0/20")
-        example_consul_cluster = hcp.ConsulCluster("exampleConsulCluster",
-            cluster_id="consul-cluster",
-            hvn_id=example_hvn.hvn_id,
-            tier="development")
-        ```
 
         ## Import
 
