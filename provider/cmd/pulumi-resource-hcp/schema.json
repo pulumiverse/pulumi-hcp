@@ -17,6 +17,42 @@
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
     },
+    "language": {
+        "csharp": {
+            "compatibility": "tfbridge20",
+            "namespaces": null,
+            "packageReferences": {
+                "Pulumi": "3.*"
+            }
+        },
+        "go": {
+            "generateExtraInputTypes": true,
+            "generateResourceContainerTypes": true,
+            "importBasePath": "github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
+        },
+        "nodejs": {
+            "compatibility": "tfbridge20",
+            "dependencies": {
+                "@pulumi/pulumi": "^3.0.0"
+            },
+            "devDependencies": {
+                "@types/mime": "^2.0.0",
+                "@types/node": "^10.0.0"
+            },
+            "disableUnionOutputTypes": true,
+            "packageDescription": "A Pulumi package for creating and managing HCP cloud resources.",
+            "packageName": "@grapl/pulumi-hcp",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hashicorp/terraform-provider-hcp)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-hcp` repo](https://github.com/pulumi/pulumi-hcp/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`hashicorp/terraform-provider-hcp` repo](https://github.com/hashicorp/terraform-provider-hcp/issues).",
+            "typescriptVersion": ""
+        },
+        "python": {
+            "compatibility": "tfbridge20",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hashicorp/terraform-provider-hcp)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-hcp` repo](https://github.com/pulumi/pulumi-hcp/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`hashicorp/terraform-provider-hcp` repo](https://github.com/hashicorp/terraform-provider-hcp/issues).",
+            "requires": {
+                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
+            }
+        }
+    },
     "config": {
         "variables": {
             "clientId": {
@@ -3089,42 +3125,6 @@
                     "vaultVersion",
                     "id"
                 ]
-            }
-        }
-    },
-    "language": {
-        "csharp": {
-            "compatibility": "tfbridge20",
-            "namespaces": null,
-            "packageReferences": {
-                "Pulumi": "3.*"
-            }
-        },
-        "go": {
-            "generateExtraInputTypes": true,
-            "generateResourceContainerTypes": true,
-            "importBasePath": "github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-        },
-        "nodejs": {
-            "compatibility": "tfbridge20",
-            "dependencies": {
-                "@pulumi/pulumi": "^3.0.0"
-            },
-            "devDependencies": {
-                "@types/mime": "^2.0.0",
-                "@types/node": "^10.0.0"
-            },
-            "disableUnionOutputTypes": true,
-            "packageDescription": "A Pulumi package for creating and managing HCP cloud resources.",
-            "packageName": "@grapl/pulumi-hcp",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hashicorp/terraform-provider-hcp)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-hcp` repo](https://github.com/pulumi/pulumi-hcp/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`hashicorp/terraform-provider-hcp` repo](https://github.com/hashicorp/terraform-provider-hcp/issues).",
-            "typescriptVersion": ""
-        },
-        "python": {
-            "compatibility": "tfbridge20",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hashicorp/terraform-provider-hcp)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-hcp` repo](https://github.com/pulumi/pulumi-hcp/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`hashicorp/terraform-provider-hcp` repo](https://github.com/hashicorp/terraform-provider-hcp/issues).",
-            "requires": {
-                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
             }
         }
     }
