@@ -11,30 +11,6 @@ import (
 )
 
 // The HVN data source provides information about an existing HashiCorp Virtual Network.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := hcp.LookupHvn(ctx, &GetHvnArgs{
-// 			HvnId: _var.Hvn_id,
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 func LookupHvn(ctx *pulumi.Context, args *LookupHvnArgs, opts ...pulumi.InvokeOption) (*LookupHvnResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupHvnResult

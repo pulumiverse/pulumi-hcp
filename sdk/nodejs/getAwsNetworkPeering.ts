@@ -6,19 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * The AWS network peering data source provides information about an existing network peering between an HVN and a peer AWS VPC.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as hcp from "@pulumi/hcp";
- *
- * const test = hcp.getAwsNetworkPeering({
- *     hvnId: _var.hvn_id,
- *     peeringId: _var.peering_id,
- *     waitForActiveState: true,
- * });
- * ```
  */
 export function getAwsNetworkPeering(args: GetAwsNetworkPeeringArgs, opts?: pulumi.InvokeOptions): Promise<GetAwsNetworkPeeringResult> {
     if (!opts) {

@@ -6,17 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * The HVN data source provides information about an existing HashiCorp Virtual Network.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as hcp from "@pulumi/hcp";
- *
- * const example = hcp.getHvn({
- *     hvnId: _var.hvn_id,
- * });
- * ```
  */
 export function getHvn(args: GetHvnArgs, opts?: pulumi.InvokeOptions): Promise<GetHvnResult> {
     if (!opts) {

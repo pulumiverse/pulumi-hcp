@@ -13,32 +13,6 @@ import (
 // > **Note:** This data source is currently in public beta.
 //
 // The Azure peering connection data source provides information about a peering connection between an HVN and a peer Azure VNet.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := hcp.LookupAzurePeeringConnection(ctx, &GetAzurePeeringConnectionArgs{
-// 			HvnId:              _var.Hvn_id,
-// 			PeeringId:          _var.Peering_id,
-// 			WaitForActiveState: pulumi.BoolRef(true),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 func LookupAzurePeeringConnection(ctx *pulumi.Context, args *LookupAzurePeeringConnectionArgs, opts ...pulumi.InvokeOption) (*LookupAzurePeeringConnectionResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupAzurePeeringConnectionResult

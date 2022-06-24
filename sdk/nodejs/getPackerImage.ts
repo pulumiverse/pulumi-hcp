@@ -6,32 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * The Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as hcp from "@pulumi/hcp";
- *
- * export = async () => {
- *     const hardened-source = await hcp.getPackerIteration({
- *         bucketName: "hardened-ubuntu-16-04",
- *         channel: "production",
- *     });
- *     const foo = await hcp.getPackerImage({
- *         bucketName: "hardened-ubuntu-16-04",
- *         cloudProvider: "aws",
- *         iterationId: hardened_source.ulid,
- *         region: "us-east-1",
- *     });
- *     const packer_registry_ubuntu = foo.cloudImageId;
- *     return {
- *         "packer-registry-ubuntu": packer_registry_ubuntu,
- *     };
- * }
- * ```
- *
- * > **Note:** This data source only returns the first found image's metadata filtered by the given schema values, from the returned list of images associated with the specified iteration. Therefore, if multiple images exist in the same region, it will only pick one of them. If that's the case, you may consider separating your builds into different buckets.
  */
 export function getPackerImage(args: GetPackerImageArgs, opts?: pulumi.InvokeOptions): Promise<GetPackerImageResult> {
     if (!opts) {

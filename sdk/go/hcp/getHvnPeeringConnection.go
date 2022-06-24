@@ -11,32 +11,6 @@ import (
 )
 
 // The HVN peering connection data source provides information about an existing peering connection between HVNs.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := hcp.LookupHvnPeeringConnection(ctx, &GetHvnPeeringConnectionArgs{
-// 			PeeringId: _var.Peering_id,
-// 			Hvn1:      _var.Hvn_1,
-// 			Hvn2:      _var.Hvn_2,
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 func LookupHvnPeeringConnection(ctx *pulumi.Context, args *LookupHvnPeeringConnectionArgs, opts ...pulumi.InvokeOption) (*LookupHvnPeeringConnectionResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupHvnPeeringConnectionResult

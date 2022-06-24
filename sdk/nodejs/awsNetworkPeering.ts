@@ -7,42 +7,6 @@ import * as utilities from "./utilities";
 /**
  * The AWS network peering resource allows you to manage a network peering between an HVN and a peer AWS VPC.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as aws from "@pulumi/aws";
- * import * as pulumi_hcp from "@grapl/pulumi-hcp";
- *
- * const main = new hcp.Hvn("main", {
- *     hvnId: "main-hvn",
- *     cloudProvider: "aws",
- *     region: "us-west-2",
- *     cidrBlock: "172.25.16.0/20",
- * });
- * const peerVpc = new aws.ec2.Vpc("peerVpc", {cidrBlock: "172.31.0.0/16"});
- * const peerArn = aws.getArnOutput({
- *     arn: peerVpc.arn,
- * });
- * const dev = new hcp.AwsNetworkPeering("dev", {
- *     hvnId: main.hvnId,
- *     peeringId: "dev",
- *     peerVpcId: peerVpc.id,
- *     peerAccountId: peerVpc.ownerId,
- *     peerVpcRegion: peerArn.apply(peerArn => peerArn.region),
- * });
- * const main_to_dev = new hcp.HvnRoute("main-to-dev", {
- *     hvnLink: main.selfLink,
- *     hvnRouteId: "main-to-dev",
- *     destinationCidr: "172.31.0.0/16",
- *     targetLink: dev.selfLink,
- * });
- * const peerVpcPeeringConnectionAccepter = new aws.ec2.VpcPeeringConnectionAccepter("peerVpcPeeringConnectionAccepter", {
- *     vpcPeeringConnectionId: dev.providerPeeringId,
- *     autoAccept: true,
- * });
- * ```
- *
  * ## Import
  *
  * # The import ID is {hvn_id}:{peering_id}

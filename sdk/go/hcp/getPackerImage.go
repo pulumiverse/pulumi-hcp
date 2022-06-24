@@ -11,43 +11,6 @@ import (
 )
 
 // The Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		hardened_source, err := hcp.GetPackerIteration(ctx, &GetPackerIterationArgs{
-// 			BucketName: "hardened-ubuntu-16-04",
-// 			Channel:    "production",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		foo, err := hcp.GetPackerImage(ctx, &GetPackerImageArgs{
-// 			BucketName:    "hardened-ubuntu-16-04",
-// 			CloudProvider: "aws",
-// 			IterationId:   hardened_source.Ulid,
-// 			Region:        "us-east-1",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("packer-registry-ubuntu", foo.CloudImageId)
-// 		return nil
-// 	})
-// }
-// ```
-//
-// > **Note:** This data source only returns the first found image's metadata filtered by the given schema values, from the returned list of images associated with the specified iteration. Therefore, if multiple images exist in the same region, it will only pick one of them. If that's the case, you may consider separating your builds into different buckets.
 func GetPackerImage(ctx *pulumi.Context, args *GetPackerImageArgs, opts ...pulumi.InvokeOption) (*GetPackerImageResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetPackerImageResult

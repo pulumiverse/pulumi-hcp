@@ -8,19 +8,6 @@ import * as utilities from "./utilities";
  * > **Note:** This data source is currently in public beta.
  *
  * The Azure peering connection data source provides information about a peering connection between an HVN and a peer Azure VNet.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as hcp from "@pulumi/hcp";
- *
- * const test = hcp.getAzurePeeringConnection({
- *     hvnId: _var.hvn_id,
- *     peeringId: _var.peering_id,
- *     waitForActiveState: true,
- * });
- * ```
  */
 export function getAzurePeeringConnection(args: GetAzurePeeringConnectionArgs, opts?: pulumi.InvokeOptions): Promise<GetAzurePeeringConnectionResult> {
     if (!opts) {
