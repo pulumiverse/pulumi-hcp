@@ -535,6 +535,10 @@
                 "selfLink": {
                     "type": "string",
                     "description": "A unique URL identifying the network peering.\n"
+                },
+                "state": {
+                    "type": "string",
+                    "description": "The state of the network peering.\n"
                 }
             },
             "required": [
@@ -548,7 +552,8 @@
                 "peeringId",
                 "projectId",
                 "providerPeeringId",
-                "selfLink"
+                "selfLink",
+                "state"
             ],
             "inputProperties": {
                 "hvnId": {
@@ -635,6 +640,10 @@
                     "selfLink": {
                         "type": "string",
                         "description": "A unique URL identifying the network peering.\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "The state of the network peering.\n"
                     }
                 },
                 "type": "object"
@@ -842,6 +851,10 @@
                 "selfLink": {
                     "type": "string",
                     "description": "A unique URL identifying the peering connection.\n"
+                },
+                "state": {
+                    "type": "string",
+                    "description": "The state of the Azure peering connection.\n"
                 }
             },
             "required": [
@@ -858,7 +871,8 @@
                 "peerVnetRegion",
                 "peeringId",
                 "projectId",
-                "selfLink"
+                "selfLink",
+                "state"
             ],
             "inputProperties": {
                 "hvnLink": {
@@ -971,6 +985,10 @@
                     "selfLink": {
                         "type": "string",
                         "description": "A unique URL identifying the peering connection.\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "The state of the Azure peering connection.\n"
                     }
                 },
                 "type": "object"
@@ -1079,6 +1097,10 @@
                     "type": "string",
                     "description": "The t-shirt size representation of each server VM that this Consul cluster is provisioned with. Valid option for\ndevelopment tier - `x_small`. Valid options for other tiers - `small`, `medium`, `large`. For more details -\nhttps://cloud.hashicorp.com/pricing/consul. Upgrading the size of a cluster after creation is allowed.\n"
                 },
+                "state": {
+                    "type": "string",
+                    "description": "The state of the HCP Consul cluster.\n"
+                },
                 "tier": {
                     "type": "string",
                     "description": "The tier that the HCP Consul cluster will be provisioned as. Only `development`, `standard` and `plus` are available at\nthis time. See [pricing information](https://cloud.hashicorp.com/pricing/consul).\n"
@@ -1106,6 +1128,7 @@
                 "scale",
                 "selfLink",
                 "size",
+                "state",
                 "tier"
             ],
             "inputProperties": {
@@ -1273,6 +1296,10 @@
                         "type": "string",
                         "description": "The t-shirt size representation of each server VM that this Consul cluster is provisioned with. Valid option for\ndevelopment tier - `x_small`. Valid options for other tiers - `small`, `medium`, `large`. For more details -\nhttps://cloud.hashicorp.com/pricing/consul. Upgrading the size of a cluster after creation is allowed.\n"
                     },
+                    "state": {
+                        "type": "string",
+                        "description": "The state of the HCP Consul cluster.\n"
+                    },
                     "tier": {
                         "type": "string",
                         "description": "The tier that the HCP Consul cluster will be provisioned as. Only `development`, `standard` and `plus` are available at\nthis time. See [pricing information](https://cloud.hashicorp.com/pricing/consul).\n",
@@ -1376,6 +1403,10 @@
                 "snapshotName": {
                     "type": "string",
                     "description": "The name of the snapshot.\n"
+                },
+                "state": {
+                    "type": "string",
+                    "description": "The state of an HCP Consul snapshot.\n"
                 }
             },
             "required": [
@@ -1386,7 +1417,8 @@
                 "restoredAt",
                 "size",
                 "snapshotId",
-                "snapshotName"
+                "snapshotName",
+                "state"
             ],
             "inputProperties": {
                 "clusterId": {
@@ -1438,13 +1470,17 @@
                     "snapshotName": {
                         "type": "string",
                         "description": "The name of the snapshot.\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "The state of an HCP Consul snapshot.\n"
                     }
                 },
                 "type": "object"
             }
         },
         "hcp:index/hvn:Hvn": {
-            "description": "The HVN resource allows you to manage a HashiCorp Virtual Network in HCP.\n\nWe recommend the following when selecting the CIDR block of an HVN:\n\n- The CIDR block value must be a private IPv4 CIDR block within the [RFC1918](https://datatracker.ietf.org/doc/html/rfc1918) address space (10.*.*.*, 192.168.*.*, 172.[16-31].*.*).\n\n- The CIDR block value must be the first IP address of the desired CIDR block. The helper `cidrsubnet(\"172.16.1.1/24\", 0, 0)` will specify the first address of the CIDR block in the first argument.\n\n- The CIDR block value must end between /16 and /25.\n\n- If the CIDR block values for your HVN and VPCs overlap, then you will not be able to establish a connection. Ensure that any VPCs you plan to connect do not have overlapping values.\n\n- The default HVN CIDR block value does not overlap with the default CIDR block value for AWS VPCs (172.31.0.0/16). However, if you are planning to use this HVN in production, we recommend adding a custom value instead of using the default.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst example = new hcp.Hvn(\"example\", {\n    cidrBlock: \"172.25.16.0/20\",\n    cloudProvider: \"aws\",\n    hvnId: \"main-hvn\",\n    region: \"us-west-2\",\n});\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID is {hvn_id}\n\n```sh\n $ pulumi import hcp:index/hvn:Hvn example main-hvn\n```\n\n ",
+            "description": "The HVN resource allows you to manage a HashiCorp Virtual Network in HCP.\n\nWe recommend the following when selecting the CIDR block of an HVN:\n\n- The CIDR block value must be a private IPv4 CIDR block within the [RFC1918](https://datatracker.ietf.org/doc/html/rfc1918) address space (10.*.*.*, 192.168.*.*, 172.[16-31].*.*).\n\n- The CIDR block value must be the first IP address of the desired CIDR block. The helper `cidrsubnet(\"172.16.1.1/24\", 0, 0)` will specify the first address of the CIDR block in the first argument.\n\n- The CIDR block value must end between /16 and /25.\n\n- If the CIDR block values for your HCP HVN and your cloud provider’s virtual network overlap you will not be able to establish a connection. The following are default CIDR block values to be aware of: HCP HVN (172.25.16.0/20), AWS VPC (172.31.0.0/16), and Azure VNet (172.29.0.0/24). Avoid creating overlapping networks.\n\n- If you’re creating a HVN for use in production it's recommended that you specify a CIDR block value that does not overlap with the other HVNs already created in your organization. You will not be able to connect two HVNs with overlapping CIDR block values.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst example = new hcp.Hvn(\"example\", {\n    cidrBlock: \"172.25.16.0/20\",\n    cloudProvider: \"aws\",\n    hvnId: \"main-hvn\",\n    region: \"us-west-2\",\n});\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID is {hvn_id}\n\n```sh\n $ pulumi import hcp:index/hvn:Hvn example main-hvn\n```\n\n ",
             "properties": {
                 "cidrBlock": {
                     "type": "string",
@@ -1481,6 +1517,10 @@
                 "selfLink": {
                     "type": "string",
                     "description": "A unique URL identifying the HVN.\n"
+                },
+                "state": {
+                    "type": "string",
+                    "description": "The state of the HVN.\n"
                 }
             },
             "required": [
@@ -1492,7 +1532,8 @@
                 "projectId",
                 "providerAccountId",
                 "region",
-                "selfLink"
+                "selfLink",
+                "state"
             ],
             "inputProperties": {
                 "cidrBlock": {
@@ -1563,6 +1604,10 @@
                     "selfLink": {
                         "type": "string",
                         "description": "A unique URL identifying the HVN.\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "The state of the HVN.\n"
                     }
                 },
                 "type": "object"
@@ -1602,6 +1647,10 @@
                 "selfLink": {
                     "type": "string",
                     "description": "A unique URL identifying the peering connection\n"
+                },
+                "state": {
+                    "type": "string",
+                    "description": "The state of the HVN peering connection.\n"
                 }
             },
             "required": [
@@ -1612,7 +1661,8 @@
                 "organizationId",
                 "peeringId",
                 "projectId",
-                "selfLink"
+                "selfLink",
+                "state"
             ],
             "inputProperties": {
                 "hvn1": {
@@ -1666,6 +1716,10 @@
                     "selfLink": {
                         "type": "string",
                         "description": "A unique URL identifying the peering connection\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "The state of the HVN peering connection.\n"
                     }
                 },
                 "type": "object"
@@ -1845,6 +1899,10 @@
                     "type": "string",
                     "description": "A unique URL identifying the Vault cluster.\n"
                 },
+                "state": {
+                    "type": "string",
+                    "description": "The state of the Vault cluster.\n"
+                },
                 "tier": {
                     "type": "string",
                     "description": "Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,\n`standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing\ninformation](https://cloud.hashicorp.com/pricing/vault).\n"
@@ -1872,6 +1930,7 @@
                 "projectId",
                 "region",
                 "selfLink",
+                "state",
                 "tier",
                 "vaultPrivateEndpointUrl",
                 "vaultPublicEndpointUrl",
@@ -1995,6 +2054,10 @@
                     "selfLink": {
                         "type": "string",
                         "description": "A unique URL identifying the Vault cluster.\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "The state of the Vault cluster.\n"
                     },
                     "tier": {
                         "type": "string",
@@ -2130,6 +2193,9 @@
                     "selfLink": {
                         "type": "string"
                     },
+                    "state": {
+                        "type": "string"
+                    },
                     "waitForActiveState": {
                         "type": "boolean"
                     }
@@ -2147,6 +2213,7 @@
                     "projectId",
                     "providerPeeringId",
                     "selfLink",
+                    "state",
                     "id"
                 ]
             }
@@ -2299,6 +2366,9 @@
                     "selfLink": {
                         "type": "string"
                     },
+                    "state": {
+                        "type": "string"
+                    },
                     "waitForActiveState": {
                         "type": "boolean"
                     }
@@ -2319,6 +2389,7 @@
                     "peeringId",
                     "projectId",
                     "selfLink",
+                    "state",
                     "id"
                 ]
             }
@@ -2496,6 +2567,9 @@
                     "size": {
                         "type": "string"
                     },
+                    "state": {
+                        "type": "string"
+                    },
                     "tier": {
                         "type": "string"
                     }
@@ -2524,6 +2598,7 @@
                     "scale",
                     "selfLink",
                     "size",
+                    "state",
                     "tier",
                     "id"
                 ]
@@ -2610,6 +2685,9 @@
                     },
                     "selfLink": {
                         "type": "string"
+                    },
+                    "state": {
+                        "type": "string"
                     }
                 },
                 "type": "object",
@@ -2623,6 +2701,7 @@
                     "providerAccountId",
                     "region",
                     "selfLink",
+                    "state",
                     "id"
                 ]
             }
@@ -2679,6 +2758,9 @@
                     },
                     "selfLink": {
                         "type": "string"
+                    },
+                    "state": {
+                        "type": "string"
                     }
                 },
                 "type": "object",
@@ -2691,6 +2773,7 @@
                     "peeringId",
                     "projectId",
                     "selfLink",
+                    "state",
                     "id"
                 ]
             }
@@ -2756,14 +2839,20 @@
             }
         },
         "hcp:index/getPackerImage:getPackerImage": {
-            "description": "The Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id.\n",
+            "description": "The Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id or a channel.\n\n{{% examples %}}\n## Example Usage\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getPackerImage.\n",
                 "properties": {
                     "bucketName": {
                         "type": "string"
                     },
+                    "channel": {
+                        "type": "string"
+                    },
                     "cloudProvider": {
+                        "type": "string"
+                    },
+                    "componentType": {
                         "type": "string"
                     },
                     "iterationId": {
@@ -2777,7 +2866,6 @@
                 "required": [
                     "bucketName",
                     "cloudProvider",
-                    "iterationId",
                     "region"
                 ]
             },
@@ -2788,6 +2876,9 @@
                         "type": "string"
                     },
                     "buildId": {
+                        "type": "string"
+                    },
+                    "channel": {
                         "type": "string"
                     },
                     "cloudImageId": {
@@ -3089,6 +3180,9 @@
                     "selfLink": {
                         "type": "string"
                     },
+                    "state": {
+                        "type": "string"
+                    },
                     "tier": {
                         "type": "string"
                     },
@@ -3119,6 +3213,7 @@
                     "publicEndpoint",
                     "region",
                     "selfLink",
+                    "state",
                     "tier",
                     "vaultPrivateEndpointUrl",
                     "vaultPublicEndpointUrl",

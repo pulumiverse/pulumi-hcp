@@ -47,6 +47,7 @@ type LookupVaultClusterResult struct {
 	PublicEndpoint          bool                           `pulumi:"publicEndpoint"`
 	Region                  string                         `pulumi:"region"`
 	SelfLink                string                         `pulumi:"selfLink"`
+	State                   string                         `pulumi:"state"`
 	Tier                    string                         `pulumi:"tier"`
 	VaultPrivateEndpointUrl string                         `pulumi:"vaultPrivateEndpointUrl"`
 	VaultPublicEndpointUrl  string                         `pulumi:"vaultPublicEndpointUrl"`
@@ -155,6 +156,10 @@ func (o LookupVaultClusterResultOutput) Region() pulumi.StringOutput {
 
 func (o LookupVaultClusterResultOutput) SelfLink() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.SelfLink }).(pulumi.StringOutput)
+}
+
+func (o LookupVaultClusterResultOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.State }).(pulumi.StringOutput)
 }
 
 func (o LookupVaultClusterResultOutput) Tier() pulumi.StringOutput {

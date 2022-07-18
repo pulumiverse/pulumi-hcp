@@ -102,6 +102,10 @@ export class AzurePeeringConnection extends pulumi.CustomResource {
      * A unique URL identifying the peering connection.
      */
     public /*out*/ readonly selfLink!: pulumi.Output<string>;
+    /**
+     * The state of the Azure peering connection.
+     */
+    public /*out*/ readonly state!: pulumi.Output<string>;
 
     /**
      * Create a AzurePeeringConnection resource with the given unique name, arguments, and options.
@@ -130,6 +134,7 @@ export class AzurePeeringConnection extends pulumi.CustomResource {
             resourceInputs["peeringId"] = state ? state.peeringId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["selfLink"] = state ? state.selfLink : undefined;
+            resourceInputs["state"] = state ? state.state : undefined;
         } else {
             const args = argsOrState as AzurePeeringConnectionArgs | undefined;
             if ((!args || args.hvnLink === undefined) && !opts.urn) {
@@ -167,6 +172,7 @@ export class AzurePeeringConnection extends pulumi.CustomResource {
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["projectId"] = undefined /*out*/;
             resourceInputs["selfLink"] = undefined /*out*/;
+            resourceInputs["state"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AzurePeeringConnection.__pulumiType, name, resourceInputs, opts);
@@ -234,6 +240,10 @@ export interface AzurePeeringConnectionState {
      * A unique URL identifying the peering connection.
      */
     selfLink?: pulumi.Input<string>;
+    /**
+     * The state of the Azure peering connection.
+     */
+    state?: pulumi.Input<string>;
 }
 
 /**

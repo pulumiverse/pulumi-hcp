@@ -76,6 +76,10 @@ export class HvnPeeringConnection extends pulumi.CustomResource {
      * A unique URL identifying the peering connection
      */
     public /*out*/ readonly selfLink!: pulumi.Output<string>;
+    /**
+     * The state of the HVN peering connection.
+     */
+    public /*out*/ readonly state!: pulumi.Output<string>;
 
     /**
      * Create a HvnPeeringConnection resource with the given unique name, arguments, and options.
@@ -98,6 +102,7 @@ export class HvnPeeringConnection extends pulumi.CustomResource {
             resourceInputs["peeringId"] = state ? state.peeringId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["selfLink"] = state ? state.selfLink : undefined;
+            resourceInputs["state"] = state ? state.state : undefined;
         } else {
             const args = argsOrState as HvnPeeringConnectionArgs | undefined;
             if ((!args || args.hvn1 === undefined) && !opts.urn) {
@@ -114,6 +119,7 @@ export class HvnPeeringConnection extends pulumi.CustomResource {
             resourceInputs["peeringId"] = undefined /*out*/;
             resourceInputs["projectId"] = undefined /*out*/;
             resourceInputs["selfLink"] = undefined /*out*/;
+            resourceInputs["state"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(HvnPeeringConnection.__pulumiType, name, resourceInputs, opts);
@@ -157,6 +163,10 @@ export interface HvnPeeringConnectionState {
      * A unique URL identifying the peering connection
      */
     selfLink?: pulumi.Input<string>;
+    /**
+     * The state of the HVN peering connection.
+     */
+    state?: pulumi.Input<string>;
 }
 
 /**

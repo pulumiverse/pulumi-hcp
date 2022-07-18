@@ -40,6 +40,8 @@ type HvnPeeringConnection struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// A unique URL identifying the peering connection
 	SelfLink pulumi.StringOutput `pulumi:"selfLink"`
+	// The state of the HVN peering connection.
+	State pulumi.StringOutput `pulumi:"state"`
 }
 
 // NewHvnPeeringConnection registers a new resource with the given unique name, arguments, and options.
@@ -95,6 +97,8 @@ type hvnPeeringConnectionState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// A unique URL identifying the peering connection
 	SelfLink *string `pulumi:"selfLink"`
+	// The state of the HVN peering connection.
+	State *string `pulumi:"state"`
 }
 
 type HvnPeeringConnectionState struct {
@@ -115,6 +119,8 @@ type HvnPeeringConnectionState struct {
 	ProjectId pulumi.StringPtrInput
 	// A unique URL identifying the peering connection
 	SelfLink pulumi.StringPtrInput
+	// The state of the HVN peering connection.
+	State pulumi.StringPtrInput
 }
 
 func (HvnPeeringConnectionState) ElementType() reflect.Type {
@@ -262,6 +268,11 @@ func (o HvnPeeringConnectionOutput) ProjectId() pulumi.StringOutput {
 // A unique URL identifying the peering connection
 func (o HvnPeeringConnectionOutput) SelfLink() pulumi.StringOutput {
 	return o.ApplyT(func(v *HvnPeeringConnection) pulumi.StringOutput { return v.SelfLink }).(pulumi.StringOutput)
+}
+
+// The state of the HVN peering connection.
+func (o HvnPeeringConnectionOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v *HvnPeeringConnection) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }
 
 type HvnPeeringConnectionArrayOutput struct{ *pulumi.OutputState }

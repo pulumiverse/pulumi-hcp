@@ -195,6 +195,7 @@ class _VaultClusterState:
                  public_endpoint: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  self_link: Optional[pulumi.Input[str]] = None,
+                 state: Optional[pulumi.Input[str]] = None,
                  tier: Optional[pulumi.Input[str]] = None,
                  vault_private_endpoint_url: Optional[pulumi.Input[str]] = None,
                  vault_public_endpoint_url: Optional[pulumi.Input[str]] = None,
@@ -221,6 +222,7 @@ class _VaultClusterState:
         :param pulumi.Input[bool] public_endpoint: Denotes that the cluster has a public endpoint. Defaults to false.
         :param pulumi.Input[str] region: The region where the HCP Vault cluster is located.
         :param pulumi.Input[str] self_link: A unique URL identifying the Vault cluster.
+        :param pulumi.Input[str] state: The state of the Vault cluster.
         :param pulumi.Input[str] tier: Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,
                `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing
                information](https://cloud.hashicorp.com/pricing/vault).
@@ -258,6 +260,8 @@ class _VaultClusterState:
             pulumi.set(__self__, "region", region)
         if self_link is not None:
             pulumi.set(__self__, "self_link", self_link)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
         if tier is not None:
             pulumi.set(__self__, "tier", tier)
         if vault_private_endpoint_url is not None:
@@ -454,6 +458,18 @@ class _VaultClusterState:
 
     @property
     @pulumi.getter
+    def state(self) -> Optional[pulumi.Input[str]]:
+        """
+        The state of the Vault cluster.
+        """
+        return pulumi.get(self, "state")
+
+    @state.setter
+    def state(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "state", value)
+
+    @property
+    @pulumi.getter
     def tier(self) -> Optional[pulumi.Input[str]]:
         """
         Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,
@@ -614,6 +630,7 @@ class VaultCluster(pulumi.CustomResource):
             __props__.__dict__["project_id"] = None
             __props__.__dict__["region"] = None
             __props__.__dict__["self_link"] = None
+            __props__.__dict__["state"] = None
             __props__.__dict__["vault_private_endpoint_url"] = None
             __props__.__dict__["vault_public_endpoint_url"] = None
             __props__.__dict__["vault_version"] = None
@@ -642,6 +659,7 @@ class VaultCluster(pulumi.CustomResource):
             public_endpoint: Optional[pulumi.Input[bool]] = None,
             region: Optional[pulumi.Input[str]] = None,
             self_link: Optional[pulumi.Input[str]] = None,
+            state: Optional[pulumi.Input[str]] = None,
             tier: Optional[pulumi.Input[str]] = None,
             vault_private_endpoint_url: Optional[pulumi.Input[str]] = None,
             vault_public_endpoint_url: Optional[pulumi.Input[str]] = None,
@@ -673,6 +691,7 @@ class VaultCluster(pulumi.CustomResource):
         :param pulumi.Input[bool] public_endpoint: Denotes that the cluster has a public endpoint. Defaults to false.
         :param pulumi.Input[str] region: The region where the HCP Vault cluster is located.
         :param pulumi.Input[str] self_link: A unique URL identifying the Vault cluster.
+        :param pulumi.Input[str] state: The state of the Vault cluster.
         :param pulumi.Input[str] tier: Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,
                `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing
                information](https://cloud.hashicorp.com/pricing/vault).
@@ -699,6 +718,7 @@ class VaultCluster(pulumi.CustomResource):
         __props__.__dict__["public_endpoint"] = public_endpoint
         __props__.__dict__["region"] = region
         __props__.__dict__["self_link"] = self_link
+        __props__.__dict__["state"] = state
         __props__.__dict__["tier"] = tier
         __props__.__dict__["vault_private_endpoint_url"] = vault_private_endpoint_url
         __props__.__dict__["vault_public_endpoint_url"] = vault_public_endpoint_url
@@ -829,6 +849,14 @@ class VaultCluster(pulumi.CustomResource):
         A unique URL identifying the Vault cluster.
         """
         return pulumi.get(self, "self_link")
+
+    @property
+    @pulumi.getter
+    def state(self) -> pulumi.Output[str]:
+        """
+        The state of the Vault cluster.
+        """
+        return pulumi.get(self, "state")
 
     @property
     @pulumi.getter

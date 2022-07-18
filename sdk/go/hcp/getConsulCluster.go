@@ -52,6 +52,7 @@ type LookupConsulClusterResult struct {
 	Scale          int    `pulumi:"scale"`
 	SelfLink       string `pulumi:"selfLink"`
 	Size           string `pulumi:"size"`
+	State          string `pulumi:"state"`
 	Tier           string `pulumi:"tier"`
 }
 
@@ -183,6 +184,10 @@ func (o LookupConsulClusterResultOutput) SelfLink() pulumi.StringOutput {
 
 func (o LookupConsulClusterResultOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupConsulClusterResult) string { return v.Size }).(pulumi.StringOutput)
+}
+
+func (o LookupConsulClusterResultOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupConsulClusterResult) string { return v.State }).(pulumi.StringOutput)
 }
 
 func (o LookupConsulClusterResultOutput) Tier() pulumi.StringOutput {

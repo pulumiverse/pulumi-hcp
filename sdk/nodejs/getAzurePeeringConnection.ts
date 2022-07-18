@@ -53,6 +53,7 @@ export interface GetAzurePeeringConnectionResult {
     readonly peeringId: string;
     readonly projectId: string;
     readonly selfLink: string;
+    readonly state: string;
     readonly waitForActiveState?: boolean;
 }
 

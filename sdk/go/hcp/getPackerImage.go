@@ -10,7 +10,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id.
+// The Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id or a channel.
+//
+// ## Example Usage
 func GetPackerImage(ctx *pulumi.Context, args *GetPackerImageArgs, opts ...pulumi.InvokeOption) (*GetPackerImageResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetPackerImageResult
@@ -23,20 +25,23 @@ func GetPackerImage(ctx *pulumi.Context, args *GetPackerImageArgs, opts ...pulum
 
 // A collection of arguments for invoking getPackerImage.
 type GetPackerImageArgs struct {
-	BucketName    string `pulumi:"bucketName"`
-	CloudProvider string `pulumi:"cloudProvider"`
-	IterationId   string `pulumi:"iterationId"`
-	Region        string `pulumi:"region"`
+	BucketName    string  `pulumi:"bucketName"`
+	Channel       *string `pulumi:"channel"`
+	CloudProvider string  `pulumi:"cloudProvider"`
+	ComponentType *string `pulumi:"componentType"`
+	IterationId   *string `pulumi:"iterationId"`
+	Region        string  `pulumi:"region"`
 }
 
 // A collection of values returned by getPackerImage.
 type GetPackerImageResult struct {
-	BucketName    string `pulumi:"bucketName"`
-	BuildId       string `pulumi:"buildId"`
-	CloudImageId  string `pulumi:"cloudImageId"`
-	CloudProvider string `pulumi:"cloudProvider"`
-	ComponentType string `pulumi:"componentType"`
-	CreatedAt     string `pulumi:"createdAt"`
+	BucketName    string  `pulumi:"bucketName"`
+	BuildId       string  `pulumi:"buildId"`
+	Channel       *string `pulumi:"channel"`
+	CloudImageId  string  `pulumi:"cloudImageId"`
+	CloudProvider string  `pulumi:"cloudProvider"`
+	ComponentType string  `pulumi:"componentType"`
+	CreatedAt     string  `pulumi:"createdAt"`
 	// The provider-assigned unique ID for this managed resource.
 	Id             string                 `pulumi:"id"`
 	IterationId    string                 `pulumi:"iterationId"`
@@ -63,10 +68,12 @@ func GetPackerImageOutput(ctx *pulumi.Context, args GetPackerImageOutputArgs, op
 
 // A collection of arguments for invoking getPackerImage.
 type GetPackerImageOutputArgs struct {
-	BucketName    pulumi.StringInput `pulumi:"bucketName"`
-	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
-	IterationId   pulumi.StringInput `pulumi:"iterationId"`
-	Region        pulumi.StringInput `pulumi:"region"`
+	BucketName    pulumi.StringInput    `pulumi:"bucketName"`
+	Channel       pulumi.StringPtrInput `pulumi:"channel"`
+	CloudProvider pulumi.StringInput    `pulumi:"cloudProvider"`
+	ComponentType pulumi.StringPtrInput `pulumi:"componentType"`
+	IterationId   pulumi.StringPtrInput `pulumi:"iterationId"`
+	Region        pulumi.StringInput    `pulumi:"region"`
 }
 
 func (GetPackerImageOutputArgs) ElementType() reflect.Type {
@@ -94,6 +101,10 @@ func (o GetPackerImageResultOutput) BucketName() pulumi.StringOutput {
 
 func (o GetPackerImageResultOutput) BuildId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerImageResult) string { return v.BuildId }).(pulumi.StringOutput)
+}
+
+func (o GetPackerImageResultOutput) Channel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPackerImageResult) *string { return v.Channel }).(pulumi.StringPtrOutput)
 }
 
 func (o GetPackerImageResultOutput) CloudImageId() pulumi.StringOutput {

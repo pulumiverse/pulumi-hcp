@@ -45,6 +45,7 @@ export interface GetHvnPeeringConnectionResult {
     readonly peeringId: string;
     readonly projectId: string;
     readonly selfLink: string;
+    readonly state: string;
 }
 
 export function getHvnPeeringConnectionOutput(args: GetHvnPeeringConnectionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetHvnPeeringConnectionResult> {

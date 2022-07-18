@@ -53,6 +53,7 @@ export interface GetVaultClusterResult {
     readonly publicEndpoint: boolean;
     readonly region: string;
     readonly selfLink: string;
+    readonly state: string;
     readonly tier: string;
     readonly vaultPrivateEndpointUrl: string;
     readonly vaultPublicEndpointUrl: string;

@@ -21,7 +21,7 @@ class GetHvnResult:
     """
     A collection of values returned by getHvn.
     """
-    def __init__(__self__, cidr_block=None, cloud_provider=None, created_at=None, hvn_id=None, id=None, organization_id=None, project_id=None, provider_account_id=None, region=None, self_link=None):
+    def __init__(__self__, cidr_block=None, cloud_provider=None, created_at=None, hvn_id=None, id=None, organization_id=None, project_id=None, provider_account_id=None, region=None, self_link=None, state=None):
         if cidr_block and not isinstance(cidr_block, str):
             raise TypeError("Expected argument 'cidr_block' to be a str")
         pulumi.set(__self__, "cidr_block", cidr_block)
@@ -52,6 +52,9 @@ class GetHvnResult:
         if self_link and not isinstance(self_link, str):
             raise TypeError("Expected argument 'self_link' to be a str")
         pulumi.set(__self__, "self_link", self_link)
+        if state and not isinstance(state, str):
+            raise TypeError("Expected argument 'state' to be a str")
+        pulumi.set(__self__, "state", state)
 
     @property
     @pulumi.getter(name="cidrBlock")
@@ -106,6 +109,11 @@ class GetHvnResult:
     def self_link(self) -> str:
         return pulumi.get(self, "self_link")
 
+    @property
+    @pulumi.getter
+    def state(self) -> str:
+        return pulumi.get(self, "state")
+
 
 class AwaitableGetHvnResult(GetHvnResult):
     # pylint: disable=using-constant-test
@@ -122,7 +130,8 @@ class AwaitableGetHvnResult(GetHvnResult):
             project_id=self.project_id,
             provider_account_id=self.provider_account_id,
             region=self.region,
-            self_link=self.self_link)
+            self_link=self.self_link,
+            state=self.state)
 
 
 def get_hvn(hvn_id: Optional[str] = None,
@@ -145,7 +154,8 @@ def get_hvn(hvn_id: Optional[str] = None,
         project_id=__ret__.project_id,
         provider_account_id=__ret__.provider_account_id,
         region=__ret__.region,
-        self_link=__ret__.self_link)
+        self_link=__ret__.self_link,
+        state=__ret__.state)
 
 
 @_utilities.lift_output_func(get_hvn)

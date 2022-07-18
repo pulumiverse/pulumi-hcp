@@ -5,7 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id.
+ * The Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id or a channel.
+ *
+ * ## Example Usage
  */
 export function getPackerImage(args: GetPackerImageArgs, opts?: pulumi.InvokeOptions): Promise<GetPackerImageResult> {
     if (!opts) {
@@ -15,7 +17,9 @@ export function getPackerImage(args: GetPackerImageArgs, opts?: pulumi.InvokeOpt
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("hcp:index/getPackerImage:getPackerImage", {
         "bucketName": args.bucketName,
+        "channel": args.channel,
         "cloudProvider": args.cloudProvider,
+        "componentType": args.componentType,
         "iterationId": args.iterationId,
         "region": args.region,
     }, opts);
@@ -26,8 +30,10 @@ export function getPackerImage(args: GetPackerImageArgs, opts?: pulumi.InvokeOpt
  */
 export interface GetPackerImageArgs {
     bucketName: string;
+    channel?: string;
     cloudProvider: string;
-    iterationId: string;
+    componentType?: string;
+    iterationId?: string;
     region: string;
 }
 
@@ -37,6 +43,7 @@ export interface GetPackerImageArgs {
 export interface GetPackerImageResult {
     readonly bucketName: string;
     readonly buildId: string;
+    readonly channel?: string;
     readonly cloudImageId: string;
     readonly cloudProvider: string;
     readonly componentType: string;
@@ -63,7 +70,9 @@ export function getPackerImageOutput(args: GetPackerImageOutputArgs, opts?: pulu
  */
 export interface GetPackerImageOutputArgs {
     bucketName: pulumi.Input<string>;
+    channel?: pulumi.Input<string>;
     cloudProvider: pulumi.Input<string>;
-    iterationId: pulumi.Input<string>;
+    componentType?: pulumi.Input<string>;
+    iterationId?: pulumi.Input<string>;
     region: pulumi.Input<string>;
 }

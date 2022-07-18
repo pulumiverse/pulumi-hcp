@@ -108,6 +108,10 @@ export class VaultCluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly selfLink!: pulumi.Output<string>;
     /**
+     * The state of the Vault cluster.
+     */
+    public /*out*/ readonly state!: pulumi.Output<string>;
+    /**
      * Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,
      * `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing
      * information](https://cloud.hashicorp.com/pricing/vault).
@@ -154,6 +158,7 @@ export class VaultCluster extends pulumi.CustomResource {
             resourceInputs["publicEndpoint"] = state ? state.publicEndpoint : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["selfLink"] = state ? state.selfLink : undefined;
+            resourceInputs["state"] = state ? state.state : undefined;
             resourceInputs["tier"] = state ? state.tier : undefined;
             resourceInputs["vaultPrivateEndpointUrl"] = state ? state.vaultPrivateEndpointUrl : undefined;
             resourceInputs["vaultPublicEndpointUrl"] = state ? state.vaultPublicEndpointUrl : undefined;
@@ -182,6 +187,7 @@ export class VaultCluster extends pulumi.CustomResource {
             resourceInputs["projectId"] = undefined /*out*/;
             resourceInputs["region"] = undefined /*out*/;
             resourceInputs["selfLink"] = undefined /*out*/;
+            resourceInputs["state"] = undefined /*out*/;
             resourceInputs["vaultPrivateEndpointUrl"] = undefined /*out*/;
             resourceInputs["vaultPublicEndpointUrl"] = undefined /*out*/;
             resourceInputs["vaultVersion"] = undefined /*out*/;
@@ -260,6 +266,10 @@ export interface VaultClusterState {
      * A unique URL identifying the Vault cluster.
      */
     selfLink?: pulumi.Input<string>;
+    /**
+     * The state of the Vault cluster.
+     */
+    state?: pulumi.Input<string>;
     /**
      * Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,
      * `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing
