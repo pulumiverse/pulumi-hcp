@@ -21,7 +21,7 @@ class GetAzurePeeringConnectionResult:
     """
     A collection of values returned by getAzurePeeringConnection.
     """
-    def __init__(__self__, application_id=None, azure_peering_id=None, created_at=None, expires_at=None, hvn_link=None, id=None, organization_id=None, peer_resource_group_name=None, peer_subscription_id=None, peer_tenant_id=None, peer_vnet_name=None, peer_vnet_region=None, peering_id=None, project_id=None, self_link=None, wait_for_active_state=None):
+    def __init__(__self__, application_id=None, azure_peering_id=None, created_at=None, expires_at=None, hvn_link=None, id=None, organization_id=None, peer_resource_group_name=None, peer_subscription_id=None, peer_tenant_id=None, peer_vnet_name=None, peer_vnet_region=None, peering_id=None, project_id=None, self_link=None, state=None, wait_for_active_state=None):
         if application_id and not isinstance(application_id, str):
             raise TypeError("Expected argument 'application_id' to be a str")
         pulumi.set(__self__, "application_id", application_id)
@@ -67,6 +67,9 @@ class GetAzurePeeringConnectionResult:
         if self_link and not isinstance(self_link, str):
             raise TypeError("Expected argument 'self_link' to be a str")
         pulumi.set(__self__, "self_link", self_link)
+        if state and not isinstance(state, str):
+            raise TypeError("Expected argument 'state' to be a str")
+        pulumi.set(__self__, "state", state)
         if wait_for_active_state and not isinstance(wait_for_active_state, bool):
             raise TypeError("Expected argument 'wait_for_active_state' to be a bool")
         pulumi.set(__self__, "wait_for_active_state", wait_for_active_state)
@@ -150,6 +153,11 @@ class GetAzurePeeringConnectionResult:
         return pulumi.get(self, "self_link")
 
     @property
+    @pulumi.getter
+    def state(self) -> str:
+        return pulumi.get(self, "state")
+
+    @property
     @pulumi.getter(name="waitForActiveState")
     def wait_for_active_state(self) -> Optional[bool]:
         return pulumi.get(self, "wait_for_active_state")
@@ -176,6 +184,7 @@ class AwaitableGetAzurePeeringConnectionResult(GetAzurePeeringConnectionResult):
             peering_id=self.peering_id,
             project_id=self.project_id,
             self_link=self.self_link,
+            state=self.state,
             wait_for_active_state=self.wait_for_active_state)
 
 
@@ -211,6 +220,7 @@ def get_azure_peering_connection(hvn_link: Optional[str] = None,
         peering_id=__ret__.peering_id,
         project_id=__ret__.project_id,
         self_link=__ret__.self_link,
+        state=__ret__.state,
         wait_for_active_state=__ret__.wait_for_active_state)
 
 

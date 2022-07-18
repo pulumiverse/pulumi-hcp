@@ -59,7 +59,8 @@ class _HvnPeeringConnectionState:
                  organization_id: Optional[pulumi.Input[str]] = None,
                  peering_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
-                 self_link: Optional[pulumi.Input[str]] = None):
+                 self_link: Optional[pulumi.Input[str]] = None,
+                 state: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering HvnPeeringConnection resources.
         :param pulumi.Input[str] created_at: The time that the peering connection was created.
@@ -71,6 +72,7 @@ class _HvnPeeringConnectionState:
         :param pulumi.Input[str] peering_id: The ID of the peering connection.
         :param pulumi.Input[str] project_id: The ID of the HCP project where the peering connection is located. Always matches the HVNs' project.
         :param pulumi.Input[str] self_link: A unique URL identifying the peering connection
+        :param pulumi.Input[str] state: The state of the HVN peering connection.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -88,6 +90,8 @@ class _HvnPeeringConnectionState:
             pulumi.set(__self__, "project_id", project_id)
         if self_link is not None:
             pulumi.set(__self__, "self_link", self_link)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -186,6 +190,18 @@ class _HvnPeeringConnectionState:
     def self_link(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "self_link", value)
 
+    @property
+    @pulumi.getter
+    def state(self) -> Optional[pulumi.Input[str]]:
+        """
+        The state of the HVN peering connection.
+        """
+        return pulumi.get(self, "state")
+
+    @state.setter
+    def state(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "state", value)
+
 
 class HvnPeeringConnection(pulumi.CustomResource):
     @overload
@@ -266,6 +282,7 @@ class HvnPeeringConnection(pulumi.CustomResource):
             __props__.__dict__["peering_id"] = None
             __props__.__dict__["project_id"] = None
             __props__.__dict__["self_link"] = None
+            __props__.__dict__["state"] = None
         super(HvnPeeringConnection, __self__).__init__(
             'hcp:index/hvnPeeringConnection:HvnPeeringConnection',
             resource_name,
@@ -283,7 +300,8 @@ class HvnPeeringConnection(pulumi.CustomResource):
             organization_id: Optional[pulumi.Input[str]] = None,
             peering_id: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
-            self_link: Optional[pulumi.Input[str]] = None) -> 'HvnPeeringConnection':
+            self_link: Optional[pulumi.Input[str]] = None,
+            state: Optional[pulumi.Input[str]] = None) -> 'HvnPeeringConnection':
         """
         Get an existing HvnPeeringConnection resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -300,6 +318,7 @@ class HvnPeeringConnection(pulumi.CustomResource):
         :param pulumi.Input[str] peering_id: The ID of the peering connection.
         :param pulumi.Input[str] project_id: The ID of the HCP project where the peering connection is located. Always matches the HVNs' project.
         :param pulumi.Input[str] self_link: A unique URL identifying the peering connection
+        :param pulumi.Input[str] state: The state of the HVN peering connection.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -313,6 +332,7 @@ class HvnPeeringConnection(pulumi.CustomResource):
         __props__.__dict__["peering_id"] = peering_id
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["self_link"] = self_link
+        __props__.__dict__["state"] = state
         return HvnPeeringConnection(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -379,4 +399,12 @@ class HvnPeeringConnection(pulumi.CustomResource):
         A unique URL identifying the peering connection
         """
         return pulumi.get(self, "self_link")
+
+    @property
+    @pulumi.getter
+    def state(self) -> pulumi.Output[str]:
+        """
+        The state of the HVN peering connection.
+        """
+        return pulumi.get(self, "state")
 

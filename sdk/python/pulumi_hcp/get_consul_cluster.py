@@ -21,7 +21,7 @@ class GetConsulClusterResult:
     """
     A collection of values returned by getConsulCluster.
     """
-    def __init__(__self__, auto_hvn_to_hvn_peering=None, cloud_provider=None, cluster_id=None, connect_enabled=None, consul_automatic_upgrades=None, consul_ca_file=None, consul_config_file=None, consul_private_endpoint_url=None, consul_public_endpoint_url=None, consul_snapshot_interval=None, consul_snapshot_retention=None, consul_version=None, datacenter=None, hvn_id=None, id=None, organization_id=None, primary_link=None, project_id=None, public_endpoint=None, region=None, scale=None, self_link=None, size=None, tier=None):
+    def __init__(__self__, auto_hvn_to_hvn_peering=None, cloud_provider=None, cluster_id=None, connect_enabled=None, consul_automatic_upgrades=None, consul_ca_file=None, consul_config_file=None, consul_private_endpoint_url=None, consul_public_endpoint_url=None, consul_snapshot_interval=None, consul_snapshot_retention=None, consul_version=None, datacenter=None, hvn_id=None, id=None, organization_id=None, primary_link=None, project_id=None, public_endpoint=None, region=None, scale=None, self_link=None, size=None, state=None, tier=None):
         if auto_hvn_to_hvn_peering and not isinstance(auto_hvn_to_hvn_peering, bool):
             raise TypeError("Expected argument 'auto_hvn_to_hvn_peering' to be a bool")
         pulumi.set(__self__, "auto_hvn_to_hvn_peering", auto_hvn_to_hvn_peering)
@@ -91,6 +91,9 @@ class GetConsulClusterResult:
         if size and not isinstance(size, str):
             raise TypeError("Expected argument 'size' to be a str")
         pulumi.set(__self__, "size", size)
+        if state and not isinstance(state, str):
+            raise TypeError("Expected argument 'state' to be a str")
+        pulumi.set(__self__, "state", state)
         if tier and not isinstance(tier, str):
             raise TypeError("Expected argument 'tier' to be a str")
         pulumi.set(__self__, "tier", tier)
@@ -215,6 +218,11 @@ class GetConsulClusterResult:
 
     @property
     @pulumi.getter
+    def state(self) -> str:
+        return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter
     def tier(self) -> str:
         return pulumi.get(self, "tier")
 
@@ -248,6 +256,7 @@ class AwaitableGetConsulClusterResult(GetConsulClusterResult):
             scale=self.scale,
             self_link=self.self_link,
             size=self.size,
+            state=self.state,
             tier=self.tier)
 
 
@@ -285,6 +294,7 @@ def get_consul_cluster(cluster_id: Optional[str] = None,
         scale=__ret__.scale,
         self_link=__ret__.self_link,
         size=__ret__.size,
+        state=__ret__.state,
         tier=__ret__.tier)
 
 

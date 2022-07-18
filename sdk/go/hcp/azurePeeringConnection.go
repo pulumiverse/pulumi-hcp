@@ -54,6 +54,8 @@ type AzurePeeringConnection struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// A unique URL identifying the peering connection.
 	SelfLink pulumi.StringOutput `pulumi:"selfLink"`
+	// The state of the Azure peering connection.
+	State pulumi.StringOutput `pulumi:"state"`
 }
 
 // NewAzurePeeringConnection registers a new resource with the given unique name, arguments, and options.
@@ -136,6 +138,8 @@ type azurePeeringConnectionState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// A unique URL identifying the peering connection.
 	SelfLink *string `pulumi:"selfLink"`
+	// The state of the Azure peering connection.
+	State *string `pulumi:"state"`
 }
 
 type AzurePeeringConnectionState struct {
@@ -168,6 +172,8 @@ type AzurePeeringConnectionState struct {
 	ProjectId pulumi.StringPtrInput
 	// A unique URL identifying the peering connection.
 	SelfLink pulumi.StringPtrInput
+	// The state of the Azure peering connection.
+	State pulumi.StringPtrInput
 }
 
 func (AzurePeeringConnectionState) ElementType() reflect.Type {
@@ -365,6 +371,11 @@ func (o AzurePeeringConnectionOutput) ProjectId() pulumi.StringOutput {
 // A unique URL identifying the peering connection.
 func (o AzurePeeringConnectionOutput) SelfLink() pulumi.StringOutput {
 	return o.ApplyT(func(v *AzurePeeringConnection) pulumi.StringOutput { return v.SelfLink }).(pulumi.StringOutput)
+}
+
+// The state of the Azure peering connection.
+func (o AzurePeeringConnectionOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v *AzurePeeringConnection) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }
 
 type AzurePeeringConnectionArrayOutput struct{ *pulumi.OutputState }

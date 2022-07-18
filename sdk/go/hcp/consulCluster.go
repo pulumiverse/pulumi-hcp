@@ -83,6 +83,8 @@ type ConsulCluster struct {
 	// development tier - `x_small`. Valid options for other tiers - `small`, `medium`, `large`. For more details -
 	// https://cloud.hashicorp.com/pricing/consul. Upgrading the size of a cluster after creation is allowed.
 	Size pulumi.StringOutput `pulumi:"size"`
+	// The state of the HCP Consul cluster.
+	State pulumi.StringOutput `pulumi:"state"`
 	// The tier that the HCP Consul cluster will be provisioned as. Only `development`, `standard` and `plus` are available at
 	// this time. See [pricing information](https://cloud.hashicorp.com/pricing/consul).
 	Tier pulumi.StringOutput `pulumi:"tier"`
@@ -185,6 +187,8 @@ type consulClusterState struct {
 	// development tier - `x_small`. Valid options for other tiers - `small`, `medium`, `large`. For more details -
 	// https://cloud.hashicorp.com/pricing/consul. Upgrading the size of a cluster after creation is allowed.
 	Size *string `pulumi:"size"`
+	// The state of the HCP Consul cluster.
+	State *string `pulumi:"state"`
 	// The tier that the HCP Consul cluster will be provisioned as. Only `development`, `standard` and `plus` are available at
 	// this time. See [pricing information](https://cloud.hashicorp.com/pricing/consul).
 	Tier *string `pulumi:"tier"`
@@ -249,6 +253,8 @@ type ConsulClusterState struct {
 	// development tier - `x_small`. Valid options for other tiers - `small`, `medium`, `large`. For more details -
 	// https://cloud.hashicorp.com/pricing/consul. Upgrading the size of a cluster after creation is allowed.
 	Size pulumi.StringPtrInput
+	// The state of the HCP Consul cluster.
+	State pulumi.StringPtrInput
 	// The tier that the HCP Consul cluster will be provisioned as. Only `development`, `standard` and `plus` are available at
 	// this time. See [pricing information](https://cloud.hashicorp.com/pricing/consul).
 	Tier pulumi.StringPtrInput
@@ -537,6 +543,11 @@ func (o ConsulClusterOutput) SelfLink() pulumi.StringOutput {
 // https://cloud.hashicorp.com/pricing/consul. Upgrading the size of a cluster after creation is allowed.
 func (o ConsulClusterOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v *ConsulCluster) pulumi.StringOutput { return v.Size }).(pulumi.StringOutput)
+}
+
+// The state of the HCP Consul cluster.
+func (o ConsulClusterOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v *ConsulCluster) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }
 
 // The tier that the HCP Consul cluster will be provisioned as. Only `development`, `standard` and `plus` are available at

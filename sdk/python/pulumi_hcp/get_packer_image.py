@@ -21,13 +21,16 @@ class GetPackerImageResult:
     """
     A collection of values returned by getPackerImage.
     """
-    def __init__(__self__, bucket_name=None, build_id=None, cloud_image_id=None, cloud_provider=None, component_type=None, created_at=None, id=None, iteration_id=None, labels=None, organization_id=None, packer_run_uuid=None, project_id=None, region=None, revoke_at=None):
+    def __init__(__self__, bucket_name=None, build_id=None, channel=None, cloud_image_id=None, cloud_provider=None, component_type=None, created_at=None, id=None, iteration_id=None, labels=None, organization_id=None, packer_run_uuid=None, project_id=None, region=None, revoke_at=None):
         if bucket_name and not isinstance(bucket_name, str):
             raise TypeError("Expected argument 'bucket_name' to be a str")
         pulumi.set(__self__, "bucket_name", bucket_name)
         if build_id and not isinstance(build_id, str):
             raise TypeError("Expected argument 'build_id' to be a str")
         pulumi.set(__self__, "build_id", build_id)
+        if channel and not isinstance(channel, str):
+            raise TypeError("Expected argument 'channel' to be a str")
+        pulumi.set(__self__, "channel", channel)
         if cloud_image_id and not isinstance(cloud_image_id, str):
             raise TypeError("Expected argument 'cloud_image_id' to be a str")
         pulumi.set(__self__, "cloud_image_id", cloud_image_id)
@@ -74,6 +77,11 @@ class GetPackerImageResult:
     @pulumi.getter(name="buildId")
     def build_id(self) -> str:
         return pulumi.get(self, "build_id")
+
+    @property
+    @pulumi.getter
+    def channel(self) -> Optional[str]:
+        return pulumi.get(self, "channel")
 
     @property
     @pulumi.getter(name="cloudImageId")
@@ -147,6 +155,7 @@ class AwaitableGetPackerImageResult(GetPackerImageResult):
         return GetPackerImageResult(
             bucket_name=self.bucket_name,
             build_id=self.build_id,
+            channel=self.channel,
             cloud_image_id=self.cloud_image_id,
             cloud_provider=self.cloud_provider,
             component_type=self.component_type,
@@ -162,16 +171,22 @@ class AwaitableGetPackerImageResult(GetPackerImageResult):
 
 
 def get_packer_image(bucket_name: Optional[str] = None,
+                     channel: Optional[str] = None,
                      cloud_provider: Optional[str] = None,
+                     component_type: Optional[str] = None,
                      iteration_id: Optional[str] = None,
                      region: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPackerImageResult:
     """
-    The Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id.
+    The Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id or a channel.
+
+    ## Example Usage
     """
     __args__ = dict()
     __args__['bucketName'] = bucket_name
+    __args__['channel'] = channel
     __args__['cloudProvider'] = cloud_provider
+    __args__['componentType'] = component_type
     __args__['iterationId'] = iteration_id
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -180,6 +195,7 @@ def get_packer_image(bucket_name: Optional[str] = None,
     return AwaitableGetPackerImageResult(
         bucket_name=__ret__.bucket_name,
         build_id=__ret__.build_id,
+        channel=__ret__.channel,
         cloud_image_id=__ret__.cloud_image_id,
         cloud_provider=__ret__.cloud_provider,
         component_type=__ret__.component_type,
@@ -196,11 +212,15 @@ def get_packer_image(bucket_name: Optional[str] = None,
 
 @_utilities.lift_output_func(get_packer_image)
 def get_packer_image_output(bucket_name: Optional[pulumi.Input[str]] = None,
+                            channel: Optional[pulumi.Input[Optional[str]]] = None,
                             cloud_provider: Optional[pulumi.Input[str]] = None,
-                            iteration_id: Optional[pulumi.Input[str]] = None,
+                            component_type: Optional[pulumi.Input[Optional[str]]] = None,
+                            iteration_id: Optional[pulumi.Input[Optional[str]]] = None,
                             region: Optional[pulumi.Input[str]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPackerImageResult]:
     """
-    The Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id.
+    The Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id or a channel.
+
+    ## Example Usage
     """
     ...

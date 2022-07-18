@@ -88,6 +88,10 @@ export class AwsNetworkPeering extends pulumi.CustomResource {
      * A unique URL identifying the network peering.
      */
     public /*out*/ readonly selfLink!: pulumi.Output<string>;
+    /**
+     * The state of the network peering.
+     */
+    public /*out*/ readonly state!: pulumi.Output<string>;
 
     /**
      * Create a AwsNetworkPeering resource with the given unique name, arguments, and options.
@@ -113,6 +117,7 @@ export class AwsNetworkPeering extends pulumi.CustomResource {
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["providerPeeringId"] = state ? state.providerPeeringId : undefined;
             resourceInputs["selfLink"] = state ? state.selfLink : undefined;
+            resourceInputs["state"] = state ? state.state : undefined;
         } else {
             const args = argsOrState as AwsNetworkPeeringArgs | undefined;
             if ((!args || args.hvnId === undefined) && !opts.urn) {
@@ -141,6 +146,7 @@ export class AwsNetworkPeering extends pulumi.CustomResource {
             resourceInputs["projectId"] = undefined /*out*/;
             resourceInputs["providerPeeringId"] = undefined /*out*/;
             resourceInputs["selfLink"] = undefined /*out*/;
+            resourceInputs["state"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AwsNetworkPeering.__pulumiType, name, resourceInputs, opts);
@@ -196,6 +202,10 @@ export interface AwsNetworkPeeringState {
      * A unique URL identifying the network peering.
      */
     selfLink?: pulumi.Input<string>;
+    /**
+     * The state of the network peering.
+     */
+    state?: pulumi.Input<string>;
 }
 
 /**

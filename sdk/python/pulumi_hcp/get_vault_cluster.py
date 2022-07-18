@@ -23,7 +23,7 @@ class GetVaultClusterResult:
     """
     A collection of values returned by getVaultCluster.
     """
-    def __init__(__self__, audit_log_configs=None, cloud_provider=None, cluster_id=None, created_at=None, hvn_id=None, id=None, metrics_configs=None, min_vault_version=None, namespace=None, organization_id=None, paths_filters=None, primary_link=None, project_id=None, public_endpoint=None, region=None, self_link=None, tier=None, vault_private_endpoint_url=None, vault_public_endpoint_url=None, vault_version=None):
+    def __init__(__self__, audit_log_configs=None, cloud_provider=None, cluster_id=None, created_at=None, hvn_id=None, id=None, metrics_configs=None, min_vault_version=None, namespace=None, organization_id=None, paths_filters=None, primary_link=None, project_id=None, public_endpoint=None, region=None, self_link=None, state=None, tier=None, vault_private_endpoint_url=None, vault_public_endpoint_url=None, vault_version=None):
         if audit_log_configs and not isinstance(audit_log_configs, list):
             raise TypeError("Expected argument 'audit_log_configs' to be a list")
         pulumi.set(__self__, "audit_log_configs", audit_log_configs)
@@ -72,6 +72,9 @@ class GetVaultClusterResult:
         if self_link and not isinstance(self_link, str):
             raise TypeError("Expected argument 'self_link' to be a str")
         pulumi.set(__self__, "self_link", self_link)
+        if state and not isinstance(state, str):
+            raise TypeError("Expected argument 'state' to be a str")
+        pulumi.set(__self__, "state", state)
         if tier and not isinstance(tier, str):
             raise TypeError("Expected argument 'tier' to be a str")
         pulumi.set(__self__, "tier", tier)
@@ -170,6 +173,11 @@ class GetVaultClusterResult:
 
     @property
     @pulumi.getter
+    def state(self) -> str:
+        return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter
     def tier(self) -> str:
         return pulumi.get(self, "tier")
 
@@ -211,6 +219,7 @@ class AwaitableGetVaultClusterResult(GetVaultClusterResult):
             public_endpoint=self.public_endpoint,
             region=self.region,
             self_link=self.self_link,
+            state=self.state,
             tier=self.tier,
             vault_private_endpoint_url=self.vault_private_endpoint_url,
             vault_public_endpoint_url=self.vault_public_endpoint_url,
@@ -248,6 +257,7 @@ def get_vault_cluster(audit_log_configs: Optional[Sequence[pulumi.InputType['Get
         public_endpoint=__ret__.public_endpoint,
         region=__ret__.region,
         self_link=__ret__.self_link,
+        state=__ret__.state,
         tier=__ret__.tier,
         vault_private_endpoint_url=__ret__.vault_private_endpoint_url,
         vault_public_endpoint_url=__ret__.vault_public_endpoint_url,

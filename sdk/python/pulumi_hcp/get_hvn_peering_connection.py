@@ -21,7 +21,7 @@ class GetHvnPeeringConnectionResult:
     """
     A collection of values returned by getHvnPeeringConnection.
     """
-    def __init__(__self__, created_at=None, expires_at=None, hvn1=None, hvn2=None, id=None, organization_id=None, peering_id=None, project_id=None, self_link=None):
+    def __init__(__self__, created_at=None, expires_at=None, hvn1=None, hvn2=None, id=None, organization_id=None, peering_id=None, project_id=None, self_link=None, state=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -49,6 +49,9 @@ class GetHvnPeeringConnectionResult:
         if self_link and not isinstance(self_link, str):
             raise TypeError("Expected argument 'self_link' to be a str")
         pulumi.set(__self__, "self_link", self_link)
+        if state and not isinstance(state, str):
+            raise TypeError("Expected argument 'state' to be a str")
+        pulumi.set(__self__, "state", state)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -98,6 +101,11 @@ class GetHvnPeeringConnectionResult:
     def self_link(self) -> str:
         return pulumi.get(self, "self_link")
 
+    @property
+    @pulumi.getter
+    def state(self) -> str:
+        return pulumi.get(self, "state")
+
 
 class AwaitableGetHvnPeeringConnectionResult(GetHvnPeeringConnectionResult):
     # pylint: disable=using-constant-test
@@ -113,7 +121,8 @@ class AwaitableGetHvnPeeringConnectionResult(GetHvnPeeringConnectionResult):
             organization_id=self.organization_id,
             peering_id=self.peering_id,
             project_id=self.project_id,
-            self_link=self.self_link)
+            self_link=self.self_link,
+            state=self.state)
 
 
 def get_hvn_peering_connection(hvn1: Optional[str] = None,
@@ -139,7 +148,8 @@ def get_hvn_peering_connection(hvn1: Optional[str] = None,
         organization_id=__ret__.organization_id,
         peering_id=__ret__.peering_id,
         project_id=__ret__.project_id,
-        self_link=__ret__.self_link)
+        self_link=__ret__.self_link,
+        state=__ret__.state)
 
 
 @_utilities.lift_output_func(get_hvn_peering_connection)

@@ -31,6 +31,8 @@ type ConsulSnapshot struct {
 	SnapshotId pulumi.StringOutput `pulumi:"snapshotId"`
 	// The name of the snapshot.
 	SnapshotName pulumi.StringOutput `pulumi:"snapshotName"`
+	// The state of an HCP Consul snapshot.
+	State pulumi.StringOutput `pulumi:"state"`
 }
 
 // NewConsulSnapshot registers a new resource with the given unique name, arguments, and options.
@@ -85,6 +87,8 @@ type consulSnapshotState struct {
 	SnapshotId *string `pulumi:"snapshotId"`
 	// The name of the snapshot.
 	SnapshotName *string `pulumi:"snapshotName"`
+	// The state of an HCP Consul snapshot.
+	State *string `pulumi:"state"`
 }
 
 type ConsulSnapshotState struct {
@@ -104,6 +108,8 @@ type ConsulSnapshotState struct {
 	SnapshotId pulumi.StringPtrInput
 	// The name of the snapshot.
 	SnapshotName pulumi.StringPtrInput
+	// The state of an HCP Consul snapshot.
+	State pulumi.StringPtrInput
 }
 
 func (ConsulSnapshotState) ElementType() reflect.Type {
@@ -250,6 +256,11 @@ func (o ConsulSnapshotOutput) SnapshotId() pulumi.StringOutput {
 // The name of the snapshot.
 func (o ConsulSnapshotOutput) SnapshotName() pulumi.StringOutput {
 	return o.ApplyT(func(v *ConsulSnapshot) pulumi.StringOutput { return v.SnapshotName }).(pulumi.StringOutput)
+}
+
+// The state of an HCP Consul snapshot.
+func (o ConsulSnapshotOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v *ConsulSnapshot) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }
 
 type ConsulSnapshotArrayOutput struct{ *pulumi.OutputState }

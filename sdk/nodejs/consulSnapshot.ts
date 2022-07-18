@@ -81,6 +81,10 @@ export class ConsulSnapshot extends pulumi.CustomResource {
      * The name of the snapshot.
      */
     public readonly snapshotName!: pulumi.Output<string>;
+    /**
+     * The state of an HCP Consul snapshot.
+     */
+    public /*out*/ readonly state!: pulumi.Output<string>;
 
     /**
      * Create a ConsulSnapshot resource with the given unique name, arguments, and options.
@@ -103,6 +107,7 @@ export class ConsulSnapshot extends pulumi.CustomResource {
             resourceInputs["size"] = state ? state.size : undefined;
             resourceInputs["snapshotId"] = state ? state.snapshotId : undefined;
             resourceInputs["snapshotName"] = state ? state.snapshotName : undefined;
+            resourceInputs["state"] = state ? state.state : undefined;
         } else {
             const args = argsOrState as ConsulSnapshotArgs | undefined;
             if ((!args || args.clusterId === undefined) && !opts.urn) {
@@ -119,6 +124,7 @@ export class ConsulSnapshot extends pulumi.CustomResource {
             resourceInputs["restoredAt"] = undefined /*out*/;
             resourceInputs["size"] = undefined /*out*/;
             resourceInputs["snapshotId"] = undefined /*out*/;
+            resourceInputs["state"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ConsulSnapshot.__pulumiType, name, resourceInputs, opts);
@@ -161,6 +167,10 @@ export interface ConsulSnapshotState {
      * The name of the snapshot.
      */
     snapshotName?: pulumi.Input<string>;
+    /**
+     * The state of an HCP Consul snapshot.
+     */
+    state?: pulumi.Input<string>;
 }
 
 /**

@@ -42,6 +42,7 @@ export interface GetHvnResult {
     readonly providerAccountId: string;
     readonly region: string;
     readonly selfLink: string;
+    readonly state: string;
 }
 
 export function getHvnOutput(args: GetHvnOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetHvnResult> {

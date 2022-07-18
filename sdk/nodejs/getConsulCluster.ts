@@ -55,6 +55,7 @@ export interface GetConsulClusterResult {
     readonly scale: number;
     readonly selfLink: string;
     readonly size: string;
+    readonly state: string;
     readonly tier: string;
 }
 

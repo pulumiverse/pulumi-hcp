@@ -46,6 +46,8 @@ type AwsNetworkPeering struct {
 	ProviderPeeringId pulumi.StringOutput `pulumi:"providerPeeringId"`
 	// A unique URL identifying the network peering.
 	SelfLink pulumi.StringOutput `pulumi:"selfLink"`
+	// The state of the network peering.
+	State pulumi.StringOutput `pulumi:"state"`
 }
 
 // NewAwsNetworkPeering registers a new resource with the given unique name, arguments, and options.
@@ -116,6 +118,8 @@ type awsNetworkPeeringState struct {
 	ProviderPeeringId *string `pulumi:"providerPeeringId"`
 	// A unique URL identifying the network peering.
 	SelfLink *string `pulumi:"selfLink"`
+	// The state of the network peering.
+	State *string `pulumi:"state"`
 }
 
 type AwsNetworkPeeringState struct {
@@ -142,6 +146,8 @@ type AwsNetworkPeeringState struct {
 	ProviderPeeringId pulumi.StringPtrInput
 	// A unique URL identifying the network peering.
 	SelfLink pulumi.StringPtrInput
+	// The state of the network peering.
+	State pulumi.StringPtrInput
 }
 
 func (AwsNetworkPeeringState) ElementType() reflect.Type {
@@ -316,6 +322,11 @@ func (o AwsNetworkPeeringOutput) ProviderPeeringId() pulumi.StringOutput {
 // A unique URL identifying the network peering.
 func (o AwsNetworkPeeringOutput) SelfLink() pulumi.StringOutput {
 	return o.ApplyT(func(v *AwsNetworkPeering) pulumi.StringOutput { return v.SelfLink }).(pulumi.StringOutput)
+}
+
+// The state of the network peering.
+func (o AwsNetworkPeeringOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v *AwsNetworkPeering) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }
 
 type AwsNetworkPeeringArrayOutput struct{ *pulumi.OutputState }

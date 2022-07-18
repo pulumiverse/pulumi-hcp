@@ -48,6 +48,7 @@ export interface GetAwsNetworkPeeringResult {
     readonly projectId: string;
     readonly providerPeeringId: string;
     readonly selfLink: string;
+    readonly state: string;
     readonly waitForActiveState?: boolean;
 }
 

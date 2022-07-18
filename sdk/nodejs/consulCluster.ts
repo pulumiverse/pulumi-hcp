@@ -154,6 +154,10 @@ export class ConsulCluster extends pulumi.CustomResource {
      */
     public readonly size!: pulumi.Output<string>;
     /**
+     * The state of the HCP Consul cluster.
+     */
+    public /*out*/ readonly state!: pulumi.Output<string>;
+    /**
      * The tier that the HCP Consul cluster will be provisioned as. Only `development`, `standard` and `plus` are available at
      * this time. See [pricing information](https://cloud.hashicorp.com/pricing/consul).
      */
@@ -197,6 +201,7 @@ export class ConsulCluster extends pulumi.CustomResource {
             resourceInputs["scale"] = state ? state.scale : undefined;
             resourceInputs["selfLink"] = state ? state.selfLink : undefined;
             resourceInputs["size"] = state ? state.size : undefined;
+            resourceInputs["state"] = state ? state.state : undefined;
             resourceInputs["tier"] = state ? state.tier : undefined;
         } else {
             const args = argsOrState as ConsulClusterArgs | undefined;
@@ -235,6 +240,7 @@ export class ConsulCluster extends pulumi.CustomResource {
             resourceInputs["region"] = undefined /*out*/;
             resourceInputs["scale"] = undefined /*out*/;
             resourceInputs["selfLink"] = undefined /*out*/;
+            resourceInputs["state"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ConsulCluster.__pulumiType, name, resourceInputs, opts);
@@ -353,6 +359,10 @@ export interface ConsulClusterState {
      * https://cloud.hashicorp.com/pricing/consul. Upgrading the size of a cluster after creation is allowed.
      */
     size?: pulumi.Input<string>;
+    /**
+     * The state of the HCP Consul cluster.
+     */
+    state?: pulumi.Input<string>;
     /**
      * The tier that the HCP Consul cluster will be provisioned as. Only `development`, `standard` and `plus` are available at
      * this time. See [pricing information](https://cloud.hashicorp.com/pricing/consul).

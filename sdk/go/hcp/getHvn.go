@@ -39,6 +39,7 @@ type LookupHvnResult struct {
 	ProviderAccountId string `pulumi:"providerAccountId"`
 	Region            string `pulumi:"region"`
 	SelfLink          string `pulumi:"selfLink"`
+	State             string `pulumi:"state"`
 }
 
 func LookupHvnOutput(ctx *pulumi.Context, args LookupHvnOutputArgs, opts ...pulumi.InvokeOption) LookupHvnResultOutput {
@@ -117,6 +118,10 @@ func (o LookupHvnResultOutput) Region() pulumi.StringOutput {
 
 func (o LookupHvnResultOutput) SelfLink() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnResult) string { return v.SelfLink }).(pulumi.StringOutput)
+}
+
+func (o LookupHvnResultOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupHvnResult) string { return v.State }).(pulumi.StringOutput)
 }
 
 func init() {

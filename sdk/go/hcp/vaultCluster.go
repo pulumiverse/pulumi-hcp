@@ -56,6 +56,8 @@ type VaultCluster struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 	// A unique URL identifying the Vault cluster.
 	SelfLink pulumi.StringOutput `pulumi:"selfLink"`
+	// The state of the Vault cluster.
+	State pulumi.StringOutput `pulumi:"state"`
 	// Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,
 	// `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing
 	// information](https://cloud.hashicorp.com/pricing/vault).
@@ -139,6 +141,8 @@ type vaultClusterState struct {
 	Region *string `pulumi:"region"`
 	// A unique URL identifying the Vault cluster.
 	SelfLink *string `pulumi:"selfLink"`
+	// The state of the Vault cluster.
+	State *string `pulumi:"state"`
 	// Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,
 	// `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing
 	// information](https://cloud.hashicorp.com/pricing/vault).
@@ -187,6 +191,8 @@ type VaultClusterState struct {
 	Region pulumi.StringPtrInput
 	// A unique URL identifying the Vault cluster.
 	SelfLink pulumi.StringPtrInput
+	// The state of the Vault cluster.
+	State pulumi.StringPtrInput
 	// Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,
 	// `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing
 	// information](https://cloud.hashicorp.com/pricing/vault).
@@ -425,6 +431,11 @@ func (o VaultClusterOutput) Region() pulumi.StringOutput {
 // A unique URL identifying the Vault cluster.
 func (o VaultClusterOutput) SelfLink() pulumi.StringOutput {
 	return o.ApplyT(func(v *VaultCluster) pulumi.StringOutput { return v.SelfLink }).(pulumi.StringOutput)
+}
+
+// The state of the Vault cluster.
+func (o VaultClusterOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v *VaultCluster) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }
 
 // Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,

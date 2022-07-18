@@ -43,6 +43,7 @@ type LookupAwsNetworkPeeringResult struct {
 	ProjectId          string `pulumi:"projectId"`
 	ProviderPeeringId  string `pulumi:"providerPeeringId"`
 	SelfLink           string `pulumi:"selfLink"`
+	State              string `pulumi:"state"`
 	WaitForActiveState *bool  `pulumi:"waitForActiveState"`
 }
 
@@ -132,6 +133,10 @@ func (o LookupAwsNetworkPeeringResultOutput) ProviderPeeringId() pulumi.StringOu
 
 func (o LookupAwsNetworkPeeringResultOutput) SelfLink() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsNetworkPeeringResult) string { return v.SelfLink }).(pulumi.StringOutput)
+}
+
+func (o LookupAwsNetworkPeeringResultOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAwsNetworkPeeringResult) string { return v.State }).(pulumi.StringOutput)
 }
 
 func (o LookupAwsNetworkPeeringResultOutput) WaitForActiveState() pulumi.BoolPtrOutput {

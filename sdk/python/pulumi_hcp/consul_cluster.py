@@ -218,6 +218,7 @@ class _ConsulClusterState:
                  scale: Optional[pulumi.Input[int]] = None,
                  self_link: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None,
+                 state: Optional[pulumi.Input[str]] = None,
                  tier: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ConsulCluster resources.
@@ -254,6 +255,7 @@ class _ConsulClusterState:
         :param pulumi.Input[str] size: The t-shirt size representation of each server VM that this Consul cluster is provisioned with. Valid option for
                development tier - `x_small`. Valid options for other tiers - `small`, `medium`, `large`. For more details -
                https://cloud.hashicorp.com/pricing/consul. Upgrading the size of a cluster after creation is allowed.
+        :param pulumi.Input[str] state: The state of the HCP Consul cluster.
         :param pulumi.Input[str] tier: The tier that the HCP Consul cluster will be provisioned as. Only `development`, `standard` and `plus` are available at
                this time. See [pricing information](https://cloud.hashicorp.com/pricing/consul).
         """
@@ -307,6 +309,8 @@ class _ConsulClusterState:
             pulumi.set(__self__, "self_link", self_link)
         if size is not None:
             pulumi.set(__self__, "size", size)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
         if tier is not None:
             pulumi.set(__self__, "tier", tier)
 
@@ -620,6 +624,18 @@ class _ConsulClusterState:
 
     @property
     @pulumi.getter
+    def state(self) -> Optional[pulumi.Input[str]]:
+        """
+        The state of the HCP Consul cluster.
+        """
+        return pulumi.get(self, "state")
+
+    @state.setter
+    def state(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "state", value)
+
+    @property
+    @pulumi.getter
     def tier(self) -> Optional[pulumi.Input[str]]:
         """
         The tier that the HCP Consul cluster will be provisioned as. Only `development`, `standard` and `plus` are available at
@@ -766,6 +782,7 @@ class ConsulCluster(pulumi.CustomResource):
             __props__.__dict__["region"] = None
             __props__.__dict__["scale"] = None
             __props__.__dict__["self_link"] = None
+            __props__.__dict__["state"] = None
         super(ConsulCluster, __self__).__init__(
             'hcp:index/consulCluster:ConsulCluster',
             resource_name,
@@ -801,6 +818,7 @@ class ConsulCluster(pulumi.CustomResource):
             scale: Optional[pulumi.Input[int]] = None,
             self_link: Optional[pulumi.Input[str]] = None,
             size: Optional[pulumi.Input[str]] = None,
+            state: Optional[pulumi.Input[str]] = None,
             tier: Optional[pulumi.Input[str]] = None) -> 'ConsulCluster':
         """
         Get an existing ConsulCluster resource's state with the given name, id, and optional extra
@@ -842,6 +860,7 @@ class ConsulCluster(pulumi.CustomResource):
         :param pulumi.Input[str] size: The t-shirt size representation of each server VM that this Consul cluster is provisioned with. Valid option for
                development tier - `x_small`. Valid options for other tiers - `small`, `medium`, `large`. For more details -
                https://cloud.hashicorp.com/pricing/consul. Upgrading the size of a cluster after creation is allowed.
+        :param pulumi.Input[str] state: The state of the HCP Consul cluster.
         :param pulumi.Input[str] tier: The tier that the HCP Consul cluster will be provisioned as. Only `development`, `standard` and `plus` are available at
                this time. See [pricing information](https://cloud.hashicorp.com/pricing/consul).
         """
@@ -874,6 +893,7 @@ class ConsulCluster(pulumi.CustomResource):
         __props__.__dict__["scale"] = scale
         __props__.__dict__["self_link"] = self_link
         __props__.__dict__["size"] = size
+        __props__.__dict__["state"] = state
         __props__.__dict__["tier"] = tier
         return ConsulCluster(resource_name, opts=opts, __props__=__props__)
 
@@ -1084,6 +1104,14 @@ class ConsulCluster(pulumi.CustomResource):
         https://cloud.hashicorp.com/pricing/consul. Upgrading the size of a cluster after creation is allowed.
         """
         return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter
+    def state(self) -> pulumi.Output[str]:
+        """
+        The state of the HCP Consul cluster.
+        """
+        return pulumi.get(self, "state")
 
     @property
     @pulumi.getter

@@ -59,7 +59,8 @@ class _ConsulSnapshotState:
                  restored_at: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  snapshot_id: Optional[pulumi.Input[str]] = None,
-                 snapshot_name: Optional[pulumi.Input[str]] = None):
+                 snapshot_name: Optional[pulumi.Input[str]] = None,
+                 state: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ConsulSnapshot resources.
         :param pulumi.Input[str] cluster_id: The ID of the HCP Consul cluster.
@@ -70,6 +71,7 @@ class _ConsulSnapshotState:
         :param pulumi.Input[int] size: The size of the snapshot in bytes.
         :param pulumi.Input[str] snapshot_id: The ID of the Consul snapshot
         :param pulumi.Input[str] snapshot_name: The name of the snapshot.
+        :param pulumi.Input[str] state: The state of an HCP Consul snapshot.
         """
         if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
@@ -87,6 +89,8 @@ class _ConsulSnapshotState:
             pulumi.set(__self__, "snapshot_id", snapshot_id)
         if snapshot_name is not None:
             pulumi.set(__self__, "snapshot_name", snapshot_name)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
 
     @property
     @pulumi.getter(name="clusterId")
@@ -184,6 +188,18 @@ class _ConsulSnapshotState:
     def snapshot_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "snapshot_name", value)
 
+    @property
+    @pulumi.getter
+    def state(self) -> Optional[pulumi.Input[str]]:
+        """
+        The state of an HCP Consul snapshot.
+        """
+        return pulumi.get(self, "state")
+
+    @state.setter
+    def state(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "state", value)
+
 
 class ConsulSnapshot(pulumi.CustomResource):
     @overload
@@ -248,6 +264,7 @@ class ConsulSnapshot(pulumi.CustomResource):
             __props__.__dict__["restored_at"] = None
             __props__.__dict__["size"] = None
             __props__.__dict__["snapshot_id"] = None
+            __props__.__dict__["state"] = None
         super(ConsulSnapshot, __self__).__init__(
             'hcp:index/consulSnapshot:ConsulSnapshot',
             resource_name,
@@ -265,7 +282,8 @@ class ConsulSnapshot(pulumi.CustomResource):
             restored_at: Optional[pulumi.Input[str]] = None,
             size: Optional[pulumi.Input[int]] = None,
             snapshot_id: Optional[pulumi.Input[str]] = None,
-            snapshot_name: Optional[pulumi.Input[str]] = None) -> 'ConsulSnapshot':
+            snapshot_name: Optional[pulumi.Input[str]] = None,
+            state: Optional[pulumi.Input[str]] = None) -> 'ConsulSnapshot':
         """
         Get an existing ConsulSnapshot resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -281,6 +299,7 @@ class ConsulSnapshot(pulumi.CustomResource):
         :param pulumi.Input[int] size: The size of the snapshot in bytes.
         :param pulumi.Input[str] snapshot_id: The ID of the Consul snapshot
         :param pulumi.Input[str] snapshot_name: The name of the snapshot.
+        :param pulumi.Input[str] state: The state of an HCP Consul snapshot.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -294,6 +313,7 @@ class ConsulSnapshot(pulumi.CustomResource):
         __props__.__dict__["size"] = size
         __props__.__dict__["snapshot_id"] = snapshot_id
         __props__.__dict__["snapshot_name"] = snapshot_name
+        __props__.__dict__["state"] = state
         return ConsulSnapshot(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -359,4 +379,12 @@ class ConsulSnapshot(pulumi.CustomResource):
         The name of the snapshot.
         """
         return pulumi.get(self, "snapshot_name")
+
+    @property
+    @pulumi.getter
+    def state(self) -> pulumi.Output[str]:
+        """
+        The state of an HCP Consul snapshot.
+        """
+        return pulumi.get(self, "state")
 

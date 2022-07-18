@@ -40,6 +40,7 @@ type LookupHvnPeeringConnectionResult struct {
 	PeeringId      string `pulumi:"peeringId"`
 	ProjectId      string `pulumi:"projectId"`
 	SelfLink       string `pulumi:"selfLink"`
+	State          string `pulumi:"state"`
 }
 
 func LookupHvnPeeringConnectionOutput(ctx *pulumi.Context, args LookupHvnPeeringConnectionOutputArgs, opts ...pulumi.InvokeOption) LookupHvnPeeringConnectionResultOutput {
@@ -116,6 +117,10 @@ func (o LookupHvnPeeringConnectionResultOutput) ProjectId() pulumi.StringOutput 
 
 func (o LookupHvnPeeringConnectionResultOutput) SelfLink() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnPeeringConnectionResult) string { return v.SelfLink }).(pulumi.StringOutput)
+}
+
+func (o LookupHvnPeeringConnectionResultOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupHvnPeeringConnectionResult) string { return v.State }).(pulumi.StringOutput)
 }
 
 func init() {

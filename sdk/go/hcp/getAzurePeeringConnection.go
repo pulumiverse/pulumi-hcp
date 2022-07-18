@@ -48,6 +48,7 @@ type LookupAzurePeeringConnectionResult struct {
 	PeeringId             string `pulumi:"peeringId"`
 	ProjectId             string `pulumi:"projectId"`
 	SelfLink              string `pulumi:"selfLink"`
+	State                 string `pulumi:"state"`
 	WaitForActiveState    *bool  `pulumi:"waitForActiveState"`
 }
 
@@ -149,6 +150,10 @@ func (o LookupAzurePeeringConnectionResultOutput) ProjectId() pulumi.StringOutpu
 
 func (o LookupAzurePeeringConnectionResultOutput) SelfLink() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzurePeeringConnectionResult) string { return v.SelfLink }).(pulumi.StringOutput)
+}
+
+func (o LookupAzurePeeringConnectionResultOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAzurePeeringConnectionResult) string { return v.State }).(pulumi.StringOutput)
 }
 
 func (o LookupAzurePeeringConnectionResultOutput) WaitForActiveState() pulumi.BoolPtrOutput {
