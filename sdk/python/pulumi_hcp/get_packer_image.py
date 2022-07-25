@@ -181,6 +181,41 @@ def get_packer_image(bucket_name: Optional[str] = None,
     The Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id or a channel.
 
     ## Example Usage
+    ### Single image sourcing
+
+    ```python
+    import pulumi
+    import pulumi_hcp as hcp
+
+    baz = hcp.get_packer_image(bucket_name="hardened-ubuntu-16-04",
+        cloud_provider="aws",
+        channel="production",
+        region="us-east-1")
+    pulumi.export("packer-registry-ubuntu-east-1", baz.cloud_image_id)
+    ```
+
+    > **Note:** The `channel` attribute in this data source may incur a billable request to HCP Packer. This attribute is intended for convenience when using a single image. When sourcing multiple images from a single iteration, the `get_packer_iteration` data source is the alternative for querying a channel just once.
+    ### Multiple image sourcing from a single iteration
+
+    ```python
+    import pulumi
+    import pulumi_hcp as hcp
+
+    hardened_source = hcp.get_packer_iteration(bucket_name="hardened-ubuntu-16-04",
+        channel="production")
+    foo = hcp.get_packer_image(bucket_name="hardened-ubuntu-16-04",
+        cloud_provider="aws",
+        iteration_id=hardened_source.ulid,
+        region="us-east-1")
+    bar = hcp.get_packer_image(bucket_name="hardened-ubuntu-16-04",
+        cloud_provider="aws",
+        iteration_id=hardened_source.ulid,
+        region="us-west-1")
+    pulumi.export("packer-registry-ubuntu-east-1", foo.cloud_image_id)
+    pulumi.export("packer-registry-ubuntu-west-1", bar.cloud_image_id)
+    ```
+
+    > **Note:** This data source only returns the first found image's metadata filtered by the given arguments, from the returned list of images associated with the specified iteration. Therefore, if multiple images exist in the same region, it will only pick one of them. In this case, you can filter images by a source build name (Ex: `amazon-ebs.example`) using the `component_type` optional argument.
     """
     __args__ = dict()
     __args__['bucketName'] = bucket_name
@@ -222,5 +257,40 @@ def get_packer_image_output(bucket_name: Optional[pulumi.Input[str]] = None,
     The Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id or a channel.
 
     ## Example Usage
+    ### Single image sourcing
+
+    ```python
+    import pulumi
+    import pulumi_hcp as hcp
+
+    baz = hcp.get_packer_image(bucket_name="hardened-ubuntu-16-04",
+        cloud_provider="aws",
+        channel="production",
+        region="us-east-1")
+    pulumi.export("packer-registry-ubuntu-east-1", baz.cloud_image_id)
+    ```
+
+    > **Note:** The `channel` attribute in this data source may incur a billable request to HCP Packer. This attribute is intended for convenience when using a single image. When sourcing multiple images from a single iteration, the `get_packer_iteration` data source is the alternative for querying a channel just once.
+    ### Multiple image sourcing from a single iteration
+
+    ```python
+    import pulumi
+    import pulumi_hcp as hcp
+
+    hardened_source = hcp.get_packer_iteration(bucket_name="hardened-ubuntu-16-04",
+        channel="production")
+    foo = hcp.get_packer_image(bucket_name="hardened-ubuntu-16-04",
+        cloud_provider="aws",
+        iteration_id=hardened_source.ulid,
+        region="us-east-1")
+    bar = hcp.get_packer_image(bucket_name="hardened-ubuntu-16-04",
+        cloud_provider="aws",
+        iteration_id=hardened_source.ulid,
+        region="us-west-1")
+    pulumi.export("packer-registry-ubuntu-east-1", foo.cloud_image_id)
+    pulumi.export("packer-registry-ubuntu-west-1", bar.cloud_image_id)
+    ```
+
+    > **Note:** This data source only returns the first found image's metadata filtered by the given arguments, from the returned list of images associated with the specified iteration. Therefore, if multiple images exist in the same region, it will only pick one of them. In this case, you can filter images by a source build name (Ex: `amazon-ebs.example`) using the `component_type` optional argument.
     """
     ...

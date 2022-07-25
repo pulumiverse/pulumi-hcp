@@ -167,6 +167,17 @@ def get_aws_network_peering(hvn_id: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAwsNetworkPeeringResult:
     """
     The AWS network peering data source provides information about an existing network peering between an HVN and a peer AWS VPC.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_hcp as hcp
+
+    test = hcp.get_aws_network_peering(hvn_id=var["hvn_id"],
+        peering_id=var["peering_id"],
+        wait_for_active_state=True)
+    ```
     """
     __args__ = dict()
     __args__['hvnId'] = hvn_id
@@ -199,5 +210,16 @@ def get_aws_network_peering_output(hvn_id: Optional[pulumi.Input[str]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAwsNetworkPeeringResult]:
     """
     The AWS network peering data source provides information about an existing network peering between an HVN and a peer AWS VPC.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_hcp as hcp
+
+    test = hcp.get_aws_network_peering(hvn_id=var["hvn_id"],
+        peering_id=var["peering_id"],
+        wait_for_active_state=True)
+    ```
     """
     ...

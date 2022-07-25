@@ -11,6 +11,32 @@ import (
 )
 
 // The AWS network peering data source provides information about an existing network peering between an HVN and a peer AWS VPC.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
+// 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := hcp.LookupAwsNetworkPeering(ctx, &GetAwsNetworkPeeringArgs{
+// 			HvnId:              _var.Hvn_id,
+// 			PeeringId:          _var.Peering_id,
+// 			WaitForActiveState: pulumi.BoolRef(true),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func LookupAwsNetworkPeering(ctx *pulumi.Context, args *LookupAwsNetworkPeeringArgs, opts ...pulumi.InvokeOption) (*LookupAwsNetworkPeeringResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupAwsNetworkPeeringResult

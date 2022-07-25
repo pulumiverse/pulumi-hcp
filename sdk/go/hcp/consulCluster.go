@@ -15,6 +15,40 @@ import (
 //
 // The Consul cluster resource allows you to manage an HCP Consul cluster.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		exampleHvn, err := hcp.NewHvn(ctx, "exampleHvn", &hcp.HvnArgs{
+// 			HvnId:         pulumi.String("hvn"),
+// 			CloudProvider: pulumi.String("aws"),
+// 			Region:        pulumi.String("us-west-2"),
+// 			CidrBlock:     pulumi.String("172.25.16.0/20"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = hcp.NewConsulCluster(ctx, "exampleConsulCluster", &hcp.ConsulClusterArgs{
+// 			ClusterId: pulumi.String("consul-cluster"),
+// 			HvnId:     exampleHvn.HvnId,
+// 			Tier:      pulumi.String("development"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // # The import ID is {cluster_id}

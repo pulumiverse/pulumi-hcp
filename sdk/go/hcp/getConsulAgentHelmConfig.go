@@ -11,6 +11,31 @@ import (
 )
 
 // The Consul agent Helm config data source provides Helm values for a Consul agent running in Kubernetes.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
+// 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := hcp.GetConsulAgentHelmConfig(ctx, &GetConsulAgentHelmConfigArgs{
+// 			ClusterId:          _var.Cluster_id,
+// 			KubernetesEndpoint: _var.Kubernetes_endpoint,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func GetConsulAgentHelmConfig(ctx *pulumi.Context, args *GetConsulAgentHelmConfigArgs, opts ...pulumi.InvokeOption) (*GetConsulAgentHelmConfigResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetConsulAgentHelmConfigResult

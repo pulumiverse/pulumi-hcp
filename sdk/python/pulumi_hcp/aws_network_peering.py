@@ -310,6 +310,36 @@ class AwsNetworkPeering(pulumi.CustomResource):
         """
         The AWS network peering resource allows you to manage a network peering between an HVN and a peer AWS VPC.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_hcp as hcp
+
+        main = hcp.Hvn("main",
+            hvn_id="main-hvn",
+            cloud_provider="aws",
+            region="us-west-2",
+            cidr_block="172.25.16.0/20")
+        peer_vpc = aws.ec2.Vpc("peerVpc", cidr_block="172.31.0.0/16")
+        peer_arn = aws.get_arn_output(arn=peer_vpc.arn)
+        dev = hcp.AwsNetworkPeering("dev",
+            hvn_id=main.hvn_id,
+            peering_id="dev",
+            peer_vpc_id=peer_vpc.id,
+            peer_account_id=peer_vpc.owner_id,
+            peer_vpc_region=peer_arn.region)
+        main_to_dev = hcp.HvnRoute("main-to-dev",
+            hvn_link=main.self_link,
+            hvn_route_id="main-to-dev",
+            destination_cidr="172.31.0.0/16",
+            target_link=dev.self_link)
+        peer_vpc_peering_connection_accepter = aws.ec2.VpcPeeringConnectionAccepter("peerVpcPeeringConnectionAccepter",
+            vpc_peering_connection_id=dev.provider_peering_id,
+            auto_accept=True)
+        ```
+
         ## Import
 
         # The import ID is {hvn_id}:{peering_id}
@@ -334,6 +364,36 @@ class AwsNetworkPeering(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The AWS network peering resource allows you to manage a network peering between an HVN and a peer AWS VPC.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_hcp as hcp
+
+        main = hcp.Hvn("main",
+            hvn_id="main-hvn",
+            cloud_provider="aws",
+            region="us-west-2",
+            cidr_block="172.25.16.0/20")
+        peer_vpc = aws.ec2.Vpc("peerVpc", cidr_block="172.31.0.0/16")
+        peer_arn = aws.get_arn_output(arn=peer_vpc.arn)
+        dev = hcp.AwsNetworkPeering("dev",
+            hvn_id=main.hvn_id,
+            peering_id="dev",
+            peer_vpc_id=peer_vpc.id,
+            peer_account_id=peer_vpc.owner_id,
+            peer_vpc_region=peer_arn.region)
+        main_to_dev = hcp.HvnRoute("main-to-dev",
+            hvn_link=main.self_link,
+            hvn_route_id="main-to-dev",
+            destination_cidr="172.31.0.0/16",
+            target_link=dev.self_link)
+        peer_vpc_peering_connection_accepter = aws.ec2.VpcPeeringConnectionAccepter("peerVpcPeeringConnectionAccepter",
+            vpc_peering_connection_id=dev.provider_peering_id,
+            auto_accept=True)
+        ```
 
         ## Import
 

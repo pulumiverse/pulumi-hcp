@@ -11,6 +11,31 @@ import (
 )
 
 // The Packer Image data source iteration gets the most recent iteration (or build) of an image, given a channel.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
+// 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := hcp.GetPackerImageIteration(ctx, &GetPackerImageIterationArgs{
+// 			BucketName: "alpine",
+// 			Channel:    "production",
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func GetPackerImageIteration(ctx *pulumi.Context, args *GetPackerImageIterationArgs, opts ...pulumi.InvokeOption) (*GetPackerImageIterationResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetPackerImageIterationResult

@@ -273,6 +273,19 @@ class Hvn(pulumi.CustomResource):
 
         - If you’re creating a HVN for use in production it's recommended that you specify a CIDR block value that does not overlap with the other HVNs already created in your organization. You will not be able to connect two HVNs with overlapping CIDR block values.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_hcp as hcp
+
+        example = hcp.Hvn("example",
+            cidr_block="172.25.16.0/20",
+            cloud_provider="aws",
+            hvn_id="main-hvn",
+            region="us-west-2")
+        ```
+
         ## Import
 
         # The import ID is {hvn_id}
@@ -308,6 +321,19 @@ class Hvn(pulumi.CustomResource):
         - If the CIDR block values for your HCP HVN and your cloud provider’s virtual network overlap you will not be able to establish a connection. The following are default CIDR block values to be aware of: HCP HVN (172.25.16.0/20), AWS VPC (172.31.0.0/16), and Azure VNet (172.29.0.0/24). Avoid creating overlapping networks.
 
         - If you’re creating a HVN for use in production it's recommended that you specify a CIDR block value that does not overlap with the other HVNs already created in your organization. You will not be able to connect two HVNs with overlapping CIDR block values.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_hcp as hcp
+
+        example = hcp.Hvn("example",
+            cidr_block="172.25.16.0/20",
+            cloud_provider="aws",
+            hvn_id="main-hvn",
+            region="us-west-2")
+        ```
 
         ## Import
 

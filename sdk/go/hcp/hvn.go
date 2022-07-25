@@ -25,6 +25,32 @@ import (
 //
 // - If you’re creating a HVN for use in production it's recommended that you specify a CIDR block value that does not overlap with the other HVNs already created in your organization. You will not be able to connect two HVNs with overlapping CIDR block values.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := hcp.NewHvn(ctx, "example", &hcp.HvnArgs{
+// 			CidrBlock:     pulumi.String("172.25.16.0/20"),
+// 			CloudProvider: pulumi.String("aws"),
+// 			HvnId:         pulumi.String("main-hvn"),
+// 			Region:        pulumi.String("us-west-2"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // # The import ID is {hvn_id}

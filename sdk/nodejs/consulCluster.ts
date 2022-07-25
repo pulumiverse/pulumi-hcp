@@ -9,6 +9,25 @@ import * as utilities from "./utilities";
  *
  * The Consul cluster resource allows you to manage an HCP Consul cluster.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as pulumi_hcp from "@grapl/pulumi-hcp";
+ *
+ * const exampleHvn = new hcp.Hvn("exampleHvn", {
+ *     hvnId: "hvn",
+ *     cloudProvider: "aws",
+ *     region: "us-west-2",
+ *     cidrBlock: "172.25.16.0/20",
+ * });
+ * const exampleConsulCluster = new hcp.ConsulCluster("exampleConsulCluster", {
+ *     clusterId: "consul-cluster",
+ *     hvnId: exampleHvn.hvnId,
+ *     tier: "development",
+ * });
+ * ```
+ *
  * ## Import
  *
  * # The import ID is {cluster_id}

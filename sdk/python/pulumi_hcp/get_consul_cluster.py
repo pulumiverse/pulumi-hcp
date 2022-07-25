@@ -264,6 +264,15 @@ def get_consul_cluster(cluster_id: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetConsulClusterResult:
     """
     The cluster data source provides information about an existing HCP Consul cluster.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_hcp as hcp
+
+    example = hcp.get_consul_cluster(cluster_id=var["cluster_id"])
+    ```
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -303,5 +312,14 @@ def get_consul_cluster_output(cluster_id: Optional[pulumi.Input[str]] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetConsulClusterResult]:
     """
     The cluster data source provides information about an existing HCP Consul cluster.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_hcp as hcp
+
+    example = hcp.get_consul_cluster(cluster_id=var["cluster_id"])
+    ```
     """
     ...
