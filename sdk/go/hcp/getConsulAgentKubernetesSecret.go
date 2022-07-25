@@ -11,6 +11,30 @@ import (
 )
 
 // The agent config Kubernetes secret data source provides Consul agents running in Kubernetes the configuration needed to connect to the Consul cluster.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
+// 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := hcp.GetConsulAgentKubernetesSecret(ctx, &GetConsulAgentKubernetesSecretArgs{
+// 			ClusterId: _var.Cluster_id,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func GetConsulAgentKubernetesSecret(ctx *pulumi.Context, args *GetConsulAgentKubernetesSecretArgs, opts ...pulumi.InvokeOption) (*GetConsulAgentKubernetesSecretResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetConsulAgentKubernetesSecretResult

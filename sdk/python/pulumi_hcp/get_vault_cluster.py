@@ -232,6 +232,15 @@ def get_vault_cluster(audit_log_configs: Optional[Sequence[pulumi.InputType['Get
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVaultClusterResult:
     """
     The cluster data source provides information about an existing HCP Vault cluster.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_hcp as hcp
+
+    example = hcp.get_vault_cluster(cluster_id=var["cluster_id"])
+    ```
     """
     __args__ = dict()
     __args__['auditLogConfigs'] = audit_log_configs
@@ -271,5 +280,14 @@ def get_vault_cluster_output(audit_log_configs: Optional[pulumi.Input[Optional[S
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVaultClusterResult]:
     """
     The cluster data source provides information about an existing HCP Vault cluster.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_hcp as hcp
+
+    example = hcp.get_vault_cluster(cluster_id=var["cluster_id"])
+    ```
     """
     ...

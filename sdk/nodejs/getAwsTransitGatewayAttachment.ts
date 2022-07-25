@@ -6,6 +6,18 @@ import * as utilities from "./utilities";
 
 /**
  * The AWS transit gateway attachment data source provides information about an existing transit gateway attachment.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as hcp from "@pulumi/hcp";
+ *
+ * const test = hcp.getAwsTransitGatewayAttachment({
+ *     hvnId: _var.hvn_id,
+ *     transitGatewayAttachmentId: _var.transit_gateway_attachment_id,
+ * });
+ * ```
  */
 export function getAwsTransitGatewayAttachment(args: GetAwsTransitGatewayAttachmentArgs, opts?: pulumi.InvokeOptions): Promise<GetAwsTransitGatewayAttachmentResult> {
     if (!opts) {

@@ -6,6 +6,18 @@ import * as utilities from "./utilities";
 
 /**
  * The Consul agent Helm config data source provides Helm values for a Consul agent running in Kubernetes.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as hcp from "@pulumi/hcp";
+ *
+ * const example = hcp.getConsulAgentHelmConfig({
+ *     clusterId: _var.cluster_id,
+ *     kubernetesEndpoint: _var.kubernetes_endpoint,
+ * });
+ * ```
  */
 export function getConsulAgentHelmConfig(args: GetConsulAgentHelmConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetConsulAgentHelmConfigResult> {
     if (!opts) {

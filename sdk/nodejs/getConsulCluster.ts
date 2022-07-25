@@ -6,6 +6,17 @@ import * as utilities from "./utilities";
 
 /**
  * The cluster data source provides information about an existing HCP Consul cluster.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as hcp from "@pulumi/hcp";
+ *
+ * const example = hcp.getConsulCluster({
+ *     clusterId: _var.cluster_id,
+ * });
+ * ```
  */
 export function getConsulCluster(args: GetConsulClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetConsulClusterResult> {
     if (!opts) {

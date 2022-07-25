@@ -6,6 +6,19 @@ import * as utilities from "./utilities";
 
 /**
  * The HVN peering connection data source provides information about an existing peering connection between HVNs.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as hcp from "@pulumi/hcp";
+ *
+ * const test = hcp.getHvnPeeringConnection({
+ *     peeringId: _var.peering_id,
+ *     hvn1: _var.hvn_1,
+ *     hvn2: _var.hvn_2,
+ * });
+ * ```
  */
 export function getHvnPeeringConnection(args: GetHvnPeeringConnectionArgs, opts?: pulumi.InvokeOptions): Promise<GetHvnPeeringConnectionResult> {
     if (!opts) {

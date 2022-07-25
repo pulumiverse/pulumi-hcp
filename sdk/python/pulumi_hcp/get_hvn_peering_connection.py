@@ -131,6 +131,17 @@ def get_hvn_peering_connection(hvn1: Optional[str] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetHvnPeeringConnectionResult:
     """
     The HVN peering connection data source provides information about an existing peering connection between HVNs.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_hcp as hcp
+
+    test = hcp.get_hvn_peering_connection(peering_id=var["peering_id"],
+        hvn1=var["hvn_1"],
+        hvn2=var["hvn_2"])
+    ```
     """
     __args__ = dict()
     __args__['hvn1'] = hvn1
@@ -159,5 +170,16 @@ def get_hvn_peering_connection_output(hvn1: Optional[pulumi.Input[str]] = None,
                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetHvnPeeringConnectionResult]:
     """
     The HVN peering connection data source provides information about an existing peering connection between HVNs.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_hcp as hcp
+
+    test = hcp.get_hvn_peering_connection(peering_id=var["peering_id"],
+        hvn1=var["hvn_1"],
+        hvn2=var["hvn_2"])
+    ```
     """
     ...

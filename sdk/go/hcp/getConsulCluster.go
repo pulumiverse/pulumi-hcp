@@ -11,6 +11,30 @@ import (
 )
 
 // The cluster data source provides information about an existing HCP Consul cluster.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
+// 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := hcp.LookupConsulCluster(ctx, &GetConsulClusterArgs{
+// 			ClusterId: _var.Cluster_id,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func LookupConsulCluster(ctx *pulumi.Context, args *LookupConsulClusterArgs, opts ...pulumi.InvokeOption) (*LookupConsulClusterResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupConsulClusterResult

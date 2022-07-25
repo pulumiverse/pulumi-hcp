@@ -11,6 +11,96 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
+// 	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
+// 	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2transitgateway"
+// 	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ram"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		main, err := hcp.NewHvn(ctx, "main", &hcp.HvnArgs{
+// 			HvnId:         pulumi.String("main-hvn"),
+// 			CloudProvider: pulumi.String("aws"),
+// 			Region:        pulumi.String("us-west-2"),
+// 			CidrBlock:     pulumi.String("172.25.16.0/20"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		exampleVpc, err := ec2.NewVpc(ctx, "exampleVpc", &ec2.VpcArgs{
+// 			CidrBlock: pulumi.String("172.31.0.0/16"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		exampleTransitGateway, err := ec2transitgateway.NewTransitGateway(ctx, "exampleTransitGateway", &ec2transitgateway.TransitGatewayArgs{
+// 			Tags: pulumi.StringMap{
+// 				"Name": pulumi.String("example-tgw"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		exampleResourceShare, err := ram.NewResourceShare(ctx, "exampleResourceShare", &ram.ResourceShareArgs{
+// 			AllowExternalPrincipals: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		examplePrincipalAssociation, err := ram.NewPrincipalAssociation(ctx, "examplePrincipalAssociation", &ram.PrincipalAssociationArgs{
+// 			ResourceShareArn: exampleResourceShare.Arn,
+// 			Principal:        main.ProviderAccountId,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		exampleResourceAssociation, err := ram.NewResourceAssociation(ctx, "exampleResourceAssociation", &ram.ResourceAssociationArgs{
+// 			ResourceShareArn: exampleResourceShare.Arn,
+// 			ResourceArn:      exampleTransitGateway.Arn,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		exampleAwsTransitGatewayAttachment, err := hcp.NewAwsTransitGatewayAttachment(ctx, "exampleAwsTransitGatewayAttachment", &hcp.AwsTransitGatewayAttachmentArgs{
+// 			HvnId:                      main.HvnId,
+// 			TransitGatewayAttachmentId: pulumi.String("example-tgw-attachment"),
+// 			TransitGatewayId:           exampleTransitGateway.ID(),
+// 			ResourceShareArn:           exampleResourceShare.Arn,
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			examplePrincipalAssociation,
+// 			exampleResourceAssociation,
+// 		}))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = hcp.NewHvnRoute(ctx, "route", &hcp.HvnRouteArgs{
+// 			HvnLink:         main.SelfLink,
+// 			HvnRouteId:      pulumi.String("hvn-to-tgw-attachment"),
+// 			DestinationCidr: exampleVpc.CidrBlock,
+// 			TargetLink:      exampleAwsTransitGatewayAttachment.SelfLink,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = ec2transitgateway.NewVpcAttachmentAccepter(ctx, "exampleVpcAttachmentAccepter", &ec2transitgateway.VpcAttachmentAccepterArgs{
+// 			TransitGatewayAttachmentId: exampleAwsTransitGatewayAttachment.ProviderTransitGatewayAttachmentId,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // ## Import
 //
 // # The import ID is {hvn_id}:{transit_gateway_attachment_id}

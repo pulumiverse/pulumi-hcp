@@ -138,6 +138,15 @@ def get_hvn(hvn_id: Optional[str] = None,
             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetHvnResult:
     """
     The HVN data source provides information about an existing HashiCorp Virtual Network.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_hcp as hcp
+
+    example = hcp.get_hvn(hvn_id=var["hvn_id"])
+    ```
     """
     __args__ = dict()
     __args__['hvnId'] = hvn_id
@@ -163,5 +172,14 @@ def get_hvn_output(hvn_id: Optional[pulumi.Input[str]] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetHvnResult]:
     """
     The HVN data source provides information about an existing HashiCorp Virtual Network.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_hcp as hcp
+
+    example = hcp.get_hvn(hvn_id=var["hvn_id"])
+    ```
     """
     ...

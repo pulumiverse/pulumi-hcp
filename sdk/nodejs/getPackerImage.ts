@@ -8,6 +8,60 @@ import * as utilities from "./utilities";
  * The Packer Image data source iteration gets the most recent iteration (or build) of an image, given an iteration id or a channel.
  *
  * ## Example Usage
+ * ### Single image sourcing
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as hcp from "@pulumi/hcp";
+ *
+ * export = async () => {
+ *     const baz = await hcp.getPackerImage({
+ *         bucketName: "hardened-ubuntu-16-04",
+ *         cloudProvider: "aws",
+ *         channel: "production",
+ *         region: "us-east-1",
+ *     });
+ *     const packer_registry_ubuntu_east_1 = baz.cloudImageId;
+ *     return {
+ *         "packer-registry-ubuntu-east-1": packer_registry_ubuntu_east_1,
+ *     };
+ * }
+ * ```
+ *
+ * > **Note:** The `channel` attribute in this data source may incur a billable request to HCP Packer. This attribute is intended for convenience when using a single image. When sourcing multiple images from a single iteration, the `hcp.getPackerIteration` data source is the alternative for querying a channel just once.
+ * ### Multiple image sourcing from a single iteration
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as hcp from "@pulumi/hcp";
+ *
+ * export = async () => {
+ *     const hardened-source = await hcp.getPackerIteration({
+ *         bucketName: "hardened-ubuntu-16-04",
+ *         channel: "production",
+ *     });
+ *     const foo = await hcp.getPackerImage({
+ *         bucketName: "hardened-ubuntu-16-04",
+ *         cloudProvider: "aws",
+ *         iterationId: hardened_source.ulid,
+ *         region: "us-east-1",
+ *     });
+ *     const bar = await hcp.getPackerImage({
+ *         bucketName: "hardened-ubuntu-16-04",
+ *         cloudProvider: "aws",
+ *         iterationId: hardened_source.ulid,
+ *         region: "us-west-1",
+ *     });
+ *     const packer_registry_ubuntu_east_1 = foo.cloudImageId;
+ *     const packer_registry_ubuntu_west_1 = bar.cloudImageId;
+ *     return {
+ *         "packer-registry-ubuntu-east-1": packer_registry_ubuntu_east_1,
+ *         "packer-registry-ubuntu-west-1": packer_registry_ubuntu_west_1,
+ *     };
+ * }
+ * ```
+ *
+ * > **Note:** This data source only returns the first found image's metadata filtered by the given arguments, from the returned list of images associated with the specified iteration. Therefore, if multiple images exist in the same region, it will only pick one of them. In this case, you can filter images by a source build name (Ex: `amazon-ebs.example`) using the `componentType` optional argument.
  */
 export function getPackerImage(args: GetPackerImageArgs, opts?: pulumi.InvokeOptions): Promise<GetPackerImageResult> {
     if (!opts) {

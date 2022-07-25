@@ -212,6 +212,19 @@ class ConsulSnapshot(pulumi.CustomResource):
         """
         The Consul snapshot resource allows users to manage Consul snapshots of an HCP Consul cluster. Snapshots currently have a retention policy of 30 days.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_hcp as hcp
+
+        # Note: Snapshots currently have a retention policy of 30 days. After that time, any Terraform
+        # state refresh will note that a new snapshot resource will be created.
+        example = hcp.ConsulSnapshot("example",
+            cluster_id="consul-cluster",
+            snapshot_name="my-snapshot")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_id: The ID of the HCP Consul cluster.
@@ -225,6 +238,19 @@ class ConsulSnapshot(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The Consul snapshot resource allows users to manage Consul snapshots of an HCP Consul cluster. Snapshots currently have a retention policy of 30 days.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_hcp as hcp
+
+        # Note: Snapshots currently have a retention policy of 30 days. After that time, any Terraform
+        # state refresh will note that a new snapshot resource will be created.
+        example = hcp.ConsulSnapshot("example",
+            cluster_id="consul-cluster",
+            snapshot_name="my-snapshot")
+        ```
 
         :param str resource_name: The name of the resource.
         :param ConsulSnapshotArgs args: The arguments to use to populate this resource's properties.

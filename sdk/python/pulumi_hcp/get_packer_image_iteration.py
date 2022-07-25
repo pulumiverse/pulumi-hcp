@@ -144,6 +144,16 @@ def get_packer_image_iteration(bucket_name: Optional[str] = None,
     """
     The Packer Image data source iteration gets the most recent iteration (or build) of an image, given a channel.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_hcp as hcp
+
+    alpine = hcp.get_packer_image_iteration(bucket_name="alpine",
+        channel="production")
+    ```
+
 
     :param str bucket_name: The slug of the HCP Packer Registry image bucket to pull from.
     :param str channel: The channel that points to the version of the image you want.
@@ -172,6 +182,16 @@ def get_packer_image_iteration_output(bucket_name: Optional[pulumi.Input[str]] =
                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPackerImageIterationResult]:
     """
     The Packer Image data source iteration gets the most recent iteration (or build) of an image, given a channel.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_hcp as hcp
+
+    alpine = hcp.get_packer_image_iteration(bucket_name="alpine",
+        channel="production")
+    ```
 
 
     :param str bucket_name: The slug of the HCP Packer Registry image bucket to pull from.

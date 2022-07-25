@@ -7,6 +7,30 @@ import * as utilities from "./utilities";
 /**
  * The HVN peering connection resource allows you to manage a peering connection between HVNs.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as pulumi_hcp from "@grapl/pulumi-hcp";
+ *
+ * const hvn1 = new hcp.Hvn("hvn1", {
+ *     hvnId: "hvn-1",
+ *     cloudProvider: "aws",
+ *     region: "us-west-2",
+ *     cidrBlock: "172.25.16.0/20",
+ * });
+ * const hvn2 = new hcp.Hvn("hvn2", {
+ *     hvnId: "hvn-2",
+ *     cloudProvider: "aws",
+ *     region: "us-west-2",
+ *     cidrBlock: "172.18.16.0/20",
+ * });
+ * const peer1 = new hcp.HvnPeeringConnection("peer1", {
+ *     hvn1: hvn1.selfLink,
+ *     hvn2: hvn2.selfLink,
+ * });
+ * ```
+ *
  * ## Import
  *
  * # The import ID requires the first HVN ID in the format {hvn_1_id}:{peering_id}
