@@ -147,8 +147,7 @@ class _AzurePeeringConnectionState:
         :param pulumi.Input[str] application_id: The ID of the Azure application whose credentials are used to peer the HCP HVN's underlying VNet with the customer VNet.
         :param pulumi.Input[str] azure_peering_id: The peering connection ID used by Azure.
         :param pulumi.Input[str] created_at: The time that the peering connection was created.
-        :param pulumi.Input[str] expires_at: The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or
-               `ACTIVE` state.
+        :param pulumi.Input[str] expires_at: The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
         :param pulumi.Input[str] hvn_link: The `self_link` of the HashiCorp Virtual Network (HVN).
         :param pulumi.Input[str] organization_id: The ID of the HCP organization where the peering connection is located. Always matches the HVN's organization.
         :param pulumi.Input[str] peer_resource_group_name: The resource group name of the peer VNet in Azure.
@@ -232,8 +231,7 @@ class _AzurePeeringConnectionState:
     @pulumi.getter(name="expiresAt")
     def expires_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or
-        `ACTIVE` state.
+        The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
         """
         return pulumi.get(self, "expires_at")
 
@@ -524,8 +522,7 @@ class AzurePeeringConnection(pulumi.CustomResource):
         :param pulumi.Input[str] application_id: The ID of the Azure application whose credentials are used to peer the HCP HVN's underlying VNet with the customer VNet.
         :param pulumi.Input[str] azure_peering_id: The peering connection ID used by Azure.
         :param pulumi.Input[str] created_at: The time that the peering connection was created.
-        :param pulumi.Input[str] expires_at: The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or
-               `ACTIVE` state.
+        :param pulumi.Input[str] expires_at: The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
         :param pulumi.Input[str] hvn_link: The `self_link` of the HashiCorp Virtual Network (HVN).
         :param pulumi.Input[str] organization_id: The ID of the HCP organization where the peering connection is located. Always matches the HVN's organization.
         :param pulumi.Input[str] peer_resource_group_name: The resource group name of the peer VNet in Azure.
@@ -587,8 +584,7 @@ class AzurePeeringConnection(pulumi.CustomResource):
     @pulumi.getter(name="expiresAt")
     def expires_at(self) -> pulumi.Output[str]:
         """
-        The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or
-        `ACTIVE` state.
+        The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
         """
         return pulumi.get(self, "expires_at")
 

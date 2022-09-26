@@ -91,26 +91,41 @@ class GetVaultClusterResult:
     @property
     @pulumi.getter(name="auditLogConfigs")
     def audit_log_configs(self) -> Sequence['outputs.GetVaultClusterAuditLogConfigResult']:
+        """
+        The audit logs configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+        """
         return pulumi.get(self, "audit_log_configs")
 
     @property
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> str:
+        """
+        The provider where the HCP Vault cluster is located.
+        """
         return pulumi.get(self, "cloud_provider")
 
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> str:
+        """
+        The ID of the HCP Vault cluster.
+        """
         return pulumi.get(self, "cluster_id")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        The time that the Vault cluster was created.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="hvnId")
     def hvn_id(self) -> str:
+        """
+        The ID of the HVN this HCP Vault cluster is associated to.
+        """
         return pulumi.get(self, "hvn_id")
 
     @property
@@ -124,76 +139,121 @@ class GetVaultClusterResult:
     @property
     @pulumi.getter(name="metricsConfigs")
     def metrics_configs(self) -> Sequence['outputs.GetVaultClusterMetricsConfigResult']:
+        """
+        The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+        """
         return pulumi.get(self, "metrics_configs")
 
     @property
     @pulumi.getter(name="minVaultVersion")
     def min_vault_version(self) -> str:
+        """
+        The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
+        """
         return pulumi.get(self, "min_vault_version")
 
     @property
     @pulumi.getter
     def namespace(self) -> str:
+        """
+        The name of the customer namespace this HCP Vault cluster is located in.
+        """
         return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
+        """
+        The ID of the organization this HCP Vault cluster is located in.
+        """
         return pulumi.get(self, "organization_id")
 
     @property
     @pulumi.getter(name="pathsFilters")
     def paths_filters(self) -> Sequence[str]:
+        """
+        The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to performance replication secondaries only and operates in "deny" mode only.
+        """
         return pulumi.get(self, "paths_filters")
 
     @property
     @pulumi.getter(name="primaryLink")
     def primary_link(self) -> str:
+        """
+        The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+        """
         return pulumi.get(self, "primary_link")
 
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
+        """
+        The ID of the project this HCP Vault cluster is located in.
+        """
         return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter(name="publicEndpoint")
     def public_endpoint(self) -> bool:
+        """
+        Denotes that the cluster has a public endpoint. Defaults to false.
+        """
         return pulumi.get(self, "public_endpoint")
 
     @property
     @pulumi.getter
     def region(self) -> str:
+        """
+        The region where the HCP Vault cluster is located.
+        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="selfLink")
     def self_link(self) -> str:
+        """
+        A unique URL identifying the Vault cluster.
+        """
         return pulumi.get(self, "self_link")
 
     @property
     @pulumi.getter
     def state(self) -> str:
+        """
+        The state of the Vault cluster.
+        """
         return pulumi.get(self, "state")
 
     @property
     @pulumi.getter
     def tier(self) -> str:
+        """
+        The tier that the HCP Vault cluster will be provisioned as.  Only 'development' is available at this time.
+        """
         return pulumi.get(self, "tier")
 
     @property
     @pulumi.getter(name="vaultPrivateEndpointUrl")
     def vault_private_endpoint_url(self) -> str:
+        """
+        The private URL for the Vault cluster.
+        """
         return pulumi.get(self, "vault_private_endpoint_url")
 
     @property
     @pulumi.getter(name="vaultPublicEndpointUrl")
     def vault_public_endpoint_url(self) -> str:
+        """
+        The public URL for the Vault cluster. This will be empty if `public_endpoint` is `false`.
+        """
         return pulumi.get(self, "vault_public_endpoint_url")
 
     @property
     @pulumi.getter(name="vaultVersion")
     def vault_version(self) -> str:
+        """
+        The Vault version of the cluster.
+        """
         return pulumi.get(self, "vault_version")
 
 
@@ -241,6 +301,11 @@ def get_vault_cluster(audit_log_configs: Optional[Sequence[pulumi.InputType['Get
 
     example = hcp.get_vault_cluster(cluster_id=var["cluster_id"])
     ```
+
+
+    :param Sequence[pulumi.InputType['GetVaultClusterAuditLogConfigArgs']] audit_log_configs: The audit logs configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+    :param str cluster_id: The ID of the HCP Vault cluster.
+    :param Sequence[pulumi.InputType['GetVaultClusterMetricsConfigArgs']] metrics_configs: The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
     """
     __args__ = dict()
     __args__['auditLogConfigs'] = audit_log_configs
@@ -289,5 +354,10 @@ def get_vault_cluster_output(audit_log_configs: Optional[pulumi.Input[Optional[S
 
     example = hcp.get_vault_cluster(cluster_id=var["cluster_id"])
     ```
+
+
+    :param Sequence[pulumi.InputType['GetVaultClusterAuditLogConfigArgs']] audit_log_configs: The audit logs configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+    :param str cluster_id: The ID of the HCP Vault cluster.
+    :param Sequence[pulumi.InputType['GetVaultClusterMetricsConfigArgs']] metrics_configs: The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
     """
     ...

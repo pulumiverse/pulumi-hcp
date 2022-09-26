@@ -58,6 +58,15 @@ class VaultClusterAuditLogConfig(dict):
                  grafana_user: Optional[str] = None,
                  splunk_hecendpoint: Optional[str] = None,
                  splunk_token: Optional[str] = None):
+        """
+        :param str datadog_api_key: Datadog api key for streaming audit logs
+        :param str datadog_region: Datadog region for streaming audit logs
+        :param str grafana_endpoint: Grafana endpoint for streaming audit logs
+        :param str grafana_password: Grafana password for streaming audit logs
+        :param str grafana_user: Grafana user for streaming audit logs
+        :param str splunk_hecendpoint: Splunk endpoint for streaming audit logs
+        :param str splunk_token: Splunk token for streaming audit logs
+        """
         if datadog_api_key is not None:
             pulumi.set(__self__, "datadog_api_key", datadog_api_key)
         if datadog_region is not None:
@@ -76,36 +85,57 @@ class VaultClusterAuditLogConfig(dict):
     @property
     @pulumi.getter(name="datadogApiKey")
     def datadog_api_key(self) -> Optional[str]:
+        """
+        Datadog api key for streaming audit logs
+        """
         return pulumi.get(self, "datadog_api_key")
 
     @property
     @pulumi.getter(name="datadogRegion")
     def datadog_region(self) -> Optional[str]:
+        """
+        Datadog region for streaming audit logs
+        """
         return pulumi.get(self, "datadog_region")
 
     @property
     @pulumi.getter(name="grafanaEndpoint")
     def grafana_endpoint(self) -> Optional[str]:
+        """
+        Grafana endpoint for streaming audit logs
+        """
         return pulumi.get(self, "grafana_endpoint")
 
     @property
     @pulumi.getter(name="grafanaPassword")
     def grafana_password(self) -> Optional[str]:
+        """
+        Grafana password for streaming audit logs
+        """
         return pulumi.get(self, "grafana_password")
 
     @property
     @pulumi.getter(name="grafanaUser")
     def grafana_user(self) -> Optional[str]:
+        """
+        Grafana user for streaming audit logs
+        """
         return pulumi.get(self, "grafana_user")
 
     @property
     @pulumi.getter(name="splunkHecendpoint")
     def splunk_hecendpoint(self) -> Optional[str]:
+        """
+        Splunk endpoint for streaming audit logs
+        """
         return pulumi.get(self, "splunk_hecendpoint")
 
     @property
     @pulumi.getter(name="splunkToken")
     def splunk_token(self) -> Optional[str]:
+        """
+        Splunk token for streaming audit logs
+        """
         return pulumi.get(self, "splunk_token")
 
 
@@ -148,6 +178,15 @@ class VaultClusterMetricsConfig(dict):
                  grafana_user: Optional[str] = None,
                  splunk_hecendpoint: Optional[str] = None,
                  splunk_token: Optional[str] = None):
+        """
+        :param str datadog_api_key: Datadog api key for streaming metrics
+        :param str datadog_region: Datadog region for streaming metrics
+        :param str grafana_endpoint: Grafana endpoint for streaming metrics
+        :param str grafana_password: Grafana password for streaming metrics
+        :param str grafana_user: Grafana user for streaming metrics
+        :param str splunk_hecendpoint: Splunk endpoint for streaming metrics
+        :param str splunk_token: Splunk token for streaming metrics
+        """
         if datadog_api_key is not None:
             pulumi.set(__self__, "datadog_api_key", datadog_api_key)
         if datadog_region is not None:
@@ -166,36 +205,57 @@ class VaultClusterMetricsConfig(dict):
     @property
     @pulumi.getter(name="datadogApiKey")
     def datadog_api_key(self) -> Optional[str]:
+        """
+        Datadog api key for streaming metrics
+        """
         return pulumi.get(self, "datadog_api_key")
 
     @property
     @pulumi.getter(name="datadogRegion")
     def datadog_region(self) -> Optional[str]:
+        """
+        Datadog region for streaming metrics
+        """
         return pulumi.get(self, "datadog_region")
 
     @property
     @pulumi.getter(name="grafanaEndpoint")
     def grafana_endpoint(self) -> Optional[str]:
+        """
+        Grafana endpoint for streaming metrics
+        """
         return pulumi.get(self, "grafana_endpoint")
 
     @property
     @pulumi.getter(name="grafanaPassword")
     def grafana_password(self) -> Optional[str]:
+        """
+        Grafana password for streaming metrics
+        """
         return pulumi.get(self, "grafana_password")
 
     @property
     @pulumi.getter(name="grafanaUser")
     def grafana_user(self) -> Optional[str]:
+        """
+        Grafana user for streaming metrics
+        """
         return pulumi.get(self, "grafana_user")
 
     @property
     @pulumi.getter(name="splunkHecendpoint")
     def splunk_hecendpoint(self) -> Optional[str]:
+        """
+        Splunk endpoint for streaming metrics
+        """
         return pulumi.get(self, "splunk_hecendpoint")
 
     @property
     @pulumi.getter(name="splunkToken")
     def splunk_token(self) -> Optional[str]:
+        """
+        Splunk token for streaming metrics
+        """
         return pulumi.get(self, "splunk_token")
 
 
@@ -351,6 +411,12 @@ class GetVaultClusterAuditLogConfigResult(dict):
                  grafana_endpoint: str,
                  grafana_user: str,
                  splunk_hecendpoint: str):
+        """
+        :param str datadog_region: Datadog region for streaming audit logs
+        :param str grafana_endpoint: Grafana endpoint for streaming audit logs
+        :param str grafana_user: Grafana user for streaming audit logs
+        :param str splunk_hecendpoint: Splunk endpoint for streaming audit logs
+        """
         pulumi.set(__self__, "datadog_region", datadog_region)
         pulumi.set(__self__, "grafana_endpoint", grafana_endpoint)
         pulumi.set(__self__, "grafana_user", grafana_user)
@@ -359,21 +425,33 @@ class GetVaultClusterAuditLogConfigResult(dict):
     @property
     @pulumi.getter(name="datadogRegion")
     def datadog_region(self) -> str:
+        """
+        Datadog region for streaming audit logs
+        """
         return pulumi.get(self, "datadog_region")
 
     @property
     @pulumi.getter(name="grafanaEndpoint")
     def grafana_endpoint(self) -> str:
+        """
+        Grafana endpoint for streaming audit logs
+        """
         return pulumi.get(self, "grafana_endpoint")
 
     @property
     @pulumi.getter(name="grafanaUser")
     def grafana_user(self) -> str:
+        """
+        Grafana user for streaming audit logs
+        """
         return pulumi.get(self, "grafana_user")
 
     @property
     @pulumi.getter(name="splunkHecendpoint")
     def splunk_hecendpoint(self) -> str:
+        """
+        Splunk endpoint for streaming audit logs
+        """
         return pulumi.get(self, "splunk_hecendpoint")
 
 
@@ -384,6 +462,12 @@ class GetVaultClusterMetricsConfigResult(dict):
                  grafana_endpoint: str,
                  grafana_user: str,
                  splunk_hecendpoint: str):
+        """
+        :param str datadog_region: Datadog region for streaming metrics
+        :param str grafana_endpoint: Grafana endpoint for streaming metrics
+        :param str grafana_user: Grafana user for streaming metrics
+        :param str splunk_hecendpoint: Splunk endpoint for streaming metrics
+        """
         pulumi.set(__self__, "datadog_region", datadog_region)
         pulumi.set(__self__, "grafana_endpoint", grafana_endpoint)
         pulumi.set(__self__, "grafana_user", grafana_user)
@@ -392,21 +476,33 @@ class GetVaultClusterMetricsConfigResult(dict):
     @property
     @pulumi.getter(name="datadogRegion")
     def datadog_region(self) -> str:
+        """
+        Datadog region for streaming metrics
+        """
         return pulumi.get(self, "datadog_region")
 
     @property
     @pulumi.getter(name="grafanaEndpoint")
     def grafana_endpoint(self) -> str:
+        """
+        Grafana endpoint for streaming metrics
+        """
         return pulumi.get(self, "grafana_endpoint")
 
     @property
     @pulumi.getter(name="grafanaUser")
     def grafana_user(self) -> str:
+        """
+        Grafana user for streaming metrics
+        """
         return pulumi.get(self, "grafana_user")
 
     @property
     @pulumi.getter(name="splunkHecendpoint")
     def splunk_hecendpoint(self) -> str:
+        """
+        Splunk endpoint for streaming metrics
+        """
         return pulumi.get(self, "splunk_hecendpoint")
 
 

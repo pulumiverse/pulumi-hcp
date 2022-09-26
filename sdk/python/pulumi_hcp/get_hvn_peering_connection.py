@@ -56,21 +56,33 @@ class GetHvnPeeringConnectionResult:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        The time that the peering connection was created.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="expiresAt")
     def expires_at(self) -> str:
+        """
+        The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
+        """
         return pulumi.get(self, "expires_at")
 
     @property
     @pulumi.getter
     def hvn1(self) -> str:
+        """
+        The unique URL of one of the HVNs being peered.
+        """
         return pulumi.get(self, "hvn1")
 
     @property
     @pulumi.getter
     def hvn2(self) -> str:
+        """
+        The unique URL of one of the HVNs being peered.
+        """
         return pulumi.get(self, "hvn2")
 
     @property
@@ -84,26 +96,41 @@ class GetHvnPeeringConnectionResult:
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
+        """
+        The ID of the HCP organization where the peering connection is located. Always matches the HVNs' organization.
+        """
         return pulumi.get(self, "organization_id")
 
     @property
     @pulumi.getter(name="peeringId")
     def peering_id(self) -> str:
+        """
+        The ID of the peering connection.
+        """
         return pulumi.get(self, "peering_id")
 
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
+        """
+        The ID of the HCP project where the peering connection is located. Always matches the HVNs' project.
+        """
         return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter(name="selfLink")
     def self_link(self) -> str:
+        """
+        A unique URL identifying the peering connection
+        """
         return pulumi.get(self, "self_link")
 
     @property
     @pulumi.getter
     def state(self) -> str:
+        """
+        The state of the HVN peering connection.
+        """
         return pulumi.get(self, "state")
 
 
@@ -142,6 +169,11 @@ def get_hvn_peering_connection(hvn1: Optional[str] = None,
         hvn1=var["hvn_1"],
         hvn2=var["hvn_2"])
     ```
+
+
+    :param str hvn1: The unique URL of one of the HVNs being peered.
+    :param str hvn2: The unique URL of one of the HVNs being peered.
+    :param str peering_id: The ID of the peering connection.
     """
     __args__ = dict()
     __args__['hvn1'] = hvn1
@@ -181,5 +213,10 @@ def get_hvn_peering_connection_output(hvn1: Optional[pulumi.Input[str]] = None,
         hvn1=var["hvn_1"],
         hvn2=var["hvn_2"])
     ```
+
+
+    :param str hvn1: The unique URL of one of the HVNs being peered.
+    :param str hvn2: The unique URL of one of the HVNs being peered.
+    :param str peering_id: The ID of the peering connection.
     """
     ...

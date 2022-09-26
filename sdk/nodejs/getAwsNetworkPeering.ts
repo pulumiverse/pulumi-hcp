@@ -37,7 +37,13 @@ export function getAwsNetworkPeering(args: GetAwsNetworkPeeringArgs, opts?: pulu
  * A collection of arguments for invoking getAwsNetworkPeering.
  */
 export interface GetAwsNetworkPeeringArgs {
+    /**
+     * The ID of the HashiCorp Virtual Network (HVN).
+     */
     hvnId: string;
+    /**
+     * The ID of the network peering.
+     */
     peeringId: string;
     waitForActiveState?: boolean;
 }
@@ -46,21 +52,57 @@ export interface GetAwsNetworkPeeringArgs {
  * A collection of values returned by getAwsNetworkPeering.
  */
 export interface GetAwsNetworkPeeringResult {
+    /**
+     * The time that the network peering was created.
+     */
     readonly createdAt: string;
+    /**
+     * The time after which the network peering will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
+     */
     readonly expiresAt: string;
+    /**
+     * The ID of the HashiCorp Virtual Network (HVN).
+     */
     readonly hvnId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The ID of the HCP organization where the network peering is located. Always matches the HVN's organization.
+     */
     readonly organizationId: string;
+    /**
+     * The account ID of the peer VPC in AWS.
+     */
     readonly peerAccountId: string;
+    /**
+     * The ID of the peer VPC in AWS.
+     */
     readonly peerVpcId: string;
+    /**
+     * The region of the peer VPC in AWS.
+     */
     readonly peerVpcRegion: string;
+    /**
+     * The ID of the network peering.
+     */
     readonly peeringId: string;
+    /**
+     * The ID of the HCP project where the network peering is located. Always matches the HVN's project.
+     */
     readonly projectId: string;
+    /**
+     * The peering connection ID used by AWS.
+     */
     readonly providerPeeringId: string;
+    /**
+     * A unique URL identifying the network peering.
+     */
     readonly selfLink: string;
+    /**
+     * The state of the network peering.
+     */
     readonly state: string;
     readonly waitForActiveState?: boolean;
 }
@@ -73,7 +115,13 @@ export function getAwsNetworkPeeringOutput(args: GetAwsNetworkPeeringOutputArgs,
  * A collection of arguments for invoking getAwsNetworkPeering.
  */
 export interface GetAwsNetworkPeeringOutputArgs {
+    /**
+     * The ID of the HashiCorp Virtual Network (HVN).
+     */
     hvnId: pulumi.Input<string>;
+    /**
+     * The ID of the network peering.
+     */
     peeringId: pulumi.Input<string>;
     waitForActiveState?: pulumi.Input<boolean>;
 }

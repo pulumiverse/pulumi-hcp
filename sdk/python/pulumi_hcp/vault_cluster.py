@@ -29,20 +29,13 @@ class VaultClusterArgs:
         The set of arguments for constructing a VaultCluster resource.
         :param pulumi.Input[str] cluster_id: The ID of the HCP Vault cluster.
         :param pulumi.Input[str] hvn_id: The ID of the HVN this HCP Vault cluster is associated to.
-        :param pulumi.Input['VaultClusterAuditLogConfigArgs'] audit_log_config: The audit logs configuration for export.
-               (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
-        :param pulumi.Input['VaultClusterMetricsConfigArgs'] metrics_config: The metrics configuration for export.
-               (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
-        :param pulumi.Input[str] min_vault_version: The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
-               currently recommended by HCP.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] paths_filters: The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to
-               performance replication secondaries only and operates in "deny" mode only.
-        :param pulumi.Input[str] primary_link: The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this
-               HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+        :param pulumi.Input['VaultClusterAuditLogConfigArgs'] audit_log_config: The audit logs configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+        :param pulumi.Input['VaultClusterMetricsConfigArgs'] metrics_config: The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+        :param pulumi.Input[str] min_vault_version: The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] paths_filters: The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to performance replication secondaries only and operates in "deny" mode only.
+        :param pulumi.Input[str] primary_link: The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
         :param pulumi.Input[bool] public_endpoint: Denotes that the cluster has a public endpoint. Defaults to false.
-        :param pulumi.Input[str] tier: Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,
-               `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing
-               information](https://cloud.hashicorp.com/pricing/vault).
+        :param pulumi.Input[str] tier: Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`, `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "hvn_id", hvn_id)
@@ -89,8 +82,7 @@ class VaultClusterArgs:
     @pulumi.getter(name="auditLogConfig")
     def audit_log_config(self) -> Optional[pulumi.Input['VaultClusterAuditLogConfigArgs']]:
         """
-        The audit logs configuration for export.
-        (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+        The audit logs configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
         """
         return pulumi.get(self, "audit_log_config")
 
@@ -102,8 +94,7 @@ class VaultClusterArgs:
     @pulumi.getter(name="metricsConfig")
     def metrics_config(self) -> Optional[pulumi.Input['VaultClusterMetricsConfigArgs']]:
         """
-        The metrics configuration for export.
-        (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+        The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
         """
         return pulumi.get(self, "metrics_config")
 
@@ -115,8 +106,7 @@ class VaultClusterArgs:
     @pulumi.getter(name="minVaultVersion")
     def min_vault_version(self) -> Optional[pulumi.Input[str]]:
         """
-        The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
-        currently recommended by HCP.
+        The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
         """
         return pulumi.get(self, "min_vault_version")
 
@@ -128,8 +118,7 @@ class VaultClusterArgs:
     @pulumi.getter(name="pathsFilters")
     def paths_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to
-        performance replication secondaries only and operates in "deny" mode only.
+        The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to performance replication secondaries only and operates in "deny" mode only.
         """
         return pulumi.get(self, "paths_filters")
 
@@ -141,8 +130,7 @@ class VaultClusterArgs:
     @pulumi.getter(name="primaryLink")
     def primary_link(self) -> Optional[pulumi.Input[str]]:
         """
-        The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this
-        HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+        The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
         """
         return pulumi.get(self, "primary_link")
 
@@ -166,9 +154,7 @@ class VaultClusterArgs:
     @pulumi.getter
     def tier(self) -> Optional[pulumi.Input[str]]:
         """
-        Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,
-        `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing
-        information](https://cloud.hashicorp.com/pricing/vault).
+        Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`, `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
         """
         return pulumi.get(self, "tier")
 
@@ -202,30 +188,23 @@ class _VaultClusterState:
                  vault_version: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering VaultCluster resources.
-        :param pulumi.Input['VaultClusterAuditLogConfigArgs'] audit_log_config: The audit logs configuration for export.
-               (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+        :param pulumi.Input['VaultClusterAuditLogConfigArgs'] audit_log_config: The audit logs configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
         :param pulumi.Input[str] cloud_provider: The provider where the HCP Vault cluster is located.
         :param pulumi.Input[str] cluster_id: The ID of the HCP Vault cluster.
         :param pulumi.Input[str] created_at: The time that the Vault cluster was created.
         :param pulumi.Input[str] hvn_id: The ID of the HVN this HCP Vault cluster is associated to.
-        :param pulumi.Input['VaultClusterMetricsConfigArgs'] metrics_config: The metrics configuration for export.
-               (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
-        :param pulumi.Input[str] min_vault_version: The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
-               currently recommended by HCP.
+        :param pulumi.Input['VaultClusterMetricsConfigArgs'] metrics_config: The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+        :param pulumi.Input[str] min_vault_version: The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
         :param pulumi.Input[str] namespace: The name of the customer namespace this HCP Vault cluster is located in.
         :param pulumi.Input[str] organization_id: The ID of the organization this HCP Vault cluster is located in.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] paths_filters: The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to
-               performance replication secondaries only and operates in "deny" mode only.
-        :param pulumi.Input[str] primary_link: The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this
-               HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] paths_filters: The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to performance replication secondaries only and operates in "deny" mode only.
+        :param pulumi.Input[str] primary_link: The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
         :param pulumi.Input[str] project_id: The ID of the project this HCP Vault cluster is located in.
         :param pulumi.Input[bool] public_endpoint: Denotes that the cluster has a public endpoint. Defaults to false.
         :param pulumi.Input[str] region: The region where the HCP Vault cluster is located.
         :param pulumi.Input[str] self_link: A unique URL identifying the Vault cluster.
         :param pulumi.Input[str] state: The state of the Vault cluster.
-        :param pulumi.Input[str] tier: Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,
-               `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing
-               information](https://cloud.hashicorp.com/pricing/vault).
+        :param pulumi.Input[str] tier: Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`, `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
         :param pulumi.Input[str] vault_private_endpoint_url: The private URL for the Vault cluster.
         :param pulumi.Input[str] vault_public_endpoint_url: The public URL for the Vault cluster. This will be empty if `public_endpoint` is `false`.
         :param pulumi.Input[str] vault_version: The Vault version of the cluster.
@@ -275,8 +254,7 @@ class _VaultClusterState:
     @pulumi.getter(name="auditLogConfig")
     def audit_log_config(self) -> Optional[pulumi.Input['VaultClusterAuditLogConfigArgs']]:
         """
-        The audit logs configuration for export.
-        (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+        The audit logs configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
         """
         return pulumi.get(self, "audit_log_config")
 
@@ -336,8 +314,7 @@ class _VaultClusterState:
     @pulumi.getter(name="metricsConfig")
     def metrics_config(self) -> Optional[pulumi.Input['VaultClusterMetricsConfigArgs']]:
         """
-        The metrics configuration for export.
-        (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+        The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
         """
         return pulumi.get(self, "metrics_config")
 
@@ -349,8 +326,7 @@ class _VaultClusterState:
     @pulumi.getter(name="minVaultVersion")
     def min_vault_version(self) -> Optional[pulumi.Input[str]]:
         """
-        The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
-        currently recommended by HCP.
+        The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
         """
         return pulumi.get(self, "min_vault_version")
 
@@ -386,8 +362,7 @@ class _VaultClusterState:
     @pulumi.getter(name="pathsFilters")
     def paths_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to
-        performance replication secondaries only and operates in "deny" mode only.
+        The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to performance replication secondaries only and operates in "deny" mode only.
         """
         return pulumi.get(self, "paths_filters")
 
@@ -399,8 +374,7 @@ class _VaultClusterState:
     @pulumi.getter(name="primaryLink")
     def primary_link(self) -> Optional[pulumi.Input[str]]:
         """
-        The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this
-        HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+        The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
         """
         return pulumi.get(self, "primary_link")
 
@@ -472,9 +446,7 @@ class _VaultClusterState:
     @pulumi.getter
     def tier(self) -> Optional[pulumi.Input[str]]:
         """
-        Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,
-        `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing
-        information](https://cloud.hashicorp.com/pricing/vault).
+        Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`, `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
         """
         return pulumi.get(self, "tier")
 
@@ -545,22 +517,15 @@ class VaultCluster(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['VaultClusterAuditLogConfigArgs']] audit_log_config: The audit logs configuration for export.
-               (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+        :param pulumi.Input[pulumi.InputType['VaultClusterAuditLogConfigArgs']] audit_log_config: The audit logs configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
         :param pulumi.Input[str] cluster_id: The ID of the HCP Vault cluster.
         :param pulumi.Input[str] hvn_id: The ID of the HVN this HCP Vault cluster is associated to.
-        :param pulumi.Input[pulumi.InputType['VaultClusterMetricsConfigArgs']] metrics_config: The metrics configuration for export.
-               (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
-        :param pulumi.Input[str] min_vault_version: The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
-               currently recommended by HCP.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] paths_filters: The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to
-               performance replication secondaries only and operates in "deny" mode only.
-        :param pulumi.Input[str] primary_link: The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this
-               HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+        :param pulumi.Input[pulumi.InputType['VaultClusterMetricsConfigArgs']] metrics_config: The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+        :param pulumi.Input[str] min_vault_version: The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] paths_filters: The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to performance replication secondaries only and operates in "deny" mode only.
+        :param pulumi.Input[str] primary_link: The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
         :param pulumi.Input[bool] public_endpoint: Denotes that the cluster has a public endpoint. Defaults to false.
-        :param pulumi.Input[str] tier: Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,
-               `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing
-               information](https://cloud.hashicorp.com/pricing/vault).
+        :param pulumi.Input[str] tier: Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`, `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
         """
         ...
     @overload
@@ -671,30 +636,23 @@ class VaultCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['VaultClusterAuditLogConfigArgs']] audit_log_config: The audit logs configuration for export.
-               (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+        :param pulumi.Input[pulumi.InputType['VaultClusterAuditLogConfigArgs']] audit_log_config: The audit logs configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
         :param pulumi.Input[str] cloud_provider: The provider where the HCP Vault cluster is located.
         :param pulumi.Input[str] cluster_id: The ID of the HCP Vault cluster.
         :param pulumi.Input[str] created_at: The time that the Vault cluster was created.
         :param pulumi.Input[str] hvn_id: The ID of the HVN this HCP Vault cluster is associated to.
-        :param pulumi.Input[pulumi.InputType['VaultClusterMetricsConfigArgs']] metrics_config: The metrics configuration for export.
-               (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
-        :param pulumi.Input[str] min_vault_version: The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
-               currently recommended by HCP.
+        :param pulumi.Input[pulumi.InputType['VaultClusterMetricsConfigArgs']] metrics_config: The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+        :param pulumi.Input[str] min_vault_version: The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
         :param pulumi.Input[str] namespace: The name of the customer namespace this HCP Vault cluster is located in.
         :param pulumi.Input[str] organization_id: The ID of the organization this HCP Vault cluster is located in.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] paths_filters: The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to
-               performance replication secondaries only and operates in "deny" mode only.
-        :param pulumi.Input[str] primary_link: The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this
-               HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] paths_filters: The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to performance replication secondaries only and operates in "deny" mode only.
+        :param pulumi.Input[str] primary_link: The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
         :param pulumi.Input[str] project_id: The ID of the project this HCP Vault cluster is located in.
         :param pulumi.Input[bool] public_endpoint: Denotes that the cluster has a public endpoint. Defaults to false.
         :param pulumi.Input[str] region: The region where the HCP Vault cluster is located.
         :param pulumi.Input[str] self_link: A unique URL identifying the Vault cluster.
         :param pulumi.Input[str] state: The state of the Vault cluster.
-        :param pulumi.Input[str] tier: Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,
-               `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing
-               information](https://cloud.hashicorp.com/pricing/vault).
+        :param pulumi.Input[str] tier: Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`, `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
         :param pulumi.Input[str] vault_private_endpoint_url: The private URL for the Vault cluster.
         :param pulumi.Input[str] vault_public_endpoint_url: The public URL for the Vault cluster. This will be empty if `public_endpoint` is `false`.
         :param pulumi.Input[str] vault_version: The Vault version of the cluster.
@@ -729,8 +687,7 @@ class VaultCluster(pulumi.CustomResource):
     @pulumi.getter(name="auditLogConfig")
     def audit_log_config(self) -> pulumi.Output[Optional['outputs.VaultClusterAuditLogConfig']]:
         """
-        The audit logs configuration for export.
-        (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+        The audit logs configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
         """
         return pulumi.get(self, "audit_log_config")
 
@@ -770,8 +727,7 @@ class VaultCluster(pulumi.CustomResource):
     @pulumi.getter(name="metricsConfig")
     def metrics_config(self) -> pulumi.Output[Optional['outputs.VaultClusterMetricsConfig']]:
         """
-        The metrics configuration for export.
-        (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+        The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
         """
         return pulumi.get(self, "metrics_config")
 
@@ -779,8 +735,7 @@ class VaultCluster(pulumi.CustomResource):
     @pulumi.getter(name="minVaultVersion")
     def min_vault_version(self) -> pulumi.Output[Optional[str]]:
         """
-        The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
-        currently recommended by HCP.
+        The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
         """
         return pulumi.get(self, "min_vault_version")
 
@@ -804,8 +759,7 @@ class VaultCluster(pulumi.CustomResource):
     @pulumi.getter(name="pathsFilters")
     def paths_filters(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to
-        performance replication secondaries only and operates in "deny" mode only.
+        The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to performance replication secondaries only and operates in "deny" mode only.
         """
         return pulumi.get(self, "paths_filters")
 
@@ -813,8 +767,7 @@ class VaultCluster(pulumi.CustomResource):
     @pulumi.getter(name="primaryLink")
     def primary_link(self) -> pulumi.Output[Optional[str]]:
         """
-        The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this
-        HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+        The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
         """
         return pulumi.get(self, "primary_link")
 
@@ -862,9 +815,7 @@ class VaultCluster(pulumi.CustomResource):
     @pulumi.getter
     def tier(self) -> pulumi.Output[str]:
         """
-        Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,
-        `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing
-        information](https://cloud.hashicorp.com/pricing/vault).
+        Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`, `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
         """
         return pulumi.get(self, "tier")
 

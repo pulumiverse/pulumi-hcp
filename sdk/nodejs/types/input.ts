@@ -2,52 +2,143 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
 export interface GetVaultClusterAuditLogConfig {
+    /**
+     * Datadog region for streaming audit logs
+     */
     datadogRegion?: string;
+    /**
+     * Grafana endpoint for streaming audit logs
+     */
     grafanaEndpoint?: string;
+    /**
+     * Grafana user for streaming audit logs
+     */
     grafanaUser?: string;
+    /**
+     * Splunk endpoint for streaming audit logs
+     */
     splunkHecendpoint?: string;
 }
 
 export interface GetVaultClusterAuditLogConfigArgs {
+    /**
+     * Datadog region for streaming audit logs
+     */
     datadogRegion?: pulumi.Input<string>;
+    /**
+     * Grafana endpoint for streaming audit logs
+     */
     grafanaEndpoint?: pulumi.Input<string>;
+    /**
+     * Grafana user for streaming audit logs
+     */
     grafanaUser?: pulumi.Input<string>;
+    /**
+     * Splunk endpoint for streaming audit logs
+     */
     splunkHecendpoint?: pulumi.Input<string>;
 }
 
 export interface GetVaultClusterMetricsConfig {
+    /**
+     * Datadog region for streaming metrics
+     */
     datadogRegion?: string;
+    /**
+     * Grafana endpoint for streaming metrics
+     */
     grafanaEndpoint?: string;
+    /**
+     * Grafana user for streaming metrics
+     */
     grafanaUser?: string;
+    /**
+     * Splunk endpoint for streaming metrics
+     */
     splunkHecendpoint?: string;
 }
 
 export interface GetVaultClusterMetricsConfigArgs {
+    /**
+     * Datadog region for streaming metrics
+     */
     datadogRegion?: pulumi.Input<string>;
+    /**
+     * Grafana endpoint for streaming metrics
+     */
     grafanaEndpoint?: pulumi.Input<string>;
+    /**
+     * Grafana user for streaming metrics
+     */
     grafanaUser?: pulumi.Input<string>;
+    /**
+     * Splunk endpoint for streaming metrics
+     */
     splunkHecendpoint?: pulumi.Input<string>;
 }
 
 export interface VaultClusterAuditLogConfig {
+    /**
+     * Datadog api key for streaming audit logs
+     */
     datadogApiKey?: pulumi.Input<string>;
+    /**
+     * Datadog region for streaming audit logs
+     */
     datadogRegion?: pulumi.Input<string>;
+    /**
+     * Grafana endpoint for streaming audit logs
+     */
     grafanaEndpoint?: pulumi.Input<string>;
+    /**
+     * Grafana password for streaming audit logs
+     */
     grafanaPassword?: pulumi.Input<string>;
+    /**
+     * Grafana user for streaming audit logs
+     */
     grafanaUser?: pulumi.Input<string>;
+    /**
+     * Splunk endpoint for streaming audit logs
+     */
     splunkHecendpoint?: pulumi.Input<string>;
+    /**
+     * Splunk token for streaming audit logs
+     */
     splunkToken?: pulumi.Input<string>;
 }
 
 export interface VaultClusterMetricsConfig {
+    /**
+     * Datadog api key for streaming metrics
+     */
     datadogApiKey?: pulumi.Input<string>;
+    /**
+     * Datadog region for streaming metrics
+     */
     datadogRegion?: pulumi.Input<string>;
+    /**
+     * Grafana endpoint for streaming metrics
+     */
     grafanaEndpoint?: pulumi.Input<string>;
+    /**
+     * Grafana password for streaming metrics
+     */
     grafanaPassword?: pulumi.Input<string>;
+    /**
+     * Grafana user for streaming metrics
+     */
     grafanaUser?: pulumi.Input<string>;
+    /**
+     * Splunk endpoint for streaming metrics
+     */
     splunkHecendpoint?: pulumi.Input<string>;
+    /**
+     * Splunk token for streaming metrics
+     */
     splunkToken?: pulumi.Input<string>;
 }

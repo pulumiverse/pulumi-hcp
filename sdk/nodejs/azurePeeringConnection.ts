@@ -58,12 +58,11 @@ export class AzurePeeringConnection extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or
-     * `ACTIVE` state.
+     * The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
      */
     public /*out*/ readonly expiresAt!: pulumi.Output<string>;
     /**
-     * The `self_link` of the HashiCorp Virtual Network (HVN).
+     * The `selfLink` of the HashiCorp Virtual Network (HVN).
      */
     public readonly hvnLink!: pulumi.Output<string>;
     /**
@@ -196,12 +195,11 @@ export interface AzurePeeringConnectionState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or
-     * `ACTIVE` state.
+     * The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
      */
     expiresAt?: pulumi.Input<string>;
     /**
-     * The `self_link` of the HashiCorp Virtual Network (HVN).
+     * The `selfLink` of the HashiCorp Virtual Network (HVN).
      */
     hvnLink?: pulumi.Input<string>;
     /**
@@ -251,7 +249,7 @@ export interface AzurePeeringConnectionState {
  */
 export interface AzurePeeringConnectionArgs {
     /**
-     * The `self_link` of the HashiCorp Virtual Network (HVN).
+     * The `selfLink` of the HashiCorp Virtual Network (HVN).
      */
     hvnLink: pulumi.Input<string>;
     /**

@@ -84,7 +84,7 @@ type HvnRoute struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The destination CIDR of the HVN route.
 	DestinationCidr pulumi.StringOutput `pulumi:"destinationCidr"`
-	// The `self_link` of the HashiCorp Virtual Network (HVN).
+	// The `selfLink` of the HashiCorp Virtual Network (HVN).
 	HvnLink pulumi.StringOutput `pulumi:"hvnLink"`
 	// The ID of the HVN route.
 	HvnRouteId pulumi.StringOutput `pulumi:"hvnRouteId"`
@@ -92,8 +92,7 @@ type HvnRoute struct {
 	SelfLink pulumi.StringOutput `pulumi:"selfLink"`
 	// The state of the HVN route.
 	State pulumi.StringOutput `pulumi:"state"`
-	// A unique URL identifying the target of the HVN route. Examples of the target:
-	// [`aws_network_peering`](aws_network_peering.md), [`aws_transit_gateway_attachment`](aws_transit_gateway_attachment.md)
+	// A unique URL identifying the target of the HVN route. Examples of the target: `awsNetworkPeering`, `awsTransitGatewayAttachment`
 	TargetLink pulumi.StringOutput `pulumi:"targetLink"`
 }
 
@@ -143,7 +142,7 @@ type hvnRouteState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// The destination CIDR of the HVN route.
 	DestinationCidr *string `pulumi:"destinationCidr"`
-	// The `self_link` of the HashiCorp Virtual Network (HVN).
+	// The `selfLink` of the HashiCorp Virtual Network (HVN).
 	HvnLink *string `pulumi:"hvnLink"`
 	// The ID of the HVN route.
 	HvnRouteId *string `pulumi:"hvnRouteId"`
@@ -151,8 +150,7 @@ type hvnRouteState struct {
 	SelfLink *string `pulumi:"selfLink"`
 	// The state of the HVN route.
 	State *string `pulumi:"state"`
-	// A unique URL identifying the target of the HVN route. Examples of the target:
-	// [`aws_network_peering`](aws_network_peering.md), [`aws_transit_gateway_attachment`](aws_transit_gateway_attachment.md)
+	// A unique URL identifying the target of the HVN route. Examples of the target: `awsNetworkPeering`, `awsTransitGatewayAttachment`
 	TargetLink *string `pulumi:"targetLink"`
 }
 
@@ -161,7 +159,7 @@ type HvnRouteState struct {
 	CreatedAt pulumi.StringPtrInput
 	// The destination CIDR of the HVN route.
 	DestinationCidr pulumi.StringPtrInput
-	// The `self_link` of the HashiCorp Virtual Network (HVN).
+	// The `selfLink` of the HashiCorp Virtual Network (HVN).
 	HvnLink pulumi.StringPtrInput
 	// The ID of the HVN route.
 	HvnRouteId pulumi.StringPtrInput
@@ -169,8 +167,7 @@ type HvnRouteState struct {
 	SelfLink pulumi.StringPtrInput
 	// The state of the HVN route.
 	State pulumi.StringPtrInput
-	// A unique URL identifying the target of the HVN route. Examples of the target:
-	// [`aws_network_peering`](aws_network_peering.md), [`aws_transit_gateway_attachment`](aws_transit_gateway_attachment.md)
+	// A unique URL identifying the target of the HVN route. Examples of the target: `awsNetworkPeering`, `awsTransitGatewayAttachment`
 	TargetLink pulumi.StringPtrInput
 }
 
@@ -181,12 +178,11 @@ func (HvnRouteState) ElementType() reflect.Type {
 type hvnRouteArgs struct {
 	// The destination CIDR of the HVN route.
 	DestinationCidr string `pulumi:"destinationCidr"`
-	// The `self_link` of the HashiCorp Virtual Network (HVN).
+	// The `selfLink` of the HashiCorp Virtual Network (HVN).
 	HvnLink string `pulumi:"hvnLink"`
 	// The ID of the HVN route.
 	HvnRouteId string `pulumi:"hvnRouteId"`
-	// A unique URL identifying the target of the HVN route. Examples of the target:
-	// [`aws_network_peering`](aws_network_peering.md), [`aws_transit_gateway_attachment`](aws_transit_gateway_attachment.md)
+	// A unique URL identifying the target of the HVN route. Examples of the target: `awsNetworkPeering`, `awsTransitGatewayAttachment`
 	TargetLink string `pulumi:"targetLink"`
 }
 
@@ -194,12 +190,11 @@ type hvnRouteArgs struct {
 type HvnRouteArgs struct {
 	// The destination CIDR of the HVN route.
 	DestinationCidr pulumi.StringInput
-	// The `self_link` of the HashiCorp Virtual Network (HVN).
+	// The `selfLink` of the HashiCorp Virtual Network (HVN).
 	HvnLink pulumi.StringInput
 	// The ID of the HVN route.
 	HvnRouteId pulumi.StringInput
-	// A unique URL identifying the target of the HVN route. Examples of the target:
-	// [`aws_network_peering`](aws_network_peering.md), [`aws_transit_gateway_attachment`](aws_transit_gateway_attachment.md)
+	// A unique URL identifying the target of the HVN route. Examples of the target: `awsNetworkPeering`, `awsTransitGatewayAttachment`
 	TargetLink pulumi.StringInput
 }
 
@@ -300,7 +295,7 @@ func (o HvnRouteOutput) DestinationCidr() pulumi.StringOutput {
 	return o.ApplyT(func(v *HvnRoute) pulumi.StringOutput { return v.DestinationCidr }).(pulumi.StringOutput)
 }
 
-// The `self_link` of the HashiCorp Virtual Network (HVN).
+// The `selfLink` of the HashiCorp Virtual Network (HVN).
 func (o HvnRouteOutput) HvnLink() pulumi.StringOutput {
 	return o.ApplyT(func(v *HvnRoute) pulumi.StringOutput { return v.HvnLink }).(pulumi.StringOutput)
 }
@@ -320,8 +315,7 @@ func (o HvnRouteOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *HvnRoute) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }
 
-// A unique URL identifying the target of the HVN route. Examples of the target:
-// [`aws_network_peering`](aws_network_peering.md), [`aws_transit_gateway_attachment`](aws_transit_gateway_attachment.md)
+// A unique URL identifying the target of the HVN route. Examples of the target: `awsNetworkPeering`, `awsTransitGatewayAttachment`
 func (o HvnRouteOutput) TargetLink() pulumi.StringOutput {
 	return o.ApplyT(func(v *HvnRoute) pulumi.StringOutput { return v.TargetLink }).(pulumi.StringOutput)
 }

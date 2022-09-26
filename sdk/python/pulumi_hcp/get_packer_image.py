@@ -71,36 +71,57 @@ class GetPackerImageResult:
     @property
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> str:
+        """
+        The slug of the HCP Packer Registry image bucket to pull from.
+        """
         return pulumi.get(self, "bucket_name")
 
     @property
     @pulumi.getter(name="buildId")
     def build_id(self) -> str:
+        """
+        HCP ID of this build.
+        """
         return pulumi.get(self, "build_id")
 
     @property
     @pulumi.getter
     def channel(self) -> Optional[str]:
+        """
+        The channel that points to the version of the image being retrieved. Either this or `iteration_id` must be specified. Note: will incur a billable request
+        """
         return pulumi.get(self, "channel")
 
     @property
     @pulumi.getter(name="cloudImageId")
     def cloud_image_id(self) -> str:
+        """
+        Cloud Image ID or URL string identifying this image for the builder that built it.
+        """
         return pulumi.get(self, "cloud_image_id")
 
     @property
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> str:
+        """
+        Name of the cloud provider this image is stored-in.
+        """
         return pulumi.get(self, "cloud_provider")
 
     @property
     @pulumi.getter(name="componentType")
     def component_type(self) -> str:
+        """
+        Name of the builder that built this image. Ex: `amazon-ebs.example`.
+        """
         return pulumi.get(self, "component_type")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Creation time of this build.
+        """
         return pulumi.get(self, "created_at")
 
     @property
@@ -114,36 +135,57 @@ class GetPackerImageResult:
     @property
     @pulumi.getter(name="iterationId")
     def iteration_id(self) -> str:
+        """
+        The iteration from which to get the image. Either this or `channel` must be specified.
+        """
         return pulumi.get(self, "iteration_id")
 
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, Any]:
+        """
+        Labels associated with this build.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
+        """
+        The ID of the organization this HCP Packer registry is located in.
+        """
         return pulumi.get(self, "organization_id")
 
     @property
     @pulumi.getter(name="packerRunUuid")
     def packer_run_uuid(self) -> str:
+        """
+        UUID of this build.
+        """
         return pulumi.get(self, "packer_run_uuid")
 
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
+        """
+        The ID of the project this HCP Packer registry is located in.
+        """
         return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter
     def region(self) -> str:
+        """
+        Region this image is stored in, if any.
+        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="revokeAt")
     def revoke_at(self) -> str:
+        """
+        The revocation time of this build. This field will be null for any build that has not been revoked or scheduled for revocation.
+        """
         return pulumi.get(self, "revoke_at")
 
 
@@ -216,6 +258,14 @@ def get_packer_image(bucket_name: Optional[str] = None,
     ```
 
     > **Note:** This data source only returns the first found image's metadata filtered by the given arguments, from the returned list of images associated with the specified iteration. Therefore, if multiple images exist in the same region, it will only pick one of them. In this case, you can filter images by a source build name (Ex: `amazon-ebs.example`) using the `component_type` optional argument.
+
+
+    :param str bucket_name: The slug of the HCP Packer Registry image bucket to pull from.
+    :param str channel: The channel that points to the version of the image being retrieved. Either this or `iteration_id` must be specified. Note: will incur a billable request
+    :param str cloud_provider: Name of the cloud provider this image is stored-in.
+    :param str component_type: Name of the builder that built this image. Ex: `amazon-ebs.example`.
+    :param str iteration_id: The iteration from which to get the image. Either this or `channel` must be specified.
+    :param str region: Region this image is stored in, if any.
     """
     __args__ = dict()
     __args__['bucketName'] = bucket_name
@@ -292,5 +342,13 @@ def get_packer_image_output(bucket_name: Optional[pulumi.Input[str]] = None,
     ```
 
     > **Note:** This data source only returns the first found image's metadata filtered by the given arguments, from the returned list of images associated with the specified iteration. Therefore, if multiple images exist in the same region, it will only pick one of them. In this case, you can filter images by a source build name (Ex: `amazon-ebs.example`) using the `component_type` optional argument.
+
+
+    :param str bucket_name: The slug of the HCP Packer Registry image bucket to pull from.
+    :param str channel: The channel that points to the version of the image being retrieved. Either this or `iteration_id` must be specified. Note: will incur a billable request
+    :param str cloud_provider: Name of the cloud provider this image is stored-in.
+    :param str component_type: Name of the builder that built this image. Ex: `amazon-ebs.example`.
+    :param str iteration_id: The iteration from which to get the image. Either this or `channel` must be specified.
+    :param str region: Region this image is stored in, if any.
     """
     ...

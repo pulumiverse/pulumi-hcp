@@ -19,7 +19,6 @@ import (
 //
 // import (
 // 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -49,24 +48,36 @@ func LookupHvnPeeringConnection(ctx *pulumi.Context, args *LookupHvnPeeringConne
 
 // A collection of arguments for invoking getHvnPeeringConnection.
 type LookupHvnPeeringConnectionArgs struct {
-	Hvn1      string `pulumi:"hvn1"`
-	Hvn2      string `pulumi:"hvn2"`
+	// The unique URL of one of the HVNs being peered.
+	Hvn1 string `pulumi:"hvn1"`
+	// The unique URL of one of the HVNs being peered.
+	Hvn2 string `pulumi:"hvn2"`
+	// The ID of the peering connection.
 	PeeringId string `pulumi:"peeringId"`
 }
 
 // A collection of values returned by getHvnPeeringConnection.
 type LookupHvnPeeringConnectionResult struct {
+	// The time that the peering connection was created.
 	CreatedAt string `pulumi:"createdAt"`
+	// The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
 	ExpiresAt string `pulumi:"expiresAt"`
-	Hvn1      string `pulumi:"hvn1"`
-	Hvn2      string `pulumi:"hvn2"`
+	// The unique URL of one of the HVNs being peered.
+	Hvn1 string `pulumi:"hvn1"`
+	// The unique URL of one of the HVNs being peered.
+	Hvn2 string `pulumi:"hvn2"`
 	// The provider-assigned unique ID for this managed resource.
-	Id             string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// The ID of the HCP organization where the peering connection is located. Always matches the HVNs' organization.
 	OrganizationId string `pulumi:"organizationId"`
-	PeeringId      string `pulumi:"peeringId"`
-	ProjectId      string `pulumi:"projectId"`
-	SelfLink       string `pulumi:"selfLink"`
-	State          string `pulumi:"state"`
+	// The ID of the peering connection.
+	PeeringId string `pulumi:"peeringId"`
+	// The ID of the HCP project where the peering connection is located. Always matches the HVNs' project.
+	ProjectId string `pulumi:"projectId"`
+	// A unique URL identifying the peering connection
+	SelfLink string `pulumi:"selfLink"`
+	// The state of the HVN peering connection.
+	State string `pulumi:"state"`
 }
 
 func LookupHvnPeeringConnectionOutput(ctx *pulumi.Context, args LookupHvnPeeringConnectionOutputArgs, opts ...pulumi.InvokeOption) LookupHvnPeeringConnectionResultOutput {
@@ -84,8 +95,11 @@ func LookupHvnPeeringConnectionOutput(ctx *pulumi.Context, args LookupHvnPeering
 
 // A collection of arguments for invoking getHvnPeeringConnection.
 type LookupHvnPeeringConnectionOutputArgs struct {
-	Hvn1      pulumi.StringInput `pulumi:"hvn1"`
-	Hvn2      pulumi.StringInput `pulumi:"hvn2"`
+	// The unique URL of one of the HVNs being peered.
+	Hvn1 pulumi.StringInput `pulumi:"hvn1"`
+	// The unique URL of one of the HVNs being peered.
+	Hvn2 pulumi.StringInput `pulumi:"hvn2"`
+	// The ID of the peering connection.
 	PeeringId pulumi.StringInput `pulumi:"peeringId"`
 }
 
@@ -108,18 +122,22 @@ func (o LookupHvnPeeringConnectionResultOutput) ToLookupHvnPeeringConnectionResu
 	return o
 }
 
+// The time that the peering connection was created.
 func (o LookupHvnPeeringConnectionResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnPeeringConnectionResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
 func (o LookupHvnPeeringConnectionResultOutput) ExpiresAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnPeeringConnectionResult) string { return v.ExpiresAt }).(pulumi.StringOutput)
 }
 
+// The unique URL of one of the HVNs being peered.
 func (o LookupHvnPeeringConnectionResultOutput) Hvn1() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnPeeringConnectionResult) string { return v.Hvn1 }).(pulumi.StringOutput)
 }
 
+// The unique URL of one of the HVNs being peered.
 func (o LookupHvnPeeringConnectionResultOutput) Hvn2() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnPeeringConnectionResult) string { return v.Hvn2 }).(pulumi.StringOutput)
 }
@@ -129,22 +147,27 @@ func (o LookupHvnPeeringConnectionResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnPeeringConnectionResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The ID of the HCP organization where the peering connection is located. Always matches the HVNs' organization.
 func (o LookupHvnPeeringConnectionResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnPeeringConnectionResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
+// The ID of the peering connection.
 func (o LookupHvnPeeringConnectionResultOutput) PeeringId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnPeeringConnectionResult) string { return v.PeeringId }).(pulumi.StringOutput)
 }
 
+// The ID of the HCP project where the peering connection is located. Always matches the HVNs' project.
 func (o LookupHvnPeeringConnectionResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnPeeringConnectionResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// A unique URL identifying the peering connection
 func (o LookupHvnPeeringConnectionResultOutput) SelfLink() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnPeeringConnectionResult) string { return v.SelfLink }).(pulumi.StringOutput)
 }
 
+// The state of the HVN peering connection.
 func (o LookupHvnPeeringConnectionResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnPeeringConnectionResult) string { return v.State }).(pulumi.StringOutput)
 }

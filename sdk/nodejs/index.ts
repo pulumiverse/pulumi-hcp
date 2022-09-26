@@ -5,32 +5,135 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export * from "./awsNetworkPeering";
-export * from "./awsTransitGatewayAttachment";
-export * from "./azurePeeringConnection";
-export * from "./consulCluster";
-export * from "./consulClusterRootToken";
-export * from "./consulSnapshot";
-export * from "./getAwsNetworkPeering";
-export * from "./getAwsTransitGatewayAttachment";
-export * from "./getAzurePeeringConnection";
-export * from "./getConsulAgentHelmConfig";
-export * from "./getConsulAgentKubernetesSecret";
-export * from "./getConsulCluster";
-export * from "./getConsulVersions";
-export * from "./getHvn";
-export * from "./getHvnPeeringConnection";
-export * from "./getHvnRoute";
-export * from "./getPackerImage";
-export * from "./getPackerImageIteration";
-export * from "./getPackerIteration";
-export * from "./getVaultCluster";
-export * from "./hvn";
-export * from "./hvnPeeringConnection";
-export * from "./hvnRoute";
-export * from "./provider";
-export * from "./vaultCluster";
-export * from "./vaultClusterAdminToken";
+export { AwsNetworkPeeringArgs, AwsNetworkPeeringState } from "./awsNetworkPeering";
+export type AwsNetworkPeering = import("./awsNetworkPeering").AwsNetworkPeering;
+export const AwsNetworkPeering: typeof import("./awsNetworkPeering").AwsNetworkPeering = null as any;
+
+export { AwsTransitGatewayAttachmentArgs, AwsTransitGatewayAttachmentState } from "./awsTransitGatewayAttachment";
+export type AwsTransitGatewayAttachment = import("./awsTransitGatewayAttachment").AwsTransitGatewayAttachment;
+export const AwsTransitGatewayAttachment: typeof import("./awsTransitGatewayAttachment").AwsTransitGatewayAttachment = null as any;
+
+export { AzurePeeringConnectionArgs, AzurePeeringConnectionState } from "./azurePeeringConnection";
+export type AzurePeeringConnection = import("./azurePeeringConnection").AzurePeeringConnection;
+export const AzurePeeringConnection: typeof import("./azurePeeringConnection").AzurePeeringConnection = null as any;
+
+export { ConsulClusterArgs, ConsulClusterState } from "./consulCluster";
+export type ConsulCluster = import("./consulCluster").ConsulCluster;
+export const ConsulCluster: typeof import("./consulCluster").ConsulCluster = null as any;
+
+export { ConsulClusterRootTokenArgs, ConsulClusterRootTokenState } from "./consulClusterRootToken";
+export type ConsulClusterRootToken = import("./consulClusterRootToken").ConsulClusterRootToken;
+export const ConsulClusterRootToken: typeof import("./consulClusterRootToken").ConsulClusterRootToken = null as any;
+
+export { ConsulSnapshotArgs, ConsulSnapshotState } from "./consulSnapshot";
+export type ConsulSnapshot = import("./consulSnapshot").ConsulSnapshot;
+export const ConsulSnapshot: typeof import("./consulSnapshot").ConsulSnapshot = null as any;
+
+export { GetAwsNetworkPeeringArgs, GetAwsNetworkPeeringResult, GetAwsNetworkPeeringOutputArgs } from "./getAwsNetworkPeering";
+export const getAwsNetworkPeering: typeof import("./getAwsNetworkPeering").getAwsNetworkPeering = null as any;
+export const getAwsNetworkPeeringOutput: typeof import("./getAwsNetworkPeering").getAwsNetworkPeeringOutput = null as any;
+
+export { GetAwsTransitGatewayAttachmentArgs, GetAwsTransitGatewayAttachmentResult, GetAwsTransitGatewayAttachmentOutputArgs } from "./getAwsTransitGatewayAttachment";
+export const getAwsTransitGatewayAttachment: typeof import("./getAwsTransitGatewayAttachment").getAwsTransitGatewayAttachment = null as any;
+export const getAwsTransitGatewayAttachmentOutput: typeof import("./getAwsTransitGatewayAttachment").getAwsTransitGatewayAttachmentOutput = null as any;
+
+export { GetAzurePeeringConnectionArgs, GetAzurePeeringConnectionResult, GetAzurePeeringConnectionOutputArgs } from "./getAzurePeeringConnection";
+export const getAzurePeeringConnection: typeof import("./getAzurePeeringConnection").getAzurePeeringConnection = null as any;
+export const getAzurePeeringConnectionOutput: typeof import("./getAzurePeeringConnection").getAzurePeeringConnectionOutput = null as any;
+
+export { GetConsulAgentHelmConfigArgs, GetConsulAgentHelmConfigResult, GetConsulAgentHelmConfigOutputArgs } from "./getConsulAgentHelmConfig";
+export const getConsulAgentHelmConfig: typeof import("./getConsulAgentHelmConfig").getConsulAgentHelmConfig = null as any;
+export const getConsulAgentHelmConfigOutput: typeof import("./getConsulAgentHelmConfig").getConsulAgentHelmConfigOutput = null as any;
+
+export { GetConsulAgentKubernetesSecretArgs, GetConsulAgentKubernetesSecretResult, GetConsulAgentKubernetesSecretOutputArgs } from "./getConsulAgentKubernetesSecret";
+export const getConsulAgentKubernetesSecret: typeof import("./getConsulAgentKubernetesSecret").getConsulAgentKubernetesSecret = null as any;
+export const getConsulAgentKubernetesSecretOutput: typeof import("./getConsulAgentKubernetesSecret").getConsulAgentKubernetesSecretOutput = null as any;
+
+export { GetConsulClusterArgs, GetConsulClusterResult, GetConsulClusterOutputArgs } from "./getConsulCluster";
+export const getConsulCluster: typeof import("./getConsulCluster").getConsulCluster = null as any;
+export const getConsulClusterOutput: typeof import("./getConsulCluster").getConsulClusterOutput = null as any;
+
+export { GetConsulVersionsResult } from "./getConsulVersions";
+export const getConsulVersions: typeof import("./getConsulVersions").getConsulVersions = null as any;
+
+export { GetHvnArgs, GetHvnResult, GetHvnOutputArgs } from "./getHvn";
+export const getHvn: typeof import("./getHvn").getHvn = null as any;
+export const getHvnOutput: typeof import("./getHvn").getHvnOutput = null as any;
+
+export { GetHvnPeeringConnectionArgs, GetHvnPeeringConnectionResult, GetHvnPeeringConnectionOutputArgs } from "./getHvnPeeringConnection";
+export const getHvnPeeringConnection: typeof import("./getHvnPeeringConnection").getHvnPeeringConnection = null as any;
+export const getHvnPeeringConnectionOutput: typeof import("./getHvnPeeringConnection").getHvnPeeringConnectionOutput = null as any;
+
+export { GetHvnRouteArgs, GetHvnRouteResult, GetHvnRouteOutputArgs } from "./getHvnRoute";
+export const getHvnRoute: typeof import("./getHvnRoute").getHvnRoute = null as any;
+export const getHvnRouteOutput: typeof import("./getHvnRoute").getHvnRouteOutput = null as any;
+
+export { GetPackerImageArgs, GetPackerImageResult, GetPackerImageOutputArgs } from "./getPackerImage";
+export const getPackerImage: typeof import("./getPackerImage").getPackerImage = null as any;
+export const getPackerImageOutput: typeof import("./getPackerImage").getPackerImageOutput = null as any;
+
+export { GetPackerImageIterationArgs, GetPackerImageIterationResult, GetPackerImageIterationOutputArgs } from "./getPackerImageIteration";
+export const getPackerImageIteration: typeof import("./getPackerImageIteration").getPackerImageIteration = null as any;
+export const getPackerImageIterationOutput: typeof import("./getPackerImageIteration").getPackerImageIterationOutput = null as any;
+
+export { GetPackerIterationArgs, GetPackerIterationResult, GetPackerIterationOutputArgs } from "./getPackerIteration";
+export const getPackerIteration: typeof import("./getPackerIteration").getPackerIteration = null as any;
+export const getPackerIterationOutput: typeof import("./getPackerIteration").getPackerIterationOutput = null as any;
+
+export { GetVaultClusterArgs, GetVaultClusterResult, GetVaultClusterOutputArgs } from "./getVaultCluster";
+export const getVaultCluster: typeof import("./getVaultCluster").getVaultCluster = null as any;
+export const getVaultClusterOutput: typeof import("./getVaultCluster").getVaultClusterOutput = null as any;
+
+export { HvnArgs, HvnState } from "./hvn";
+export type Hvn = import("./hvn").Hvn;
+export const Hvn: typeof import("./hvn").Hvn = null as any;
+
+export { HvnPeeringConnectionArgs, HvnPeeringConnectionState } from "./hvnPeeringConnection";
+export type HvnPeeringConnection = import("./hvnPeeringConnection").HvnPeeringConnection;
+export const HvnPeeringConnection: typeof import("./hvnPeeringConnection").HvnPeeringConnection = null as any;
+
+export { HvnRouteArgs, HvnRouteState } from "./hvnRoute";
+export type HvnRoute = import("./hvnRoute").HvnRoute;
+export const HvnRoute: typeof import("./hvnRoute").HvnRoute = null as any;
+
+export { ProviderArgs } from "./provider";
+export type Provider = import("./provider").Provider;
+export const Provider: typeof import("./provider").Provider = null as any;
+
+export { VaultClusterArgs, VaultClusterState } from "./vaultCluster";
+export type VaultCluster = import("./vaultCluster").VaultCluster;
+export const VaultCluster: typeof import("./vaultCluster").VaultCluster = null as any;
+
+export { VaultClusterAdminTokenArgs, VaultClusterAdminTokenState } from "./vaultClusterAdminToken";
+export type VaultClusterAdminToken = import("./vaultClusterAdminToken").VaultClusterAdminToken;
+export const VaultClusterAdminToken: typeof import("./vaultClusterAdminToken").VaultClusterAdminToken = null as any;
+
+utilities.lazyLoad(exports, ["AwsNetworkPeering"], () => require("./awsNetworkPeering"));
+utilities.lazyLoad(exports, ["AwsTransitGatewayAttachment"], () => require("./awsTransitGatewayAttachment"));
+utilities.lazyLoad(exports, ["AzurePeeringConnection"], () => require("./azurePeeringConnection"));
+utilities.lazyLoad(exports, ["ConsulCluster"], () => require("./consulCluster"));
+utilities.lazyLoad(exports, ["ConsulClusterRootToken"], () => require("./consulClusterRootToken"));
+utilities.lazyLoad(exports, ["ConsulSnapshot"], () => require("./consulSnapshot"));
+utilities.lazyLoad(exports, ["getAwsNetworkPeering","getAwsNetworkPeeringOutput"], () => require("./getAwsNetworkPeering"));
+utilities.lazyLoad(exports, ["getAwsTransitGatewayAttachment","getAwsTransitGatewayAttachmentOutput"], () => require("./getAwsTransitGatewayAttachment"));
+utilities.lazyLoad(exports, ["getAzurePeeringConnection","getAzurePeeringConnectionOutput"], () => require("./getAzurePeeringConnection"));
+utilities.lazyLoad(exports, ["getConsulAgentHelmConfig","getConsulAgentHelmConfigOutput"], () => require("./getConsulAgentHelmConfig"));
+utilities.lazyLoad(exports, ["getConsulAgentKubernetesSecret","getConsulAgentKubernetesSecretOutput"], () => require("./getConsulAgentKubernetesSecret"));
+utilities.lazyLoad(exports, ["getConsulCluster","getConsulClusterOutput"], () => require("./getConsulCluster"));
+utilities.lazyLoad(exports, ["getConsulVersions"], () => require("./getConsulVersions"));
+utilities.lazyLoad(exports, ["getHvn","getHvnOutput"], () => require("./getHvn"));
+utilities.lazyLoad(exports, ["getHvnPeeringConnection","getHvnPeeringConnectionOutput"], () => require("./getHvnPeeringConnection"));
+utilities.lazyLoad(exports, ["getHvnRoute","getHvnRouteOutput"], () => require("./getHvnRoute"));
+utilities.lazyLoad(exports, ["getPackerImage","getPackerImageOutput"], () => require("./getPackerImage"));
+utilities.lazyLoad(exports, ["getPackerImageIteration","getPackerImageIterationOutput"], () => require("./getPackerImageIteration"));
+utilities.lazyLoad(exports, ["getPackerIteration","getPackerIterationOutput"], () => require("./getPackerIteration"));
+utilities.lazyLoad(exports, ["getVaultCluster","getVaultClusterOutput"], () => require("./getVaultCluster"));
+utilities.lazyLoad(exports, ["Hvn"], () => require("./hvn"));
+utilities.lazyLoad(exports, ["HvnPeeringConnection"], () => require("./hvnPeeringConnection"));
+utilities.lazyLoad(exports, ["HvnRoute"], () => require("./hvnRoute"));
+utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+utilities.lazyLoad(exports, ["VaultCluster"], () => require("./vaultCluster"));
+utilities.lazyLoad(exports, ["VaultClusterAdminToken"], () => require("./vaultClusterAdminToken"));
 
 // Export sub-modules:
 import * as config from "./config";
@@ -40,19 +143,6 @@ export {
     config,
     types,
 };
-
-// Import resources to register:
-import { AwsNetworkPeering } from "./awsNetworkPeering";
-import { AwsTransitGatewayAttachment } from "./awsTransitGatewayAttachment";
-import { AzurePeeringConnection } from "./azurePeeringConnection";
-import { ConsulCluster } from "./consulCluster";
-import { ConsulClusterRootToken } from "./consulClusterRootToken";
-import { ConsulSnapshot } from "./consulSnapshot";
-import { Hvn } from "./hvn";
-import { HvnPeeringConnection } from "./hvnPeeringConnection";
-import { HvnRoute } from "./hvnRoute";
-import { VaultCluster } from "./vaultCluster";
-import { VaultClusterAdminToken } from "./vaultClusterAdminToken";
 
 const _module = {
     version: utilities.getVersion(),
@@ -96,9 +186,6 @@ pulumi.runtime.registerResourceModule("hcp", "index/hvnPeeringConnection", _modu
 pulumi.runtime.registerResourceModule("hcp", "index/hvnRoute", _module)
 pulumi.runtime.registerResourceModule("hcp", "index/vaultCluster", _module)
 pulumi.runtime.registerResourceModule("hcp", "index/vaultClusterAdminToken", _module)
-
-import { Provider } from "./provider";
-
 pulumi.runtime.registerResourcePackage("hcp", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

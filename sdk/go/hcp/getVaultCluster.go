@@ -19,7 +19,6 @@ import (
 //
 // import (
 // 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -47,35 +46,58 @@ func LookupVaultCluster(ctx *pulumi.Context, args *LookupVaultClusterArgs, opts 
 
 // A collection of arguments for invoking getVaultCluster.
 type LookupVaultClusterArgs struct {
+	// The audit logs configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
 	AuditLogConfigs []GetVaultClusterAuditLogConfig `pulumi:"auditLogConfigs"`
-	ClusterId       string                          `pulumi:"clusterId"`
-	MetricsConfigs  []GetVaultClusterMetricsConfig  `pulumi:"metricsConfigs"`
+	// The ID of the HCP Vault cluster.
+	ClusterId string `pulumi:"clusterId"`
+	// The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+	MetricsConfigs []GetVaultClusterMetricsConfig `pulumi:"metricsConfigs"`
 }
 
 // A collection of values returned by getVaultCluster.
 type LookupVaultClusterResult struct {
+	// The audit logs configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
 	AuditLogConfigs []GetVaultClusterAuditLogConfig `pulumi:"auditLogConfigs"`
-	CloudProvider   string                          `pulumi:"cloudProvider"`
-	ClusterId       string                          `pulumi:"clusterId"`
-	CreatedAt       string                          `pulumi:"createdAt"`
-	HvnId           string                          `pulumi:"hvnId"`
+	// The provider where the HCP Vault cluster is located.
+	CloudProvider string `pulumi:"cloudProvider"`
+	// The ID of the HCP Vault cluster.
+	ClusterId string `pulumi:"clusterId"`
+	// The time that the Vault cluster was created.
+	CreatedAt string `pulumi:"createdAt"`
+	// The ID of the HVN this HCP Vault cluster is associated to.
+	HvnId string `pulumi:"hvnId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                      string                         `pulumi:"id"`
-	MetricsConfigs          []GetVaultClusterMetricsConfig `pulumi:"metricsConfigs"`
-	MinVaultVersion         string                         `pulumi:"minVaultVersion"`
-	Namespace               string                         `pulumi:"namespace"`
-	OrganizationId          string                         `pulumi:"organizationId"`
-	PathsFilters            []string                       `pulumi:"pathsFilters"`
-	PrimaryLink             string                         `pulumi:"primaryLink"`
-	ProjectId               string                         `pulumi:"projectId"`
-	PublicEndpoint          bool                           `pulumi:"publicEndpoint"`
-	Region                  string                         `pulumi:"region"`
-	SelfLink                string                         `pulumi:"selfLink"`
-	State                   string                         `pulumi:"state"`
-	Tier                    string                         `pulumi:"tier"`
-	VaultPrivateEndpointUrl string                         `pulumi:"vaultPrivateEndpointUrl"`
-	VaultPublicEndpointUrl  string                         `pulumi:"vaultPublicEndpointUrl"`
-	VaultVersion            string                         `pulumi:"vaultVersion"`
+	Id string `pulumi:"id"`
+	// The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+	MetricsConfigs []GetVaultClusterMetricsConfig `pulumi:"metricsConfigs"`
+	// The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
+	MinVaultVersion string `pulumi:"minVaultVersion"`
+	// The name of the customer namespace this HCP Vault cluster is located in.
+	Namespace string `pulumi:"namespace"`
+	// The ID of the organization this HCP Vault cluster is located in.
+	OrganizationId string `pulumi:"organizationId"`
+	// The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to performance replication secondaries only and operates in "deny" mode only.
+	PathsFilters []string `pulumi:"pathsFilters"`
+	// The `selfLink` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+	PrimaryLink string `pulumi:"primaryLink"`
+	// The ID of the project this HCP Vault cluster is located in.
+	ProjectId string `pulumi:"projectId"`
+	// Denotes that the cluster has a public endpoint. Defaults to false.
+	PublicEndpoint bool `pulumi:"publicEndpoint"`
+	// The region where the HCP Vault cluster is located.
+	Region string `pulumi:"region"`
+	// A unique URL identifying the Vault cluster.
+	SelfLink string `pulumi:"selfLink"`
+	// The state of the Vault cluster.
+	State string `pulumi:"state"`
+	// The tier that the HCP Vault cluster will be provisioned as.  Only 'development' is available at this time.
+	Tier string `pulumi:"tier"`
+	// The private URL for the Vault cluster.
+	VaultPrivateEndpointUrl string `pulumi:"vaultPrivateEndpointUrl"`
+	// The public URL for the Vault cluster. This will be empty if `publicEndpoint` is `false`.
+	VaultPublicEndpointUrl string `pulumi:"vaultPublicEndpointUrl"`
+	// The Vault version of the cluster.
+	VaultVersion string `pulumi:"vaultVersion"`
 }
 
 func LookupVaultClusterOutput(ctx *pulumi.Context, args LookupVaultClusterOutputArgs, opts ...pulumi.InvokeOption) LookupVaultClusterResultOutput {
@@ -93,9 +115,12 @@ func LookupVaultClusterOutput(ctx *pulumi.Context, args LookupVaultClusterOutput
 
 // A collection of arguments for invoking getVaultCluster.
 type LookupVaultClusterOutputArgs struct {
+	// The audit logs configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
 	AuditLogConfigs GetVaultClusterAuditLogConfigArrayInput `pulumi:"auditLogConfigs"`
-	ClusterId       pulumi.StringInput                      `pulumi:"clusterId"`
-	MetricsConfigs  GetVaultClusterMetricsConfigArrayInput  `pulumi:"metricsConfigs"`
+	// The ID of the HCP Vault cluster.
+	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	// The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+	MetricsConfigs GetVaultClusterMetricsConfigArrayInput `pulumi:"metricsConfigs"`
 }
 
 func (LookupVaultClusterOutputArgs) ElementType() reflect.Type {
@@ -117,22 +142,27 @@ func (o LookupVaultClusterResultOutput) ToLookupVaultClusterResultOutputWithCont
 	return o
 }
 
+// The audit logs configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
 func (o LookupVaultClusterResultOutput) AuditLogConfigs() GetVaultClusterAuditLogConfigArrayOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) []GetVaultClusterAuditLogConfig { return v.AuditLogConfigs }).(GetVaultClusterAuditLogConfigArrayOutput)
 }
 
+// The provider where the HCP Vault cluster is located.
 func (o LookupVaultClusterResultOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
 
+// The ID of the HCP Vault cluster.
 func (o LookupVaultClusterResultOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.ClusterId }).(pulumi.StringOutput)
 }
 
+// The time that the Vault cluster was created.
 func (o LookupVaultClusterResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The ID of the HVN this HCP Vault cluster is associated to.
 func (o LookupVaultClusterResultOutput) HvnId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.HvnId }).(pulumi.StringOutput)
 }
@@ -142,62 +172,77 @@ func (o LookupVaultClusterResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
 func (o LookupVaultClusterResultOutput) MetricsConfigs() GetVaultClusterMetricsConfigArrayOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) []GetVaultClusterMetricsConfig { return v.MetricsConfigs }).(GetVaultClusterMetricsConfigArrayOutput)
 }
 
+// The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
 func (o LookupVaultClusterResultOutput) MinVaultVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.MinVaultVersion }).(pulumi.StringOutput)
 }
 
+// The name of the customer namespace this HCP Vault cluster is located in.
 func (o LookupVaultClusterResultOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.Namespace }).(pulumi.StringOutput)
 }
 
+// The ID of the organization this HCP Vault cluster is located in.
 func (o LookupVaultClusterResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
+// The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to performance replication secondaries only and operates in "deny" mode only.
 func (o LookupVaultClusterResultOutput) PathsFilters() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) []string { return v.PathsFilters }).(pulumi.StringArrayOutput)
 }
 
+// The `selfLink` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
 func (o LookupVaultClusterResultOutput) PrimaryLink() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.PrimaryLink }).(pulumi.StringOutput)
 }
 
+// The ID of the project this HCP Vault cluster is located in.
 func (o LookupVaultClusterResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// Denotes that the cluster has a public endpoint. Defaults to false.
 func (o LookupVaultClusterResultOutput) PublicEndpoint() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) bool { return v.PublicEndpoint }).(pulumi.BoolOutput)
 }
 
+// The region where the HCP Vault cluster is located.
 func (o LookupVaultClusterResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
+// A unique URL identifying the Vault cluster.
 func (o LookupVaultClusterResultOutput) SelfLink() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.SelfLink }).(pulumi.StringOutput)
 }
 
+// The state of the Vault cluster.
 func (o LookupVaultClusterResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.State }).(pulumi.StringOutput)
 }
 
+// The tier that the HCP Vault cluster will be provisioned as.  Only 'development' is available at this time.
 func (o LookupVaultClusterResultOutput) Tier() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.Tier }).(pulumi.StringOutput)
 }
 
+// The private URL for the Vault cluster.
 func (o LookupVaultClusterResultOutput) VaultPrivateEndpointUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.VaultPrivateEndpointUrl }).(pulumi.StringOutput)
 }
 
+// The public URL for the Vault cluster. This will be empty if `publicEndpoint` is `false`.
 func (o LookupVaultClusterResultOutput) VaultPublicEndpointUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.VaultPublicEndpointUrl }).(pulumi.StringOutput)
 }
 
+// The Vault version of the cluster.
 func (o LookupVaultClusterResultOutput) VaultVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.VaultVersion }).(pulumi.StringOutput)
 }

@@ -19,7 +19,6 @@ import (
 //
 // import (
 // 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -47,23 +46,34 @@ func LookupHvn(ctx *pulumi.Context, args *LookupHvnArgs, opts ...pulumi.InvokeOp
 
 // A collection of arguments for invoking getHvn.
 type LookupHvnArgs struct {
+	// The ID of the HashiCorp Virtual Network (HVN).
 	HvnId string `pulumi:"hvnId"`
 }
 
 // A collection of values returned by getHvn.
 type LookupHvnResult struct {
-	CidrBlock     string `pulumi:"cidrBlock"`
+	// The CIDR range of the HVN.
+	CidrBlock string `pulumi:"cidrBlock"`
+	// The provider where the HVN is located.
 	CloudProvider string `pulumi:"cloudProvider"`
-	CreatedAt     string `pulumi:"createdAt"`
-	HvnId         string `pulumi:"hvnId"`
+	// The time that the HVN was created.
+	CreatedAt string `pulumi:"createdAt"`
+	// The ID of the HashiCorp Virtual Network (HVN).
+	HvnId string `pulumi:"hvnId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                string `pulumi:"id"`
-	OrganizationId    string `pulumi:"organizationId"`
-	ProjectId         string `pulumi:"projectId"`
+	Id string `pulumi:"id"`
+	// The ID of the HCP organization where the HVN is located.
+	OrganizationId string `pulumi:"organizationId"`
+	// The ID of the HCP project where the HVN is located.
+	ProjectId string `pulumi:"projectId"`
+	// The provider account ID where the HVN is located.
 	ProviderAccountId string `pulumi:"providerAccountId"`
-	Region            string `pulumi:"region"`
-	SelfLink          string `pulumi:"selfLink"`
-	State             string `pulumi:"state"`
+	// The region where the HVN is located.
+	Region string `pulumi:"region"`
+	// A unique URL identifying the HVN.
+	SelfLink string `pulumi:"selfLink"`
+	// The state of the HVN route.
+	State string `pulumi:"state"`
 }
 
 func LookupHvnOutput(ctx *pulumi.Context, args LookupHvnOutputArgs, opts ...pulumi.InvokeOption) LookupHvnResultOutput {
@@ -81,6 +91,7 @@ func LookupHvnOutput(ctx *pulumi.Context, args LookupHvnOutputArgs, opts ...pulu
 
 // A collection of arguments for invoking getHvn.
 type LookupHvnOutputArgs struct {
+	// The ID of the HashiCorp Virtual Network (HVN).
 	HvnId pulumi.StringInput `pulumi:"hvnId"`
 }
 
@@ -103,18 +114,22 @@ func (o LookupHvnResultOutput) ToLookupHvnResultOutputWithContext(ctx context.Co
 	return o
 }
 
+// The CIDR range of the HVN.
 func (o LookupHvnResultOutput) CidrBlock() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnResult) string { return v.CidrBlock }).(pulumi.StringOutput)
 }
 
+// The provider where the HVN is located.
 func (o LookupHvnResultOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnResult) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
 
+// The time that the HVN was created.
 func (o LookupHvnResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The ID of the HashiCorp Virtual Network (HVN).
 func (o LookupHvnResultOutput) HvnId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnResult) string { return v.HvnId }).(pulumi.StringOutput)
 }
@@ -124,26 +139,32 @@ func (o LookupHvnResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The ID of the HCP organization where the HVN is located.
 func (o LookupHvnResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
+// The ID of the HCP project where the HVN is located.
 func (o LookupHvnResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// The provider account ID where the HVN is located.
 func (o LookupHvnResultOutput) ProviderAccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnResult) string { return v.ProviderAccountId }).(pulumi.StringOutput)
 }
 
+// The region where the HVN is located.
 func (o LookupHvnResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
+// A unique URL identifying the HVN.
 func (o LookupHvnResultOutput) SelfLink() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnResult) string { return v.SelfLink }).(pulumi.StringOutput)
 }
 
+// The state of the HVN route.
 func (o LookupHvnResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnResult) string { return v.State }).(pulumi.StringOutput)
 }

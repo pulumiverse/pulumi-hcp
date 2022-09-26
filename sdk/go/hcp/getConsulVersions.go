@@ -41,9 +41,12 @@ func GetConsulVersions(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetCo
 
 // A collection of values returned by getConsulVersions.
 type GetConsulVersionsResult struct {
+	// The Consul versions available on HCP.
 	Availables []string `pulumi:"availables"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string   `pulumi:"id"`
-	Previews    []string `pulumi:"previews"`
-	Recommended string   `pulumi:"recommended"`
+	Id string `pulumi:"id"`
+	// The preview versions of Consul available on HCP.
+	Previews []string `pulumi:"previews"`
+	// The recommended Consul version for HCP clusters.
+	Recommended string `pulumi:"recommended"`
 }

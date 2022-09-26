@@ -19,7 +19,6 @@ import (
 //
 // import (
 // 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -49,26 +48,40 @@ func LookupAwsNetworkPeering(ctx *pulumi.Context, args *LookupAwsNetworkPeeringA
 
 // A collection of arguments for invoking getAwsNetworkPeering.
 type LookupAwsNetworkPeeringArgs struct {
-	HvnId              string `pulumi:"hvnId"`
+	// The ID of the HashiCorp Virtual Network (HVN).
+	HvnId string `pulumi:"hvnId"`
+	// The ID of the network peering.
 	PeeringId          string `pulumi:"peeringId"`
 	WaitForActiveState *bool  `pulumi:"waitForActiveState"`
 }
 
 // A collection of values returned by getAwsNetworkPeering.
 type LookupAwsNetworkPeeringResult struct {
+	// The time that the network peering was created.
 	CreatedAt string `pulumi:"createdAt"`
+	// The time after which the network peering will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
 	ExpiresAt string `pulumi:"expiresAt"`
-	HvnId     string `pulumi:"hvnId"`
+	// The ID of the HashiCorp Virtual Network (HVN).
+	HvnId string `pulumi:"hvnId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                 string `pulumi:"id"`
-	OrganizationId     string `pulumi:"organizationId"`
-	PeerAccountId      string `pulumi:"peerAccountId"`
-	PeerVpcId          string `pulumi:"peerVpcId"`
-	PeerVpcRegion      string `pulumi:"peerVpcRegion"`
-	PeeringId          string `pulumi:"peeringId"`
-	ProjectId          string `pulumi:"projectId"`
-	ProviderPeeringId  string `pulumi:"providerPeeringId"`
-	SelfLink           string `pulumi:"selfLink"`
+	Id string `pulumi:"id"`
+	// The ID of the HCP organization where the network peering is located. Always matches the HVN's organization.
+	OrganizationId string `pulumi:"organizationId"`
+	// The account ID of the peer VPC in AWS.
+	PeerAccountId string `pulumi:"peerAccountId"`
+	// The ID of the peer VPC in AWS.
+	PeerVpcId string `pulumi:"peerVpcId"`
+	// The region of the peer VPC in AWS.
+	PeerVpcRegion string `pulumi:"peerVpcRegion"`
+	// The ID of the network peering.
+	PeeringId string `pulumi:"peeringId"`
+	// The ID of the HCP project where the network peering is located. Always matches the HVN's project.
+	ProjectId string `pulumi:"projectId"`
+	// The peering connection ID used by AWS.
+	ProviderPeeringId string `pulumi:"providerPeeringId"`
+	// A unique URL identifying the network peering.
+	SelfLink string `pulumi:"selfLink"`
+	// The state of the network peering.
 	State              string `pulumi:"state"`
 	WaitForActiveState *bool  `pulumi:"waitForActiveState"`
 }
@@ -88,7 +101,9 @@ func LookupAwsNetworkPeeringOutput(ctx *pulumi.Context, args LookupAwsNetworkPee
 
 // A collection of arguments for invoking getAwsNetworkPeering.
 type LookupAwsNetworkPeeringOutputArgs struct {
-	HvnId              pulumi.StringInput  `pulumi:"hvnId"`
+	// The ID of the HashiCorp Virtual Network (HVN).
+	HvnId pulumi.StringInput `pulumi:"hvnId"`
+	// The ID of the network peering.
 	PeeringId          pulumi.StringInput  `pulumi:"peeringId"`
 	WaitForActiveState pulumi.BoolPtrInput `pulumi:"waitForActiveState"`
 }
@@ -112,14 +127,17 @@ func (o LookupAwsNetworkPeeringResultOutput) ToLookupAwsNetworkPeeringResultOutp
 	return o
 }
 
+// The time that the network peering was created.
 func (o LookupAwsNetworkPeeringResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsNetworkPeeringResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The time after which the network peering will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
 func (o LookupAwsNetworkPeeringResultOutput) ExpiresAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsNetworkPeeringResult) string { return v.ExpiresAt }).(pulumi.StringOutput)
 }
 
+// The ID of the HashiCorp Virtual Network (HVN).
 func (o LookupAwsNetworkPeeringResultOutput) HvnId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsNetworkPeeringResult) string { return v.HvnId }).(pulumi.StringOutput)
 }
@@ -129,38 +147,47 @@ func (o LookupAwsNetworkPeeringResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsNetworkPeeringResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The ID of the HCP organization where the network peering is located. Always matches the HVN's organization.
 func (o LookupAwsNetworkPeeringResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsNetworkPeeringResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
+// The account ID of the peer VPC in AWS.
 func (o LookupAwsNetworkPeeringResultOutput) PeerAccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsNetworkPeeringResult) string { return v.PeerAccountId }).(pulumi.StringOutput)
 }
 
+// The ID of the peer VPC in AWS.
 func (o LookupAwsNetworkPeeringResultOutput) PeerVpcId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsNetworkPeeringResult) string { return v.PeerVpcId }).(pulumi.StringOutput)
 }
 
+// The region of the peer VPC in AWS.
 func (o LookupAwsNetworkPeeringResultOutput) PeerVpcRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsNetworkPeeringResult) string { return v.PeerVpcRegion }).(pulumi.StringOutput)
 }
 
+// The ID of the network peering.
 func (o LookupAwsNetworkPeeringResultOutput) PeeringId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsNetworkPeeringResult) string { return v.PeeringId }).(pulumi.StringOutput)
 }
 
+// The ID of the HCP project where the network peering is located. Always matches the HVN's project.
 func (o LookupAwsNetworkPeeringResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsNetworkPeeringResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// The peering connection ID used by AWS.
 func (o LookupAwsNetworkPeeringResultOutput) ProviderPeeringId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsNetworkPeeringResult) string { return v.ProviderPeeringId }).(pulumi.StringOutput)
 }
 
+// A unique URL identifying the network peering.
 func (o LookupAwsNetworkPeeringResultOutput) SelfLink() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsNetworkPeeringResult) string { return v.SelfLink }).(pulumi.StringOutput)
 }
 
+// The state of the network peering.
 func (o LookupAwsNetworkPeeringResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsNetworkPeeringResult) string { return v.State }).(pulumi.StringOutput)
 }

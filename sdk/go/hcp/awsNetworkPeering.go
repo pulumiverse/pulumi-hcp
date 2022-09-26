@@ -90,8 +90,7 @@ type AwsNetworkPeering struct {
 
 	// The time that the network peering was created.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The time after which the network peering will be considered expired if it hasn't transitioned into `ACCEPTED` or
-	// `ACTIVE` state.
+	// The time after which the network peering will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
 	ExpiresAt pulumi.StringOutput `pulumi:"expiresAt"`
 	// The ID of the HashiCorp Virtual Network (HVN).
 	HvnId pulumi.StringOutput `pulumi:"hvnId"`
@@ -162,8 +161,7 @@ func GetAwsNetworkPeering(ctx *pulumi.Context,
 type awsNetworkPeeringState struct {
 	// The time that the network peering was created.
 	CreatedAt *string `pulumi:"createdAt"`
-	// The time after which the network peering will be considered expired if it hasn't transitioned into `ACCEPTED` or
-	// `ACTIVE` state.
+	// The time after which the network peering will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
 	ExpiresAt *string `pulumi:"expiresAt"`
 	// The ID of the HashiCorp Virtual Network (HVN).
 	HvnId *string `pulumi:"hvnId"`
@@ -190,8 +188,7 @@ type awsNetworkPeeringState struct {
 type AwsNetworkPeeringState struct {
 	// The time that the network peering was created.
 	CreatedAt pulumi.StringPtrInput
-	// The time after which the network peering will be considered expired if it hasn't transitioned into `ACCEPTED` or
-	// `ACTIVE` state.
+	// The time after which the network peering will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
 	ExpiresAt pulumi.StringPtrInput
 	// The ID of the HashiCorp Virtual Network (HVN).
 	HvnId pulumi.StringPtrInput
@@ -338,8 +335,7 @@ func (o AwsNetworkPeeringOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *AwsNetworkPeering) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The time after which the network peering will be considered expired if it hasn't transitioned into `ACCEPTED` or
-// `ACTIVE` state.
+// The time after which the network peering will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
 func (o AwsNetworkPeeringOutput) ExpiresAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *AwsNetworkPeering) pulumi.StringOutput { return v.ExpiresAt }).(pulumi.StringOutput)
 }

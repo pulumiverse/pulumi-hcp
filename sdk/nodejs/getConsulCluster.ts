@@ -33,6 +33,9 @@ export function getConsulCluster(args: GetConsulClusterArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getConsulCluster.
  */
 export interface GetConsulClusterArgs {
+    /**
+     * The ID of the HCP Consul cluster.
+     */
     clusterId: string;
 }
 
@@ -40,33 +43,105 @@ export interface GetConsulClusterArgs {
  * A collection of values returned by getConsulCluster.
  */
 export interface GetConsulClusterResult {
+    /**
+     * Enables automatic HVN to HVN peering when creating a secondary cluster in a federation.
+     */
     readonly autoHvnToHvnPeering: boolean;
+    /**
+     * The provider where the HCP Consul cluster is located. Only 'aws' is available at this time.
+     */
     readonly cloudProvider: string;
+    /**
+     * The ID of the HCP Consul cluster.
+     */
     readonly clusterId: string;
+    /**
+     * Denotes the Consul connect feature should be enabled for this cluster.  Default to true.
+     */
     readonly connectEnabled: boolean;
+    /**
+     * Denotes that automatic Consul upgrades are enabled.
+     */
     readonly consulAutomaticUpgrades: boolean;
+    /**
+     * The cluster CA file encoded as a Base64 string.
+     */
     readonly consulCaFile: string;
+    /**
+     * The cluster config encoded as a Base64 string.
+     */
     readonly consulConfigFile: string;
+    /**
+     * The private URL for the Consul UI.
+     */
     readonly consulPrivateEndpointUrl: string;
+    /**
+     * The public URL for the Consul UI. This will be empty if `publicEndpoint` is `false`.
+     */
     readonly consulPublicEndpointUrl: string;
+    /**
+     * The Consul snapshot interval.
+     */
     readonly consulSnapshotInterval: string;
+    /**
+     * The retention policy for Consul snapshots.
+     */
     readonly consulSnapshotRetention: string;
+    /**
+     * The Consul version of the cluster.
+     */
     readonly consulVersion: string;
+    /**
+     * The Consul data center name of the cluster. If not specified, it is defaulted to the value of `clusterId`.
+     */
     readonly datacenter: string;
+    /**
+     * The ID of the HVN this HCP Consul cluster is associated to.
+     */
     readonly hvnId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The ID of the organization the project for this HCP Consul cluster is located.
+     */
     readonly organizationId: string;
+    /**
+     * The `selfLink` of the HCP Consul cluster which is the primary in the federation setup with this HCP Consul cluster. If not specified, it is a standalone cluster.
+     */
     readonly primaryLink: string;
+    /**
+     * The ID of the project this HCP Consul cluster is located.
+     */
     readonly projectId: string;
+    /**
+     * Denotes that the cluster has a public endpoint for the Consul UI. Defaults to false.
+     */
     readonly publicEndpoint: boolean;
+    /**
+     * The region where the HCP Consul cluster is located.
+     */
     readonly region: string;
+    /**
+     * The the number of Consul server nodes in the cluster.
+     */
     readonly scale: number;
+    /**
+     * A unique URL identifying the HCP Consul cluster.
+     */
     readonly selfLink: string;
+    /**
+     * The t-shirt size representation of each server VM that this Consul cluster is provisioned with. Valid option for development tier - `xSmall`. Valid options for other tiers - `small`, `medium`, `large`. For more details - https://cloud.hashicorp.com/pricing/consul
+     */
     readonly size: string;
+    /**
+     * The state of the HCP Consul cluster.
+     */
     readonly state: string;
+    /**
+     * The tier that the HCP Consul cluster will be provisioned as.  Only `development`, `standard` and `plus` are available at this time.
+     */
     readonly tier: string;
 }
 
@@ -78,5 +153,8 @@ export function getConsulClusterOutput(args: GetConsulClusterOutputArgs, opts?: 
  * A collection of arguments for invoking getConsulCluster.
  */
 export interface GetConsulClusterOutputArgs {
+    /**
+     * The ID of the HCP Consul cluster.
+     */
     clusterId: pulumi.Input<string>;
 }

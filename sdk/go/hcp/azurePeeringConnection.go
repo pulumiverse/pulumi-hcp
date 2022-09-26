@@ -31,10 +31,9 @@ type AzurePeeringConnection struct {
 	AzurePeeringId pulumi.StringOutput `pulumi:"azurePeeringId"`
 	// The time that the peering connection was created.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or
-	// `ACTIVE` state.
+	// The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
 	ExpiresAt pulumi.StringOutput `pulumi:"expiresAt"`
-	// The `self_link` of the HashiCorp Virtual Network (HVN).
+	// The `selfLink` of the HashiCorp Virtual Network (HVN).
 	HvnLink pulumi.StringOutput `pulumi:"hvnLink"`
 	// The ID of the HCP organization where the peering connection is located. Always matches the HVN's organization.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
@@ -115,10 +114,9 @@ type azurePeeringConnectionState struct {
 	AzurePeeringId *string `pulumi:"azurePeeringId"`
 	// The time that the peering connection was created.
 	CreatedAt *string `pulumi:"createdAt"`
-	// The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or
-	// `ACTIVE` state.
+	// The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
 	ExpiresAt *string `pulumi:"expiresAt"`
-	// The `self_link` of the HashiCorp Virtual Network (HVN).
+	// The `selfLink` of the HashiCorp Virtual Network (HVN).
 	HvnLink *string `pulumi:"hvnLink"`
 	// The ID of the HCP organization where the peering connection is located. Always matches the HVN's organization.
 	OrganizationId *string `pulumi:"organizationId"`
@@ -149,10 +147,9 @@ type AzurePeeringConnectionState struct {
 	AzurePeeringId pulumi.StringPtrInput
 	// The time that the peering connection was created.
 	CreatedAt pulumi.StringPtrInput
-	// The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or
-	// `ACTIVE` state.
+	// The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
 	ExpiresAt pulumi.StringPtrInput
-	// The `self_link` of the HashiCorp Virtual Network (HVN).
+	// The `selfLink` of the HashiCorp Virtual Network (HVN).
 	HvnLink pulumi.StringPtrInput
 	// The ID of the HCP organization where the peering connection is located. Always matches the HVN's organization.
 	OrganizationId pulumi.StringPtrInput
@@ -181,7 +178,7 @@ func (AzurePeeringConnectionState) ElementType() reflect.Type {
 }
 
 type azurePeeringConnectionArgs struct {
-	// The `self_link` of the HashiCorp Virtual Network (HVN).
+	// The `selfLink` of the HashiCorp Virtual Network (HVN).
 	HvnLink string `pulumi:"hvnLink"`
 	// The resource group name of the peer VNet in Azure.
 	PeerResourceGroupName string `pulumi:"peerResourceGroupName"`
@@ -199,7 +196,7 @@ type azurePeeringConnectionArgs struct {
 
 // The set of arguments for constructing a AzurePeeringConnection resource.
 type AzurePeeringConnectionArgs struct {
-	// The `self_link` of the HashiCorp Virtual Network (HVN).
+	// The `selfLink` of the HashiCorp Virtual Network (HVN).
 	HvnLink pulumi.StringInput
 	// The resource group name of the peer VNet in Azure.
 	PeerResourceGroupName pulumi.StringInput
@@ -317,13 +314,12 @@ func (o AzurePeeringConnectionOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *AzurePeeringConnection) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or
-// `ACTIVE` state.
+// The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
 func (o AzurePeeringConnectionOutput) ExpiresAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *AzurePeeringConnection) pulumi.StringOutput { return v.ExpiresAt }).(pulumi.StringOutput)
 }
 
-// The `self_link` of the HashiCorp Virtual Network (HVN).
+// The `selfLink` of the HashiCorp Virtual Network (HVN).
 func (o AzurePeeringConnectionOutput) HvnLink() pulumi.StringOutput {
 	return o.ApplyT(func(v *AzurePeeringConnection) pulumi.StringOutput { return v.HvnLink }).(pulumi.StringOutput)
 }

@@ -50,21 +50,33 @@ class GetHvnRouteResult:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        The time that the HVN route was created.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="destinationCidr")
     def destination_cidr(self) -> str:
+        """
+        The destination CIDR of the HVN route.
+        """
         return pulumi.get(self, "destination_cidr")
 
     @property
     @pulumi.getter(name="hvnLink")
     def hvn_link(self) -> str:
+        """
+        The `self_link` of the HashiCorp Virtual Network (HVN).
+        """
         return pulumi.get(self, "hvn_link")
 
     @property
     @pulumi.getter(name="hvnRouteId")
     def hvn_route_id(self) -> str:
+        """
+        The ID of the HVN route.
+        """
         return pulumi.get(self, "hvn_route_id")
 
     @property
@@ -78,16 +90,25 @@ class GetHvnRouteResult:
     @property
     @pulumi.getter(name="selfLink")
     def self_link(self) -> str:
+        """
+        A unique URL identifying the HVN route.
+        """
         return pulumi.get(self, "self_link")
 
     @property
     @pulumi.getter
     def state(self) -> str:
+        """
+        The state of the HVN route.
+        """
         return pulumi.get(self, "state")
 
     @property
     @pulumi.getter(name="targetLink")
     def target_link(self) -> str:
+        """
+        A unique URL identifying the target of the HVN route.
+        """
         return pulumi.get(self, "target_link")
 
 
@@ -112,6 +133,10 @@ def get_hvn_route(hvn_link: Optional[str] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetHvnRouteResult:
     """
     The HVN route data source provides information about an existing HVN route.
+
+
+    :param str hvn_link: The `self_link` of the HashiCorp Virtual Network (HVN).
+    :param str hvn_route_id: The ID of the HVN route.
     """
     __args__ = dict()
     __args__['hvnLink'] = hvn_link
@@ -136,5 +161,9 @@ def get_hvn_route_output(hvn_link: Optional[pulumi.Input[str]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetHvnRouteResult]:
     """
     The HVN route data source provides information about an existing HVN route.
+
+
+    :param str hvn_link: The `self_link` of the HashiCorp Virtual Network (HVN).
+    :param str hvn_route_id: The ID of the HVN route.
     """
     ...

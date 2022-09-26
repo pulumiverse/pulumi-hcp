@@ -10,7 +10,7 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * import * as pulumi_hcp from "@grapl/pulumi-hcp";
+ * import * as hcp from "@grapl/pulumi-hcp";
  *
  * const main = new hcp.Hvn("main", {
  *     hvnId: "main-hvn",
@@ -84,7 +84,7 @@ export class HvnRoute extends pulumi.CustomResource {
      */
     public readonly destinationCidr!: pulumi.Output<string>;
     /**
-     * The `self_link` of the HashiCorp Virtual Network (HVN).
+     * The `selfLink` of the HashiCorp Virtual Network (HVN).
      */
     public readonly hvnLink!: pulumi.Output<string>;
     /**
@@ -100,8 +100,7 @@ export class HvnRoute extends pulumi.CustomResource {
      */
     public /*out*/ readonly state!: pulumi.Output<string>;
     /**
-     * A unique URL identifying the target of the HVN route. Examples of the target:
-     * [`aws_network_peering`](aws_network_peering.md), [`aws_transit_gateway_attachment`](aws_transit_gateway_attachment.md)
+     * A unique URL identifying the target of the HVN route. Examples of the target: `awsNetworkPeering`, `awsTransitGatewayAttachment`
      */
     public readonly targetLink!: pulumi.Output<string>;
 
@@ -165,7 +164,7 @@ export interface HvnRouteState {
      */
     destinationCidr?: pulumi.Input<string>;
     /**
-     * The `self_link` of the HashiCorp Virtual Network (HVN).
+     * The `selfLink` of the HashiCorp Virtual Network (HVN).
      */
     hvnLink?: pulumi.Input<string>;
     /**
@@ -181,8 +180,7 @@ export interface HvnRouteState {
      */
     state?: pulumi.Input<string>;
     /**
-     * A unique URL identifying the target of the HVN route. Examples of the target:
-     * [`aws_network_peering`](aws_network_peering.md), [`aws_transit_gateway_attachment`](aws_transit_gateway_attachment.md)
+     * A unique URL identifying the target of the HVN route. Examples of the target: `awsNetworkPeering`, `awsTransitGatewayAttachment`
      */
     targetLink?: pulumi.Input<string>;
 }
@@ -196,7 +194,7 @@ export interface HvnRouteArgs {
      */
     destinationCidr: pulumi.Input<string>;
     /**
-     * The `self_link` of the HashiCorp Virtual Network (HVN).
+     * The `selfLink` of the HashiCorp Virtual Network (HVN).
      */
     hvnLink: pulumi.Input<string>;
     /**
@@ -204,8 +202,7 @@ export interface HvnRouteArgs {
      */
     hvnRouteId: pulumi.Input<string>;
     /**
-     * A unique URL identifying the target of the HVN route. Examples of the target:
-     * [`aws_network_peering`](aws_network_peering.md), [`aws_transit_gateway_attachment`](aws_transit_gateway_attachment.md)
+     * A unique URL identifying the target of the HVN route. Examples of the target: `awsNetworkPeering`, `awsTransitGatewayAttachment`
      */
     targetLink: pulumi.Input<string>;
 }

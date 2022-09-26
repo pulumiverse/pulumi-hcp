@@ -30,11 +30,20 @@ export function getConsulVersions(opts?: pulumi.InvokeOptions): Promise<GetConsu
  * A collection of values returned by getConsulVersions.
  */
 export interface GetConsulVersionsResult {
+    /**
+     * The Consul versions available on HCP.
+     */
     readonly availables: string[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The preview versions of Consul available on HCP.
+     */
     readonly previews: string[];
+    /**
+     * The recommended Consul version for HCP clusters.
+     */
     readonly recommended: string;
 }

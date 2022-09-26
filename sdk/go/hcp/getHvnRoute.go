@@ -23,20 +23,29 @@ func LookupHvnRoute(ctx *pulumi.Context, args *LookupHvnRouteArgs, opts ...pulum
 
 // A collection of arguments for invoking getHvnRoute.
 type LookupHvnRouteArgs struct {
-	HvnLink    string `pulumi:"hvnLink"`
+	// The `selfLink` of the HashiCorp Virtual Network (HVN).
+	HvnLink string `pulumi:"hvnLink"`
+	// The ID of the HVN route.
 	HvnRouteId string `pulumi:"hvnRouteId"`
 }
 
 // A collection of values returned by getHvnRoute.
 type LookupHvnRouteResult struct {
-	CreatedAt       string `pulumi:"createdAt"`
+	// The time that the HVN route was created.
+	CreatedAt string `pulumi:"createdAt"`
+	// The destination CIDR of the HVN route.
 	DestinationCidr string `pulumi:"destinationCidr"`
-	HvnLink         string `pulumi:"hvnLink"`
-	HvnRouteId      string `pulumi:"hvnRouteId"`
+	// The `selfLink` of the HashiCorp Virtual Network (HVN).
+	HvnLink string `pulumi:"hvnLink"`
+	// The ID of the HVN route.
+	HvnRouteId string `pulumi:"hvnRouteId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string `pulumi:"id"`
-	SelfLink   string `pulumi:"selfLink"`
-	State      string `pulumi:"state"`
+	Id string `pulumi:"id"`
+	// A unique URL identifying the HVN route.
+	SelfLink string `pulumi:"selfLink"`
+	// The state of the HVN route.
+	State string `pulumi:"state"`
+	// A unique URL identifying the target of the HVN route.
 	TargetLink string `pulumi:"targetLink"`
 }
 
@@ -55,7 +64,9 @@ func LookupHvnRouteOutput(ctx *pulumi.Context, args LookupHvnRouteOutputArgs, op
 
 // A collection of arguments for invoking getHvnRoute.
 type LookupHvnRouteOutputArgs struct {
-	HvnLink    pulumi.StringInput `pulumi:"hvnLink"`
+	// The `selfLink` of the HashiCorp Virtual Network (HVN).
+	HvnLink pulumi.StringInput `pulumi:"hvnLink"`
+	// The ID of the HVN route.
 	HvnRouteId pulumi.StringInput `pulumi:"hvnRouteId"`
 }
 
@@ -78,18 +89,22 @@ func (o LookupHvnRouteResultOutput) ToLookupHvnRouteResultOutputWithContext(ctx 
 	return o
 }
 
+// The time that the HVN route was created.
 func (o LookupHvnRouteResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnRouteResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The destination CIDR of the HVN route.
 func (o LookupHvnRouteResultOutput) DestinationCidr() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnRouteResult) string { return v.DestinationCidr }).(pulumi.StringOutput)
 }
 
+// The `selfLink` of the HashiCorp Virtual Network (HVN).
 func (o LookupHvnRouteResultOutput) HvnLink() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnRouteResult) string { return v.HvnLink }).(pulumi.StringOutput)
 }
 
+// The ID of the HVN route.
 func (o LookupHvnRouteResultOutput) HvnRouteId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnRouteResult) string { return v.HvnRouteId }).(pulumi.StringOutput)
 }
@@ -99,14 +114,17 @@ func (o LookupHvnRouteResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnRouteResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// A unique URL identifying the HVN route.
 func (o LookupHvnRouteResultOutput) SelfLink() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnRouteResult) string { return v.SelfLink }).(pulumi.StringOutput)
 }
 
+// The state of the HVN route.
 func (o LookupHvnRouteResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnRouteResult) string { return v.State }).(pulumi.StringOutput)
 }
 
+// A unique URL identifying the target of the HVN route.
 func (o LookupHvnRouteResultOutput) TargetLink() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHvnRouteResult) string { return v.TargetLink }).(pulumi.StringOutput)
 }

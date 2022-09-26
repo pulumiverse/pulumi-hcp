@@ -11,13 +11,20 @@ import (
 )
 
 type VaultClusterAuditLogConfig struct {
-	DatadogApiKey     *string `pulumi:"datadogApiKey"`
-	DatadogRegion     *string `pulumi:"datadogRegion"`
-	GrafanaEndpoint   *string `pulumi:"grafanaEndpoint"`
-	GrafanaPassword   *string `pulumi:"grafanaPassword"`
-	GrafanaUser       *string `pulumi:"grafanaUser"`
+	// Datadog api key for streaming audit logs
+	DatadogApiKey *string `pulumi:"datadogApiKey"`
+	// Datadog region for streaming audit logs
+	DatadogRegion *string `pulumi:"datadogRegion"`
+	// Grafana endpoint for streaming audit logs
+	GrafanaEndpoint *string `pulumi:"grafanaEndpoint"`
+	// Grafana password for streaming audit logs
+	GrafanaPassword *string `pulumi:"grafanaPassword"`
+	// Grafana user for streaming audit logs
+	GrafanaUser *string `pulumi:"grafanaUser"`
+	// Splunk endpoint for streaming audit logs
 	SplunkHecendpoint *string `pulumi:"splunkHecendpoint"`
-	SplunkToken       *string `pulumi:"splunkToken"`
+	// Splunk token for streaming audit logs
+	SplunkToken *string `pulumi:"splunkToken"`
 }
 
 // VaultClusterAuditLogConfigInput is an input type that accepts VaultClusterAuditLogConfigArgs and VaultClusterAuditLogConfigOutput values.
@@ -32,13 +39,20 @@ type VaultClusterAuditLogConfigInput interface {
 }
 
 type VaultClusterAuditLogConfigArgs struct {
-	DatadogApiKey     pulumi.StringPtrInput `pulumi:"datadogApiKey"`
-	DatadogRegion     pulumi.StringPtrInput `pulumi:"datadogRegion"`
-	GrafanaEndpoint   pulumi.StringPtrInput `pulumi:"grafanaEndpoint"`
-	GrafanaPassword   pulumi.StringPtrInput `pulumi:"grafanaPassword"`
-	GrafanaUser       pulumi.StringPtrInput `pulumi:"grafanaUser"`
+	// Datadog api key for streaming audit logs
+	DatadogApiKey pulumi.StringPtrInput `pulumi:"datadogApiKey"`
+	// Datadog region for streaming audit logs
+	DatadogRegion pulumi.StringPtrInput `pulumi:"datadogRegion"`
+	// Grafana endpoint for streaming audit logs
+	GrafanaEndpoint pulumi.StringPtrInput `pulumi:"grafanaEndpoint"`
+	// Grafana password for streaming audit logs
+	GrafanaPassword pulumi.StringPtrInput `pulumi:"grafanaPassword"`
+	// Grafana user for streaming audit logs
+	GrafanaUser pulumi.StringPtrInput `pulumi:"grafanaUser"`
+	// Splunk endpoint for streaming audit logs
 	SplunkHecendpoint pulumi.StringPtrInput `pulumi:"splunkHecendpoint"`
-	SplunkToken       pulumi.StringPtrInput `pulumi:"splunkToken"`
+	// Splunk token for streaming audit logs
+	SplunkToken pulumi.StringPtrInput `pulumi:"splunkToken"`
 }
 
 func (VaultClusterAuditLogConfigArgs) ElementType() reflect.Type {
@@ -118,30 +132,37 @@ func (o VaultClusterAuditLogConfigOutput) ToVaultClusterAuditLogConfigPtrOutputW
 	}).(VaultClusterAuditLogConfigPtrOutput)
 }
 
+// Datadog api key for streaming audit logs
 func (o VaultClusterAuditLogConfigOutput) DatadogApiKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VaultClusterAuditLogConfig) *string { return v.DatadogApiKey }).(pulumi.StringPtrOutput)
 }
 
+// Datadog region for streaming audit logs
 func (o VaultClusterAuditLogConfigOutput) DatadogRegion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VaultClusterAuditLogConfig) *string { return v.DatadogRegion }).(pulumi.StringPtrOutput)
 }
 
+// Grafana endpoint for streaming audit logs
 func (o VaultClusterAuditLogConfigOutput) GrafanaEndpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VaultClusterAuditLogConfig) *string { return v.GrafanaEndpoint }).(pulumi.StringPtrOutput)
 }
 
+// Grafana password for streaming audit logs
 func (o VaultClusterAuditLogConfigOutput) GrafanaPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VaultClusterAuditLogConfig) *string { return v.GrafanaPassword }).(pulumi.StringPtrOutput)
 }
 
+// Grafana user for streaming audit logs
 func (o VaultClusterAuditLogConfigOutput) GrafanaUser() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VaultClusterAuditLogConfig) *string { return v.GrafanaUser }).(pulumi.StringPtrOutput)
 }
 
+// Splunk endpoint for streaming audit logs
 func (o VaultClusterAuditLogConfigOutput) SplunkHecendpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VaultClusterAuditLogConfig) *string { return v.SplunkHecendpoint }).(pulumi.StringPtrOutput)
 }
 
+// Splunk token for streaming audit logs
 func (o VaultClusterAuditLogConfigOutput) SplunkToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VaultClusterAuditLogConfig) *string { return v.SplunkToken }).(pulumi.StringPtrOutput)
 }
@@ -170,6 +191,7 @@ func (o VaultClusterAuditLogConfigPtrOutput) Elem() VaultClusterAuditLogConfigOu
 	}).(VaultClusterAuditLogConfigOutput)
 }
 
+// Datadog api key for streaming audit logs
 func (o VaultClusterAuditLogConfigPtrOutput) DatadogApiKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VaultClusterAuditLogConfig) *string {
 		if v == nil {
@@ -179,6 +201,7 @@ func (o VaultClusterAuditLogConfigPtrOutput) DatadogApiKey() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
+// Datadog region for streaming audit logs
 func (o VaultClusterAuditLogConfigPtrOutput) DatadogRegion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VaultClusterAuditLogConfig) *string {
 		if v == nil {
@@ -188,6 +211,7 @@ func (o VaultClusterAuditLogConfigPtrOutput) DatadogRegion() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
+// Grafana endpoint for streaming audit logs
 func (o VaultClusterAuditLogConfigPtrOutput) GrafanaEndpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VaultClusterAuditLogConfig) *string {
 		if v == nil {
@@ -197,6 +221,7 @@ func (o VaultClusterAuditLogConfigPtrOutput) GrafanaEndpoint() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
+// Grafana password for streaming audit logs
 func (o VaultClusterAuditLogConfigPtrOutput) GrafanaPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VaultClusterAuditLogConfig) *string {
 		if v == nil {
@@ -206,6 +231,7 @@ func (o VaultClusterAuditLogConfigPtrOutput) GrafanaPassword() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
+// Grafana user for streaming audit logs
 func (o VaultClusterAuditLogConfigPtrOutput) GrafanaUser() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VaultClusterAuditLogConfig) *string {
 		if v == nil {
@@ -215,6 +241,7 @@ func (o VaultClusterAuditLogConfigPtrOutput) GrafanaUser() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
+// Splunk endpoint for streaming audit logs
 func (o VaultClusterAuditLogConfigPtrOutput) SplunkHecendpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VaultClusterAuditLogConfig) *string {
 		if v == nil {
@@ -224,6 +251,7 @@ func (o VaultClusterAuditLogConfigPtrOutput) SplunkHecendpoint() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
+// Splunk token for streaming audit logs
 func (o VaultClusterAuditLogConfigPtrOutput) SplunkToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VaultClusterAuditLogConfig) *string {
 		if v == nil {
@@ -234,13 +262,20 @@ func (o VaultClusterAuditLogConfigPtrOutput) SplunkToken() pulumi.StringPtrOutpu
 }
 
 type VaultClusterMetricsConfig struct {
-	DatadogApiKey     *string `pulumi:"datadogApiKey"`
-	DatadogRegion     *string `pulumi:"datadogRegion"`
-	GrafanaEndpoint   *string `pulumi:"grafanaEndpoint"`
-	GrafanaPassword   *string `pulumi:"grafanaPassword"`
-	GrafanaUser       *string `pulumi:"grafanaUser"`
+	// Datadog api key for streaming metrics
+	DatadogApiKey *string `pulumi:"datadogApiKey"`
+	// Datadog region for streaming metrics
+	DatadogRegion *string `pulumi:"datadogRegion"`
+	// Grafana endpoint for streaming metrics
+	GrafanaEndpoint *string `pulumi:"grafanaEndpoint"`
+	// Grafana password for streaming metrics
+	GrafanaPassword *string `pulumi:"grafanaPassword"`
+	// Grafana user for streaming metrics
+	GrafanaUser *string `pulumi:"grafanaUser"`
+	// Splunk endpoint for streaming metrics
 	SplunkHecendpoint *string `pulumi:"splunkHecendpoint"`
-	SplunkToken       *string `pulumi:"splunkToken"`
+	// Splunk token for streaming metrics
+	SplunkToken *string `pulumi:"splunkToken"`
 }
 
 // VaultClusterMetricsConfigInput is an input type that accepts VaultClusterMetricsConfigArgs and VaultClusterMetricsConfigOutput values.
@@ -255,13 +290,20 @@ type VaultClusterMetricsConfigInput interface {
 }
 
 type VaultClusterMetricsConfigArgs struct {
-	DatadogApiKey     pulumi.StringPtrInput `pulumi:"datadogApiKey"`
-	DatadogRegion     pulumi.StringPtrInput `pulumi:"datadogRegion"`
-	GrafanaEndpoint   pulumi.StringPtrInput `pulumi:"grafanaEndpoint"`
-	GrafanaPassword   pulumi.StringPtrInput `pulumi:"grafanaPassword"`
-	GrafanaUser       pulumi.StringPtrInput `pulumi:"grafanaUser"`
+	// Datadog api key for streaming metrics
+	DatadogApiKey pulumi.StringPtrInput `pulumi:"datadogApiKey"`
+	// Datadog region for streaming metrics
+	DatadogRegion pulumi.StringPtrInput `pulumi:"datadogRegion"`
+	// Grafana endpoint for streaming metrics
+	GrafanaEndpoint pulumi.StringPtrInput `pulumi:"grafanaEndpoint"`
+	// Grafana password for streaming metrics
+	GrafanaPassword pulumi.StringPtrInput `pulumi:"grafanaPassword"`
+	// Grafana user for streaming metrics
+	GrafanaUser pulumi.StringPtrInput `pulumi:"grafanaUser"`
+	// Splunk endpoint for streaming metrics
 	SplunkHecendpoint pulumi.StringPtrInput `pulumi:"splunkHecendpoint"`
-	SplunkToken       pulumi.StringPtrInput `pulumi:"splunkToken"`
+	// Splunk token for streaming metrics
+	SplunkToken pulumi.StringPtrInput `pulumi:"splunkToken"`
 }
 
 func (VaultClusterMetricsConfigArgs) ElementType() reflect.Type {
@@ -341,30 +383,37 @@ func (o VaultClusterMetricsConfigOutput) ToVaultClusterMetricsConfigPtrOutputWit
 	}).(VaultClusterMetricsConfigPtrOutput)
 }
 
+// Datadog api key for streaming metrics
 func (o VaultClusterMetricsConfigOutput) DatadogApiKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VaultClusterMetricsConfig) *string { return v.DatadogApiKey }).(pulumi.StringPtrOutput)
 }
 
+// Datadog region for streaming metrics
 func (o VaultClusterMetricsConfigOutput) DatadogRegion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VaultClusterMetricsConfig) *string { return v.DatadogRegion }).(pulumi.StringPtrOutput)
 }
 
+// Grafana endpoint for streaming metrics
 func (o VaultClusterMetricsConfigOutput) GrafanaEndpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VaultClusterMetricsConfig) *string { return v.GrafanaEndpoint }).(pulumi.StringPtrOutput)
 }
 
+// Grafana password for streaming metrics
 func (o VaultClusterMetricsConfigOutput) GrafanaPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VaultClusterMetricsConfig) *string { return v.GrafanaPassword }).(pulumi.StringPtrOutput)
 }
 
+// Grafana user for streaming metrics
 func (o VaultClusterMetricsConfigOutput) GrafanaUser() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VaultClusterMetricsConfig) *string { return v.GrafanaUser }).(pulumi.StringPtrOutput)
 }
 
+// Splunk endpoint for streaming metrics
 func (o VaultClusterMetricsConfigOutput) SplunkHecendpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VaultClusterMetricsConfig) *string { return v.SplunkHecendpoint }).(pulumi.StringPtrOutput)
 }
 
+// Splunk token for streaming metrics
 func (o VaultClusterMetricsConfigOutput) SplunkToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VaultClusterMetricsConfig) *string { return v.SplunkToken }).(pulumi.StringPtrOutput)
 }
@@ -393,6 +442,7 @@ func (o VaultClusterMetricsConfigPtrOutput) Elem() VaultClusterMetricsConfigOutp
 	}).(VaultClusterMetricsConfigOutput)
 }
 
+// Datadog api key for streaming metrics
 func (o VaultClusterMetricsConfigPtrOutput) DatadogApiKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VaultClusterMetricsConfig) *string {
 		if v == nil {
@@ -402,6 +452,7 @@ func (o VaultClusterMetricsConfigPtrOutput) DatadogApiKey() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
+// Datadog region for streaming metrics
 func (o VaultClusterMetricsConfigPtrOutput) DatadogRegion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VaultClusterMetricsConfig) *string {
 		if v == nil {
@@ -411,6 +462,7 @@ func (o VaultClusterMetricsConfigPtrOutput) DatadogRegion() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
+// Grafana endpoint for streaming metrics
 func (o VaultClusterMetricsConfigPtrOutput) GrafanaEndpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VaultClusterMetricsConfig) *string {
 		if v == nil {
@@ -420,6 +472,7 @@ func (o VaultClusterMetricsConfigPtrOutput) GrafanaEndpoint() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
+// Grafana password for streaming metrics
 func (o VaultClusterMetricsConfigPtrOutput) GrafanaPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VaultClusterMetricsConfig) *string {
 		if v == nil {
@@ -429,6 +482,7 @@ func (o VaultClusterMetricsConfigPtrOutput) GrafanaPassword() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
+// Grafana user for streaming metrics
 func (o VaultClusterMetricsConfigPtrOutput) GrafanaUser() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VaultClusterMetricsConfig) *string {
 		if v == nil {
@@ -438,6 +492,7 @@ func (o VaultClusterMetricsConfigPtrOutput) GrafanaUser() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
+// Splunk endpoint for streaming metrics
 func (o VaultClusterMetricsConfigPtrOutput) SplunkHecendpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VaultClusterMetricsConfig) *string {
 		if v == nil {
@@ -447,6 +502,7 @@ func (o VaultClusterMetricsConfigPtrOutput) SplunkHecendpoint() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
+// Splunk token for streaming metrics
 func (o VaultClusterMetricsConfigPtrOutput) SplunkToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VaultClusterMetricsConfig) *string {
 		if v == nil {
@@ -741,9 +797,13 @@ func (o GetPackerImageIterationBuildImageArrayOutput) Index(i pulumi.IntInput) G
 }
 
 type GetVaultClusterAuditLogConfig struct {
-	DatadogRegion     string `pulumi:"datadogRegion"`
-	GrafanaEndpoint   string `pulumi:"grafanaEndpoint"`
-	GrafanaUser       string `pulumi:"grafanaUser"`
+	// Datadog region for streaming audit logs
+	DatadogRegion string `pulumi:"datadogRegion"`
+	// Grafana endpoint for streaming audit logs
+	GrafanaEndpoint string `pulumi:"grafanaEndpoint"`
+	// Grafana user for streaming audit logs
+	GrafanaUser string `pulumi:"grafanaUser"`
+	// Splunk endpoint for streaming audit logs
 	SplunkHecendpoint string `pulumi:"splunkHecendpoint"`
 }
 
@@ -759,9 +819,13 @@ type GetVaultClusterAuditLogConfigInput interface {
 }
 
 type GetVaultClusterAuditLogConfigArgs struct {
-	DatadogRegion     pulumi.StringInput `pulumi:"datadogRegion"`
-	GrafanaEndpoint   pulumi.StringInput `pulumi:"grafanaEndpoint"`
-	GrafanaUser       pulumi.StringInput `pulumi:"grafanaUser"`
+	// Datadog region for streaming audit logs
+	DatadogRegion pulumi.StringInput `pulumi:"datadogRegion"`
+	// Grafana endpoint for streaming audit logs
+	GrafanaEndpoint pulumi.StringInput `pulumi:"grafanaEndpoint"`
+	// Grafana user for streaming audit logs
+	GrafanaUser pulumi.StringInput `pulumi:"grafanaUser"`
+	// Splunk endpoint for streaming audit logs
 	SplunkHecendpoint pulumi.StringInput `pulumi:"splunkHecendpoint"`
 }
 
@@ -816,18 +880,22 @@ func (o GetVaultClusterAuditLogConfigOutput) ToGetVaultClusterAuditLogConfigOutp
 	return o
 }
 
+// Datadog region for streaming audit logs
 func (o GetVaultClusterAuditLogConfigOutput) DatadogRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVaultClusterAuditLogConfig) string { return v.DatadogRegion }).(pulumi.StringOutput)
 }
 
+// Grafana endpoint for streaming audit logs
 func (o GetVaultClusterAuditLogConfigOutput) GrafanaEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVaultClusterAuditLogConfig) string { return v.GrafanaEndpoint }).(pulumi.StringOutput)
 }
 
+// Grafana user for streaming audit logs
 func (o GetVaultClusterAuditLogConfigOutput) GrafanaUser() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVaultClusterAuditLogConfig) string { return v.GrafanaUser }).(pulumi.StringOutput)
 }
 
+// Splunk endpoint for streaming audit logs
 func (o GetVaultClusterAuditLogConfigOutput) SplunkHecendpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVaultClusterAuditLogConfig) string { return v.SplunkHecendpoint }).(pulumi.StringOutput)
 }
@@ -853,9 +921,13 @@ func (o GetVaultClusterAuditLogConfigArrayOutput) Index(i pulumi.IntInput) GetVa
 }
 
 type GetVaultClusterMetricsConfig struct {
-	DatadogRegion     string `pulumi:"datadogRegion"`
-	GrafanaEndpoint   string `pulumi:"grafanaEndpoint"`
-	GrafanaUser       string `pulumi:"grafanaUser"`
+	// Datadog region for streaming metrics
+	DatadogRegion string `pulumi:"datadogRegion"`
+	// Grafana endpoint for streaming metrics
+	GrafanaEndpoint string `pulumi:"grafanaEndpoint"`
+	// Grafana user for streaming metrics
+	GrafanaUser string `pulumi:"grafanaUser"`
+	// Splunk endpoint for streaming metrics
 	SplunkHecendpoint string `pulumi:"splunkHecendpoint"`
 }
 
@@ -871,9 +943,13 @@ type GetVaultClusterMetricsConfigInput interface {
 }
 
 type GetVaultClusterMetricsConfigArgs struct {
-	DatadogRegion     pulumi.StringInput `pulumi:"datadogRegion"`
-	GrafanaEndpoint   pulumi.StringInput `pulumi:"grafanaEndpoint"`
-	GrafanaUser       pulumi.StringInput `pulumi:"grafanaUser"`
+	// Datadog region for streaming metrics
+	DatadogRegion pulumi.StringInput `pulumi:"datadogRegion"`
+	// Grafana endpoint for streaming metrics
+	GrafanaEndpoint pulumi.StringInput `pulumi:"grafanaEndpoint"`
+	// Grafana user for streaming metrics
+	GrafanaUser pulumi.StringInput `pulumi:"grafanaUser"`
+	// Splunk endpoint for streaming metrics
 	SplunkHecendpoint pulumi.StringInput `pulumi:"splunkHecendpoint"`
 }
 
@@ -928,18 +1004,22 @@ func (o GetVaultClusterMetricsConfigOutput) ToGetVaultClusterMetricsConfigOutput
 	return o
 }
 
+// Datadog region for streaming metrics
 func (o GetVaultClusterMetricsConfigOutput) DatadogRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVaultClusterMetricsConfig) string { return v.DatadogRegion }).(pulumi.StringOutput)
 }
 
+// Grafana endpoint for streaming metrics
 func (o GetVaultClusterMetricsConfigOutput) GrafanaEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVaultClusterMetricsConfig) string { return v.GrafanaEndpoint }).(pulumi.StringOutput)
 }
 
+// Grafana user for streaming metrics
 func (o GetVaultClusterMetricsConfigOutput) GrafanaUser() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVaultClusterMetricsConfig) string { return v.GrafanaUser }).(pulumi.StringOutput)
 }
 
+// Splunk endpoint for streaming metrics
 func (o GetVaultClusterMetricsConfigOutput) SplunkHecendpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVaultClusterMetricsConfig) string { return v.SplunkHecendpoint }).(pulumi.StringOutput)
 }
