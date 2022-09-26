@@ -17,6 +17,10 @@ export { AzurePeeringConnectionArgs, AzurePeeringConnectionState } from "./azure
 export type AzurePeeringConnection = import("./azurePeeringConnection").AzurePeeringConnection;
 export const AzurePeeringConnection: typeof import("./azurePeeringConnection").AzurePeeringConnection = null as any;
 
+export { BoundaryClusterArgs, BoundaryClusterState } from "./boundaryCluster";
+export type BoundaryCluster = import("./boundaryCluster").BoundaryCluster;
+export const BoundaryCluster: typeof import("./boundaryCluster").BoundaryCluster = null as any;
+
 export { ConsulClusterArgs, ConsulClusterState } from "./consulCluster";
 export type ConsulCluster = import("./consulCluster").ConsulCluster;
 export const ConsulCluster: typeof import("./consulCluster").ConsulCluster = null as any;
@@ -40,6 +44,10 @@ export const getAwsTransitGatewayAttachmentOutput: typeof import("./getAwsTransi
 export { GetAzurePeeringConnectionArgs, GetAzurePeeringConnectionResult, GetAzurePeeringConnectionOutputArgs } from "./getAzurePeeringConnection";
 export const getAzurePeeringConnection: typeof import("./getAzurePeeringConnection").getAzurePeeringConnection = null as any;
 export const getAzurePeeringConnectionOutput: typeof import("./getAzurePeeringConnection").getAzurePeeringConnectionOutput = null as any;
+
+export { GetBoundaryClusterArgs, GetBoundaryClusterResult, GetBoundaryClusterOutputArgs } from "./getBoundaryCluster";
+export const getBoundaryCluster: typeof import("./getBoundaryCluster").getBoundaryCluster = null as any;
+export const getBoundaryClusterOutput: typeof import("./getBoundaryCluster").getBoundaryClusterOutput = null as any;
 
 export { GetConsulAgentHelmConfigArgs, GetConsulAgentHelmConfigResult, GetConsulAgentHelmConfigOutputArgs } from "./getConsulAgentHelmConfig";
 export const getConsulAgentHelmConfig: typeof import("./getConsulAgentHelmConfig").getConsulAgentHelmConfig = null as any;
@@ -111,12 +119,14 @@ export const VaultClusterAdminToken: typeof import("./vaultClusterAdminToken").V
 utilities.lazyLoad(exports, ["AwsNetworkPeering"], () => require("./awsNetworkPeering"));
 utilities.lazyLoad(exports, ["AwsTransitGatewayAttachment"], () => require("./awsTransitGatewayAttachment"));
 utilities.lazyLoad(exports, ["AzurePeeringConnection"], () => require("./azurePeeringConnection"));
+utilities.lazyLoad(exports, ["BoundaryCluster"], () => require("./boundaryCluster"));
 utilities.lazyLoad(exports, ["ConsulCluster"], () => require("./consulCluster"));
 utilities.lazyLoad(exports, ["ConsulClusterRootToken"], () => require("./consulClusterRootToken"));
 utilities.lazyLoad(exports, ["ConsulSnapshot"], () => require("./consulSnapshot"));
 utilities.lazyLoad(exports, ["getAwsNetworkPeering","getAwsNetworkPeeringOutput"], () => require("./getAwsNetworkPeering"));
 utilities.lazyLoad(exports, ["getAwsTransitGatewayAttachment","getAwsTransitGatewayAttachmentOutput"], () => require("./getAwsTransitGatewayAttachment"));
 utilities.lazyLoad(exports, ["getAzurePeeringConnection","getAzurePeeringConnectionOutput"], () => require("./getAzurePeeringConnection"));
+utilities.lazyLoad(exports, ["getBoundaryCluster","getBoundaryClusterOutput"], () => require("./getBoundaryCluster"));
 utilities.lazyLoad(exports, ["getConsulAgentHelmConfig","getConsulAgentHelmConfigOutput"], () => require("./getConsulAgentHelmConfig"));
 utilities.lazyLoad(exports, ["getConsulAgentKubernetesSecret","getConsulAgentKubernetesSecretOutput"], () => require("./getConsulAgentKubernetesSecret"));
 utilities.lazyLoad(exports, ["getConsulCluster","getConsulClusterOutput"], () => require("./getConsulCluster"));
@@ -154,6 +164,8 @@ const _module = {
                 return new AwsTransitGatewayAttachment(name, <any>undefined, { urn })
             case "hcp:index/azurePeeringConnection:AzurePeeringConnection":
                 return new AzurePeeringConnection(name, <any>undefined, { urn })
+            case "hcp:index/boundaryCluster:BoundaryCluster":
+                return new BoundaryCluster(name, <any>undefined, { urn })
             case "hcp:index/consulCluster:ConsulCluster":
                 return new ConsulCluster(name, <any>undefined, { urn })
             case "hcp:index/consulClusterRootToken:ConsulClusterRootToken":
@@ -178,6 +190,7 @@ const _module = {
 pulumi.runtime.registerResourceModule("hcp", "index/awsNetworkPeering", _module)
 pulumi.runtime.registerResourceModule("hcp", "index/awsTransitGatewayAttachment", _module)
 pulumi.runtime.registerResourceModule("hcp", "index/azurePeeringConnection", _module)
+pulumi.runtime.registerResourceModule("hcp", "index/boundaryCluster", _module)
 pulumi.runtime.registerResourceModule("hcp", "index/consulCluster", _module)
 pulumi.runtime.registerResourceModule("hcp", "index/consulClusterRootToken", _module)
 pulumi.runtime.registerResourceModule("hcp", "index/consulSnapshot", _module)

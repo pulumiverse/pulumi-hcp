@@ -1090,6 +1090,98 @@
                 "type": "object"
             }
         },
+        "hcp:index/boundaryCluster:BoundaryCluster": {
+            "description": "This resource allows you to manage an HCP Boundary cluster\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst example = new hcp.BoundaryCluster(\"example\", {\n    clusterId: \"boundary-cluster\",\n    password: \"Password123!\",\n    username: \"test-user\",\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample = hcp.BoundaryCluster(\"example\",\n    cluster_id=\"boundary-cluster\",\n    password=\"Password123!\",\n    username=\"test-user\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Hcp.BoundaryCluster(\"example\", new()\n    {\n        ClusterId = \"boundary-cluster\",\n        Password = \"Password123!\",\n        Username = \"test-user\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.NewBoundaryCluster(ctx, \"example\", \u0026hcp.BoundaryClusterArgs{\n\t\t\tClusterId: pulumi.String(\"boundary-cluster\"),\n\t\t\tPassword:  pulumi.String(\"Password123!\"),\n\t\t\tUsername:  pulumi.String(\"test-user\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.hcp.BoundaryCluster;\nimport com.pulumi.hcp.BoundaryClusterArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new BoundaryCluster(\"example\", BoundaryClusterArgs.builder()        \n            .clusterId(\"boundary-cluster\")\n            .password(\"Password123!\")\n            .username(\"test-user\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: hcp:BoundaryCluster\n    properties:\n      clusterId: boundary-cluster\n      password: Password123!\n      username: test-user\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID is {cluster_id}\n\n```sh\n $ pulumi import hcp:index/boundaryCluster:BoundaryCluster example boundary-cluster\n```\n\n ",
+            "properties": {
+                "clusterId": {
+                    "type": "string",
+                    "description": "The ID of the Boundary cluster\n"
+                },
+                "clusterUrl": {
+                    "type": "string",
+                    "description": "A unique URL identifying the Boundary cluster.\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "The time that the Boundary cluster was created.\n"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The password of the initial admin user. This must be at least 8 characters in length. Note that this may show up in logs, and it will be stored in the state file.\n"
+                },
+                "state": {
+                    "type": "string",
+                    "description": "The state of the Boundary cluster.\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The username of the initial admin user. This must be at least 3 characters in length, alphanumeric, hyphen, or period.\n"
+                }
+            },
+            "required": [
+                "clusterId",
+                "clusterUrl",
+                "createdAt",
+                "password",
+                "state",
+                "username"
+            ],
+            "inputProperties": {
+                "clusterId": {
+                    "type": "string",
+                    "description": "The ID of the Boundary cluster\n",
+                    "willReplaceOnChanges": true
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The password of the initial admin user. This must be at least 8 characters in length. Note that this may show up in logs, and it will be stored in the state file.\n",
+                    "willReplaceOnChanges": true
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The username of the initial admin user. This must be at least 3 characters in length, alphanumeric, hyphen, or period.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "clusterId",
+                "password",
+                "username"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering BoundaryCluster resources.\n",
+                "properties": {
+                    "clusterId": {
+                        "type": "string",
+                        "description": "The ID of the Boundary cluster\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "clusterUrl": {
+                        "type": "string",
+                        "description": "A unique URL identifying the Boundary cluster.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The time that the Boundary cluster was created.\n"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "The password of the initial admin user. This must be at least 8 characters in length. Note that this may show up in logs, and it will be stored in the state file.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "The state of the Boundary cluster.\n"
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "The username of the initial admin user. This must be at least 3 characters in length, alphanumeric, hyphen, or period.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
         "hcp:index/consulCluster:ConsulCluster": {
             "description": "\u003e Consul on Azure is now available in public beta. [Get started with end-to-end deployment configuration](https://learn.hashicorp.com/tutorials/cloud/consul-end-to-end-overview).\n\nThe Consul cluster resource allows you to manage an HCP Consul cluster.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@grapl/pulumi-hcp\";\n\nconst exampleHvn = new hcp.Hvn(\"exampleHvn\", {\n    hvnId: \"hvn\",\n    cloudProvider: \"aws\",\n    region: \"us-west-2\",\n    cidrBlock: \"172.25.16.0/20\",\n});\nconst exampleConsulCluster = new hcp.ConsulCluster(\"exampleConsulCluster\", {\n    clusterId: \"consul-cluster\",\n    hvnId: exampleHvn.hvnId,\n    tier: \"development\",\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample_hvn = hcp.Hvn(\"exampleHvn\",\n    hvn_id=\"hvn\",\n    cloud_provider=\"aws\",\n    region=\"us-west-2\",\n    cidr_block=\"172.25.16.0/20\")\nexample_consul_cluster = hcp.ConsulCluster(\"exampleConsulCluster\",\n    cluster_id=\"consul-cluster\",\n    hvn_id=example_hvn.hvn_id,\n    tier=\"development\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleHvn = new Hcp.Hvn(\"exampleHvn\", new()\n    {\n        HvnId = \"hvn\",\n        CloudProvider = \"aws\",\n        Region = \"us-west-2\",\n        CidrBlock = \"172.25.16.0/20\",\n    });\n\n    var exampleConsulCluster = new Hcp.ConsulCluster(\"exampleConsulCluster\", new()\n    {\n        ClusterId = \"consul-cluster\",\n        HvnId = exampleHvn.HvnId,\n        Tier = \"development\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleHvn, err := hcp.NewHvn(ctx, \"exampleHvn\", \u0026hcp.HvnArgs{\n\t\t\tHvnId:         pulumi.String(\"hvn\"),\n\t\t\tCloudProvider: pulumi.String(\"aws\"),\n\t\t\tRegion:        pulumi.String(\"us-west-2\"),\n\t\t\tCidrBlock:     pulumi.String(\"172.25.16.0/20\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = hcp.NewConsulCluster(ctx, \"exampleConsulCluster\", \u0026hcp.ConsulClusterArgs{\n\t\t\tClusterId: pulumi.String(\"consul-cluster\"),\n\t\t\tHvnId:     exampleHvn.HvnId,\n\t\t\tTier:      pulumi.String(\"development\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.hcp.Hvn;\nimport com.pulumi.hcp.HvnArgs;\nimport com.pulumi.hcp.ConsulCluster;\nimport com.pulumi.hcp.ConsulClusterArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleHvn = new Hvn(\"exampleHvn\", HvnArgs.builder()        \n            .hvnId(\"hvn\")\n            .cloudProvider(\"aws\")\n            .region(\"us-west-2\")\n            .cidrBlock(\"172.25.16.0/20\")\n            .build());\n\n        var exampleConsulCluster = new ConsulCluster(\"exampleConsulCluster\", ConsulClusterArgs.builder()        \n            .clusterId(\"consul-cluster\")\n            .hvnId(exampleHvn.hvnId())\n            .tier(\"development\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleHvn:\n    type: hcp:Hvn\n    properties:\n      hvnId: hvn\n      cloudProvider: aws\n      region: us-west-2\n      cidrBlock: 172.25.16.0/20\n  exampleConsulCluster:\n    type: hcp:ConsulCluster\n    properties:\n      clusterId: consul-cluster\n      hvnId: ${exampleHvn.hvnId}\n      tier: development\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# The import ID is {cluster_id}\n\n```sh\n $ pulumi import hcp:index/consulCluster:ConsulCluster example consul-cluster\n```\n\n ",
             "properties": {
@@ -2541,6 +2633,55 @@
                     "peeringId",
                     "projectId",
                     "selfLink",
+                    "state",
+                    "id"
+                ]
+            }
+        },
+        "hcp:index/getBoundaryCluster:getBoundaryCluster": {
+            "description": "The Boundary cluster data source provides information about an existing HCP Boundary cluster.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as hcp from \"@pulumi/hcp\";\n\nconst example = hcp.getBoundaryCluster({\n    clusterId: _var.cluster_id,\n});\n```\n```python\nimport pulumi\nimport pulumi_hcp as hcp\n\nexample = hcp.get_boundary_cluster(cluster_id=var[\"cluster_id\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Hcp = Pulumi.Hcp;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Hcp.GetBoundaryCluster.Invoke(new()\n    {\n        ClusterId = @var.Cluster_id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/grapl-security/pulumi-hcp/sdk/go/hcp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := hcp.LookupBoundaryCluster(ctx, \u0026GetBoundaryClusterArgs{\n\t\t\tClusterId: _var.Cluster_id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.hcp.HcpFunctions;\nimport com.pulumi.hcp.inputs.GetBoundaryClusterArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = HcpFunctions.getBoundaryCluster(GetBoundaryClusterArgs.builder()\n            .clusterId(var_.cluster_id())\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    Fn::Invoke:\n      Function: hcp:getBoundaryCluster\n      Arguments:\n        clusterId: ${var.cluster_id}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getBoundaryCluster.\n",
+                "properties": {
+                    "clusterId": {
+                        "type": "string",
+                        "description": "The ID of the Boundary cluster\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "clusterId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getBoundaryCluster.\n",
+                "properties": {
+                    "clusterId": {
+                        "type": "string",
+                        "description": "The ID of the Boundary cluster\n"
+                    },
+                    "clusterUrl": {
+                        "type": "string",
+                        "description": "A unique URL identifying the Boundary cluster.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The time that the Boundary cluster was created.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "The state of the Boundary cluster.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "clusterId",
+                    "clusterUrl",
+                    "createdAt",
                     "state",
                     "id"
                 ]

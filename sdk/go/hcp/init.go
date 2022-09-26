@@ -26,6 +26,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AwsTransitGatewayAttachment{}
 	case "hcp:index/azurePeeringConnection:AzurePeeringConnection":
 		r = &AzurePeeringConnection{}
+	case "hcp:index/boundaryCluster:BoundaryCluster":
+		r = &BoundaryCluster{}
 	case "hcp:index/consulCluster:ConsulCluster":
 		r = &ConsulCluster{}
 	case "hcp:index/consulClusterRootToken:ConsulClusterRootToken":
@@ -83,6 +85,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"hcp",
 		"index/azurePeeringConnection",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"hcp",
+		"index/boundaryCluster",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
