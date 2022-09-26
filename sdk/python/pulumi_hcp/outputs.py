@@ -12,10 +12,12 @@ from . import outputs
 
 __all__ = [
     'VaultClusterAuditLogConfig',
+    'VaultClusterMajorVersionUpgradeConfig',
     'VaultClusterMetricsConfig',
     'GetPackerImageIterationBuildResult',
     'GetPackerImageIterationBuildImageResult',
     'GetVaultClusterAuditLogConfigResult',
+    'GetVaultClusterMajorVersionUpgradeConfigResult',
     'GetVaultClusterMetricsConfigResult',
 ]
 
@@ -137,6 +139,69 @@ class VaultClusterAuditLogConfig(dict):
         Splunk token for streaming audit logs
         """
         return pulumi.get(self, "splunk_token")
+
+
+@pulumi.output_type
+class VaultClusterMajorVersionUpgradeConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "upgradeType":
+            suggest = "upgrade_type"
+        elif key == "maintenanceWindowDay":
+            suggest = "maintenance_window_day"
+        elif key == "maintenanceWindowTime":
+            suggest = "maintenance_window_time"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in VaultClusterMajorVersionUpgradeConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        VaultClusterMajorVersionUpgradeConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        VaultClusterMajorVersionUpgradeConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 upgrade_type: str,
+                 maintenance_window_day: Optional[str] = None,
+                 maintenance_window_time: Optional[str] = None):
+        """
+        :param str upgrade_type: The major upgrade type for the cluster. Valid options for upgrade type - `AUTOMATIC`, `SCHEDULED`, `MANUAL`
+        :param str maintenance_window_day: The maintenance day of the week for scheduled upgrades. Valid options for maintenance window day - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, `SUNDAY`
+        :param str maintenance_window_time: The maintenance time frame for scheduled upgrades. Valid options for maintenance window time - `WINDOW_12AM_4AM`, `WINDOW_6AM_10AM`, `WINDOW_12PM_4PM`, `WINDOW_6PM_10PM`
+        """
+        pulumi.set(__self__, "upgrade_type", upgrade_type)
+        if maintenance_window_day is not None:
+            pulumi.set(__self__, "maintenance_window_day", maintenance_window_day)
+        if maintenance_window_time is not None:
+            pulumi.set(__self__, "maintenance_window_time", maintenance_window_time)
+
+    @property
+    @pulumi.getter(name="upgradeType")
+    def upgrade_type(self) -> str:
+        """
+        The major upgrade type for the cluster. Valid options for upgrade type - `AUTOMATIC`, `SCHEDULED`, `MANUAL`
+        """
+        return pulumi.get(self, "upgrade_type")
+
+    @property
+    @pulumi.getter(name="maintenanceWindowDay")
+    def maintenance_window_day(self) -> Optional[str]:
+        """
+        The maintenance day of the week for scheduled upgrades. Valid options for maintenance window day - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, `SUNDAY`
+        """
+        return pulumi.get(self, "maintenance_window_day")
+
+    @property
+    @pulumi.getter(name="maintenanceWindowTime")
+    def maintenance_window_time(self) -> Optional[str]:
+        """
+        The maintenance time frame for scheduled upgrades. Valid options for maintenance window time - `WINDOW_12AM_4AM`, `WINDOW_6AM_10AM`, `WINDOW_12PM_4PM`, `WINDOW_6PM_10PM`
+        """
+        return pulumi.get(self, "maintenance_window_time")
 
 
 @pulumi.output_type
@@ -453,6 +518,32 @@ class GetVaultClusterAuditLogConfigResult(dict):
         Splunk endpoint for streaming audit logs
         """
         return pulumi.get(self, "splunk_hecendpoint")
+
+
+@pulumi.output_type
+class GetVaultClusterMajorVersionUpgradeConfigResult(dict):
+    def __init__(__self__, *,
+                 maintenance_window_day: str,
+                 maintenance_window_time: str,
+                 upgrade_type: str):
+        pulumi.set(__self__, "maintenance_window_day", maintenance_window_day)
+        pulumi.set(__self__, "maintenance_window_time", maintenance_window_time)
+        pulumi.set(__self__, "upgrade_type", upgrade_type)
+
+    @property
+    @pulumi.getter(name="maintenanceWindowDay")
+    def maintenance_window_day(self) -> str:
+        return pulumi.get(self, "maintenance_window_day")
+
+    @property
+    @pulumi.getter(name="maintenanceWindowTime")
+    def maintenance_window_time(self) -> str:
+        return pulumi.get(self, "maintenance_window_time")
+
+    @property
+    @pulumi.getter(name="upgradeType")
+    def upgrade_type(self) -> str:
+        return pulumi.get(self, "upgrade_type")
 
 
 @pulumi.output_type

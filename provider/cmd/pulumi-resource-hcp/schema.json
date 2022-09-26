@@ -145,6 +145,41 @@
             },
             "type": "object"
         },
+        "hcp:index/VaultClusterMajorVersionUpgradeConfig:VaultClusterMajorVersionUpgradeConfig": {
+            "properties": {
+                "maintenanceWindowDay": {
+                    "type": "string",
+                    "description": "The maintenance day of the week for scheduled upgrades. Valid options for maintenance window day - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, `SUNDAY`\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "maintenanceWindowTime": {
+                    "type": "string",
+                    "description": "The maintenance time frame for scheduled upgrades. Valid options for maintenance window time - `WINDOW_12AM_4AM`, `WINDOW_6AM_10AM`, `WINDOW_12PM_4PM`, `WINDOW_6PM_10PM`\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "upgradeType": {
+                    "type": "string",
+                    "description": "The major upgrade type for the cluster. Valid options for upgrade type - `AUTOMATIC`, `SCHEDULED`, `MANUAL`\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "upgradeType"
+            ]
+        },
         "hcp:index/VaultClusterMetricsConfig:VaultClusterMetricsConfig": {
             "properties": {
                 "datadogApiKey": {
@@ -415,6 +450,45 @@
                 "grafanaEndpoint",
                 "grafanaUser",
                 "splunkHecendpoint"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "hcp:index/getVaultClusterMajorVersionUpgradeConfig:getVaultClusterMajorVersionUpgradeConfig": {
+            "properties": {
+                "maintenanceWindowDay": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "maintenanceWindowTime": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "upgradeType": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "maintenanceWindowDay",
+                "maintenanceWindowTime",
+                "upgradeType"
             ],
             "language": {
                 "nodejs": {
@@ -1878,6 +1952,10 @@
                     "type": "string",
                     "description": "The ID of the HVN this HCP Vault cluster is associated to.\n"
                 },
+                "majorVersionUpgradeConfig": {
+                    "$ref": "#/types/hcp:index/VaultClusterMajorVersionUpgradeConfig:VaultClusterMajorVersionUpgradeConfig",
+                    "description": "The Major Version Upgrade configuration.\n"
+                },
                 "metricsConfig": {
                     "$ref": "#/types/hcp:index/VaultClusterMetricsConfig:VaultClusterMetricsConfig",
                     "description": "The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)\n"
@@ -1947,6 +2025,7 @@
                 "clusterId",
                 "createdAt",
                 "hvnId",
+                "majorVersionUpgradeConfig",
                 "namespace",
                 "organizationId",
                 "projectId",
@@ -1972,6 +2051,10 @@
                     "type": "string",
                     "description": "The ID of the HVN this HCP Vault cluster is associated to.\n",
                     "willReplaceOnChanges": true
+                },
+                "majorVersionUpgradeConfig": {
+                    "$ref": "#/types/hcp:index/VaultClusterMajorVersionUpgradeConfig:VaultClusterMajorVersionUpgradeConfig",
+                    "description": "The Major Version Upgrade configuration.\n"
                 },
                 "metricsConfig": {
                     "$ref": "#/types/hcp:index/VaultClusterMetricsConfig:VaultClusterMetricsConfig",
@@ -2031,6 +2114,10 @@
                         "type": "string",
                         "description": "The ID of the HVN this HCP Vault cluster is associated to.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "majorVersionUpgradeConfig": {
+                        "$ref": "#/types/hcp:index/VaultClusterMajorVersionUpgradeConfig:VaultClusterMajorVersionUpgradeConfig",
+                        "description": "The Major Version Upgrade configuration.\n"
                     },
                     "metricsConfig": {
                         "$ref": "#/types/hcp:index/VaultClusterMetricsConfig:VaultClusterMetricsConfig",
@@ -3320,6 +3407,12 @@
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
                     },
+                    "majorVersionUpgradeConfigs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/hcp:index/getVaultClusterMajorVersionUpgradeConfig:getVaultClusterMajorVersionUpgradeConfig"
+                        }
+                    },
                     "metricsConfigs": {
                         "type": "array",
                         "items": {
@@ -3394,6 +3487,7 @@
                     "clusterId",
                     "createdAt",
                     "hvnId",
+                    "majorVersionUpgradeConfigs",
                     "metricsConfigs",
                     "minVaultVersion",
                     "namespace",

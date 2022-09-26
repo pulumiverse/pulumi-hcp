@@ -79,6 +79,7 @@ export interface GetVaultClusterResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly majorVersionUpgradeConfigs: outputs.GetVaultClusterMajorVersionUpgradeConfig[];
     /**
      * The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
      */

@@ -73,6 +73,12 @@ export interface GetVaultClusterAuditLogConfig {
     splunkHecendpoint: string;
 }
 
+export interface GetVaultClusterMajorVersionUpgradeConfig {
+    maintenanceWindowDay: string;
+    maintenanceWindowTime: string;
+    upgradeType: string;
+}
+
 export interface GetVaultClusterMetricsConfig {
     /**
      * Datadog region for streaming metrics
@@ -123,6 +129,21 @@ export interface VaultClusterAuditLogConfig {
     splunkToken?: string;
 }
 
+export interface VaultClusterMajorVersionUpgradeConfig {
+    /**
+     * The maintenance day of the week for scheduled upgrades. Valid options for maintenance window day - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, `SUNDAY`
+     */
+    maintenanceWindowDay?: string;
+    /**
+     * The maintenance time frame for scheduled upgrades. Valid options for maintenance window time - `WINDOW_12AM_4AM`, `WINDOW_6AM_10AM`, `WINDOW_12PM_4PM`, `WINDOW_6PM_10PM`
+     */
+    maintenanceWindowTime?: string;
+    /**
+     * The major upgrade type for the cluster. Valid options for upgrade type - `AUTOMATIC`, `SCHEDULED`, `MANUAL`
+     */
+    upgradeType: string;
+}
+
 export interface VaultClusterMetricsConfig {
     /**
      * Datadog api key for streaming metrics
@@ -153,4 +174,3 @@ export interface VaultClusterMetricsConfig {
      */
     splunkToken?: string;
 }
-

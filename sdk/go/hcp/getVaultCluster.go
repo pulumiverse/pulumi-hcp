@@ -67,7 +67,8 @@ type LookupVaultClusterResult struct {
 	// The ID of the HVN this HCP Vault cluster is associated to.
 	HvnId string `pulumi:"hvnId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
+	Id                         string                                     `pulumi:"id"`
+	MajorVersionUpgradeConfigs []GetVaultClusterMajorVersionUpgradeConfig `pulumi:"majorVersionUpgradeConfigs"`
 	// The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
 	MetricsConfigs []GetVaultClusterMetricsConfig `pulumi:"metricsConfigs"`
 	// The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
@@ -170,6 +171,12 @@ func (o LookupVaultClusterResultOutput) HvnId() pulumi.StringOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o LookupVaultClusterResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVaultClusterResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupVaultClusterResultOutput) MajorVersionUpgradeConfigs() GetVaultClusterMajorVersionUpgradeConfigArrayOutput {
+	return o.ApplyT(func(v LookupVaultClusterResult) []GetVaultClusterMajorVersionUpgradeConfig {
+		return v.MajorVersionUpgradeConfigs
+	}).(GetVaultClusterMajorVersionUpgradeConfigArrayOutput)
 }
 
 // The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)

@@ -19,6 +19,7 @@ class VaultClusterArgs:
                  cluster_id: pulumi.Input[str],
                  hvn_id: pulumi.Input[str],
                  audit_log_config: Optional[pulumi.Input['VaultClusterAuditLogConfigArgs']] = None,
+                 major_version_upgrade_config: Optional[pulumi.Input['VaultClusterMajorVersionUpgradeConfigArgs']] = None,
                  metrics_config: Optional[pulumi.Input['VaultClusterMetricsConfigArgs']] = None,
                  min_vault_version: Optional[pulumi.Input[str]] = None,
                  paths_filters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -30,6 +31,7 @@ class VaultClusterArgs:
         :param pulumi.Input[str] cluster_id: The ID of the HCP Vault cluster.
         :param pulumi.Input[str] hvn_id: The ID of the HVN this HCP Vault cluster is associated to.
         :param pulumi.Input['VaultClusterAuditLogConfigArgs'] audit_log_config: The audit logs configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+        :param pulumi.Input['VaultClusterMajorVersionUpgradeConfigArgs'] major_version_upgrade_config: The Major Version Upgrade configuration.
         :param pulumi.Input['VaultClusterMetricsConfigArgs'] metrics_config: The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
         :param pulumi.Input[str] min_vault_version: The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] paths_filters: The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to performance replication secondaries only and operates in "deny" mode only.
@@ -41,6 +43,8 @@ class VaultClusterArgs:
         pulumi.set(__self__, "hvn_id", hvn_id)
         if audit_log_config is not None:
             pulumi.set(__self__, "audit_log_config", audit_log_config)
+        if major_version_upgrade_config is not None:
+            pulumi.set(__self__, "major_version_upgrade_config", major_version_upgrade_config)
         if metrics_config is not None:
             pulumi.set(__self__, "metrics_config", metrics_config)
         if min_vault_version is not None:
@@ -89,6 +93,18 @@ class VaultClusterArgs:
     @audit_log_config.setter
     def audit_log_config(self, value: Optional[pulumi.Input['VaultClusterAuditLogConfigArgs']]):
         pulumi.set(self, "audit_log_config", value)
+
+    @property
+    @pulumi.getter(name="majorVersionUpgradeConfig")
+    def major_version_upgrade_config(self) -> Optional[pulumi.Input['VaultClusterMajorVersionUpgradeConfigArgs']]:
+        """
+        The Major Version Upgrade configuration.
+        """
+        return pulumi.get(self, "major_version_upgrade_config")
+
+    @major_version_upgrade_config.setter
+    def major_version_upgrade_config(self, value: Optional[pulumi.Input['VaultClusterMajorVersionUpgradeConfigArgs']]):
+        pulumi.set(self, "major_version_upgrade_config", value)
 
     @property
     @pulumi.getter(name="metricsConfig")
@@ -171,6 +187,7 @@ class _VaultClusterState:
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  hvn_id: Optional[pulumi.Input[str]] = None,
+                 major_version_upgrade_config: Optional[pulumi.Input['VaultClusterMajorVersionUpgradeConfigArgs']] = None,
                  metrics_config: Optional[pulumi.Input['VaultClusterMetricsConfigArgs']] = None,
                  min_vault_version: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -193,6 +210,7 @@ class _VaultClusterState:
         :param pulumi.Input[str] cluster_id: The ID of the HCP Vault cluster.
         :param pulumi.Input[str] created_at: The time that the Vault cluster was created.
         :param pulumi.Input[str] hvn_id: The ID of the HVN this HCP Vault cluster is associated to.
+        :param pulumi.Input['VaultClusterMajorVersionUpgradeConfigArgs'] major_version_upgrade_config: The Major Version Upgrade configuration.
         :param pulumi.Input['VaultClusterMetricsConfigArgs'] metrics_config: The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
         :param pulumi.Input[str] min_vault_version: The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
         :param pulumi.Input[str] namespace: The name of the customer namespace this HCP Vault cluster is located in.
@@ -219,6 +237,8 @@ class _VaultClusterState:
             pulumi.set(__self__, "created_at", created_at)
         if hvn_id is not None:
             pulumi.set(__self__, "hvn_id", hvn_id)
+        if major_version_upgrade_config is not None:
+            pulumi.set(__self__, "major_version_upgrade_config", major_version_upgrade_config)
         if metrics_config is not None:
             pulumi.set(__self__, "metrics_config", metrics_config)
         if min_vault_version is not None:
@@ -309,6 +329,18 @@ class _VaultClusterState:
     @hvn_id.setter
     def hvn_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "hvn_id", value)
+
+    @property
+    @pulumi.getter(name="majorVersionUpgradeConfig")
+    def major_version_upgrade_config(self) -> Optional[pulumi.Input['VaultClusterMajorVersionUpgradeConfigArgs']]:
+        """
+        The Major Version Upgrade configuration.
+        """
+        return pulumi.get(self, "major_version_upgrade_config")
+
+    @major_version_upgrade_config.setter
+    def major_version_upgrade_config(self, value: Optional[pulumi.Input['VaultClusterMajorVersionUpgradeConfigArgs']]):
+        pulumi.set(self, "major_version_upgrade_config", value)
 
     @property
     @pulumi.getter(name="metricsConfig")
@@ -499,6 +531,7 @@ class VaultCluster(pulumi.CustomResource):
                  audit_log_config: Optional[pulumi.Input[pulumi.InputType['VaultClusterAuditLogConfigArgs']]] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  hvn_id: Optional[pulumi.Input[str]] = None,
+                 major_version_upgrade_config: Optional[pulumi.Input[pulumi.InputType['VaultClusterMajorVersionUpgradeConfigArgs']]] = None,
                  metrics_config: Optional[pulumi.Input[pulumi.InputType['VaultClusterMetricsConfigArgs']]] = None,
                  min_vault_version: Optional[pulumi.Input[str]] = None,
                  paths_filters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -520,6 +553,7 @@ class VaultCluster(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['VaultClusterAuditLogConfigArgs']] audit_log_config: The audit logs configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
         :param pulumi.Input[str] cluster_id: The ID of the HCP Vault cluster.
         :param pulumi.Input[str] hvn_id: The ID of the HVN this HCP Vault cluster is associated to.
+        :param pulumi.Input[pulumi.InputType['VaultClusterMajorVersionUpgradeConfigArgs']] major_version_upgrade_config: The Major Version Upgrade configuration.
         :param pulumi.Input[pulumi.InputType['VaultClusterMetricsConfigArgs']] metrics_config: The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
         :param pulumi.Input[str] min_vault_version: The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] paths_filters: The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to performance replication secondaries only and operates in "deny" mode only.
@@ -560,6 +594,7 @@ class VaultCluster(pulumi.CustomResource):
                  audit_log_config: Optional[pulumi.Input[pulumi.InputType['VaultClusterAuditLogConfigArgs']]] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  hvn_id: Optional[pulumi.Input[str]] = None,
+                 major_version_upgrade_config: Optional[pulumi.Input[pulumi.InputType['VaultClusterMajorVersionUpgradeConfigArgs']]] = None,
                  metrics_config: Optional[pulumi.Input[pulumi.InputType['VaultClusterMetricsConfigArgs']]] = None,
                  min_vault_version: Optional[pulumi.Input[str]] = None,
                  paths_filters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -582,6 +617,7 @@ class VaultCluster(pulumi.CustomResource):
             if hvn_id is None and not opts.urn:
                 raise TypeError("Missing required property 'hvn_id'")
             __props__.__dict__["hvn_id"] = hvn_id
+            __props__.__dict__["major_version_upgrade_config"] = major_version_upgrade_config
             __props__.__dict__["metrics_config"] = metrics_config
             __props__.__dict__["min_vault_version"] = min_vault_version
             __props__.__dict__["paths_filters"] = paths_filters
@@ -614,6 +650,7 @@ class VaultCluster(pulumi.CustomResource):
             cluster_id: Optional[pulumi.Input[str]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             hvn_id: Optional[pulumi.Input[str]] = None,
+            major_version_upgrade_config: Optional[pulumi.Input[pulumi.InputType['VaultClusterMajorVersionUpgradeConfigArgs']]] = None,
             metrics_config: Optional[pulumi.Input[pulumi.InputType['VaultClusterMetricsConfigArgs']]] = None,
             min_vault_version: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
@@ -641,6 +678,7 @@ class VaultCluster(pulumi.CustomResource):
         :param pulumi.Input[str] cluster_id: The ID of the HCP Vault cluster.
         :param pulumi.Input[str] created_at: The time that the Vault cluster was created.
         :param pulumi.Input[str] hvn_id: The ID of the HVN this HCP Vault cluster is associated to.
+        :param pulumi.Input[pulumi.InputType['VaultClusterMajorVersionUpgradeConfigArgs']] major_version_upgrade_config: The Major Version Upgrade configuration.
         :param pulumi.Input[pulumi.InputType['VaultClusterMetricsConfigArgs']] metrics_config: The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
         :param pulumi.Input[str] min_vault_version: The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
         :param pulumi.Input[str] namespace: The name of the customer namespace this HCP Vault cluster is located in.
@@ -666,6 +704,7 @@ class VaultCluster(pulumi.CustomResource):
         __props__.__dict__["cluster_id"] = cluster_id
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["hvn_id"] = hvn_id
+        __props__.__dict__["major_version_upgrade_config"] = major_version_upgrade_config
         __props__.__dict__["metrics_config"] = metrics_config
         __props__.__dict__["min_vault_version"] = min_vault_version
         __props__.__dict__["namespace"] = namespace
@@ -722,6 +761,14 @@ class VaultCluster(pulumi.CustomResource):
         The ID of the HVN this HCP Vault cluster is associated to.
         """
         return pulumi.get(self, "hvn_id")
+
+    @property
+    @pulumi.getter(name="majorVersionUpgradeConfig")
+    def major_version_upgrade_config(self) -> pulumi.Output['outputs.VaultClusterMajorVersionUpgradeConfig']:
+        """
+        The Major Version Upgrade configuration.
+        """
+        return pulumi.get(self, "major_version_upgrade_config")
 
     @property
     @pulumi.getter(name="metricsConfig")

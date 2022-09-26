@@ -23,7 +23,7 @@ class GetVaultClusterResult:
     """
     A collection of values returned by getVaultCluster.
     """
-    def __init__(__self__, audit_log_configs=None, cloud_provider=None, cluster_id=None, created_at=None, hvn_id=None, id=None, metrics_configs=None, min_vault_version=None, namespace=None, organization_id=None, paths_filters=None, primary_link=None, project_id=None, public_endpoint=None, region=None, self_link=None, state=None, tier=None, vault_private_endpoint_url=None, vault_public_endpoint_url=None, vault_version=None):
+    def __init__(__self__, audit_log_configs=None, cloud_provider=None, cluster_id=None, created_at=None, hvn_id=None, id=None, major_version_upgrade_configs=None, metrics_configs=None, min_vault_version=None, namespace=None, organization_id=None, paths_filters=None, primary_link=None, project_id=None, public_endpoint=None, region=None, self_link=None, state=None, tier=None, vault_private_endpoint_url=None, vault_public_endpoint_url=None, vault_version=None):
         if audit_log_configs and not isinstance(audit_log_configs, list):
             raise TypeError("Expected argument 'audit_log_configs' to be a list")
         pulumi.set(__self__, "audit_log_configs", audit_log_configs)
@@ -42,6 +42,9 @@ class GetVaultClusterResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if major_version_upgrade_configs and not isinstance(major_version_upgrade_configs, list):
+            raise TypeError("Expected argument 'major_version_upgrade_configs' to be a list")
+        pulumi.set(__self__, "major_version_upgrade_configs", major_version_upgrade_configs)
         if metrics_configs and not isinstance(metrics_configs, list):
             raise TypeError("Expected argument 'metrics_configs' to be a list")
         pulumi.set(__self__, "metrics_configs", metrics_configs)
@@ -135,6 +138,11 @@ class GetVaultClusterResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="majorVersionUpgradeConfigs")
+    def major_version_upgrade_configs(self) -> Sequence['outputs.GetVaultClusterMajorVersionUpgradeConfigResult']:
+        return pulumi.get(self, "major_version_upgrade_configs")
 
     @property
     @pulumi.getter(name="metricsConfigs")
@@ -269,6 +277,7 @@ class AwaitableGetVaultClusterResult(GetVaultClusterResult):
             created_at=self.created_at,
             hvn_id=self.hvn_id,
             id=self.id,
+            major_version_upgrade_configs=self.major_version_upgrade_configs,
             metrics_configs=self.metrics_configs,
             min_vault_version=self.min_vault_version,
             namespace=self.namespace,
@@ -321,6 +330,7 @@ def get_vault_cluster(audit_log_configs: Optional[Sequence[pulumi.InputType['Get
         created_at=__ret__.created_at,
         hvn_id=__ret__.hvn_id,
         id=__ret__.id,
+        major_version_upgrade_configs=__ret__.major_version_upgrade_configs,
         metrics_configs=__ret__.metrics_configs,
         min_vault_version=__ret__.min_vault_version,
         namespace=__ret__.namespace,

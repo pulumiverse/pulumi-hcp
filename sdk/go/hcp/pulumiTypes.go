@@ -261,6 +261,181 @@ func (o VaultClusterAuditLogConfigPtrOutput) SplunkToken() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
+type VaultClusterMajorVersionUpgradeConfig struct {
+	// The maintenance day of the week for scheduled upgrades. Valid options for maintenance window day - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, `SUNDAY`
+	MaintenanceWindowDay *string `pulumi:"maintenanceWindowDay"`
+	// The maintenance time frame for scheduled upgrades. Valid options for maintenance window time - `WINDOW_12AM_4AM`, `WINDOW_6AM_10AM`, `WINDOW_12PM_4PM`, `WINDOW_6PM_10PM`
+	MaintenanceWindowTime *string `pulumi:"maintenanceWindowTime"`
+	// The major upgrade type for the cluster. Valid options for upgrade type - `AUTOMATIC`, `SCHEDULED`, `MANUAL`
+	UpgradeType string `pulumi:"upgradeType"`
+}
+
+// VaultClusterMajorVersionUpgradeConfigInput is an input type that accepts VaultClusterMajorVersionUpgradeConfigArgs and VaultClusterMajorVersionUpgradeConfigOutput values.
+// You can construct a concrete instance of `VaultClusterMajorVersionUpgradeConfigInput` via:
+//
+//          VaultClusterMajorVersionUpgradeConfigArgs{...}
+type VaultClusterMajorVersionUpgradeConfigInput interface {
+	pulumi.Input
+
+	ToVaultClusterMajorVersionUpgradeConfigOutput() VaultClusterMajorVersionUpgradeConfigOutput
+	ToVaultClusterMajorVersionUpgradeConfigOutputWithContext(context.Context) VaultClusterMajorVersionUpgradeConfigOutput
+}
+
+type VaultClusterMajorVersionUpgradeConfigArgs struct {
+	// The maintenance day of the week for scheduled upgrades. Valid options for maintenance window day - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, `SUNDAY`
+	MaintenanceWindowDay pulumi.StringPtrInput `pulumi:"maintenanceWindowDay"`
+	// The maintenance time frame for scheduled upgrades. Valid options for maintenance window time - `WINDOW_12AM_4AM`, `WINDOW_6AM_10AM`, `WINDOW_12PM_4PM`, `WINDOW_6PM_10PM`
+	MaintenanceWindowTime pulumi.StringPtrInput `pulumi:"maintenanceWindowTime"`
+	// The major upgrade type for the cluster. Valid options for upgrade type - `AUTOMATIC`, `SCHEDULED`, `MANUAL`
+	UpgradeType pulumi.StringInput `pulumi:"upgradeType"`
+}
+
+func (VaultClusterMajorVersionUpgradeConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VaultClusterMajorVersionUpgradeConfig)(nil)).Elem()
+}
+
+func (i VaultClusterMajorVersionUpgradeConfigArgs) ToVaultClusterMajorVersionUpgradeConfigOutput() VaultClusterMajorVersionUpgradeConfigOutput {
+	return i.ToVaultClusterMajorVersionUpgradeConfigOutputWithContext(context.Background())
+}
+
+func (i VaultClusterMajorVersionUpgradeConfigArgs) ToVaultClusterMajorVersionUpgradeConfigOutputWithContext(ctx context.Context) VaultClusterMajorVersionUpgradeConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VaultClusterMajorVersionUpgradeConfigOutput)
+}
+
+func (i VaultClusterMajorVersionUpgradeConfigArgs) ToVaultClusterMajorVersionUpgradeConfigPtrOutput() VaultClusterMajorVersionUpgradeConfigPtrOutput {
+	return i.ToVaultClusterMajorVersionUpgradeConfigPtrOutputWithContext(context.Background())
+}
+
+func (i VaultClusterMajorVersionUpgradeConfigArgs) ToVaultClusterMajorVersionUpgradeConfigPtrOutputWithContext(ctx context.Context) VaultClusterMajorVersionUpgradeConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VaultClusterMajorVersionUpgradeConfigOutput).ToVaultClusterMajorVersionUpgradeConfigPtrOutputWithContext(ctx)
+}
+
+// VaultClusterMajorVersionUpgradeConfigPtrInput is an input type that accepts VaultClusterMajorVersionUpgradeConfigArgs, VaultClusterMajorVersionUpgradeConfigPtr and VaultClusterMajorVersionUpgradeConfigPtrOutput values.
+// You can construct a concrete instance of `VaultClusterMajorVersionUpgradeConfigPtrInput` via:
+//
+//          VaultClusterMajorVersionUpgradeConfigArgs{...}
+//
+//  or:
+//
+//          nil
+type VaultClusterMajorVersionUpgradeConfigPtrInput interface {
+	pulumi.Input
+
+	ToVaultClusterMajorVersionUpgradeConfigPtrOutput() VaultClusterMajorVersionUpgradeConfigPtrOutput
+	ToVaultClusterMajorVersionUpgradeConfigPtrOutputWithContext(context.Context) VaultClusterMajorVersionUpgradeConfigPtrOutput
+}
+
+type vaultClusterMajorVersionUpgradeConfigPtrType VaultClusterMajorVersionUpgradeConfigArgs
+
+func VaultClusterMajorVersionUpgradeConfigPtr(v *VaultClusterMajorVersionUpgradeConfigArgs) VaultClusterMajorVersionUpgradeConfigPtrInput {
+	return (*vaultClusterMajorVersionUpgradeConfigPtrType)(v)
+}
+
+func (*vaultClusterMajorVersionUpgradeConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**VaultClusterMajorVersionUpgradeConfig)(nil)).Elem()
+}
+
+func (i *vaultClusterMajorVersionUpgradeConfigPtrType) ToVaultClusterMajorVersionUpgradeConfigPtrOutput() VaultClusterMajorVersionUpgradeConfigPtrOutput {
+	return i.ToVaultClusterMajorVersionUpgradeConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *vaultClusterMajorVersionUpgradeConfigPtrType) ToVaultClusterMajorVersionUpgradeConfigPtrOutputWithContext(ctx context.Context) VaultClusterMajorVersionUpgradeConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VaultClusterMajorVersionUpgradeConfigPtrOutput)
+}
+
+type VaultClusterMajorVersionUpgradeConfigOutput struct{ *pulumi.OutputState }
+
+func (VaultClusterMajorVersionUpgradeConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VaultClusterMajorVersionUpgradeConfig)(nil)).Elem()
+}
+
+func (o VaultClusterMajorVersionUpgradeConfigOutput) ToVaultClusterMajorVersionUpgradeConfigOutput() VaultClusterMajorVersionUpgradeConfigOutput {
+	return o
+}
+
+func (o VaultClusterMajorVersionUpgradeConfigOutput) ToVaultClusterMajorVersionUpgradeConfigOutputWithContext(ctx context.Context) VaultClusterMajorVersionUpgradeConfigOutput {
+	return o
+}
+
+func (o VaultClusterMajorVersionUpgradeConfigOutput) ToVaultClusterMajorVersionUpgradeConfigPtrOutput() VaultClusterMajorVersionUpgradeConfigPtrOutput {
+	return o.ToVaultClusterMajorVersionUpgradeConfigPtrOutputWithContext(context.Background())
+}
+
+func (o VaultClusterMajorVersionUpgradeConfigOutput) ToVaultClusterMajorVersionUpgradeConfigPtrOutputWithContext(ctx context.Context) VaultClusterMajorVersionUpgradeConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v VaultClusterMajorVersionUpgradeConfig) *VaultClusterMajorVersionUpgradeConfig {
+		return &v
+	}).(VaultClusterMajorVersionUpgradeConfigPtrOutput)
+}
+
+// The maintenance day of the week for scheduled upgrades. Valid options for maintenance window day - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, `SUNDAY`
+func (o VaultClusterMajorVersionUpgradeConfigOutput) MaintenanceWindowDay() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VaultClusterMajorVersionUpgradeConfig) *string { return v.MaintenanceWindowDay }).(pulumi.StringPtrOutput)
+}
+
+// The maintenance time frame for scheduled upgrades. Valid options for maintenance window time - `WINDOW_12AM_4AM`, `WINDOW_6AM_10AM`, `WINDOW_12PM_4PM`, `WINDOW_6PM_10PM`
+func (o VaultClusterMajorVersionUpgradeConfigOutput) MaintenanceWindowTime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VaultClusterMajorVersionUpgradeConfig) *string { return v.MaintenanceWindowTime }).(pulumi.StringPtrOutput)
+}
+
+// The major upgrade type for the cluster. Valid options for upgrade type - `AUTOMATIC`, `SCHEDULED`, `MANUAL`
+func (o VaultClusterMajorVersionUpgradeConfigOutput) UpgradeType() pulumi.StringOutput {
+	return o.ApplyT(func(v VaultClusterMajorVersionUpgradeConfig) string { return v.UpgradeType }).(pulumi.StringOutput)
+}
+
+type VaultClusterMajorVersionUpgradeConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (VaultClusterMajorVersionUpgradeConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VaultClusterMajorVersionUpgradeConfig)(nil)).Elem()
+}
+
+func (o VaultClusterMajorVersionUpgradeConfigPtrOutput) ToVaultClusterMajorVersionUpgradeConfigPtrOutput() VaultClusterMajorVersionUpgradeConfigPtrOutput {
+	return o
+}
+
+func (o VaultClusterMajorVersionUpgradeConfigPtrOutput) ToVaultClusterMajorVersionUpgradeConfigPtrOutputWithContext(ctx context.Context) VaultClusterMajorVersionUpgradeConfigPtrOutput {
+	return o
+}
+
+func (o VaultClusterMajorVersionUpgradeConfigPtrOutput) Elem() VaultClusterMajorVersionUpgradeConfigOutput {
+	return o.ApplyT(func(v *VaultClusterMajorVersionUpgradeConfig) VaultClusterMajorVersionUpgradeConfig {
+		if v != nil {
+			return *v
+		}
+		var ret VaultClusterMajorVersionUpgradeConfig
+		return ret
+	}).(VaultClusterMajorVersionUpgradeConfigOutput)
+}
+
+// The maintenance day of the week for scheduled upgrades. Valid options for maintenance window day - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, `SUNDAY`
+func (o VaultClusterMajorVersionUpgradeConfigPtrOutput) MaintenanceWindowDay() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VaultClusterMajorVersionUpgradeConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MaintenanceWindowDay
+	}).(pulumi.StringPtrOutput)
+}
+
+// The maintenance time frame for scheduled upgrades. Valid options for maintenance window time - `WINDOW_12AM_4AM`, `WINDOW_6AM_10AM`, `WINDOW_12PM_4PM`, `WINDOW_6PM_10PM`
+func (o VaultClusterMajorVersionUpgradeConfigPtrOutput) MaintenanceWindowTime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VaultClusterMajorVersionUpgradeConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MaintenanceWindowTime
+	}).(pulumi.StringPtrOutput)
+}
+
+// The major upgrade type for the cluster. Valid options for upgrade type - `AUTOMATIC`, `SCHEDULED`, `MANUAL`
+func (o VaultClusterMajorVersionUpgradeConfigPtrOutput) UpgradeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VaultClusterMajorVersionUpgradeConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.UpgradeType
+	}).(pulumi.StringPtrOutput)
+}
+
 type VaultClusterMetricsConfig struct {
 	// Datadog api key for streaming metrics
 	DatadogApiKey *string `pulumi:"datadogApiKey"`
@@ -920,6 +1095,112 @@ func (o GetVaultClusterAuditLogConfigArrayOutput) Index(i pulumi.IntInput) GetVa
 	}).(GetVaultClusterAuditLogConfigOutput)
 }
 
+type GetVaultClusterMajorVersionUpgradeConfig struct {
+	MaintenanceWindowDay  string `pulumi:"maintenanceWindowDay"`
+	MaintenanceWindowTime string `pulumi:"maintenanceWindowTime"`
+	UpgradeType           string `pulumi:"upgradeType"`
+}
+
+// GetVaultClusterMajorVersionUpgradeConfigInput is an input type that accepts GetVaultClusterMajorVersionUpgradeConfigArgs and GetVaultClusterMajorVersionUpgradeConfigOutput values.
+// You can construct a concrete instance of `GetVaultClusterMajorVersionUpgradeConfigInput` via:
+//
+//          GetVaultClusterMajorVersionUpgradeConfigArgs{...}
+type GetVaultClusterMajorVersionUpgradeConfigInput interface {
+	pulumi.Input
+
+	ToGetVaultClusterMajorVersionUpgradeConfigOutput() GetVaultClusterMajorVersionUpgradeConfigOutput
+	ToGetVaultClusterMajorVersionUpgradeConfigOutputWithContext(context.Context) GetVaultClusterMajorVersionUpgradeConfigOutput
+}
+
+type GetVaultClusterMajorVersionUpgradeConfigArgs struct {
+	MaintenanceWindowDay  pulumi.StringInput `pulumi:"maintenanceWindowDay"`
+	MaintenanceWindowTime pulumi.StringInput `pulumi:"maintenanceWindowTime"`
+	UpgradeType           pulumi.StringInput `pulumi:"upgradeType"`
+}
+
+func (GetVaultClusterMajorVersionUpgradeConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVaultClusterMajorVersionUpgradeConfig)(nil)).Elem()
+}
+
+func (i GetVaultClusterMajorVersionUpgradeConfigArgs) ToGetVaultClusterMajorVersionUpgradeConfigOutput() GetVaultClusterMajorVersionUpgradeConfigOutput {
+	return i.ToGetVaultClusterMajorVersionUpgradeConfigOutputWithContext(context.Background())
+}
+
+func (i GetVaultClusterMajorVersionUpgradeConfigArgs) ToGetVaultClusterMajorVersionUpgradeConfigOutputWithContext(ctx context.Context) GetVaultClusterMajorVersionUpgradeConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVaultClusterMajorVersionUpgradeConfigOutput)
+}
+
+// GetVaultClusterMajorVersionUpgradeConfigArrayInput is an input type that accepts GetVaultClusterMajorVersionUpgradeConfigArray and GetVaultClusterMajorVersionUpgradeConfigArrayOutput values.
+// You can construct a concrete instance of `GetVaultClusterMajorVersionUpgradeConfigArrayInput` via:
+//
+//          GetVaultClusterMajorVersionUpgradeConfigArray{ GetVaultClusterMajorVersionUpgradeConfigArgs{...} }
+type GetVaultClusterMajorVersionUpgradeConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetVaultClusterMajorVersionUpgradeConfigArrayOutput() GetVaultClusterMajorVersionUpgradeConfigArrayOutput
+	ToGetVaultClusterMajorVersionUpgradeConfigArrayOutputWithContext(context.Context) GetVaultClusterMajorVersionUpgradeConfigArrayOutput
+}
+
+type GetVaultClusterMajorVersionUpgradeConfigArray []GetVaultClusterMajorVersionUpgradeConfigInput
+
+func (GetVaultClusterMajorVersionUpgradeConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVaultClusterMajorVersionUpgradeConfig)(nil)).Elem()
+}
+
+func (i GetVaultClusterMajorVersionUpgradeConfigArray) ToGetVaultClusterMajorVersionUpgradeConfigArrayOutput() GetVaultClusterMajorVersionUpgradeConfigArrayOutput {
+	return i.ToGetVaultClusterMajorVersionUpgradeConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetVaultClusterMajorVersionUpgradeConfigArray) ToGetVaultClusterMajorVersionUpgradeConfigArrayOutputWithContext(ctx context.Context) GetVaultClusterMajorVersionUpgradeConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVaultClusterMajorVersionUpgradeConfigArrayOutput)
+}
+
+type GetVaultClusterMajorVersionUpgradeConfigOutput struct{ *pulumi.OutputState }
+
+func (GetVaultClusterMajorVersionUpgradeConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVaultClusterMajorVersionUpgradeConfig)(nil)).Elem()
+}
+
+func (o GetVaultClusterMajorVersionUpgradeConfigOutput) ToGetVaultClusterMajorVersionUpgradeConfigOutput() GetVaultClusterMajorVersionUpgradeConfigOutput {
+	return o
+}
+
+func (o GetVaultClusterMajorVersionUpgradeConfigOutput) ToGetVaultClusterMajorVersionUpgradeConfigOutputWithContext(ctx context.Context) GetVaultClusterMajorVersionUpgradeConfigOutput {
+	return o
+}
+
+func (o GetVaultClusterMajorVersionUpgradeConfigOutput) MaintenanceWindowDay() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVaultClusterMajorVersionUpgradeConfig) string { return v.MaintenanceWindowDay }).(pulumi.StringOutput)
+}
+
+func (o GetVaultClusterMajorVersionUpgradeConfigOutput) MaintenanceWindowTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVaultClusterMajorVersionUpgradeConfig) string { return v.MaintenanceWindowTime }).(pulumi.StringOutput)
+}
+
+func (o GetVaultClusterMajorVersionUpgradeConfigOutput) UpgradeType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVaultClusterMajorVersionUpgradeConfig) string { return v.UpgradeType }).(pulumi.StringOutput)
+}
+
+type GetVaultClusterMajorVersionUpgradeConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVaultClusterMajorVersionUpgradeConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVaultClusterMajorVersionUpgradeConfig)(nil)).Elem()
+}
+
+func (o GetVaultClusterMajorVersionUpgradeConfigArrayOutput) ToGetVaultClusterMajorVersionUpgradeConfigArrayOutput() GetVaultClusterMajorVersionUpgradeConfigArrayOutput {
+	return o
+}
+
+func (o GetVaultClusterMajorVersionUpgradeConfigArrayOutput) ToGetVaultClusterMajorVersionUpgradeConfigArrayOutputWithContext(ctx context.Context) GetVaultClusterMajorVersionUpgradeConfigArrayOutput {
+	return o
+}
+
+func (o GetVaultClusterMajorVersionUpgradeConfigArrayOutput) Index(i pulumi.IntInput) GetVaultClusterMajorVersionUpgradeConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVaultClusterMajorVersionUpgradeConfig {
+		return vs[0].([]GetVaultClusterMajorVersionUpgradeConfig)[vs[1].(int)]
+	}).(GetVaultClusterMajorVersionUpgradeConfigOutput)
+}
+
 type GetVaultClusterMetricsConfig struct {
 	// Datadog region for streaming metrics
 	DatadogRegion string `pulumi:"datadogRegion"`
@@ -1047,6 +1328,8 @@ func (o GetVaultClusterMetricsConfigArrayOutput) Index(i pulumi.IntInput) GetVau
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VaultClusterAuditLogConfigInput)(nil)).Elem(), VaultClusterAuditLogConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VaultClusterAuditLogConfigPtrInput)(nil)).Elem(), VaultClusterAuditLogConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VaultClusterMajorVersionUpgradeConfigInput)(nil)).Elem(), VaultClusterMajorVersionUpgradeConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VaultClusterMajorVersionUpgradeConfigPtrInput)(nil)).Elem(), VaultClusterMajorVersionUpgradeConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VaultClusterMetricsConfigInput)(nil)).Elem(), VaultClusterMetricsConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VaultClusterMetricsConfigPtrInput)(nil)).Elem(), VaultClusterMetricsConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPackerImageIterationBuildInput)(nil)).Elem(), GetPackerImageIterationBuildArgs{})
@@ -1055,10 +1338,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPackerImageIterationBuildImageArrayInput)(nil)).Elem(), GetPackerImageIterationBuildImageArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVaultClusterAuditLogConfigInput)(nil)).Elem(), GetVaultClusterAuditLogConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVaultClusterAuditLogConfigArrayInput)(nil)).Elem(), GetVaultClusterAuditLogConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVaultClusterMajorVersionUpgradeConfigInput)(nil)).Elem(), GetVaultClusterMajorVersionUpgradeConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVaultClusterMajorVersionUpgradeConfigArrayInput)(nil)).Elem(), GetVaultClusterMajorVersionUpgradeConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVaultClusterMetricsConfigInput)(nil)).Elem(), GetVaultClusterMetricsConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVaultClusterMetricsConfigArrayInput)(nil)).Elem(), GetVaultClusterMetricsConfigArray{})
 	pulumi.RegisterOutputType(VaultClusterAuditLogConfigOutput{})
 	pulumi.RegisterOutputType(VaultClusterAuditLogConfigPtrOutput{})
+	pulumi.RegisterOutputType(VaultClusterMajorVersionUpgradeConfigOutput{})
+	pulumi.RegisterOutputType(VaultClusterMajorVersionUpgradeConfigPtrOutput{})
 	pulumi.RegisterOutputType(VaultClusterMetricsConfigOutput{})
 	pulumi.RegisterOutputType(VaultClusterMetricsConfigPtrOutput{})
 	pulumi.RegisterOutputType(GetPackerImageIterationBuildOutput{})
@@ -1067,6 +1354,8 @@ func init() {
 	pulumi.RegisterOutputType(GetPackerImageIterationBuildImageArrayOutput{})
 	pulumi.RegisterOutputType(GetVaultClusterAuditLogConfigOutput{})
 	pulumi.RegisterOutputType(GetVaultClusterAuditLogConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetVaultClusterMajorVersionUpgradeConfigOutput{})
+	pulumi.RegisterOutputType(GetVaultClusterMajorVersionUpgradeConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetVaultClusterMetricsConfigOutput{})
 	pulumi.RegisterOutputType(GetVaultClusterMetricsConfigArrayOutput{})
 }

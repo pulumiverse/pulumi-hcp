@@ -64,6 +64,10 @@ export class VaultCluster extends pulumi.CustomResource {
      */
     public readonly hvnId!: pulumi.Output<string>;
     /**
+     * The Major Version Upgrade configuration.
+     */
+    public readonly majorVersionUpgradeConfig!: pulumi.Output<outputs.VaultClusterMajorVersionUpgradeConfig>;
+    /**
      * The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
      */
     public readonly metricsConfig!: pulumi.Output<outputs.VaultClusterMetricsConfig | undefined>;
@@ -142,6 +146,7 @@ export class VaultCluster extends pulumi.CustomResource {
             resourceInputs["clusterId"] = state ? state.clusterId : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["hvnId"] = state ? state.hvnId : undefined;
+            resourceInputs["majorVersionUpgradeConfig"] = state ? state.majorVersionUpgradeConfig : undefined;
             resourceInputs["metricsConfig"] = state ? state.metricsConfig : undefined;
             resourceInputs["minVaultVersion"] = state ? state.minVaultVersion : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
@@ -168,6 +173,7 @@ export class VaultCluster extends pulumi.CustomResource {
             resourceInputs["auditLogConfig"] = args ? args.auditLogConfig : undefined;
             resourceInputs["clusterId"] = args ? args.clusterId : undefined;
             resourceInputs["hvnId"] = args ? args.hvnId : undefined;
+            resourceInputs["majorVersionUpgradeConfig"] = args ? args.majorVersionUpgradeConfig : undefined;
             resourceInputs["metricsConfig"] = args ? args.metricsConfig : undefined;
             resourceInputs["minVaultVersion"] = args ? args.minVaultVersion : undefined;
             resourceInputs["pathsFilters"] = args ? args.pathsFilters : undefined;
@@ -215,6 +221,10 @@ export interface VaultClusterState {
      * The ID of the HVN this HCP Vault cluster is associated to.
      */
     hvnId?: pulumi.Input<string>;
+    /**
+     * The Major Version Upgrade configuration.
+     */
+    majorVersionUpgradeConfig?: pulumi.Input<inputs.VaultClusterMajorVersionUpgradeConfig>;
     /**
      * The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
      */
@@ -293,6 +303,10 @@ export interface VaultClusterArgs {
      * The ID of the HVN this HCP Vault cluster is associated to.
      */
     hvnId: pulumi.Input<string>;
+    /**
+     * The Major Version Upgrade configuration.
+     */
+    majorVersionUpgradeConfig?: pulumi.Input<inputs.VaultClusterMajorVersionUpgradeConfig>;
     /**
      * The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
      */

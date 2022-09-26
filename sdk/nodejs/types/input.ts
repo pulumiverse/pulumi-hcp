@@ -5,25 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface GetVaultClusterAuditLogConfig {
-    /**
-     * Datadog region for streaming audit logs
-     */
-    datadogRegion?: string;
-    /**
-     * Grafana endpoint for streaming audit logs
-     */
-    grafanaEndpoint?: string;
-    /**
-     * Grafana user for streaming audit logs
-     */
-    grafanaUser?: string;
-    /**
-     * Splunk endpoint for streaming audit logs
-     */
-    splunkHecendpoint?: string;
-}
-
 export interface GetVaultClusterAuditLogConfigArgs {
     /**
      * Datadog region for streaming audit logs
@@ -41,6 +22,25 @@ export interface GetVaultClusterAuditLogConfigArgs {
      * Splunk endpoint for streaming audit logs
      */
     splunkHecendpoint?: pulumi.Input<string>;
+}
+
+export interface GetVaultClusterAuditLogConfig {
+    /**
+     * Datadog region for streaming audit logs
+     */
+    datadogRegion?: string;
+    /**
+     * Grafana endpoint for streaming audit logs
+     */
+    grafanaEndpoint?: string;
+    /**
+     * Grafana user for streaming audit logs
+     */
+    grafanaUser?: string;
+    /**
+     * Splunk endpoint for streaming audit logs
+     */
+    splunkHecendpoint?: string;
 }
 
 export interface GetVaultClusterMetricsConfig {
@@ -112,6 +112,21 @@ export interface VaultClusterAuditLogConfig {
     splunkToken?: pulumi.Input<string>;
 }
 
+export interface VaultClusterMajorVersionUpgradeConfig {
+    /**
+     * The maintenance day of the week for scheduled upgrades. Valid options for maintenance window day - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, `SUNDAY`
+     */
+    maintenanceWindowDay?: pulumi.Input<string>;
+    /**
+     * The maintenance time frame for scheduled upgrades. Valid options for maintenance window time - `WINDOW_12AM_4AM`, `WINDOW_6AM_10AM`, `WINDOW_12PM_4PM`, `WINDOW_6PM_10PM`
+     */
+    maintenanceWindowTime?: pulumi.Input<string>;
+    /**
+     * The major upgrade type for the cluster. Valid options for upgrade type - `AUTOMATIC`, `SCHEDULED`, `MANUAL`
+     */
+    upgradeType: pulumi.Input<string>;
+}
+
 export interface VaultClusterMetricsConfig {
     /**
      * Datadog api key for streaming metrics
@@ -142,3 +157,4 @@ export interface VaultClusterMetricsConfig {
      */
     splunkToken?: pulumi.Input<string>;
 }
+

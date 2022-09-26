@@ -31,6 +31,8 @@ type VaultCluster struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The ID of the HVN this HCP Vault cluster is associated to.
 	HvnId pulumi.StringOutput `pulumi:"hvnId"`
+	// The Major Version Upgrade configuration.
+	MajorVersionUpgradeConfig VaultClusterMajorVersionUpgradeConfigOutput `pulumi:"majorVersionUpgradeConfig"`
 	// The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
 	MetricsConfig VaultClusterMetricsConfigPtrOutput `pulumi:"metricsConfig"`
 	// The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
@@ -109,6 +111,8 @@ type vaultClusterState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// The ID of the HVN this HCP Vault cluster is associated to.
 	HvnId *string `pulumi:"hvnId"`
+	// The Major Version Upgrade configuration.
+	MajorVersionUpgradeConfig *VaultClusterMajorVersionUpgradeConfig `pulumi:"majorVersionUpgradeConfig"`
 	// The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
 	MetricsConfig *VaultClusterMetricsConfig `pulumi:"metricsConfig"`
 	// The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
@@ -152,6 +156,8 @@ type VaultClusterState struct {
 	CreatedAt pulumi.StringPtrInput
 	// The ID of the HVN this HCP Vault cluster is associated to.
 	HvnId pulumi.StringPtrInput
+	// The Major Version Upgrade configuration.
+	MajorVersionUpgradeConfig VaultClusterMajorVersionUpgradeConfigPtrInput
 	// The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
 	MetricsConfig VaultClusterMetricsConfigPtrInput
 	// The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
@@ -195,6 +201,8 @@ type vaultClusterArgs struct {
 	ClusterId string `pulumi:"clusterId"`
 	// The ID of the HVN this HCP Vault cluster is associated to.
 	HvnId string `pulumi:"hvnId"`
+	// The Major Version Upgrade configuration.
+	MajorVersionUpgradeConfig *VaultClusterMajorVersionUpgradeConfig `pulumi:"majorVersionUpgradeConfig"`
 	// The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
 	MetricsConfig *VaultClusterMetricsConfig `pulumi:"metricsConfig"`
 	// The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
@@ -217,6 +225,8 @@ type VaultClusterArgs struct {
 	ClusterId pulumi.StringInput
 	// The ID of the HVN this HCP Vault cluster is associated to.
 	HvnId pulumi.StringInput
+	// The Major Version Upgrade configuration.
+	MajorVersionUpgradeConfig VaultClusterMajorVersionUpgradeConfigPtrInput
 	// The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
 	MetricsConfig VaultClusterMetricsConfigPtrInput
 	// The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
@@ -341,6 +351,11 @@ func (o VaultClusterOutput) CreatedAt() pulumi.StringOutput {
 // The ID of the HVN this HCP Vault cluster is associated to.
 func (o VaultClusterOutput) HvnId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VaultCluster) pulumi.StringOutput { return v.HvnId }).(pulumi.StringOutput)
+}
+
+// The Major Version Upgrade configuration.
+func (o VaultClusterOutput) MajorVersionUpgradeConfig() VaultClusterMajorVersionUpgradeConfigOutput {
+	return o.ApplyT(func(v *VaultCluster) VaultClusterMajorVersionUpgradeConfigOutput { return v.MajorVersionUpgradeConfig }).(VaultClusterMajorVersionUpgradeConfigOutput)
 }
 
 // The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
