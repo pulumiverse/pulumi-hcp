@@ -104,8 +104,7 @@ class _AwsTransitGatewayAttachmentState:
         """
         Input properties used for looking up and filtering AwsTransitGatewayAttachment resources.
         :param pulumi.Input[str] created_at: The time that the transit gateway attachment was created.
-        :param pulumi.Input[str] expires_at: The time after which the transit gateway attachment will be considered expired if it hasn't transitioned into `ACCEPTED`
-               or `ACTIVE` state.
+        :param pulumi.Input[str] expires_at: The time after which the transit gateway attachment will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
         :param pulumi.Input[str] hvn_id: The ID of the HashiCorp Virtual Network (HVN).
         :param pulumi.Input[str] organization_id: The ID of the HCP organization where the transit gateway attachment is located. Always matches the HVN's organization.
         :param pulumi.Input[str] project_id: The ID of the HCP project where the transit gateway attachment is located. Always matches the HVN's project.
@@ -159,8 +158,7 @@ class _AwsTransitGatewayAttachmentState:
     @pulumi.getter(name="expiresAt")
     def expires_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The time after which the transit gateway attachment will be considered expired if it hasn't transitioned into `ACCEPTED`
-        or `ACTIVE` state.
+        The time after which the transit gateway attachment will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
         """
         return pulumi.get(self, "expires_at")
 
@@ -482,8 +480,7 @@ class AwsTransitGatewayAttachment(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] created_at: The time that the transit gateway attachment was created.
-        :param pulumi.Input[str] expires_at: The time after which the transit gateway attachment will be considered expired if it hasn't transitioned into `ACCEPTED`
-               or `ACTIVE` state.
+        :param pulumi.Input[str] expires_at: The time after which the transit gateway attachment will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
         :param pulumi.Input[str] hvn_id: The ID of the HashiCorp Virtual Network (HVN).
         :param pulumi.Input[str] organization_id: The ID of the HCP organization where the transit gateway attachment is located. Always matches the HVN's organization.
         :param pulumi.Input[str] project_id: The ID of the HCP project where the transit gateway attachment is located. Always matches the HVN's project.
@@ -527,8 +524,7 @@ class AwsTransitGatewayAttachment(pulumi.CustomResource):
     @pulumi.getter(name="expiresAt")
     def expires_at(self) -> pulumi.Output[str]:
         """
-        The time after which the transit gateway attachment will be considered expired if it hasn't transitioned into `ACCEPTED`
-        or `ACTIVE` state.
+        The time after which the transit gateway attachment will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
         """
         return pulumi.get(self, "expires_at")
 

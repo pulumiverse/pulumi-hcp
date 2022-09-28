@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * import * as pulumi_hcp from "@grapl/pulumi-hcp";
+ * import * as hcp from "@grapl/pulumi-hcp";
  *
  * const main = new hcp.Hvn("main", {
  *     hvnId: "main-hvn",
@@ -84,8 +84,7 @@ export class AwsNetworkPeering extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The time after which the network peering will be considered expired if it hasn't transitioned into `ACCEPTED` or
-     * `ACTIVE` state.
+     * The time after which the network peering will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
      */
     public /*out*/ readonly expiresAt!: pulumi.Output<string>;
     /**
@@ -198,8 +197,7 @@ export interface AwsNetworkPeeringState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The time after which the network peering will be considered expired if it hasn't transitioned into `ACCEPTED` or
-     * `ACTIVE` state.
+     * The time after which the network peering will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
      */
     expiresAt?: pulumi.Input<string>;
     /**

@@ -8,12 +8,14 @@ import typing
 from .aws_network_peering import *
 from .aws_transit_gateway_attachment import *
 from .azure_peering_connection import *
+from .boundary_cluster import *
 from .consul_cluster import *
 from .consul_cluster_root_token import *
 from .consul_snapshot import *
 from .get_aws_network_peering import *
 from .get_aws_transit_gateway_attachment import *
 from .get_azure_peering_connection import *
+from .get_boundary_cluster import *
 from .get_consul_agent_helm_config import *
 from .get_consul_agent_kubernetes_secret import *
 from .get_consul_cluster import *
@@ -66,6 +68,14 @@ _utilities.register(
   "fqn": "pulumi_hcp",
   "classes": {
    "hcp:index/azurePeeringConnection:AzurePeeringConnection": "AzurePeeringConnection"
+  }
+ },
+ {
+  "pkg": "hcp",
+  "mod": "index/boundaryCluster",
+  "fqn": "pulumi_hcp",
+  "classes": {
+   "hcp:index/boundaryCluster:BoundaryCluster": "BoundaryCluster"
   }
  },
  {

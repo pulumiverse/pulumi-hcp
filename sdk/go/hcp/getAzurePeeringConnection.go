@@ -25,31 +25,48 @@ func LookupAzurePeeringConnection(ctx *pulumi.Context, args *LookupAzurePeeringC
 
 // A collection of arguments for invoking getAzurePeeringConnection.
 type LookupAzurePeeringConnectionArgs struct {
-	HvnLink            string `pulumi:"hvnLink"`
+	// The `selfLink` of the HashiCorp Virtual Network (HVN).
+	HvnLink string `pulumi:"hvnLink"`
+	// The ID of the peering connection.
 	PeeringId          string `pulumi:"peeringId"`
 	WaitForActiveState *bool  `pulumi:"waitForActiveState"`
 }
 
 // A collection of values returned by getAzurePeeringConnection.
 type LookupAzurePeeringConnectionResult struct {
-	ApplicationId  string `pulumi:"applicationId"`
+	// The ID of the Azure application whose credentials are used to peer the HCP HVN's underlying VNet with the customer VNet.
+	ApplicationId string `pulumi:"applicationId"`
+	// The peering connection ID used by Azure.
 	AzurePeeringId string `pulumi:"azurePeeringId"`
-	CreatedAt      string `pulumi:"createdAt"`
-	ExpiresAt      string `pulumi:"expiresAt"`
-	HvnLink        string `pulumi:"hvnLink"`
+	// The time that the peering connection was created.
+	CreatedAt string `pulumi:"createdAt"`
+	// The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
+	ExpiresAt string `pulumi:"expiresAt"`
+	// The `selfLink` of the HashiCorp Virtual Network (HVN).
+	HvnLink string `pulumi:"hvnLink"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                    string `pulumi:"id"`
-	OrganizationId        string `pulumi:"organizationId"`
+	Id string `pulumi:"id"`
+	// The ID of the HCP organization where the peering connection is located. Always matches the HVN's organization.
+	OrganizationId string `pulumi:"organizationId"`
+	// The resource group name of the peer VNet in Azure.
 	PeerResourceGroupName string `pulumi:"peerResourceGroupName"`
-	PeerSubscriptionId    string `pulumi:"peerSubscriptionId"`
-	PeerTenantId          string `pulumi:"peerTenantId"`
-	PeerVnetName          string `pulumi:"peerVnetName"`
-	PeerVnetRegion        string `pulumi:"peerVnetRegion"`
-	PeeringId             string `pulumi:"peeringId"`
-	ProjectId             string `pulumi:"projectId"`
-	SelfLink              string `pulumi:"selfLink"`
-	State                 string `pulumi:"state"`
-	WaitForActiveState    *bool  `pulumi:"waitForActiveState"`
+	// The subscription ID of the peer VNet in Azure.
+	PeerSubscriptionId string `pulumi:"peerSubscriptionId"`
+	// The tenant ID of the peer VNet in Azure.
+	PeerTenantId string `pulumi:"peerTenantId"`
+	// The name of the peer VNet in Azure.
+	PeerVnetName string `pulumi:"peerVnetName"`
+	// The region of the peer VNet in Azure.
+	PeerVnetRegion string `pulumi:"peerVnetRegion"`
+	// The ID of the peering connection.
+	PeeringId string `pulumi:"peeringId"`
+	// The ID of the HCP project where the peering connection is located. Always matches the HVN's project.
+	ProjectId string `pulumi:"projectId"`
+	// A unique URL identifying the peering connection
+	SelfLink string `pulumi:"selfLink"`
+	// The state of the Azure peering connection.
+	State              string `pulumi:"state"`
+	WaitForActiveState *bool  `pulumi:"waitForActiveState"`
 }
 
 func LookupAzurePeeringConnectionOutput(ctx *pulumi.Context, args LookupAzurePeeringConnectionOutputArgs, opts ...pulumi.InvokeOption) LookupAzurePeeringConnectionResultOutput {
@@ -67,7 +84,9 @@ func LookupAzurePeeringConnectionOutput(ctx *pulumi.Context, args LookupAzurePee
 
 // A collection of arguments for invoking getAzurePeeringConnection.
 type LookupAzurePeeringConnectionOutputArgs struct {
-	HvnLink            pulumi.StringInput  `pulumi:"hvnLink"`
+	// The `selfLink` of the HashiCorp Virtual Network (HVN).
+	HvnLink pulumi.StringInput `pulumi:"hvnLink"`
+	// The ID of the peering connection.
 	PeeringId          pulumi.StringInput  `pulumi:"peeringId"`
 	WaitForActiveState pulumi.BoolPtrInput `pulumi:"waitForActiveState"`
 }
@@ -91,22 +110,27 @@ func (o LookupAzurePeeringConnectionResultOutput) ToLookupAzurePeeringConnection
 	return o
 }
 
+// The ID of the Azure application whose credentials are used to peer the HCP HVN's underlying VNet with the customer VNet.
 func (o LookupAzurePeeringConnectionResultOutput) ApplicationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzurePeeringConnectionResult) string { return v.ApplicationId }).(pulumi.StringOutput)
 }
 
+// The peering connection ID used by Azure.
 func (o LookupAzurePeeringConnectionResultOutput) AzurePeeringId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzurePeeringConnectionResult) string { return v.AzurePeeringId }).(pulumi.StringOutput)
 }
 
+// The time that the peering connection was created.
 func (o LookupAzurePeeringConnectionResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzurePeeringConnectionResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
 func (o LookupAzurePeeringConnectionResultOutput) ExpiresAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzurePeeringConnectionResult) string { return v.ExpiresAt }).(pulumi.StringOutput)
 }
 
+// The `selfLink` of the HashiCorp Virtual Network (HVN).
 func (o LookupAzurePeeringConnectionResultOutput) HvnLink() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzurePeeringConnectionResult) string { return v.HvnLink }).(pulumi.StringOutput)
 }
@@ -116,42 +140,52 @@ func (o LookupAzurePeeringConnectionResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzurePeeringConnectionResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The ID of the HCP organization where the peering connection is located. Always matches the HVN's organization.
 func (o LookupAzurePeeringConnectionResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzurePeeringConnectionResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
+// The resource group name of the peer VNet in Azure.
 func (o LookupAzurePeeringConnectionResultOutput) PeerResourceGroupName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzurePeeringConnectionResult) string { return v.PeerResourceGroupName }).(pulumi.StringOutput)
 }
 
+// The subscription ID of the peer VNet in Azure.
 func (o LookupAzurePeeringConnectionResultOutput) PeerSubscriptionId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzurePeeringConnectionResult) string { return v.PeerSubscriptionId }).(pulumi.StringOutput)
 }
 
+// The tenant ID of the peer VNet in Azure.
 func (o LookupAzurePeeringConnectionResultOutput) PeerTenantId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzurePeeringConnectionResult) string { return v.PeerTenantId }).(pulumi.StringOutput)
 }
 
+// The name of the peer VNet in Azure.
 func (o LookupAzurePeeringConnectionResultOutput) PeerVnetName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzurePeeringConnectionResult) string { return v.PeerVnetName }).(pulumi.StringOutput)
 }
 
+// The region of the peer VNet in Azure.
 func (o LookupAzurePeeringConnectionResultOutput) PeerVnetRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzurePeeringConnectionResult) string { return v.PeerVnetRegion }).(pulumi.StringOutput)
 }
 
+// The ID of the peering connection.
 func (o LookupAzurePeeringConnectionResultOutput) PeeringId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzurePeeringConnectionResult) string { return v.PeeringId }).(pulumi.StringOutput)
 }
 
+// The ID of the HCP project where the peering connection is located. Always matches the HVN's project.
 func (o LookupAzurePeeringConnectionResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzurePeeringConnectionResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// A unique URL identifying the peering connection
 func (o LookupAzurePeeringConnectionResultOutput) SelfLink() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzurePeeringConnectionResult) string { return v.SelfLink }).(pulumi.StringOutput)
 }
 
+// The state of the Azure peering connection.
 func (o LookupAzurePeeringConnectionResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAzurePeeringConnectionResult) string { return v.State }).(pulumi.StringOutput)
 }

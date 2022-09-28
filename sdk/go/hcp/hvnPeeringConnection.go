@@ -67,8 +67,7 @@ type HvnPeeringConnection struct {
 
 	// The time that the peering connection was created.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or
-	// `ACTIVE` state.
+	// The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
 	ExpiresAt pulumi.StringOutput `pulumi:"expiresAt"`
 	// The unique URL of one of the HVNs being peered.
 	Hvn1 pulumi.StringOutput `pulumi:"hvn1"`
@@ -124,8 +123,7 @@ func GetHvnPeeringConnection(ctx *pulumi.Context,
 type hvnPeeringConnectionState struct {
 	// The time that the peering connection was created.
 	CreatedAt *string `pulumi:"createdAt"`
-	// The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or
-	// `ACTIVE` state.
+	// The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
 	ExpiresAt *string `pulumi:"expiresAt"`
 	// The unique URL of one of the HVNs being peered.
 	Hvn1 *string `pulumi:"hvn1"`
@@ -146,8 +144,7 @@ type hvnPeeringConnectionState struct {
 type HvnPeeringConnectionState struct {
 	// The time that the peering connection was created.
 	CreatedAt pulumi.StringPtrInput
-	// The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or
-	// `ACTIVE` state.
+	// The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
 	ExpiresAt pulumi.StringPtrInput
 	// The unique URL of one of the HVNs being peered.
 	Hvn1 pulumi.StringPtrInput
@@ -276,8 +273,7 @@ func (o HvnPeeringConnectionOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *HvnPeeringConnection) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or
-// `ACTIVE` state.
+// The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
 func (o HvnPeeringConnectionOutput) ExpiresAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *HvnPeeringConnection) pulumi.StringOutput { return v.ExpiresAt }).(pulumi.StringOutput)
 }

@@ -20,7 +20,6 @@ import (
 //
 // import (
 // 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -49,7 +48,6 @@ import (
 //
 // import (
 // 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -100,32 +98,52 @@ func GetPackerImage(ctx *pulumi.Context, args *GetPackerImageArgs, opts ...pulum
 
 // A collection of arguments for invoking getPackerImage.
 type GetPackerImageArgs struct {
-	BucketName    string  `pulumi:"bucketName"`
-	Channel       *string `pulumi:"channel"`
-	CloudProvider string  `pulumi:"cloudProvider"`
+	// The slug of the HCP Packer Registry image bucket to pull from.
+	BucketName string `pulumi:"bucketName"`
+	// The channel that points to the version of the image being retrieved. Either this or `iterationId` must be specified. Note: will incur a billable request
+	Channel *string `pulumi:"channel"`
+	// Name of the cloud provider this image is stored-in.
+	CloudProvider string `pulumi:"cloudProvider"`
+	// Name of the builder that built this image. Ex: `amazon-ebs.example`.
 	ComponentType *string `pulumi:"componentType"`
-	IterationId   *string `pulumi:"iterationId"`
-	Region        string  `pulumi:"region"`
+	// The iteration from which to get the image. Either this or `channel` must be specified.
+	IterationId *string `pulumi:"iterationId"`
+	// Region this image is stored in, if any.
+	Region string `pulumi:"region"`
 }
 
 // A collection of values returned by getPackerImage.
 type GetPackerImageResult struct {
-	BucketName    string  `pulumi:"bucketName"`
-	BuildId       string  `pulumi:"buildId"`
-	Channel       *string `pulumi:"channel"`
-	CloudImageId  string  `pulumi:"cloudImageId"`
-	CloudProvider string  `pulumi:"cloudProvider"`
-	ComponentType string  `pulumi:"componentType"`
-	CreatedAt     string  `pulumi:"createdAt"`
+	// The slug of the HCP Packer Registry image bucket to pull from.
+	BucketName string `pulumi:"bucketName"`
+	// HCP ID of this build.
+	BuildId string `pulumi:"buildId"`
+	// The channel that points to the version of the image being retrieved. Either this or `iterationId` must be specified. Note: will incur a billable request
+	Channel *string `pulumi:"channel"`
+	// Cloud Image ID or URL string identifying this image for the builder that built it.
+	CloudImageId string `pulumi:"cloudImageId"`
+	// Name of the cloud provider this image is stored-in.
+	CloudProvider string `pulumi:"cloudProvider"`
+	// Name of the builder that built this image. Ex: `amazon-ebs.example`.
+	ComponentType string `pulumi:"componentType"`
+	// Creation time of this build.
+	CreatedAt string `pulumi:"createdAt"`
 	// The provider-assigned unique ID for this managed resource.
-	Id             string                 `pulumi:"id"`
-	IterationId    string                 `pulumi:"iterationId"`
-	Labels         map[string]interface{} `pulumi:"labels"`
-	OrganizationId string                 `pulumi:"organizationId"`
-	PackerRunUuid  string                 `pulumi:"packerRunUuid"`
-	ProjectId      string                 `pulumi:"projectId"`
-	Region         string                 `pulumi:"region"`
-	RevokeAt       string                 `pulumi:"revokeAt"`
+	Id string `pulumi:"id"`
+	// The iteration from which to get the image. Either this or `channel` must be specified.
+	IterationId string `pulumi:"iterationId"`
+	// Labels associated with this build.
+	Labels map[string]interface{} `pulumi:"labels"`
+	// The ID of the organization this HCP Packer registry is located in.
+	OrganizationId string `pulumi:"organizationId"`
+	// UUID of this build.
+	PackerRunUuid string `pulumi:"packerRunUuid"`
+	// The ID of the project this HCP Packer registry is located in.
+	ProjectId string `pulumi:"projectId"`
+	// Region this image is stored in, if any.
+	Region string `pulumi:"region"`
+	// The revocation time of this build. This field will be null for any build that has not been revoked or scheduled for revocation.
+	RevokeAt string `pulumi:"revokeAt"`
 }
 
 func GetPackerImageOutput(ctx *pulumi.Context, args GetPackerImageOutputArgs, opts ...pulumi.InvokeOption) GetPackerImageResultOutput {
@@ -143,12 +161,18 @@ func GetPackerImageOutput(ctx *pulumi.Context, args GetPackerImageOutputArgs, op
 
 // A collection of arguments for invoking getPackerImage.
 type GetPackerImageOutputArgs struct {
-	BucketName    pulumi.StringInput    `pulumi:"bucketName"`
-	Channel       pulumi.StringPtrInput `pulumi:"channel"`
-	CloudProvider pulumi.StringInput    `pulumi:"cloudProvider"`
+	// The slug of the HCP Packer Registry image bucket to pull from.
+	BucketName pulumi.StringInput `pulumi:"bucketName"`
+	// The channel that points to the version of the image being retrieved. Either this or `iterationId` must be specified. Note: will incur a billable request
+	Channel pulumi.StringPtrInput `pulumi:"channel"`
+	// Name of the cloud provider this image is stored-in.
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	// Name of the builder that built this image. Ex: `amazon-ebs.example`.
 	ComponentType pulumi.StringPtrInput `pulumi:"componentType"`
-	IterationId   pulumi.StringPtrInput `pulumi:"iterationId"`
-	Region        pulumi.StringInput    `pulumi:"region"`
+	// The iteration from which to get the image. Either this or `channel` must be specified.
+	IterationId pulumi.StringPtrInput `pulumi:"iterationId"`
+	// Region this image is stored in, if any.
+	Region pulumi.StringInput `pulumi:"region"`
 }
 
 func (GetPackerImageOutputArgs) ElementType() reflect.Type {
@@ -170,30 +194,37 @@ func (o GetPackerImageResultOutput) ToGetPackerImageResultOutputWithContext(ctx 
 	return o
 }
 
+// The slug of the HCP Packer Registry image bucket to pull from.
 func (o GetPackerImageResultOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerImageResult) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
+// HCP ID of this build.
 func (o GetPackerImageResultOutput) BuildId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerImageResult) string { return v.BuildId }).(pulumi.StringOutput)
 }
 
+// The channel that points to the version of the image being retrieved. Either this or `iterationId` must be specified. Note: will incur a billable request
 func (o GetPackerImageResultOutput) Channel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetPackerImageResult) *string { return v.Channel }).(pulumi.StringPtrOutput)
 }
 
+// Cloud Image ID or URL string identifying this image for the builder that built it.
 func (o GetPackerImageResultOutput) CloudImageId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerImageResult) string { return v.CloudImageId }).(pulumi.StringOutput)
 }
 
+// Name of the cloud provider this image is stored-in.
 func (o GetPackerImageResultOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerImageResult) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
 
+// Name of the builder that built this image. Ex: `amazon-ebs.example`.
 func (o GetPackerImageResultOutput) ComponentType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerImageResult) string { return v.ComponentType }).(pulumi.StringOutput)
 }
 
+// Creation time of this build.
 func (o GetPackerImageResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerImageResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -203,30 +234,37 @@ func (o GetPackerImageResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerImageResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The iteration from which to get the image. Either this or `channel` must be specified.
 func (o GetPackerImageResultOutput) IterationId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerImageResult) string { return v.IterationId }).(pulumi.StringOutput)
 }
 
+// Labels associated with this build.
 func (o GetPackerImageResultOutput) Labels() pulumi.MapOutput {
 	return o.ApplyT(func(v GetPackerImageResult) map[string]interface{} { return v.Labels }).(pulumi.MapOutput)
 }
 
+// The ID of the organization this HCP Packer registry is located in.
 func (o GetPackerImageResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerImageResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
+// UUID of this build.
 func (o GetPackerImageResultOutput) PackerRunUuid() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerImageResult) string { return v.PackerRunUuid }).(pulumi.StringOutput)
 }
 
+// The ID of the project this HCP Packer registry is located in.
 func (o GetPackerImageResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerImageResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// Region this image is stored in, if any.
 func (o GetPackerImageResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerImageResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
+// The revocation time of this build. This field will be null for any build that has not been revoked or scheduled for revocation.
 func (o GetPackerImageResultOutput) RevokeAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerImageResult) string { return v.RevokeAt }).(pulumi.StringOutput)
 }

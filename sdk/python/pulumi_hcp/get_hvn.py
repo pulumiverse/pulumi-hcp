@@ -59,21 +59,33 @@ class GetHvnResult:
     @property
     @pulumi.getter(name="cidrBlock")
     def cidr_block(self) -> str:
+        """
+        The CIDR range of the HVN.
+        """
         return pulumi.get(self, "cidr_block")
 
     @property
     @pulumi.getter(name="cloudProvider")
     def cloud_provider(self) -> str:
+        """
+        The provider where the HVN is located.
+        """
         return pulumi.get(self, "cloud_provider")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        The time that the HVN was created.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="hvnId")
     def hvn_id(self) -> str:
+        """
+        The ID of the HashiCorp Virtual Network (HVN).
+        """
         return pulumi.get(self, "hvn_id")
 
     @property
@@ -87,31 +99,49 @@ class GetHvnResult:
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> str:
+        """
+        The ID of the HCP organization where the HVN is located.
+        """
         return pulumi.get(self, "organization_id")
 
     @property
     @pulumi.getter(name="projectId")
     def project_id(self) -> str:
+        """
+        The ID of the HCP project where the HVN is located.
+        """
         return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter(name="providerAccountId")
     def provider_account_id(self) -> str:
+        """
+        The provider account ID where the HVN is located.
+        """
         return pulumi.get(self, "provider_account_id")
 
     @property
     @pulumi.getter
     def region(self) -> str:
+        """
+        The region where the HVN is located.
+        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="selfLink")
     def self_link(self) -> str:
+        """
+        A unique URL identifying the HVN.
+        """
         return pulumi.get(self, "self_link")
 
     @property
     @pulumi.getter
     def state(self) -> str:
+        """
+        The state of the HVN route.
+        """
         return pulumi.get(self, "state")
 
 
@@ -147,6 +177,9 @@ def get_hvn(hvn_id: Optional[str] = None,
 
     example = hcp.get_hvn(hvn_id=var["hvn_id"])
     ```
+
+
+    :param str hvn_id: The ID of the HashiCorp Virtual Network (HVN).
     """
     __args__ = dict()
     __args__['hvnId'] = hvn_id
@@ -181,5 +214,8 @@ def get_hvn_output(hvn_id: Optional[pulumi.Input[str]] = None,
 
     example = hcp.get_hvn(hvn_id=var["hvn_id"])
     ```
+
+
+    :param str hvn_id: The ID of the HashiCorp Virtual Network (HVN).
     """
     ...

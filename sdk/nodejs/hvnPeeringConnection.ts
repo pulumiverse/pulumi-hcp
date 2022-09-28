@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi_hcp from "@grapl/pulumi-hcp";
+ * import * as hcp from "@grapl/pulumi-hcp";
  *
  * const hvn1 = new hcp.Hvn("hvn1", {
  *     hvnId: "hvn-1",
@@ -72,8 +72,7 @@ export class HvnPeeringConnection extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or
-     * `ACTIVE` state.
+     * The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
      */
     public /*out*/ readonly expiresAt!: pulumi.Output<string>;
     /**
@@ -159,8 +158,7 @@ export interface HvnPeeringConnectionState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or
-     * `ACTIVE` state.
+     * The time after which the peering connection will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
      */
     expiresAt?: pulumi.Input<string>;
     /**

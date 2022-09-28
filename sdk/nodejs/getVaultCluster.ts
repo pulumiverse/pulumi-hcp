@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -36,8 +37,17 @@ export function getVaultCluster(args: GetVaultClusterArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getVaultCluster.
  */
 export interface GetVaultClusterArgs {
+    /**
+     * The audit logs configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+     */
     auditLogConfigs?: inputs.GetVaultClusterAuditLogConfig[];
+    /**
+     * The ID of the HCP Vault cluster.
+     */
     clusterId: string;
+    /**
+     * The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+     */
     metricsConfigs?: inputs.GetVaultClusterMetricsConfig[];
 }
 
@@ -45,29 +55,90 @@ export interface GetVaultClusterArgs {
  * A collection of values returned by getVaultCluster.
  */
 export interface GetVaultClusterResult {
+    /**
+     * The audit logs configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+     */
     readonly auditLogConfigs: outputs.GetVaultClusterAuditLogConfig[];
+    /**
+     * The provider where the HCP Vault cluster is located.
+     */
     readonly cloudProvider: string;
+    /**
+     * The ID of the HCP Vault cluster.
+     */
     readonly clusterId: string;
+    /**
+     * The time that the Vault cluster was created.
+     */
     readonly createdAt: string;
+    /**
+     * The ID of the HVN this HCP Vault cluster is associated to.
+     */
     readonly hvnId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly majorVersionUpgradeConfigs: outputs.GetVaultClusterMajorVersionUpgradeConfig[];
+    /**
+     * The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+     */
     readonly metricsConfigs: outputs.GetVaultClusterMetricsConfig[];
+    /**
+     * The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
+     */
     readonly minVaultVersion: string;
+    /**
+     * The name of the customer namespace this HCP Vault cluster is located in.
+     */
     readonly namespace: string;
+    /**
+     * The ID of the organization this HCP Vault cluster is located in.
+     */
     readonly organizationId: string;
+    /**
+     * The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to performance replication secondaries only and operates in "deny" mode only.
+     */
     readonly pathsFilters: string[];
+    /**
+     * The `selfLink` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+     */
     readonly primaryLink: string;
+    /**
+     * The ID of the project this HCP Vault cluster is located in.
+     */
     readonly projectId: string;
+    /**
+     * Denotes that the cluster has a public endpoint. Defaults to false.
+     */
     readonly publicEndpoint: boolean;
+    /**
+     * The region where the HCP Vault cluster is located.
+     */
     readonly region: string;
+    /**
+     * A unique URL identifying the Vault cluster.
+     */
     readonly selfLink: string;
+    /**
+     * The state of the Vault cluster.
+     */
     readonly state: string;
+    /**
+     * The tier that the HCP Vault cluster will be provisioned as.  Only 'development' is available at this time.
+     */
     readonly tier: string;
+    /**
+     * The private URL for the Vault cluster.
+     */
     readonly vaultPrivateEndpointUrl: string;
+    /**
+     * The public URL for the Vault cluster. This will be empty if `publicEndpoint` is `false`.
+     */
     readonly vaultPublicEndpointUrl: string;
+    /**
+     * The Vault version of the cluster.
+     */
     readonly vaultVersion: string;
 }
 
@@ -79,7 +150,16 @@ export function getVaultClusterOutput(args: GetVaultClusterOutputArgs, opts?: pu
  * A collection of arguments for invoking getVaultCluster.
  */
 export interface GetVaultClusterOutputArgs {
+    /**
+     * The audit logs configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+     */
     auditLogConfigs?: pulumi.Input<pulumi.Input<inputs.GetVaultClusterAuditLogConfigArgs>[]>;
+    /**
+     * The ID of the HCP Vault cluster.
+     */
     clusterId: pulumi.Input<string>;
+    /**
+     * The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+     */
     metricsConfigs?: pulumi.Input<pulumi.Input<inputs.GetVaultClusterMetricsConfigArgs>[]>;
 }

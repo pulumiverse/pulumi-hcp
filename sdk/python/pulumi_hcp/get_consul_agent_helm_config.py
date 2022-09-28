@@ -41,16 +41,25 @@ class GetConsulAgentHelmConfigResult:
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> str:
+        """
+        The ID of the HCP Consul cluster.
+        """
         return pulumi.get(self, "cluster_id")
 
     @property
     @pulumi.getter
     def config(self) -> str:
+        """
+        The agent Helm config.
+        """
         return pulumi.get(self, "config")
 
     @property
     @pulumi.getter(name="exposeGossipPorts")
     def expose_gossip_ports(self) -> Optional[bool]:
+        """
+        Denotes that the gossip ports should be exposed.
+        """
         return pulumi.get(self, "expose_gossip_ports")
 
     @property
@@ -64,6 +73,9 @@ class GetConsulAgentHelmConfigResult:
     @property
     @pulumi.getter(name="kubernetesEndpoint")
     def kubernetes_endpoint(self) -> str:
+        """
+        The FQDN for the Kubernetes API.
+        """
         return pulumi.get(self, "kubernetes_endpoint")
 
 
@@ -96,6 +108,11 @@ def get_consul_agent_helm_config(cluster_id: Optional[str] = None,
     example = hcp.get_consul_agent_helm_config(cluster_id=var["cluster_id"],
         kubernetes_endpoint=var["kubernetes_endpoint"])
     ```
+
+
+    :param str cluster_id: The ID of the HCP Consul cluster.
+    :param bool expose_gossip_ports: Denotes that the gossip ports should be exposed.
+    :param str kubernetes_endpoint: The FQDN for the Kubernetes API.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -129,5 +146,10 @@ def get_consul_agent_helm_config_output(cluster_id: Optional[pulumi.Input[str]] 
     example = hcp.get_consul_agent_helm_config(cluster_id=var["cluster_id"],
         kubernetes_endpoint=var["kubernetes_endpoint"])
     ```
+
+
+    :param str cluster_id: The ID of the HCP Consul cluster.
+    :param bool expose_gossip_ports: Denotes that the gossip ports should be exposed.
+    :param str kubernetes_endpoint: The FQDN for the Kubernetes API.
     """
     ...

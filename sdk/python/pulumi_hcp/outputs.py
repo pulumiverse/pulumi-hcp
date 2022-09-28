@@ -12,10 +12,12 @@ from . import outputs
 
 __all__ = [
     'VaultClusterAuditLogConfig',
+    'VaultClusterMajorVersionUpgradeConfig',
     'VaultClusterMetricsConfig',
     'GetPackerImageIterationBuildResult',
     'GetPackerImageIterationBuildImageResult',
     'GetVaultClusterAuditLogConfigResult',
+    'GetVaultClusterMajorVersionUpgradeConfigResult',
     'GetVaultClusterMetricsConfigResult',
 ]
 
@@ -58,6 +60,15 @@ class VaultClusterAuditLogConfig(dict):
                  grafana_user: Optional[str] = None,
                  splunk_hecendpoint: Optional[str] = None,
                  splunk_token: Optional[str] = None):
+        """
+        :param str datadog_api_key: Datadog api key for streaming audit logs
+        :param str datadog_region: Datadog region for streaming audit logs
+        :param str grafana_endpoint: Grafana endpoint for streaming audit logs
+        :param str grafana_password: Grafana password for streaming audit logs
+        :param str grafana_user: Grafana user for streaming audit logs
+        :param str splunk_hecendpoint: Splunk endpoint for streaming audit logs
+        :param str splunk_token: Splunk token for streaming audit logs
+        """
         if datadog_api_key is not None:
             pulumi.set(__self__, "datadog_api_key", datadog_api_key)
         if datadog_region is not None:
@@ -76,37 +87,121 @@ class VaultClusterAuditLogConfig(dict):
     @property
     @pulumi.getter(name="datadogApiKey")
     def datadog_api_key(self) -> Optional[str]:
+        """
+        Datadog api key for streaming audit logs
+        """
         return pulumi.get(self, "datadog_api_key")
 
     @property
     @pulumi.getter(name="datadogRegion")
     def datadog_region(self) -> Optional[str]:
+        """
+        Datadog region for streaming audit logs
+        """
         return pulumi.get(self, "datadog_region")
 
     @property
     @pulumi.getter(name="grafanaEndpoint")
     def grafana_endpoint(self) -> Optional[str]:
+        """
+        Grafana endpoint for streaming audit logs
+        """
         return pulumi.get(self, "grafana_endpoint")
 
     @property
     @pulumi.getter(name="grafanaPassword")
     def grafana_password(self) -> Optional[str]:
+        """
+        Grafana password for streaming audit logs
+        """
         return pulumi.get(self, "grafana_password")
 
     @property
     @pulumi.getter(name="grafanaUser")
     def grafana_user(self) -> Optional[str]:
+        """
+        Grafana user for streaming audit logs
+        """
         return pulumi.get(self, "grafana_user")
 
     @property
     @pulumi.getter(name="splunkHecendpoint")
     def splunk_hecendpoint(self) -> Optional[str]:
+        """
+        Splunk endpoint for streaming audit logs
+        """
         return pulumi.get(self, "splunk_hecendpoint")
 
     @property
     @pulumi.getter(name="splunkToken")
     def splunk_token(self) -> Optional[str]:
+        """
+        Splunk token for streaming audit logs
+        """
         return pulumi.get(self, "splunk_token")
+
+
+@pulumi.output_type
+class VaultClusterMajorVersionUpgradeConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "upgradeType":
+            suggest = "upgrade_type"
+        elif key == "maintenanceWindowDay":
+            suggest = "maintenance_window_day"
+        elif key == "maintenanceWindowTime":
+            suggest = "maintenance_window_time"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in VaultClusterMajorVersionUpgradeConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        VaultClusterMajorVersionUpgradeConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        VaultClusterMajorVersionUpgradeConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 upgrade_type: str,
+                 maintenance_window_day: Optional[str] = None,
+                 maintenance_window_time: Optional[str] = None):
+        """
+        :param str upgrade_type: The major upgrade type for the cluster. Valid options for upgrade type - `AUTOMATIC`, `SCHEDULED`, `MANUAL`
+        :param str maintenance_window_day: The maintenance day of the week for scheduled upgrades. Valid options for maintenance window day - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, `SUNDAY`
+        :param str maintenance_window_time: The maintenance time frame for scheduled upgrades. Valid options for maintenance window time - `WINDOW_12AM_4AM`, `WINDOW_6AM_10AM`, `WINDOW_12PM_4PM`, `WINDOW_6PM_10PM`
+        """
+        pulumi.set(__self__, "upgrade_type", upgrade_type)
+        if maintenance_window_day is not None:
+            pulumi.set(__self__, "maintenance_window_day", maintenance_window_day)
+        if maintenance_window_time is not None:
+            pulumi.set(__self__, "maintenance_window_time", maintenance_window_time)
+
+    @property
+    @pulumi.getter(name="upgradeType")
+    def upgrade_type(self) -> str:
+        """
+        The major upgrade type for the cluster. Valid options for upgrade type - `AUTOMATIC`, `SCHEDULED`, `MANUAL`
+        """
+        return pulumi.get(self, "upgrade_type")
+
+    @property
+    @pulumi.getter(name="maintenanceWindowDay")
+    def maintenance_window_day(self) -> Optional[str]:
+        """
+        The maintenance day of the week for scheduled upgrades. Valid options for maintenance window day - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, `SUNDAY`
+        """
+        return pulumi.get(self, "maintenance_window_day")
+
+    @property
+    @pulumi.getter(name="maintenanceWindowTime")
+    def maintenance_window_time(self) -> Optional[str]:
+        """
+        The maintenance time frame for scheduled upgrades. Valid options for maintenance window time - `WINDOW_12AM_4AM`, `WINDOW_6AM_10AM`, `WINDOW_12PM_4PM`, `WINDOW_6PM_10PM`
+        """
+        return pulumi.get(self, "maintenance_window_time")
 
 
 @pulumi.output_type
@@ -148,6 +243,15 @@ class VaultClusterMetricsConfig(dict):
                  grafana_user: Optional[str] = None,
                  splunk_hecendpoint: Optional[str] = None,
                  splunk_token: Optional[str] = None):
+        """
+        :param str datadog_api_key: Datadog api key for streaming metrics
+        :param str datadog_region: Datadog region for streaming metrics
+        :param str grafana_endpoint: Grafana endpoint for streaming metrics
+        :param str grafana_password: Grafana password for streaming metrics
+        :param str grafana_user: Grafana user for streaming metrics
+        :param str splunk_hecendpoint: Splunk endpoint for streaming metrics
+        :param str splunk_token: Splunk token for streaming metrics
+        """
         if datadog_api_key is not None:
             pulumi.set(__self__, "datadog_api_key", datadog_api_key)
         if datadog_region is not None:
@@ -166,36 +270,57 @@ class VaultClusterMetricsConfig(dict):
     @property
     @pulumi.getter(name="datadogApiKey")
     def datadog_api_key(self) -> Optional[str]:
+        """
+        Datadog api key for streaming metrics
+        """
         return pulumi.get(self, "datadog_api_key")
 
     @property
     @pulumi.getter(name="datadogRegion")
     def datadog_region(self) -> Optional[str]:
+        """
+        Datadog region for streaming metrics
+        """
         return pulumi.get(self, "datadog_region")
 
     @property
     @pulumi.getter(name="grafanaEndpoint")
     def grafana_endpoint(self) -> Optional[str]:
+        """
+        Grafana endpoint for streaming metrics
+        """
         return pulumi.get(self, "grafana_endpoint")
 
     @property
     @pulumi.getter(name="grafanaPassword")
     def grafana_password(self) -> Optional[str]:
+        """
+        Grafana password for streaming metrics
+        """
         return pulumi.get(self, "grafana_password")
 
     @property
     @pulumi.getter(name="grafanaUser")
     def grafana_user(self) -> Optional[str]:
+        """
+        Grafana user for streaming metrics
+        """
         return pulumi.get(self, "grafana_user")
 
     @property
     @pulumi.getter(name="splunkHecendpoint")
     def splunk_hecendpoint(self) -> Optional[str]:
+        """
+        Splunk endpoint for streaming metrics
+        """
         return pulumi.get(self, "splunk_hecendpoint")
 
     @property
     @pulumi.getter(name="splunkToken")
     def splunk_token(self) -> Optional[str]:
+        """
+        Splunk token for streaming metrics
+        """
         return pulumi.get(self, "splunk_token")
 
 
@@ -351,6 +476,12 @@ class GetVaultClusterAuditLogConfigResult(dict):
                  grafana_endpoint: str,
                  grafana_user: str,
                  splunk_hecendpoint: str):
+        """
+        :param str datadog_region: Datadog region for streaming audit logs
+        :param str grafana_endpoint: Grafana endpoint for streaming audit logs
+        :param str grafana_user: Grafana user for streaming audit logs
+        :param str splunk_hecendpoint: Splunk endpoint for streaming audit logs
+        """
         pulumi.set(__self__, "datadog_region", datadog_region)
         pulumi.set(__self__, "grafana_endpoint", grafana_endpoint)
         pulumi.set(__self__, "grafana_user", grafana_user)
@@ -359,22 +490,60 @@ class GetVaultClusterAuditLogConfigResult(dict):
     @property
     @pulumi.getter(name="datadogRegion")
     def datadog_region(self) -> str:
+        """
+        Datadog region for streaming audit logs
+        """
         return pulumi.get(self, "datadog_region")
 
     @property
     @pulumi.getter(name="grafanaEndpoint")
     def grafana_endpoint(self) -> str:
+        """
+        Grafana endpoint for streaming audit logs
+        """
         return pulumi.get(self, "grafana_endpoint")
 
     @property
     @pulumi.getter(name="grafanaUser")
     def grafana_user(self) -> str:
+        """
+        Grafana user for streaming audit logs
+        """
         return pulumi.get(self, "grafana_user")
 
     @property
     @pulumi.getter(name="splunkHecendpoint")
     def splunk_hecendpoint(self) -> str:
+        """
+        Splunk endpoint for streaming audit logs
+        """
         return pulumi.get(self, "splunk_hecendpoint")
+
+
+@pulumi.output_type
+class GetVaultClusterMajorVersionUpgradeConfigResult(dict):
+    def __init__(__self__, *,
+                 maintenance_window_day: str,
+                 maintenance_window_time: str,
+                 upgrade_type: str):
+        pulumi.set(__self__, "maintenance_window_day", maintenance_window_day)
+        pulumi.set(__self__, "maintenance_window_time", maintenance_window_time)
+        pulumi.set(__self__, "upgrade_type", upgrade_type)
+
+    @property
+    @pulumi.getter(name="maintenanceWindowDay")
+    def maintenance_window_day(self) -> str:
+        return pulumi.get(self, "maintenance_window_day")
+
+    @property
+    @pulumi.getter(name="maintenanceWindowTime")
+    def maintenance_window_time(self) -> str:
+        return pulumi.get(self, "maintenance_window_time")
+
+    @property
+    @pulumi.getter(name="upgradeType")
+    def upgrade_type(self) -> str:
+        return pulumi.get(self, "upgrade_type")
 
 
 @pulumi.output_type
@@ -384,6 +553,12 @@ class GetVaultClusterMetricsConfigResult(dict):
                  grafana_endpoint: str,
                  grafana_user: str,
                  splunk_hecendpoint: str):
+        """
+        :param str datadog_region: Datadog region for streaming metrics
+        :param str grafana_endpoint: Grafana endpoint for streaming metrics
+        :param str grafana_user: Grafana user for streaming metrics
+        :param str splunk_hecendpoint: Splunk endpoint for streaming metrics
+        """
         pulumi.set(__self__, "datadog_region", datadog_region)
         pulumi.set(__self__, "grafana_endpoint", grafana_endpoint)
         pulumi.set(__self__, "grafana_user", grafana_user)
@@ -392,21 +567,33 @@ class GetVaultClusterMetricsConfigResult(dict):
     @property
     @pulumi.getter(name="datadogRegion")
     def datadog_region(self) -> str:
+        """
+        Datadog region for streaming metrics
+        """
         return pulumi.get(self, "datadog_region")
 
     @property
     @pulumi.getter(name="grafanaEndpoint")
     def grafana_endpoint(self) -> str:
+        """
+        Grafana endpoint for streaming metrics
+        """
         return pulumi.get(self, "grafana_endpoint")
 
     @property
     @pulumi.getter(name="grafanaUser")
     def grafana_user(self) -> str:
+        """
+        Grafana user for streaming metrics
+        """
         return pulumi.get(self, "grafana_user")
 
     @property
     @pulumi.getter(name="splunkHecendpoint")
     def splunk_hecendpoint(self) -> str:
+        """
+        Splunk endpoint for streaming metrics
+        """
         return pulumi.get(self, "splunk_hecendpoint")
 
 

@@ -33,6 +33,9 @@ export function getConsulAgentKubernetesSecret(args: GetConsulAgentKubernetesSec
  * A collection of arguments for invoking getConsulAgentKubernetesSecret.
  */
 export interface GetConsulAgentKubernetesSecretArgs {
+    /**
+     * The ID of the HCP Consul cluster.
+     */
     clusterId: string;
 }
 
@@ -40,11 +43,17 @@ export interface GetConsulAgentKubernetesSecretArgs {
  * A collection of values returned by getConsulAgentKubernetesSecret.
  */
 export interface GetConsulAgentKubernetesSecretResult {
+    /**
+     * The ID of the HCP Consul cluster.
+     */
     readonly clusterId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The Consul agent configuration in the format of a Kubernetes secret (YAML).
+     */
     readonly secret: string;
 }
 
@@ -56,5 +65,8 @@ export function getConsulAgentKubernetesSecretOutput(args: GetConsulAgentKuberne
  * A collection of arguments for invoking getConsulAgentKubernetesSecret.
  */
 export interface GetConsulAgentKubernetesSecretOutputArgs {
+    /**
+     * The ID of the HCP Consul cluster.
+     */
     clusterId: pulumi.Input<string>;
 }

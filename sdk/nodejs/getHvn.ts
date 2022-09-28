@@ -33,6 +33,9 @@ export function getHvn(args: GetHvnArgs, opts?: pulumi.InvokeOptions): Promise<G
  * A collection of arguments for invoking getHvn.
  */
 export interface GetHvnArgs {
+    /**
+     * The ID of the HashiCorp Virtual Network (HVN).
+     */
     hvnId: string;
 }
 
@@ -40,19 +43,49 @@ export interface GetHvnArgs {
  * A collection of values returned by getHvn.
  */
 export interface GetHvnResult {
+    /**
+     * The CIDR range of the HVN.
+     */
     readonly cidrBlock: string;
+    /**
+     * The provider where the HVN is located.
+     */
     readonly cloudProvider: string;
+    /**
+     * The time that the HVN was created.
+     */
     readonly createdAt: string;
+    /**
+     * The ID of the HashiCorp Virtual Network (HVN).
+     */
     readonly hvnId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The ID of the HCP organization where the HVN is located.
+     */
     readonly organizationId: string;
+    /**
+     * The ID of the HCP project where the HVN is located.
+     */
     readonly projectId: string;
+    /**
+     * The provider account ID where the HVN is located.
+     */
     readonly providerAccountId: string;
+    /**
+     * The region where the HVN is located.
+     */
     readonly region: string;
+    /**
+     * A unique URL identifying the HVN.
+     */
     readonly selfLink: string;
+    /**
+     * The state of the HVN route.
+     */
     readonly state: string;
 }
 
@@ -64,5 +97,8 @@ export function getHvnOutput(args: GetHvnOutputArgs, opts?: pulumi.InvokeOptions
  * A collection of arguments for invoking getHvn.
  */
 export interface GetHvnOutputArgs {
+    /**
+     * The ID of the HashiCorp Virtual Network (HVN).
+     */
     hvnId: pulumi.Input<string>;
 }

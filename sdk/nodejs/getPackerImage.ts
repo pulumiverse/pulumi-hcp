@@ -83,11 +83,29 @@ export function getPackerImage(args: GetPackerImageArgs, opts?: pulumi.InvokeOpt
  * A collection of arguments for invoking getPackerImage.
  */
 export interface GetPackerImageArgs {
+    /**
+     * The slug of the HCP Packer Registry image bucket to pull from.
+     */
     bucketName: string;
+    /**
+     * The channel that points to the version of the image being retrieved. Either this or `iterationId` must be specified. Note: will incur a billable request
+     */
     channel?: string;
+    /**
+     * Name of the cloud provider this image is stored-in.
+     */
     cloudProvider: string;
+    /**
+     * Name of the builder that built this image. Ex: `amazon-ebs.example`.
+     */
     componentType?: string;
+    /**
+     * The iteration from which to get the image. Either this or `channel` must be specified.
+     */
     iterationId?: string;
+    /**
+     * Region this image is stored in, if any.
+     */
     region: string;
 }
 
@@ -95,23 +113,65 @@ export interface GetPackerImageArgs {
  * A collection of values returned by getPackerImage.
  */
 export interface GetPackerImageResult {
+    /**
+     * The slug of the HCP Packer Registry image bucket to pull from.
+     */
     readonly bucketName: string;
+    /**
+     * HCP ID of this build.
+     */
     readonly buildId: string;
+    /**
+     * The channel that points to the version of the image being retrieved. Either this or `iterationId` must be specified. Note: will incur a billable request
+     */
     readonly channel?: string;
+    /**
+     * Cloud Image ID or URL string identifying this image for the builder that built it.
+     */
     readonly cloudImageId: string;
+    /**
+     * Name of the cloud provider this image is stored-in.
+     */
     readonly cloudProvider: string;
+    /**
+     * Name of the builder that built this image. Ex: `amazon-ebs.example`.
+     */
     readonly componentType: string;
+    /**
+     * Creation time of this build.
+     */
     readonly createdAt: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The iteration from which to get the image. Either this or `channel` must be specified.
+     */
     readonly iterationId: string;
+    /**
+     * Labels associated with this build.
+     */
     readonly labels: {[key: string]: any};
+    /**
+     * The ID of the organization this HCP Packer registry is located in.
+     */
     readonly organizationId: string;
+    /**
+     * UUID of this build.
+     */
     readonly packerRunUuid: string;
+    /**
+     * The ID of the project this HCP Packer registry is located in.
+     */
     readonly projectId: string;
+    /**
+     * Region this image is stored in, if any.
+     */
     readonly region: string;
+    /**
+     * The revocation time of this build. This field will be null for any build that has not been revoked or scheduled for revocation.
+     */
     readonly revokeAt: string;
 }
 
@@ -123,10 +183,28 @@ export function getPackerImageOutput(args: GetPackerImageOutputArgs, opts?: pulu
  * A collection of arguments for invoking getPackerImage.
  */
 export interface GetPackerImageOutputArgs {
+    /**
+     * The slug of the HCP Packer Registry image bucket to pull from.
+     */
     bucketName: pulumi.Input<string>;
+    /**
+     * The channel that points to the version of the image being retrieved. Either this or `iterationId` must be specified. Note: will incur a billable request
+     */
     channel?: pulumi.Input<string>;
+    /**
+     * Name of the cloud provider this image is stored-in.
+     */
     cloudProvider: pulumi.Input<string>;
+    /**
+     * Name of the builder that built this image. Ex: `amazon-ebs.example`.
+     */
     componentType?: pulumi.Input<string>;
+    /**
+     * The iteration from which to get the image. Either this or `channel` must be specified.
+     */
     iterationId?: pulumi.Input<string>;
+    /**
+     * Region this image is stored in, if any.
+     */
     region: pulumi.Input<string>;
 }

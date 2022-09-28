@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
 export interface GetPackerImageIterationBuild {
     /**
@@ -54,36 +55,122 @@ export interface GetPackerImageIterationBuildImage {
 }
 
 export interface GetVaultClusterAuditLogConfig {
+    /**
+     * Datadog region for streaming audit logs
+     */
     datadogRegion: string;
+    /**
+     * Grafana endpoint for streaming audit logs
+     */
     grafanaEndpoint: string;
+    /**
+     * Grafana user for streaming audit logs
+     */
     grafanaUser: string;
+    /**
+     * Splunk endpoint for streaming audit logs
+     */
     splunkHecendpoint: string;
 }
 
+export interface GetVaultClusterMajorVersionUpgradeConfig {
+    maintenanceWindowDay: string;
+    maintenanceWindowTime: string;
+    upgradeType: string;
+}
+
 export interface GetVaultClusterMetricsConfig {
+    /**
+     * Datadog region for streaming metrics
+     */
     datadogRegion: string;
+    /**
+     * Grafana endpoint for streaming metrics
+     */
     grafanaEndpoint: string;
+    /**
+     * Grafana user for streaming metrics
+     */
     grafanaUser: string;
+    /**
+     * Splunk endpoint for streaming metrics
+     */
     splunkHecendpoint: string;
 }
 
 export interface VaultClusterAuditLogConfig {
+    /**
+     * Datadog api key for streaming audit logs
+     */
     datadogApiKey?: string;
+    /**
+     * Datadog region for streaming audit logs
+     */
     datadogRegion?: string;
+    /**
+     * Grafana endpoint for streaming audit logs
+     */
     grafanaEndpoint?: string;
+    /**
+     * Grafana password for streaming audit logs
+     */
     grafanaPassword?: string;
+    /**
+     * Grafana user for streaming audit logs
+     */
     grafanaUser?: string;
+    /**
+     * Splunk endpoint for streaming audit logs
+     */
     splunkHecendpoint?: string;
+    /**
+     * Splunk token for streaming audit logs
+     */
     splunkToken?: string;
+}
+
+export interface VaultClusterMajorVersionUpgradeConfig {
+    /**
+     * The maintenance day of the week for scheduled upgrades. Valid options for maintenance window day - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`, `SATURDAY`, `SUNDAY`
+     */
+    maintenanceWindowDay?: string;
+    /**
+     * The maintenance time frame for scheduled upgrades. Valid options for maintenance window time - `WINDOW_12AM_4AM`, `WINDOW_6AM_10AM`, `WINDOW_12PM_4PM`, `WINDOW_6PM_10PM`
+     */
+    maintenanceWindowTime?: string;
+    /**
+     * The major upgrade type for the cluster. Valid options for upgrade type - `AUTOMATIC`, `SCHEDULED`, `MANUAL`
+     */
+    upgradeType: string;
 }
 
 export interface VaultClusterMetricsConfig {
+    /**
+     * Datadog api key for streaming metrics
+     */
     datadogApiKey?: string;
+    /**
+     * Datadog region for streaming metrics
+     */
     datadogRegion?: string;
+    /**
+     * Grafana endpoint for streaming metrics
+     */
     grafanaEndpoint?: string;
+    /**
+     * Grafana password for streaming metrics
+     */
     grafanaPassword?: string;
+    /**
+     * Grafana user for streaming metrics
+     */
     grafanaUser?: string;
+    /**
+     * Splunk endpoint for streaming metrics
+     */
     splunkHecendpoint?: string;
+    /**
+     * Splunk token for streaming metrics
+     */
     splunkToken?: string;
 }
-

@@ -19,7 +19,6 @@ import (
 //
 // import (
 // 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -48,25 +47,38 @@ func GetPackerIteration(ctx *pulumi.Context, args *GetPackerIterationArgs, opts 
 
 // A collection of arguments for invoking getPackerIteration.
 type GetPackerIterationArgs struct {
+	// The slug of the HCP Packer Registry image bucket to pull from.
 	BucketName string `pulumi:"bucketName"`
-	Channel    string `pulumi:"channel"`
+	// The channel that points to the version of the image you want.
+	Channel string `pulumi:"channel"`
 }
 
 // A collection of values returned by getPackerIteration.
 type GetPackerIterationResult struct {
-	AuthorId    string `pulumi:"authorId"`
-	BucketName  string `pulumi:"bucketName"`
-	Channel     string `pulumi:"channel"`
-	CreatedAt   string `pulumi:"createdAt"`
+	// The name of the person who created this iteration.
+	AuthorId string `pulumi:"authorId"`
+	// The slug of the HCP Packer Registry image bucket to pull from.
+	BucketName string `pulumi:"bucketName"`
+	// The channel that points to the version of the image you want.
+	Channel string `pulumi:"channel"`
+	// Creation time of this iteration
+	CreatedAt string `pulumi:"createdAt"`
+	// The unique fingerprint associated with this iteration; often a git sha.
 	Fingerprint string `pulumi:"fingerprint"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                 string `pulumi:"id"`
-	IncrementalVersion int    `pulumi:"incrementalVersion"`
-	OrganizationId     string `pulumi:"organizationId"`
-	ProjectId          string `pulumi:"projectId"`
-	RevokeAt           string `pulumi:"revokeAt"`
-	Ulid               string `pulumi:"ulid"`
-	UpdatedAt          string `pulumi:"updatedAt"`
+	Id string `pulumi:"id"`
+	// Incremental version of this iteration
+	IncrementalVersion int `pulumi:"incrementalVersion"`
+	// The ID of the organization this HCP Packer registry is located in.
+	OrganizationId string `pulumi:"organizationId"`
+	// The ID of the project this HCP Packer registry is located in.
+	ProjectId string `pulumi:"projectId"`
+	// The revocation time of this iteration. This field will be null for any iteration that has not been revoked or scheduled for revocation.
+	RevokeAt string `pulumi:"revokeAt"`
+	// The ULID of this iteration.
+	Ulid string `pulumi:"ulid"`
+	// Time this build was last updated.
+	UpdatedAt string `pulumi:"updatedAt"`
 }
 
 func GetPackerIterationOutput(ctx *pulumi.Context, args GetPackerIterationOutputArgs, opts ...pulumi.InvokeOption) GetPackerIterationResultOutput {
@@ -84,8 +96,10 @@ func GetPackerIterationOutput(ctx *pulumi.Context, args GetPackerIterationOutput
 
 // A collection of arguments for invoking getPackerIteration.
 type GetPackerIterationOutputArgs struct {
+	// The slug of the HCP Packer Registry image bucket to pull from.
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
-	Channel    pulumi.StringInput `pulumi:"channel"`
+	// The channel that points to the version of the image you want.
+	Channel pulumi.StringInput `pulumi:"channel"`
 }
 
 func (GetPackerIterationOutputArgs) ElementType() reflect.Type {
@@ -107,22 +121,27 @@ func (o GetPackerIterationResultOutput) ToGetPackerIterationResultOutputWithCont
 	return o
 }
 
+// The name of the person who created this iteration.
 func (o GetPackerIterationResultOutput) AuthorId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerIterationResult) string { return v.AuthorId }).(pulumi.StringOutput)
 }
 
+// The slug of the HCP Packer Registry image bucket to pull from.
 func (o GetPackerIterationResultOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerIterationResult) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
+// The channel that points to the version of the image you want.
 func (o GetPackerIterationResultOutput) Channel() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerIterationResult) string { return v.Channel }).(pulumi.StringOutput)
 }
 
+// Creation time of this iteration
 func (o GetPackerIterationResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerIterationResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The unique fingerprint associated with this iteration; often a git sha.
 func (o GetPackerIterationResultOutput) Fingerprint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerIterationResult) string { return v.Fingerprint }).(pulumi.StringOutput)
 }
@@ -132,26 +151,32 @@ func (o GetPackerIterationResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerIterationResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Incremental version of this iteration
 func (o GetPackerIterationResultOutput) IncrementalVersion() pulumi.IntOutput {
 	return o.ApplyT(func(v GetPackerIterationResult) int { return v.IncrementalVersion }).(pulumi.IntOutput)
 }
 
+// The ID of the organization this HCP Packer registry is located in.
 func (o GetPackerIterationResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerIterationResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
+// The ID of the project this HCP Packer registry is located in.
 func (o GetPackerIterationResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerIterationResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// The revocation time of this iteration. This field will be null for any iteration that has not been revoked or scheduled for revocation.
 func (o GetPackerIterationResultOutput) RevokeAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerIterationResult) string { return v.RevokeAt }).(pulumi.StringOutput)
 }
 
+// The ULID of this iteration.
 func (o GetPackerIterationResultOutput) Ulid() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerIterationResult) string { return v.Ulid }).(pulumi.StringOutput)
 }
 
+// Time this build was last updated.
 func (o GetPackerIterationResultOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPackerIterationResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }

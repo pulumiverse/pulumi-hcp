@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -43,8 +44,7 @@ export class VaultCluster extends pulumi.CustomResource {
     }
 
     /**
-     * The audit logs configuration for export.
-     * (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+     * The audit logs configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
      */
     public readonly auditLogConfig!: pulumi.Output<outputs.VaultClusterAuditLogConfig | undefined>;
     /**
@@ -64,13 +64,15 @@ export class VaultCluster extends pulumi.CustomResource {
      */
     public readonly hvnId!: pulumi.Output<string>;
     /**
-     * The metrics configuration for export.
-     * (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+     * The Major Version Upgrade configuration.
+     */
+    public readonly majorVersionUpgradeConfig!: pulumi.Output<outputs.VaultClusterMajorVersionUpgradeConfig>;
+    /**
+     * The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
      */
     public readonly metricsConfig!: pulumi.Output<outputs.VaultClusterMetricsConfig | undefined>;
     /**
-     * The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
-     * currently recommended by HCP.
+     * The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
      */
     public readonly minVaultVersion!: pulumi.Output<string | undefined>;
     /**
@@ -82,13 +84,11 @@ export class VaultCluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
-     * The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to
-     * performance replication secondaries only and operates in "deny" mode only.
+     * The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to performance replication secondaries only and operates in "deny" mode only.
      */
     public readonly pathsFilters!: pulumi.Output<string[] | undefined>;
     /**
-     * The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this
-     * HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+     * The `selfLink` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
      */
     public readonly primaryLink!: pulumi.Output<string | undefined>;
     /**
@@ -112,9 +112,7 @@ export class VaultCluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly state!: pulumi.Output<string>;
     /**
-     * Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,
-     * `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing
-     * information](https://cloud.hashicorp.com/pricing/vault).
+     * Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starterSmall`, `standardSmall`, `standardMedium`, `standardLarge`, `plusSmall`, `plusMedium`, `plusLarge`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
      */
     public readonly tier!: pulumi.Output<string>;
     /**
@@ -122,7 +120,7 @@ export class VaultCluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly vaultPrivateEndpointUrl!: pulumi.Output<string>;
     /**
-     * The public URL for the Vault cluster. This will be empty if `public_endpoint` is `false`.
+     * The public URL for the Vault cluster. This will be empty if `publicEndpoint` is `false`.
      */
     public /*out*/ readonly vaultPublicEndpointUrl!: pulumi.Output<string>;
     /**
@@ -148,6 +146,7 @@ export class VaultCluster extends pulumi.CustomResource {
             resourceInputs["clusterId"] = state ? state.clusterId : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["hvnId"] = state ? state.hvnId : undefined;
+            resourceInputs["majorVersionUpgradeConfig"] = state ? state.majorVersionUpgradeConfig : undefined;
             resourceInputs["metricsConfig"] = state ? state.metricsConfig : undefined;
             resourceInputs["minVaultVersion"] = state ? state.minVaultVersion : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
@@ -174,6 +173,7 @@ export class VaultCluster extends pulumi.CustomResource {
             resourceInputs["auditLogConfig"] = args ? args.auditLogConfig : undefined;
             resourceInputs["clusterId"] = args ? args.clusterId : undefined;
             resourceInputs["hvnId"] = args ? args.hvnId : undefined;
+            resourceInputs["majorVersionUpgradeConfig"] = args ? args.majorVersionUpgradeConfig : undefined;
             resourceInputs["metricsConfig"] = args ? args.metricsConfig : undefined;
             resourceInputs["minVaultVersion"] = args ? args.minVaultVersion : undefined;
             resourceInputs["pathsFilters"] = args ? args.pathsFilters : undefined;
@@ -202,8 +202,7 @@ export class VaultCluster extends pulumi.CustomResource {
  */
 export interface VaultClusterState {
     /**
-     * The audit logs configuration for export.
-     * (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+     * The audit logs configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
      */
     auditLogConfig?: pulumi.Input<inputs.VaultClusterAuditLogConfig>;
     /**
@@ -223,13 +222,15 @@ export interface VaultClusterState {
      */
     hvnId?: pulumi.Input<string>;
     /**
-     * The metrics configuration for export.
-     * (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+     * The Major Version Upgrade configuration.
+     */
+    majorVersionUpgradeConfig?: pulumi.Input<inputs.VaultClusterMajorVersionUpgradeConfig>;
+    /**
+     * The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
      */
     metricsConfig?: pulumi.Input<inputs.VaultClusterMetricsConfig>;
     /**
-     * The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
-     * currently recommended by HCP.
+     * The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
      */
     minVaultVersion?: pulumi.Input<string>;
     /**
@@ -241,13 +242,11 @@ export interface VaultClusterState {
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to
-     * performance replication secondaries only and operates in "deny" mode only.
+     * The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to performance replication secondaries only and operates in "deny" mode only.
      */
     pathsFilters?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this
-     * HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+     * The `selfLink` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
      */
     primaryLink?: pulumi.Input<string>;
     /**
@@ -271,9 +270,7 @@ export interface VaultClusterState {
      */
     state?: pulumi.Input<string>;
     /**
-     * Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,
-     * `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing
-     * information](https://cloud.hashicorp.com/pricing/vault).
+     * Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starterSmall`, `standardSmall`, `standardMedium`, `standardLarge`, `plusSmall`, `plusMedium`, `plusLarge`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
      */
     tier?: pulumi.Input<string>;
     /**
@@ -281,7 +278,7 @@ export interface VaultClusterState {
      */
     vaultPrivateEndpointUrl?: pulumi.Input<string>;
     /**
-     * The public URL for the Vault cluster. This will be empty if `public_endpoint` is `false`.
+     * The public URL for the Vault cluster. This will be empty if `publicEndpoint` is `false`.
      */
     vaultPublicEndpointUrl?: pulumi.Input<string>;
     /**
@@ -295,8 +292,7 @@ export interface VaultClusterState {
  */
 export interface VaultClusterArgs {
     /**
-     * The audit logs configuration for export.
-     * (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+     * The audit logs configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
      */
     auditLogConfig?: pulumi.Input<inputs.VaultClusterAuditLogConfig>;
     /**
@@ -308,23 +304,23 @@ export interface VaultClusterArgs {
      */
     hvnId: pulumi.Input<string>;
     /**
-     * The metrics configuration for export.
-     * (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
+     * The Major Version Upgrade configuration.
+     */
+    majorVersionUpgradeConfig?: pulumi.Input<inputs.VaultClusterMajorVersionUpgradeConfig>;
+    /**
+     * The metrics configuration for export. (https://learn.hashicorp.com/tutorials/cloud/vault-metrics-guide#metrics-streaming-configuration)
      */
     metricsConfig?: pulumi.Input<inputs.VaultClusterMetricsConfig>;
     /**
-     * The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is
-     * currently recommended by HCP.
+     * The minimum Vault version to use when creating the cluster. If not specified, it is defaulted to the version that is currently recommended by HCP.
      */
     minVaultVersion?: pulumi.Input<string>;
     /**
-     * The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to
-     * performance replication secondaries only and operates in "deny" mode only.
+     * The performance replication [paths filter](https://learn.hashicorp.com/tutorials/vault/paths-filter). Applies to performance replication secondaries only and operates in "deny" mode only.
      */
     pathsFilters?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The `self_link` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this
-     * HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
+     * The `selfLink` of the HCP Vault Plus tier cluster which is the primary in the performance replication setup with this HCP Vault Plus tier cluster. If not specified, it is a standalone Plus tier HCP Vault cluster.
      */
     primaryLink?: pulumi.Input<string>;
     /**
@@ -332,9 +328,7 @@ export interface VaultClusterArgs {
      */
     publicEndpoint?: pulumi.Input<boolean>;
     /**
-     * Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starter_small`, `standard_small`, `standard_medium`,
-     * `standard_large`, `plus_small`, `plus_medium`, `plus_large`. See [pricing
-     * information](https://cloud.hashicorp.com/pricing/vault).
+     * Tier of the HCP Vault cluster. Valid options for tiers - `dev`, `starterSmall`, `standardSmall`, `standardMedium`, `standardLarge`, `plusSmall`, `plusMedium`, `plusLarge`. See [pricing information](https://cloud.hashicorp.com/pricing/vault).
      */
     tier?: pulumi.Input<string>;
 }

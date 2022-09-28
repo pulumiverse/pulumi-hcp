@@ -19,7 +19,6 @@ import (
 //
 // import (
 // 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi-hcp/sdk/go/hcp"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -48,26 +47,38 @@ func LookupAwsTransitGatewayAttachment(ctx *pulumi.Context, args *LookupAwsTrans
 
 // A collection of arguments for invoking getAwsTransitGatewayAttachment.
 type LookupAwsTransitGatewayAttachmentArgs struct {
-	HvnId                      string `pulumi:"hvnId"`
+	// The ID of the HashiCorp Virtual Network (HVN).
+	HvnId string `pulumi:"hvnId"`
+	// The user-settable name of the transit gateway attachment in HCP.
 	TransitGatewayAttachmentId string `pulumi:"transitGatewayAttachmentId"`
 	WaitForActiveState         *bool  `pulumi:"waitForActiveState"`
 }
 
 // A collection of values returned by getAwsTransitGatewayAttachment.
 type LookupAwsTransitGatewayAttachmentResult struct {
+	// The time that the transit gateway attachment was created.
 	CreatedAt string `pulumi:"createdAt"`
+	// The time after which the transit gateway attachment will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
 	ExpiresAt string `pulumi:"expiresAt"`
-	HvnId     string `pulumi:"hvnId"`
+	// The ID of the HashiCorp Virtual Network (HVN).
+	HvnId string `pulumi:"hvnId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                                 string `pulumi:"id"`
-	OrganizationId                     string `pulumi:"organizationId"`
-	ProjectId                          string `pulumi:"projectId"`
+	Id string `pulumi:"id"`
+	// The ID of the HCP organization where the transit gateway attachment is located. Always matches the HVN's organization.
+	OrganizationId string `pulumi:"organizationId"`
+	// The ID of the HCP project where the transit gateway attachment is located. Always matches the HVN's project.
+	ProjectId string `pulumi:"projectId"`
+	// The transit gateway attachment ID used by AWS.
 	ProviderTransitGatewayAttachmentId string `pulumi:"providerTransitGatewayAttachmentId"`
-	SelfLink                           string `pulumi:"selfLink"`
-	State                              string `pulumi:"state"`
-	TransitGatewayAttachmentId         string `pulumi:"transitGatewayAttachmentId"`
-	TransitGatewayId                   string `pulumi:"transitGatewayId"`
-	WaitForActiveState                 *bool  `pulumi:"waitForActiveState"`
+	// A unique URL identifying the transit gateway attachment.
+	SelfLink string `pulumi:"selfLink"`
+	// The state of the transit gateway attachment.
+	State string `pulumi:"state"`
+	// The user-settable name of the transit gateway attachment in HCP.
+	TransitGatewayAttachmentId string `pulumi:"transitGatewayAttachmentId"`
+	// The ID of the user-owned transit gateway in AWS.
+	TransitGatewayId   string `pulumi:"transitGatewayId"`
+	WaitForActiveState *bool  `pulumi:"waitForActiveState"`
 }
 
 func LookupAwsTransitGatewayAttachmentOutput(ctx *pulumi.Context, args LookupAwsTransitGatewayAttachmentOutputArgs, opts ...pulumi.InvokeOption) LookupAwsTransitGatewayAttachmentResultOutput {
@@ -85,7 +96,9 @@ func LookupAwsTransitGatewayAttachmentOutput(ctx *pulumi.Context, args LookupAws
 
 // A collection of arguments for invoking getAwsTransitGatewayAttachment.
 type LookupAwsTransitGatewayAttachmentOutputArgs struct {
-	HvnId                      pulumi.StringInput  `pulumi:"hvnId"`
+	// The ID of the HashiCorp Virtual Network (HVN).
+	HvnId pulumi.StringInput `pulumi:"hvnId"`
+	// The user-settable name of the transit gateway attachment in HCP.
 	TransitGatewayAttachmentId pulumi.StringInput  `pulumi:"transitGatewayAttachmentId"`
 	WaitForActiveState         pulumi.BoolPtrInput `pulumi:"waitForActiveState"`
 }
@@ -109,14 +122,17 @@ func (o LookupAwsTransitGatewayAttachmentResultOutput) ToLookupAwsTransitGateway
 	return o
 }
 
+// The time that the transit gateway attachment was created.
 func (o LookupAwsTransitGatewayAttachmentResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsTransitGatewayAttachmentResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The time after which the transit gateway attachment will be considered expired if it hasn't transitioned into `ACCEPTED` or `ACTIVE` state.
 func (o LookupAwsTransitGatewayAttachmentResultOutput) ExpiresAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsTransitGatewayAttachmentResult) string { return v.ExpiresAt }).(pulumi.StringOutput)
 }
 
+// The ID of the HashiCorp Virtual Network (HVN).
 func (o LookupAwsTransitGatewayAttachmentResultOutput) HvnId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsTransitGatewayAttachmentResult) string { return v.HvnId }).(pulumi.StringOutput)
 }
@@ -126,30 +142,37 @@ func (o LookupAwsTransitGatewayAttachmentResultOutput) Id() pulumi.StringOutput 
 	return o.ApplyT(func(v LookupAwsTransitGatewayAttachmentResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The ID of the HCP organization where the transit gateway attachment is located. Always matches the HVN's organization.
 func (o LookupAwsTransitGatewayAttachmentResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsTransitGatewayAttachmentResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
+// The ID of the HCP project where the transit gateway attachment is located. Always matches the HVN's project.
 func (o LookupAwsTransitGatewayAttachmentResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsTransitGatewayAttachmentResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// The transit gateway attachment ID used by AWS.
 func (o LookupAwsTransitGatewayAttachmentResultOutput) ProviderTransitGatewayAttachmentId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsTransitGatewayAttachmentResult) string { return v.ProviderTransitGatewayAttachmentId }).(pulumi.StringOutput)
 }
 
+// A unique URL identifying the transit gateway attachment.
 func (o LookupAwsTransitGatewayAttachmentResultOutput) SelfLink() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsTransitGatewayAttachmentResult) string { return v.SelfLink }).(pulumi.StringOutput)
 }
 
+// The state of the transit gateway attachment.
 func (o LookupAwsTransitGatewayAttachmentResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsTransitGatewayAttachmentResult) string { return v.State }).(pulumi.StringOutput)
 }
 
+// The user-settable name of the transit gateway attachment in HCP.
 func (o LookupAwsTransitGatewayAttachmentResultOutput) TransitGatewayAttachmentId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsTransitGatewayAttachmentResult) string { return v.TransitGatewayAttachmentId }).(pulumi.StringOutput)
 }
 
+// The ID of the user-owned transit gateway in AWS.
 func (o LookupAwsTransitGatewayAttachmentResultOutput) TransitGatewayId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAwsTransitGatewayAttachmentResult) string { return v.TransitGatewayId }).(pulumi.StringOutput)
 }
