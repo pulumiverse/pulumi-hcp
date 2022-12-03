@@ -1,12 +1,11 @@
 ---
-title: HCP
-meta_desc: Provides an overview of the HashiCorp Cloud Platform Provider for Pulumi.
+title: HashiCorp Cloud Platform (HCP)
+meta_desc: Provides an overview of the HashiCorp Cloud Platform (HCP) Provider for Pulumi.
 layout: overview
 ---
 
-The HashiCorp Cloud Platform provider (HCP) for Pulumi can be used to
-provision any of the cloud resources available in [HashiCorp Cloud
-Platform](https://www.hashicorp.com/cloud-platform). The HCP provider
+The HashiCorp Cloud Platform (HCP) provider for Pulumi can be used to
+provision any of the cloud resources available in [HashiCorp Cloud Platform (HCP)](https://www.hashicorp.com/cloud-platform). The HCP provider
 must be configured with credentials to deploy and update resources.
 
 ## Example

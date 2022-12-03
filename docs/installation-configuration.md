@@ -1,12 +1,12 @@
 ---
-title: HCP Setup
-meta_desc: Information on how to install the HashiCorp Cloud Platform Provider for Pulumi.
+title: HashiCorp Cloud Platform (HCP) Installation & Configuration
+meta_desc: Information on how to install theHashiCorp Cloud Platform (HCP) Provider for Pulumi.
 layout: installation
 ---
 
 ## Installation
 
-The Pulumi HCP provider is available as a package in the following Pulumi languages:
+The Pulumi HashiCorp Cloud Platform (HCP) provider is available as a package in the following Pulumi languages:
 
 * JavaScript/TypeScript: [`@grapl/pulumi-hcp`](https://www.npmjs.com/package/@grapl/pulumi-hcp)
 * Python: [`pulumi_hcp`](https://pypi.org/project/pulumi-hcp/)

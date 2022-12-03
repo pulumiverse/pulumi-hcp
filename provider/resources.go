@@ -47,7 +47,8 @@ func Provider() tfbridge.ProviderInfo {
 	prov := tfbridge.ProviderInfo{
 		P:           p,
 		Name:        "hcp",
-		Description: "A Pulumi package for creating and managing HCP cloud resources.",
+		DisplayName  "HashiCorp Cloud Platform (HCP)",
+		Description: "A Pulumi package for creating and managing HashiCorp Cloud Platform (HCP) cloud resources.",
 		// Keywords describing the provider in the Pulumi Registry.
 		Keywords: []string{"pulumi", "hcp", "category/infrastructure"},
 		License:  "Apache-2.0",
@@ -89,6 +90,7 @@ func Provider() tfbridge.ProviderInfo {
 			"hcp_aws_network_peering":            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AwsNetworkPeering")},
 			"hcp_aws_transit_gateway_attachment": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AwsTransitGatewayAttachment")},
 			"hcp_azure_peering_connection":       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AzurePeeringConnection")},
+			"hcp_boundary_cluster":               {Tok: tfbridge.MakeResource(mainPkg, mainMod, "BoundaryCluster")},
 			"hcp_consul_cluster":                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ConsulCluster")},
 			"hcp_consul_cluster_root_token":      {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ConsulClusterRootToken")},
 			"hcp_consul_snapshot":                {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ConsulSnapshot")},
@@ -106,6 +108,7 @@ func Provider() tfbridge.ProviderInfo {
 				mainPkg, mainMod, "getAwsTransitGatewayAttachment",
 			)},
 			"hcp_azure_peering_connection": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAzurePeeringConnection")},
+			"hcp_boundary_cluster":         {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getBoundaryCluster")},
 			"hcp_consul_agent_helm_config": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getConsulAgentHelmConfig")},
 			"hcp_consul_agent_kubernetes_secret": {Tok: tfbridge.MakeDataSource(
 				mainPkg, mainMod, "getConsulAgentKubernetesSecret",
