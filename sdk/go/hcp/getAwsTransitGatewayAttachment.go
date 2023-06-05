@@ -18,22 +18,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-hcp/sdk/go/hcp"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := hcp.LookupAwsTransitGatewayAttachment(ctx, &GetAwsTransitGatewayAttachmentArgs{
-// 			HvnId:                      _var.Hvn_id,
-// 			TransitGatewayAttachmentId: _var.Transit_gateway_attachment_id,
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := hcp.LookupAwsTransitGatewayAttachment(ctx, &GetAwsTransitGatewayAttachmentArgs{
+//				HvnId:                      _var.Hvn_id,
+//				TransitGatewayAttachmentId: _var.Transit_gateway_attachment_id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupAwsTransitGatewayAttachment(ctx *pulumi.Context, args *LookupAwsTransitGatewayAttachmentArgs, opts ...pulumi.InvokeOption) (*LookupAwsTransitGatewayAttachmentResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

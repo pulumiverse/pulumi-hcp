@@ -78,8 +78,8 @@ github.com/google/go-cmp v0.4.0/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/
 github.com/google/go-cmp v0.4.1 h1:/exdXoGamhu5ONeUJH0deniYLWYvQwW66yvlfiiKTu0=
 github.com/google/go-cmp v0.4.1/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
 github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510/go.mod h1:pupxD2MaaD3pAXIBCelhxNneeOaAeabZDe5s4K6zSpQ=
-github.com/grapl-security/pulumi-hcp/sdk v0.1.11 h1:7UxkqA6ZxWO+OzEYWgSB97pYg9w/guS4U4GcNoHQyGM=
-github.com/grapl-security/pulumi-hcp/sdk v0.1.11/go.mod h1:vtTCIs3deMEUdRePWxpmIuAoiSn10j8yvGX2VoeUMTU=
+github.com/pulumiverse/pulumi-hcp/sdk v0.1.11 h1:7UxkqA6ZxWO+OzEYWgSB97pYg9w/guS4U4GcNoHQyGM=
+github.com/pulumiverse/pulumi-hcp/sdk v0.1.11/go.mod h1:vtTCIs3deMEUdRePWxpmIuAoiSn10j8yvGX2VoeUMTU=
 github.com/grpc-ecosystem/grpc-opentracing v0.0.0-20180507213350-8e809c8a8645 h1:MJG/KsmcqMwFAkh8mTnAwhyKoB+sTAnY4CACC110tbU=
 github.com/grpc-ecosystem/grpc-opentracing v0.0.0-20180507213350-8e809c8a8645/go.mod h1:6iZfnjpejD4L/4DwD7NryNaJyCQdzwWwH2MWhCA90Kw=
 github.com/hashicorp/errwrap v1.0.0 h1:hLrqtEDnRye3+sgx6z4qVLNuviH3MR5aQ0ykNJa/UYA=

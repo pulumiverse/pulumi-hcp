@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	hcp "github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
 	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	hcp "github.com/pulumiverse/pulumi-hcp/sdk/go/hcp"
 )
 
 func main() {

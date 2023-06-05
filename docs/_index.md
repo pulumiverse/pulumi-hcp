@@ -15,7 +15,7 @@ must be configured with credentials to deploy and update resources.
 
 ```typescript
 import * as pulumi from "@pulumi/pulumi";
-import * as hcp from "@grapl/pulumi-hcp";
+import * as hcp from "@pulumiverse/hcp";
 
 const hvn = new hcp.Hvn(
     "my-hvn",
@@ -41,7 +41,7 @@ new hcp.VaultCluster(
 
 ```python
 import pulumi
-import pulumi_hcp as hcp
+import pulumiverse_hcp as hcp
 
 def main() -> None:
     hvn = hcp.Hvn(
@@ -71,7 +71,7 @@ package main
 
 import (
     "fmt"
-    hcp "github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
+    hcp "github.com/pulumiverse/pulumi-hcp/sdk/go/hcp"
     "github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 

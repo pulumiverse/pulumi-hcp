@@ -1,4 +1,4 @@
-module github.com/grapl-security/pulumi-hcp/provider
+module github.com/pulumiverse/pulumi-hcp/provider
 
 go 1.16
 

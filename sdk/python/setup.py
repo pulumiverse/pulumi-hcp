@@ -15,7 +15,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'hcp', PLUGIN_VERSION, '--server', 'https://github.com/grapl-security/pulumi-hcp/releases/download/v${VERSION}'])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'hcp', PLUGIN_VERSION, '--server', 'github://api.github.com/pulumiverse/'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print(f"""
@@ -37,9 +37,9 @@ def readme():
         return "hcp Pulumi Package - Development Version"
 
 
-setup(name='pulumi_hcp',
+setup(name='pulumiverse_hcp',
       version=VERSION,
-      description="A Pulumi package for creating and managing HCP cloud resources.",
+      description="A Pulumi package for creating and managing HashiCorp Cloud Platform (HCP) cloud resources.",
       long_description=readme(),
       long_description_content_type='text/markdown',
       cmdclass={
@@ -48,12 +48,12 @@ setup(name='pulumi_hcp',
       keywords='pulumi hcp category/infrastructure',
       url='https://pulumi.io',
       project_urls={
-          'Repository': 'https://github.com/grapl-security/pulumi-hcp'
+          'Repository': 'https://github.com/pulumiverse/pulumi-hcp'
       },
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'pulumi_hcp': [
+          'pulumiverse_hcp': [
               'py.typed',
               'pulumi-plugin.json',
           ]

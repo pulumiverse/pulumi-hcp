@@ -19,22 +19,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-hcp/sdk/go/hcp"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := hcp.NewConsulSnapshot(ctx, "example", &hcp.ConsulSnapshotArgs{
-// 			ClusterId:    pulumi.String("consul-cluster"),
-// 			SnapshotName: pulumi.String("my-snapshot"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := hcp.NewConsulSnapshot(ctx, "example", &hcp.ConsulSnapshotArgs{
+//				ClusterId:    pulumi.String("consul-cluster"),
+//				SnapshotName: pulumi.String("my-snapshot"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type ConsulSnapshot struct {
 	pulumi.CustomResourceState
@@ -181,7 +184,7 @@ func (i *ConsulSnapshot) ToConsulSnapshotOutputWithContext(ctx context.Context) 
 // ConsulSnapshotArrayInput is an input type that accepts ConsulSnapshotArray and ConsulSnapshotArrayOutput values.
 // You can construct a concrete instance of `ConsulSnapshotArrayInput` via:
 //
-//          ConsulSnapshotArray{ ConsulSnapshotArgs{...} }
+//	ConsulSnapshotArray{ ConsulSnapshotArgs{...} }
 type ConsulSnapshotArrayInput interface {
 	pulumi.Input
 
@@ -206,7 +209,7 @@ func (i ConsulSnapshotArray) ToConsulSnapshotArrayOutputWithContext(ctx context.
 // ConsulSnapshotMapInput is an input type that accepts ConsulSnapshotMap and ConsulSnapshotMapOutput values.
 // You can construct a concrete instance of `ConsulSnapshotMapInput` via:
 //
-//          ConsulSnapshotMap{ "key": ConsulSnapshotArgs{...} }
+//	ConsulSnapshotMap{ "key": ConsulSnapshotArgs{...} }
 type ConsulSnapshotMapInput interface {
 	pulumi.Input
 

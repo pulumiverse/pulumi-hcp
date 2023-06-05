@@ -17,57 +17,60 @@ import (
 // package main
 //
 // import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-hcp/sdk/go/hcp"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		main, err := hcp.NewHvn(ctx, "main", &hcp.HvnArgs{
-// 			HvnId:         pulumi.String("main-hvn"),
-// 			CloudProvider: pulumi.String("aws"),
-// 			Region:        pulumi.String("us-west-2"),
-// 			CidrBlock:     pulumi.String("172.25.16.0/20"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		peerVpc, err := ec2.NewVpc(ctx, "peerVpc", &ec2.VpcArgs{
-// 			CidrBlock: pulumi.String("192.168.0.0/20"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		example, err := hcp.NewAwsNetworkPeering(ctx, "example", &hcp.AwsNetworkPeeringArgs{
-// 			PeeringId:     pulumi.String("peer-example"),
-// 			HvnId:         main.HvnId,
-// 			PeerVpcId:     peerVpc.ID(),
-// 			PeerAccountId: peerVpc.OwnerId,
-// 			PeerVpcRegion: pulumi.String("us-west-2"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ec2.NewVpcPeeringConnectionAccepter(ctx, "peerVpcPeeringConnectionAccepter", &ec2.VpcPeeringConnectionAccepterArgs{
-// 			VpcPeeringConnectionId: example.ProviderPeeringId,
-// 			AutoAccept:             pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = hcp.NewHvnRoute(ctx, "example-peering-route", &hcp.HvnRouteArgs{
-// 			HvnLink:         main.SelfLink,
-// 			HvnRouteId:      pulumi.String("peering-route"),
-// 			DestinationCidr: peerVpc.CidrBlock,
-// 			TargetLink:      example.SelfLink,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := hcp.NewHvn(ctx, "main", &hcp.HvnArgs{
+//				HvnId:         pulumi.String("main-hvn"),
+//				CloudProvider: pulumi.String("aws"),
+//				Region:        pulumi.String("us-west-2"),
+//				CidrBlock:     pulumi.String("172.25.16.0/20"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			peerVpc, err := ec2.NewVpc(ctx, "peerVpc", &ec2.VpcArgs{
+//				CidrBlock: pulumi.String("192.168.0.0/20"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			example, err := hcp.NewAwsNetworkPeering(ctx, "example", &hcp.AwsNetworkPeeringArgs{
+//				PeeringId:     pulumi.String("peer-example"),
+//				HvnId:         main.HvnId,
+//				PeerVpcId:     peerVpc.ID(),
+//				PeerAccountId: peerVpc.OwnerId,
+//				PeerVpcRegion: pulumi.String("us-west-2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec2.NewVpcPeeringConnectionAccepter(ctx, "peerVpcPeeringConnectionAccepter", &ec2.VpcPeeringConnectionAccepterArgs{
+//				VpcPeeringConnectionId: example.ProviderPeeringId,
+//				AutoAccept:             pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = hcp.NewHvnRoute(ctx, "example-peering-route", &hcp.HvnRouteArgs{
+//				HvnLink:         main.SelfLink,
+//				HvnRouteId:      pulumi.String("peering-route"),
+//				DestinationCidr: peerVpc.CidrBlock,
+//				TargetLink:      example.SelfLink,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -75,7 +78,9 @@ import (
 // # The import ID is {hvn_id}:{hvn_route_id}
 //
 // ```sh
-//  $ pulumi import hcp:index/hvnRoute:HvnRoute example main-hvn:example-hvn-route
+//
+//	$ pulumi import hcp:index/hvnRoute:HvnRoute example main-hvn:example-hvn-route
+//
 // ```
 type HvnRoute struct {
 	pulumi.CustomResourceState
@@ -224,7 +229,7 @@ func (i *HvnRoute) ToHvnRouteOutputWithContext(ctx context.Context) HvnRouteOutp
 // HvnRouteArrayInput is an input type that accepts HvnRouteArray and HvnRouteArrayOutput values.
 // You can construct a concrete instance of `HvnRouteArrayInput` via:
 //
-//          HvnRouteArray{ HvnRouteArgs{...} }
+//	HvnRouteArray{ HvnRouteArgs{...} }
 type HvnRouteArrayInput interface {
 	pulumi.Input
 
@@ -249,7 +254,7 @@ func (i HvnRouteArray) ToHvnRouteArrayOutputWithContext(ctx context.Context) Hvn
 // HvnRouteMapInput is an input type that accepts HvnRouteMap and HvnRouteMapOutput values.
 // You can construct a concrete instance of `HvnRouteMapInput` via:
 //
-//          HvnRouteMap{ "key": HvnRouteArgs{...} }
+//	HvnRouteMap{ "key": HvnRouteArgs{...} }
 type HvnRouteMapInput interface {
 	pulumi.Input
 

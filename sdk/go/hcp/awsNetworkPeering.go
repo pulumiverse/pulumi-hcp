@@ -19,63 +19,66 @@ import (
 // package main
 //
 // import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws"
-// 	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws"
+//	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/ec2"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-hcp/sdk/go/hcp"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		main, err := hcp.NewHvn(ctx, "main", &hcp.HvnArgs{
-// 			HvnId:         pulumi.String("main-hvn"),
-// 			CloudProvider: pulumi.String("aws"),
-// 			Region:        pulumi.String("us-west-2"),
-// 			CidrBlock:     pulumi.String("172.25.16.0/20"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		peerVpc, err := ec2.NewVpc(ctx, "peerVpc", &ec2.VpcArgs{
-// 			CidrBlock: pulumi.String("172.31.0.0/16"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		peerArn := aws.GetArnOutput(ctx, GetArnOutputArgs{
-// 			Arn: peerVpc.Arn,
-// 		}, nil)
-// 		dev, err := hcp.NewAwsNetworkPeering(ctx, "dev", &hcp.AwsNetworkPeeringArgs{
-// 			HvnId:         main.HvnId,
-// 			PeeringId:     pulumi.String("dev"),
-// 			PeerVpcId:     peerVpc.ID(),
-// 			PeerAccountId: peerVpc.OwnerId,
-// 			PeerVpcRegion: peerArn.ApplyT(func(peerArn GetArnResult) (string, error) {
-// 				return peerArn.Region, nil
-// 			}).(pulumi.StringOutput),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = hcp.NewHvnRoute(ctx, "main-to-dev", &hcp.HvnRouteArgs{
-// 			HvnLink:         main.SelfLink,
-// 			HvnRouteId:      pulumi.String("main-to-dev"),
-// 			DestinationCidr: pulumi.String("172.31.0.0/16"),
-// 			TargetLink:      dev.SelfLink,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = ec2.NewVpcPeeringConnectionAccepter(ctx, "peerVpcPeeringConnectionAccepter", &ec2.VpcPeeringConnectionAccepterArgs{
-// 			VpcPeeringConnectionId: dev.ProviderPeeringId,
-// 			AutoAccept:             pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := hcp.NewHvn(ctx, "main", &hcp.HvnArgs{
+//				HvnId:         pulumi.String("main-hvn"),
+//				CloudProvider: pulumi.String("aws"),
+//				Region:        pulumi.String("us-west-2"),
+//				CidrBlock:     pulumi.String("172.25.16.0/20"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			peerVpc, err := ec2.NewVpc(ctx, "peerVpc", &ec2.VpcArgs{
+//				CidrBlock: pulumi.String("172.31.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			peerArn := aws.GetArnOutput(ctx, GetArnOutputArgs{
+//				Arn: peerVpc.Arn,
+//			}, nil)
+//			dev, err := hcp.NewAwsNetworkPeering(ctx, "dev", &hcp.AwsNetworkPeeringArgs{
+//				HvnId:         main.HvnId,
+//				PeeringId:     pulumi.String("dev"),
+//				PeerVpcId:     peerVpc.ID(),
+//				PeerAccountId: peerVpc.OwnerId,
+//				PeerVpcRegion: peerArn.ApplyT(func(peerArn GetArnResult) (string, error) {
+//					return peerArn.Region, nil
+//				}).(pulumi.StringOutput),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = hcp.NewHvnRoute(ctx, "main-to-dev", &hcp.HvnRouteArgs{
+//				HvnLink:         main.SelfLink,
+//				HvnRouteId:      pulumi.String("main-to-dev"),
+//				DestinationCidr: pulumi.String("172.31.0.0/16"),
+//				TargetLink:      dev.SelfLink,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ec2.NewVpcPeeringConnectionAccepter(ctx, "peerVpcPeeringConnectionAccepter", &ec2.VpcPeeringConnectionAccepterArgs{
+//				VpcPeeringConnectionId: dev.ProviderPeeringId,
+//				AutoAccept:             pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -83,7 +86,9 @@ import (
 // # The import ID is {hvn_id}:{peering_id}
 //
 // ```sh
-//  $ pulumi import hcp:index/awsNetworkPeering:AwsNetworkPeering peer main-hvn:11eb60b3-d4ec-5eed-aacc-0242ac120015
+//
+//	$ pulumi import hcp:index/awsNetworkPeering:AwsNetworkPeering peer main-hvn:11eb60b3-d4ec-5eed-aacc-0242ac120015
+//
 // ```
 type AwsNetworkPeering struct {
 	pulumi.CustomResourceState
@@ -269,7 +274,7 @@ func (i *AwsNetworkPeering) ToAwsNetworkPeeringOutputWithContext(ctx context.Con
 // AwsNetworkPeeringArrayInput is an input type that accepts AwsNetworkPeeringArray and AwsNetworkPeeringArrayOutput values.
 // You can construct a concrete instance of `AwsNetworkPeeringArrayInput` via:
 //
-//          AwsNetworkPeeringArray{ AwsNetworkPeeringArgs{...} }
+//	AwsNetworkPeeringArray{ AwsNetworkPeeringArgs{...} }
 type AwsNetworkPeeringArrayInput interface {
 	pulumi.Input
 
@@ -294,7 +299,7 @@ func (i AwsNetworkPeeringArray) ToAwsNetworkPeeringArrayOutputWithContext(ctx co
 // AwsNetworkPeeringMapInput is an input type that accepts AwsNetworkPeeringMap and AwsNetworkPeeringMapOutput values.
 // You can construct a concrete instance of `AwsNetworkPeeringMapInput` via:
 //
-//          AwsNetworkPeeringMap{ "key": AwsNetworkPeeringArgs{...} }
+//	AwsNetworkPeeringMap{ "key": AwsNetworkPeeringArgs{...} }
 type AwsNetworkPeeringMapInput interface {
 	pulumi.Input
 

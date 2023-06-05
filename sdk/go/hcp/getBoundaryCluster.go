@@ -18,21 +18,24 @@ import (
 // package main
 //
 // import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-hcp/sdk/go/hcp"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := hcp.LookupBoundaryCluster(ctx, &GetBoundaryClusterArgs{
-// 			ClusterId: _var.Cluster_id,
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := hcp.LookupBoundaryCluster(ctx, &GetBoundaryClusterArgs{
+//				ClusterId: _var.Cluster_id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupBoundaryCluster(ctx *pulumi.Context, args *LookupBoundaryClusterArgs, opts ...pulumi.InvokeOption) (*LookupBoundaryClusterResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

@@ -18,22 +18,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-hcp/sdk/go/hcp"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := hcp.GetConsulAgentHelmConfig(ctx, &GetConsulAgentHelmConfigArgs{
-// 			ClusterId:          _var.Cluster_id,
-// 			KubernetesEndpoint: _var.Kubernetes_endpoint,
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := hcp.GetConsulAgentHelmConfig(ctx, &GetConsulAgentHelmConfigArgs{
+//				ClusterId:          _var.Cluster_id,
+//				KubernetesEndpoint: _var.Kubernetes_endpoint,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetConsulAgentHelmConfig(ctx *pulumi.Context, args *GetConsulAgentHelmConfigArgs, opts ...pulumi.InvokeOption) (*GetConsulAgentHelmConfigResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

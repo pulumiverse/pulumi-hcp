@@ -18,21 +18,24 @@ import (
 // package main
 //
 // import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-hcp/sdk/go/hcp"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := hcp.LookupHvn(ctx, &GetHvnArgs{
-// 			HvnId: _var.Hvn_id,
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := hcp.LookupHvn(ctx, &GetHvnArgs{
+//				HvnId: _var.Hvn_id,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupHvn(ctx *pulumi.Context, args *LookupHvnArgs, opts ...pulumi.InvokeOption) (*LookupHvnResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

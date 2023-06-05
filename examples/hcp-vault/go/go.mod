@@ -3,7 +3,7 @@ module vault-go
 go 1.16
 
 require (
-	github.com/grapl-security/pulumi-hcp/sdk v0.1.11
+	github.com/pulumiverse/pulumi-hcp/sdk v0.1.11
 	github.com/pulumi/pulumi/sdk/v3 v3.40.1
 )
 

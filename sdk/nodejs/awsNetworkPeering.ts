@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
- * import * as hcp from "@grapl/pulumi-hcp";
+ * import * as hcp from "@pulumiverse/hcp";
  *
  * const main = new hcp.Hvn("main", {
  *     hvnId: "main-hvn",

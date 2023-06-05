@@ -54,7 +54,7 @@ builds:
       # Omit the DWARF symbol table
       - -w
       # Set the value of the string variable in the given import path
-      - -X github.com/grapl-security/pulumi-hcp/provider/pkg/version.Version={{.Tag}}
+      - -X github.com/pulumiverse/pulumi-hcp/provider/pkg/version.Version={{.Tag}}
 
 
 # Generated artifacts are placed into this directory; note that `dist`

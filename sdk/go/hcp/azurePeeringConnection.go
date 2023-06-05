@@ -20,7 +20,9 @@ import (
 // # The import ID is {hvn_id}:{peering_id}
 //
 // ```sh
-//  $ pulumi import hcp:index/azurePeeringConnection:AzurePeeringConnection peer main-hvn:199e7e96-4d5f-4456-91f3-b6cc71f1e561
+//
+//	$ pulumi import hcp:index/azurePeeringConnection:AzurePeeringConnection peer main-hvn:199e7e96-4d5f-4456-91f3-b6cc71f1e561
+//
 // ```
 type AzurePeeringConnection struct {
 	pulumi.CustomResourceState
@@ -238,7 +240,7 @@ func (i *AzurePeeringConnection) ToAzurePeeringConnectionOutputWithContext(ctx c
 // AzurePeeringConnectionArrayInput is an input type that accepts AzurePeeringConnectionArray and AzurePeeringConnectionArrayOutput values.
 // You can construct a concrete instance of `AzurePeeringConnectionArrayInput` via:
 //
-//          AzurePeeringConnectionArray{ AzurePeeringConnectionArgs{...} }
+//	AzurePeeringConnectionArray{ AzurePeeringConnectionArgs{...} }
 type AzurePeeringConnectionArrayInput interface {
 	pulumi.Input
 
@@ -263,7 +265,7 @@ func (i AzurePeeringConnectionArray) ToAzurePeeringConnectionArrayOutputWithCont
 // AzurePeeringConnectionMapInput is an input type that accepts AzurePeeringConnectionMap and AzurePeeringConnectionMapOutput values.
 // You can construct a concrete instance of `AzurePeeringConnectionMapInput` via:
 //
-//          AzurePeeringConnectionMap{ "key": AzurePeeringConnectionArgs{...} }
+//	AzurePeeringConnectionMap{ "key": AzurePeeringConnectionArgs{...} }
 type AzurePeeringConnectionMapInput interface {
 	pulumi.Input
 

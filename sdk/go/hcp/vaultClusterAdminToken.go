@@ -17,21 +17,24 @@ import (
 // package main
 //
 // import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-hcp/sdk/go/hcp"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := hcp.NewVaultClusterAdminToken(ctx, "example", &hcp.VaultClusterAdminTokenArgs{
-// 			ClusterId: pulumi.String("test-vault-cluster"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := hcp.NewVaultClusterAdminToken(ctx, "example", &hcp.VaultClusterAdminTokenArgs{
+//				ClusterId: pulumi.String("test-vault-cluster"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type VaultClusterAdminToken struct {
 	pulumi.CustomResourceState
@@ -135,7 +138,7 @@ func (i *VaultClusterAdminToken) ToVaultClusterAdminTokenOutputWithContext(ctx c
 // VaultClusterAdminTokenArrayInput is an input type that accepts VaultClusterAdminTokenArray and VaultClusterAdminTokenArrayOutput values.
 // You can construct a concrete instance of `VaultClusterAdminTokenArrayInput` via:
 //
-//          VaultClusterAdminTokenArray{ VaultClusterAdminTokenArgs{...} }
+//	VaultClusterAdminTokenArray{ VaultClusterAdminTokenArgs{...} }
 type VaultClusterAdminTokenArrayInput interface {
 	pulumi.Input
 
@@ -160,7 +163,7 @@ func (i VaultClusterAdminTokenArray) ToVaultClusterAdminTokenArrayOutputWithCont
 // VaultClusterAdminTokenMapInput is an input type that accepts VaultClusterAdminTokenMap and VaultClusterAdminTokenMapOutput values.
 // You can construct a concrete instance of `VaultClusterAdminTokenMapInput` via:
 //
-//          VaultClusterAdminTokenMap{ "key": VaultClusterAdminTokenArgs{...} }
+//	VaultClusterAdminTokenMap{ "key": VaultClusterAdminTokenArgs{...} }
 type VaultClusterAdminTokenMapInput interface {
 	pulumi.Input
 

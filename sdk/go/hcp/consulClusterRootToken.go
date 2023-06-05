@@ -17,21 +17,24 @@ import (
 // package main
 //
 // import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-hcp/sdk/go/hcp"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := hcp.NewConsulClusterRootToken(ctx, "example", &hcp.ConsulClusterRootTokenArgs{
-// 			ClusterId: pulumi.String("consul-cluster"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := hcp.NewConsulClusterRootToken(ctx, "example", &hcp.ConsulClusterRootTokenArgs{
+//				ClusterId: pulumi.String("consul-cluster"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type ConsulClusterRootToken struct {
 	pulumi.CustomResourceState
@@ -141,7 +144,7 @@ func (i *ConsulClusterRootToken) ToConsulClusterRootTokenOutputWithContext(ctx c
 // ConsulClusterRootTokenArrayInput is an input type that accepts ConsulClusterRootTokenArray and ConsulClusterRootTokenArrayOutput values.
 // You can construct a concrete instance of `ConsulClusterRootTokenArrayInput` via:
 //
-//          ConsulClusterRootTokenArray{ ConsulClusterRootTokenArgs{...} }
+//	ConsulClusterRootTokenArray{ ConsulClusterRootTokenArgs{...} }
 type ConsulClusterRootTokenArrayInput interface {
 	pulumi.Input
 
@@ -166,7 +169,7 @@ func (i ConsulClusterRootTokenArray) ToConsulClusterRootTokenArrayOutputWithCont
 // ConsulClusterRootTokenMapInput is an input type that accepts ConsulClusterRootTokenMap and ConsulClusterRootTokenMapOutput values.
 // You can construct a concrete instance of `ConsulClusterRootTokenMapInput` via:
 //
-//          ConsulClusterRootTokenMap{ "key": ConsulClusterRootTokenArgs{...} }
+//	ConsulClusterRootTokenMap{ "key": ConsulClusterRootTokenArgs{...} }
 type ConsulClusterRootTokenMapInput interface {
 	pulumi.Input
 

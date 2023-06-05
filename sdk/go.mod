@@ -1,4 +1,4 @@
-module github.com/grapl-security/pulumi-hcp/sdk
+module github.com/pulumiverse/pulumi-hcp/sdk
 
 go 1.16
 

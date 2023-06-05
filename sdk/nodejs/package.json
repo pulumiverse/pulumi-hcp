@@ -1,14 +1,14 @@
 {
-    "name": "@grapl/pulumi-hcp",
+    "name": "@pulumiverse/hcp",
     "version": "${VERSION}",
-    "description": "A Pulumi package for creating and managing HCP cloud resources.",
+    "description": "A Pulumi package for creating and managing HashiCorp Cloud Platform (HCP) cloud resources.",
     "keywords": [
         "pulumi",
         "hcp",
         "category/infrastructure"
     ],
     "homepage": "https://pulumi.io",
-    "repository": "https://github.com/grapl-security/pulumi-hcp",
+    "repository": "https://github.com/pulumiverse/pulumi-hcp",
     "license": "Apache-2.0",
     "scripts": {
         "build": "tsc",
@@ -25,6 +25,6 @@
     "pulumi": {
         "resource": true,
         "name": "hcp",
-        "server": "https://github.com/grapl-security/pulumi-hcp/releases/download/v${VERSION}"
+        "server": "github://api.github.com/pulumiverse/"
     }
 }

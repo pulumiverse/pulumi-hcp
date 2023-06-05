@@ -16,7 +16,9 @@ import (
 // # The import ID is {cluster_id}
 //
 // ```sh
-//  $ pulumi import hcp:index/vaultCluster:VaultCluster example vault-cluster
+//
+//	$ pulumi import hcp:index/vaultCluster:VaultCluster example vault-cluster
+//
 // ```
 type VaultCluster struct {
 	pulumi.CustomResourceState
@@ -267,7 +269,7 @@ func (i *VaultCluster) ToVaultClusterOutputWithContext(ctx context.Context) Vaul
 // VaultClusterArrayInput is an input type that accepts VaultClusterArray and VaultClusterArrayOutput values.
 // You can construct a concrete instance of `VaultClusterArrayInput` via:
 //
-//          VaultClusterArray{ VaultClusterArgs{...} }
+//	VaultClusterArray{ VaultClusterArgs{...} }
 type VaultClusterArrayInput interface {
 	pulumi.Input
 
@@ -292,7 +294,7 @@ func (i VaultClusterArray) ToVaultClusterArrayOutputWithContext(ctx context.Cont
 // VaultClusterMapInput is an input type that accepts VaultClusterMap and VaultClusterMapOutput values.
 // You can construct a concrete instance of `VaultClusterMapInput` via:
 //
-//          VaultClusterMap{ "key": VaultClusterArgs{...} }
+//	VaultClusterMap{ "key": VaultClusterArgs{...} }
 type VaultClusterMapInput interface {
 	pulumi.Input
 

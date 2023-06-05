@@ -31,24 +31,27 @@ import (
 // package main
 //
 // import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-hcp/sdk/go/hcp"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := hcp.NewHvn(ctx, "example", &hcp.HvnArgs{
-// 			CidrBlock:     pulumi.String("172.25.16.0/20"),
-// 			CloudProvider: pulumi.String("aws"),
-// 			HvnId:         pulumi.String("main-hvn"),
-// 			Region:        pulumi.String("us-west-2"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := hcp.NewHvn(ctx, "example", &hcp.HvnArgs{
+//				CidrBlock:     pulumi.String("172.25.16.0/20"),
+//				CloudProvider: pulumi.String("aws"),
+//				HvnId:         pulumi.String("main-hvn"),
+//				Region:        pulumi.String("us-west-2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -56,7 +59,9 @@ import (
 // # The import ID is {hvn_id}
 //
 // ```sh
-//  $ pulumi import hcp:index/hvn:Hvn example main-hvn
+//
+//	$ pulumi import hcp:index/hvn:Hvn example main-hvn
+//
 // ```
 type Hvn struct {
 	pulumi.CustomResourceState
@@ -220,7 +225,7 @@ func (i *Hvn) ToHvnOutputWithContext(ctx context.Context) HvnOutput {
 // HvnArrayInput is an input type that accepts HvnArray and HvnArrayOutput values.
 // You can construct a concrete instance of `HvnArrayInput` via:
 //
-//          HvnArray{ HvnArgs{...} }
+//	HvnArray{ HvnArgs{...} }
 type HvnArrayInput interface {
 	pulumi.Input
 
@@ -245,7 +250,7 @@ func (i HvnArray) ToHvnArrayOutputWithContext(ctx context.Context) HvnArrayOutpu
 // HvnMapInput is an input type that accepts HvnMap and HvnMapOutput values.
 // You can construct a concrete instance of `HvnMapInput` via:
 //
-//          HvnMap{ "key": HvnArgs{...} }
+//	HvnMap{ "key": HvnArgs{...} }
 type HvnMapInput interface {
 	pulumi.Input
 
