@@ -47,7 +47,8 @@ func Provider() tfbridge.ProviderInfo {
 	prov := tfbridge.ProviderInfo{
 		P:           p,
 		Name:        "hcp",
-		Description: "A Pulumi package for creating and managing HCP cloud resources.",
+		DisplayName  "HashiCorp Cloud Platform (HCP)",
+		Description: "A Pulumi package for creating and managing HashiCorp Cloud Platform (HCP) cloud resources.",
 		// Keywords describing the provider in the Pulumi Registry.
 		Keywords: []string{"pulumi", "hcp", "category/infrastructure"},
 		License:  "Apache-2.0",
