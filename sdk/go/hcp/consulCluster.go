@@ -21,32 +21,35 @@ import (
 // package main
 //
 // import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-hcp/sdk/go/hcp"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		exampleHvn, err := hcp.NewHvn(ctx, "exampleHvn", &hcp.HvnArgs{
-// 			HvnId:         pulumi.String("hvn"),
-// 			CloudProvider: pulumi.String("aws"),
-// 			Region:        pulumi.String("us-west-2"),
-// 			CidrBlock:     pulumi.String("172.25.16.0/20"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = hcp.NewConsulCluster(ctx, "exampleConsulCluster", &hcp.ConsulClusterArgs{
-// 			ClusterId: pulumi.String("consul-cluster"),
-// 			HvnId:     exampleHvn.HvnId,
-// 			Tier:      pulumi.String("development"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleHvn, err := hcp.NewHvn(ctx, "exampleHvn", &hcp.HvnArgs{
+//				HvnId:         pulumi.String("hvn"),
+//				CloudProvider: pulumi.String("aws"),
+//				Region:        pulumi.String("us-west-2"),
+//				CidrBlock:     pulumi.String("172.25.16.0/20"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = hcp.NewConsulCluster(ctx, "exampleConsulCluster", &hcp.ConsulClusterArgs{
+//				ClusterId: pulumi.String("consul-cluster"),
+//				HvnId:     exampleHvn.HvnId,
+//				Tier:      pulumi.String("development"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -54,7 +57,9 @@ import (
 // # The import ID is {cluster_id}
 //
 // ```sh
-//  $ pulumi import hcp:index/consulCluster:ConsulCluster example consul-cluster
+//
+//	$ pulumi import hcp:index/consulCluster:ConsulCluster example consul-cluster
+//
 // ```
 type ConsulCluster struct {
 	pulumi.CustomResourceState
@@ -344,7 +349,7 @@ func (i *ConsulCluster) ToConsulClusterOutputWithContext(ctx context.Context) Co
 // ConsulClusterArrayInput is an input type that accepts ConsulClusterArray and ConsulClusterArrayOutput values.
 // You can construct a concrete instance of `ConsulClusterArrayInput` via:
 //
-//          ConsulClusterArray{ ConsulClusterArgs{...} }
+//	ConsulClusterArray{ ConsulClusterArgs{...} }
 type ConsulClusterArrayInput interface {
 	pulumi.Input
 
@@ -369,7 +374,7 @@ func (i ConsulClusterArray) ToConsulClusterArrayOutputWithContext(ctx context.Co
 // ConsulClusterMapInput is an input type that accepts ConsulClusterMap and ConsulClusterMapOutput values.
 // You can construct a concrete instance of `ConsulClusterMapInput` via:
 //
-//          ConsulClusterMap{ "key": ConsulClusterArgs{...} }
+//	ConsulClusterMap{ "key": ConsulClusterArgs{...} }
 type ConsulClusterMapInput interface {
 	pulumi.Input
 

@@ -30,7 +30,7 @@ type VaultClusterAuditLogConfig struct {
 // VaultClusterAuditLogConfigInput is an input type that accepts VaultClusterAuditLogConfigArgs and VaultClusterAuditLogConfigOutput values.
 // You can construct a concrete instance of `VaultClusterAuditLogConfigInput` via:
 //
-//          VaultClusterAuditLogConfigArgs{...}
+//	VaultClusterAuditLogConfigArgs{...}
 type VaultClusterAuditLogConfigInput interface {
 	pulumi.Input
 
@@ -78,11 +78,11 @@ func (i VaultClusterAuditLogConfigArgs) ToVaultClusterAuditLogConfigPtrOutputWit
 // VaultClusterAuditLogConfigPtrInput is an input type that accepts VaultClusterAuditLogConfigArgs, VaultClusterAuditLogConfigPtr and VaultClusterAuditLogConfigPtrOutput values.
 // You can construct a concrete instance of `VaultClusterAuditLogConfigPtrInput` via:
 //
-//          VaultClusterAuditLogConfigArgs{...}
+//	        VaultClusterAuditLogConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type VaultClusterAuditLogConfigPtrInput interface {
 	pulumi.Input
 
@@ -273,7 +273,7 @@ type VaultClusterMajorVersionUpgradeConfig struct {
 // VaultClusterMajorVersionUpgradeConfigInput is an input type that accepts VaultClusterMajorVersionUpgradeConfigArgs and VaultClusterMajorVersionUpgradeConfigOutput values.
 // You can construct a concrete instance of `VaultClusterMajorVersionUpgradeConfigInput` via:
 //
-//          VaultClusterMajorVersionUpgradeConfigArgs{...}
+//	VaultClusterMajorVersionUpgradeConfigArgs{...}
 type VaultClusterMajorVersionUpgradeConfigInput interface {
 	pulumi.Input
 
@@ -313,11 +313,11 @@ func (i VaultClusterMajorVersionUpgradeConfigArgs) ToVaultClusterMajorVersionUpg
 // VaultClusterMajorVersionUpgradeConfigPtrInput is an input type that accepts VaultClusterMajorVersionUpgradeConfigArgs, VaultClusterMajorVersionUpgradeConfigPtr and VaultClusterMajorVersionUpgradeConfigPtrOutput values.
 // You can construct a concrete instance of `VaultClusterMajorVersionUpgradeConfigPtrInput` via:
 //
-//          VaultClusterMajorVersionUpgradeConfigArgs{...}
+//	        VaultClusterMajorVersionUpgradeConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type VaultClusterMajorVersionUpgradeConfigPtrInput interface {
 	pulumi.Input
 
@@ -456,7 +456,7 @@ type VaultClusterMetricsConfig struct {
 // VaultClusterMetricsConfigInput is an input type that accepts VaultClusterMetricsConfigArgs and VaultClusterMetricsConfigOutput values.
 // You can construct a concrete instance of `VaultClusterMetricsConfigInput` via:
 //
-//          VaultClusterMetricsConfigArgs{...}
+//	VaultClusterMetricsConfigArgs{...}
 type VaultClusterMetricsConfigInput interface {
 	pulumi.Input
 
@@ -504,11 +504,11 @@ func (i VaultClusterMetricsConfigArgs) ToVaultClusterMetricsConfigPtrOutputWithC
 // VaultClusterMetricsConfigPtrInput is an input type that accepts VaultClusterMetricsConfigArgs, VaultClusterMetricsConfigPtr and VaultClusterMetricsConfigPtrOutput values.
 // You can construct a concrete instance of `VaultClusterMetricsConfigPtrInput` via:
 //
-//          VaultClusterMetricsConfigArgs{...}
+//	        VaultClusterMetricsConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type VaultClusterMetricsConfigPtrInput interface {
 	pulumi.Input
 
@@ -710,7 +710,7 @@ type GetPackerImageIterationBuild struct {
 // GetPackerImageIterationBuildInput is an input type that accepts GetPackerImageIterationBuildArgs and GetPackerImageIterationBuildOutput values.
 // You can construct a concrete instance of `GetPackerImageIterationBuildInput` via:
 //
-//          GetPackerImageIterationBuildArgs{...}
+//	GetPackerImageIterationBuildArgs{...}
 type GetPackerImageIterationBuildInput interface {
 	pulumi.Input
 
@@ -753,7 +753,7 @@ func (i GetPackerImageIterationBuildArgs) ToGetPackerImageIterationBuildOutputWi
 // GetPackerImageIterationBuildArrayInput is an input type that accepts GetPackerImageIterationBuildArray and GetPackerImageIterationBuildArrayOutput values.
 // You can construct a concrete instance of `GetPackerImageIterationBuildArrayInput` via:
 //
-//          GetPackerImageIterationBuildArray{ GetPackerImageIterationBuildArgs{...} }
+//	GetPackerImageIterationBuildArray{ GetPackerImageIterationBuildArgs{...} }
 type GetPackerImageIterationBuildArrayInput interface {
 	pulumi.Input
 
@@ -865,7 +865,7 @@ type GetPackerImageIterationBuildImage struct {
 // GetPackerImageIterationBuildImageInput is an input type that accepts GetPackerImageIterationBuildImageArgs and GetPackerImageIterationBuildImageOutput values.
 // You can construct a concrete instance of `GetPackerImageIterationBuildImageInput` via:
 //
-//          GetPackerImageIterationBuildImageArgs{...}
+//	GetPackerImageIterationBuildImageArgs{...}
 type GetPackerImageIterationBuildImageInput interface {
 	pulumi.Input
 
@@ -897,7 +897,7 @@ func (i GetPackerImageIterationBuildImageArgs) ToGetPackerImageIterationBuildIma
 // GetPackerImageIterationBuildImageArrayInput is an input type that accepts GetPackerImageIterationBuildImageArray and GetPackerImageIterationBuildImageArrayOutput values.
 // You can construct a concrete instance of `GetPackerImageIterationBuildImageArrayInput` via:
 //
-//          GetPackerImageIterationBuildImageArray{ GetPackerImageIterationBuildImageArgs{...} }
+//	GetPackerImageIterationBuildImageArray{ GetPackerImageIterationBuildImageArgs{...} }
 type GetPackerImageIterationBuildImageArrayInput interface {
 	pulumi.Input
 
@@ -985,7 +985,7 @@ type GetVaultClusterAuditLogConfig struct {
 // GetVaultClusterAuditLogConfigInput is an input type that accepts GetVaultClusterAuditLogConfigArgs and GetVaultClusterAuditLogConfigOutput values.
 // You can construct a concrete instance of `GetVaultClusterAuditLogConfigInput` via:
 //
-//          GetVaultClusterAuditLogConfigArgs{...}
+//	GetVaultClusterAuditLogConfigArgs{...}
 type GetVaultClusterAuditLogConfigInput interface {
 	pulumi.Input
 
@@ -1019,7 +1019,7 @@ func (i GetVaultClusterAuditLogConfigArgs) ToGetVaultClusterAuditLogConfigOutput
 // GetVaultClusterAuditLogConfigArrayInput is an input type that accepts GetVaultClusterAuditLogConfigArray and GetVaultClusterAuditLogConfigArrayOutput values.
 // You can construct a concrete instance of `GetVaultClusterAuditLogConfigArrayInput` via:
 //
-//          GetVaultClusterAuditLogConfigArray{ GetVaultClusterAuditLogConfigArgs{...} }
+//	GetVaultClusterAuditLogConfigArray{ GetVaultClusterAuditLogConfigArgs{...} }
 type GetVaultClusterAuditLogConfigArrayInput interface {
 	pulumi.Input
 
@@ -1104,7 +1104,7 @@ type GetVaultClusterMajorVersionUpgradeConfig struct {
 // GetVaultClusterMajorVersionUpgradeConfigInput is an input type that accepts GetVaultClusterMajorVersionUpgradeConfigArgs and GetVaultClusterMajorVersionUpgradeConfigOutput values.
 // You can construct a concrete instance of `GetVaultClusterMajorVersionUpgradeConfigInput` via:
 //
-//          GetVaultClusterMajorVersionUpgradeConfigArgs{...}
+//	GetVaultClusterMajorVersionUpgradeConfigArgs{...}
 type GetVaultClusterMajorVersionUpgradeConfigInput interface {
 	pulumi.Input
 
@@ -1133,7 +1133,7 @@ func (i GetVaultClusterMajorVersionUpgradeConfigArgs) ToGetVaultClusterMajorVers
 // GetVaultClusterMajorVersionUpgradeConfigArrayInput is an input type that accepts GetVaultClusterMajorVersionUpgradeConfigArray and GetVaultClusterMajorVersionUpgradeConfigArrayOutput values.
 // You can construct a concrete instance of `GetVaultClusterMajorVersionUpgradeConfigArrayInput` via:
 //
-//          GetVaultClusterMajorVersionUpgradeConfigArray{ GetVaultClusterMajorVersionUpgradeConfigArgs{...} }
+//	GetVaultClusterMajorVersionUpgradeConfigArray{ GetVaultClusterMajorVersionUpgradeConfigArgs{...} }
 type GetVaultClusterMajorVersionUpgradeConfigArrayInput interface {
 	pulumi.Input
 
@@ -1215,7 +1215,7 @@ type GetVaultClusterMetricsConfig struct {
 // GetVaultClusterMetricsConfigInput is an input type that accepts GetVaultClusterMetricsConfigArgs and GetVaultClusterMetricsConfigOutput values.
 // You can construct a concrete instance of `GetVaultClusterMetricsConfigInput` via:
 //
-//          GetVaultClusterMetricsConfigArgs{...}
+//	GetVaultClusterMetricsConfigArgs{...}
 type GetVaultClusterMetricsConfigInput interface {
 	pulumi.Input
 
@@ -1249,7 +1249,7 @@ func (i GetVaultClusterMetricsConfigArgs) ToGetVaultClusterMetricsConfigOutputWi
 // GetVaultClusterMetricsConfigArrayInput is an input type that accepts GetVaultClusterMetricsConfigArray and GetVaultClusterMetricsConfigArrayOutput values.
 // You can construct a concrete instance of `GetVaultClusterMetricsConfigArrayInput` via:
 //
-//          GetVaultClusterMetricsConfigArray{ GetVaultClusterMetricsConfigArgs{...} }
+//	GetVaultClusterMetricsConfigArray{ GetVaultClusterMetricsConfigArgs{...} }
 type GetVaultClusterMetricsConfigArrayInput interface {
 	pulumi.Input
 

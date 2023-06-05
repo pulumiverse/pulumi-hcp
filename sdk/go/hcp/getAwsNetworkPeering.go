@@ -18,23 +18,26 @@ import (
 // package main
 //
 // import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-hcp/sdk/go/hcp"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := hcp.LookupAwsNetworkPeering(ctx, &GetAwsNetworkPeeringArgs{
-// 			HvnId:              _var.Hvn_id,
-// 			PeeringId:          _var.Peering_id,
-// 			WaitForActiveState: pulumi.BoolRef(true),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := hcp.LookupAwsNetworkPeering(ctx, &GetAwsNetworkPeeringArgs{
+//				HvnId:              _var.Hvn_id,
+//				PeeringId:          _var.Peering_id,
+//				WaitForActiveState: pulumi.BoolRef(true),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupAwsNetworkPeering(ctx *pulumi.Context, args *LookupAwsNetworkPeeringArgs, opts ...pulumi.InvokeOption) (*LookupAwsNetworkPeeringResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

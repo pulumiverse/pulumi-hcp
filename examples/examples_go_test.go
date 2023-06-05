@@ -14,7 +14,7 @@ func getGoBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	base := GetBaseOptions()
 	baseGo := base.With(integration.ProgramTestOptions{
 		Dependencies: []string{
-			"github.com/grapl-security/pulumi-hcp/sdk",
+			"github.com/pulumiverse/pulumi-hcp/sdk",
 		},
 	})
 

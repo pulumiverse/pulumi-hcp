@@ -1,0 +1,27 @@
+name: main
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  prerequisites:
+    uses: pulumiverse/infra/.github/workflows/provider-prerequisites.yaml@actions-workflows-v0.0.2
+    with:
+      provider: hcp
+      nodeversion: "1.16"
+      pythonversion: "3.9"
+      goversion: "1.18"
+      dotnetversion: "6.0"
+  build:
+    needs: prerequisites
+    uses: pulumiverse/infra/.github/workflows/provider-build-sdk.yaml@actions-workflows-v0.0.2
+    with:
+      provider: hcp
+      nodeversion: "1.16"
+      pythonversion: "3.9"
+      goversion: "1.18"
+      dotnetversion: "6.0"

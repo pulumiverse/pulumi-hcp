@@ -9,11 +9,11 @@ import (
 	// some hoops to access it.
 	"github.com/hashicorp/terraform-provider-hcp/shim"
 
-	"github.com/grapl-security/pulumi-hcp/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tfshim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
+	"github.com/pulumiverse/pulumi-hcp/provider/pkg/version"
 )
 
 // all of the token components used below.
@@ -47,7 +47,6 @@ func Provider() tfbridge.ProviderInfo {
 	prov := tfbridge.ProviderInfo{
 		P:           p,
 		Name:        "hcp",
-		DisplayName  "HashiCorp Cloud Platform (HCP)",
 		Description: "A Pulumi package for creating and managing HashiCorp Cloud Platform (HCP) cloud resources.",
 		// Keywords describing the provider in the Pulumi Registry.
 		Keywords: []string{"pulumi", "hcp", "category/infrastructure"},
@@ -60,16 +59,16 @@ func Provider() tfbridge.ProviderInfo {
 		GitHubOrg: "hashicorp",
 		// The logo for this provider that will be shown in the Pulumi
 		// Registry.
-		LogoURL: "https://raw.githubusercontent.com/grapl-security/pulumi-hcp/main/assets/hcp.svg",
+		LogoURL: "https://raw.githubusercontent.com/pulumiverse/pulumi-hcp/main/assets/hcp.svg",
 		// The repository for *this* code.
-		Repository:  "https://github.com/grapl-security/pulumi-hcp",
+		Repository:  "https://github.com/pulumiverse/pulumi-hcp",
 		Publisher:   "Grapl Security",
 		DisplayName: "HashiCorp Cloud Platform (HCP)",
 		// Binaries for the plugin will be stored as Github Releases
 		// (recommended by Pulumi).
 		// NOTE: the added 'v' in front of `${VERSION}` is a temporary
 		// workaround for (what I think is) a `pulumi plugin install` issue.
-		PluginDownloadURL: "https://github.com/grapl-security/pulumi-hcp/releases/download/v${VERSION}",
+		PluginDownloadURL: "github://api.github.com/pulumiverse/",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"client_id": {
 				Default: &tfbridge.DefaultInfo{
@@ -131,16 +130,17 @@ func Provider() tfbridge.ProviderInfo {
 				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
 				"@types/mime": "^2.0.0",
 			},
-			PackageName: "@grapl/pulumi-hcp",
+			PackageName: "@pulumiverse/hcp",
 		},
 		Python: &tfbridge.PythonInfo{
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
 			},
+			PackageName: "pulumiverse_hcp",
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
-				fmt.Sprintf("github.com/grapl-security/pulumi-%[1]s/sdk/", mainPkg),
+				fmt.Sprintf("github.com/pulumiverse/pulumi-%[1]s/sdk/", mainPkg),
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
 				mainPkg,
@@ -151,6 +151,7 @@ func Provider() tfbridge.ProviderInfo {
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},
+			RootNamespace: "Pulumiverse",
 		},
 	}
 

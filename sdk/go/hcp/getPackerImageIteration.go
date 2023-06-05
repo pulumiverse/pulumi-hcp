@@ -18,22 +18,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-hcp/sdk/go/hcp"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := hcp.GetPackerImageIteration(ctx, &GetPackerImageIterationArgs{
-// 			BucketName: "alpine",
-// 			Channel:    "production",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := hcp.GetPackerImageIteration(ctx, &GetPackerImageIterationArgs{
+//				BucketName: "alpine",
+//				Channel:    "production",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetPackerImageIteration(ctx *pulumi.Context, args *GetPackerImageIterationArgs, opts ...pulumi.InvokeOption) (*GetPackerImageIterationResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

@@ -1,3 +1,3 @@
-// A Pulumi package for creating and managing HCP cloud resources.
+// A Pulumi package for creating and managing HashiCorp Cloud Platform (HCP) cloud resources.
 
 package hcp

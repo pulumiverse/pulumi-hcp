@@ -8,9 +8,9 @@ layout: installation
 
 The Pulumi HashiCorp Cloud Platform (HCP) provider is available as a package in the following Pulumi languages:
 
-* JavaScript/TypeScript: [`@grapl/pulumi-hcp`](https://www.npmjs.com/package/@grapl/pulumi-hcp)
-* Python: [`pulumi_hcp`](https://pypi.org/project/pulumi-hcp/)
-* Go: [`github.com/graphl-security/pulumi-hcp/sdk`](https://pkg.go.dev/github.com/grapl-security/pulumi-hcp/sdk)
+* JavaScript/TypeScript: [`@pulumiverse/hcp`](https://www.npmjs.com/package/@grapl/pulumi-hcp)
+* Python: [`pulumiverse_hcp`](https://pypi.org/project/pulumiverse-hcp/)
+* Go: [`github.com/pulumiverse/pulumi-hcp/sdk`](https://pkg.go.dev/github.com/pulumiverse/pulumi-hcp/sdk)
 
 ## Setup
 

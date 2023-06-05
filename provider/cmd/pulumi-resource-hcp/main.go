@@ -3,9 +3,9 @@
 package main
 
 import (
-	hcp "github.com/grapl-security/pulumi-hcp/provider"
-	"github.com/grapl-security/pulumi-hcp/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	hcp "github.com/pulumiverse/pulumi-hcp/provider"
+	"github.com/pulumiverse/pulumi-hcp/provider/pkg/version"
 )
 
 func main() {

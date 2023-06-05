@@ -19,25 +19,28 @@ import (
 // package main
 //
 // import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-hcp/sdk/go/hcp"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		baz, err := hcp.GetPackerImage(ctx, &GetPackerImageArgs{
-// 			BucketName:    "hardened-ubuntu-16-04",
-// 			CloudProvider: "aws",
-// 			Channel:       pulumi.StringRef("production"),
-// 			Region:        "us-east-1",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("packer-registry-ubuntu-east-1", baz.CloudImageId)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			baz, err := hcp.GetPackerImage(ctx, &GetPackerImageArgs{
+//				BucketName:    "hardened-ubuntu-16-04",
+//				CloudProvider: "aws",
+//				Channel:       pulumi.StringRef("production"),
+//				Region:        "us-east-1",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("packer-registry-ubuntu-east-1", baz.CloudImageId)
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // > **Note:** The `channel` attribute in this data source may incur a billable request to HCP Packer. This attribute is intended for convenience when using a single image. When sourcing multiple images from a single iteration, the `getPackerIteration` data source is the alternative for querying a channel just once.
@@ -47,42 +50,45 @@ import (
 // package main
 //
 // import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-hcp/sdk/go/hcp"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		hardened_source, err := hcp.GetPackerIteration(ctx, &GetPackerIterationArgs{
-// 			BucketName: "hardened-ubuntu-16-04",
-// 			Channel:    "production",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		foo, err := hcp.GetPackerImage(ctx, &GetPackerImageArgs{
-// 			BucketName:    "hardened-ubuntu-16-04",
-// 			CloudProvider: "aws",
-// 			IterationId:   pulumi.StringRef(hardened_source.Ulid),
-// 			Region:        "us-east-1",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		bar, err := hcp.GetPackerImage(ctx, &GetPackerImageArgs{
-// 			BucketName:    "hardened-ubuntu-16-04",
-// 			CloudProvider: "aws",
-// 			IterationId:   pulumi.StringRef(hardened_source.Ulid),
-// 			Region:        "us-west-1",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("packer-registry-ubuntu-east-1", foo.CloudImageId)
-// 		ctx.Export("packer-registry-ubuntu-west-1", bar.CloudImageId)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			hardened_source, err := hcp.GetPackerIteration(ctx, &GetPackerIterationArgs{
+//				BucketName: "hardened-ubuntu-16-04",
+//				Channel:    "production",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			foo, err := hcp.GetPackerImage(ctx, &GetPackerImageArgs{
+//				BucketName:    "hardened-ubuntu-16-04",
+//				CloudProvider: "aws",
+//				IterationId:   pulumi.StringRef(hardened_source.Ulid),
+//				Region:        "us-east-1",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			bar, err := hcp.GetPackerImage(ctx, &GetPackerImageArgs{
+//				BucketName:    "hardened-ubuntu-16-04",
+//				CloudProvider: "aws",
+//				IterationId:   pulumi.StringRef(hardened_source.Ulid),
+//				Region:        "us-west-1",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("packer-registry-ubuntu-east-1", foo.CloudImageId)
+//			ctx.Export("packer-registry-ubuntu-west-1", bar.CloudImageId)
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // > **Note:** This data source only returns the first found image's metadata filtered by the given arguments, from the returned list of images associated with the specified iteration. Therefore, if multiple images exist in the same region, it will only pick one of them. In this case, you can filter images by a source build name (Ex: `amazon-ebs.example`) using the `componentType` optional argument.

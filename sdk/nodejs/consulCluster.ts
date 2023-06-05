@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as hcp from "@grapl/pulumi-hcp";
+ * import * as hcp from "@pulumiverse/hcp";
  *
  * const exampleHvn = new hcp.Hvn("exampleHvn", {
  *     hvnId: "hvn",

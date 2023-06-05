@@ -19,23 +19,26 @@ import (
 // package main
 //
 // import (
-// 	"github.com/grapl-security/pulumi-hcp/sdk/go/hcp"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-hcp/sdk/go/hcp"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := hcp.NewBoundaryCluster(ctx, "example", &hcp.BoundaryClusterArgs{
-// 			ClusterId: pulumi.String("boundary-cluster"),
-// 			Password:  pulumi.String("Password123!"),
-// 			Username:  pulumi.String("test-user"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := hcp.NewBoundaryCluster(ctx, "example", &hcp.BoundaryClusterArgs{
+//				ClusterId: pulumi.String("boundary-cluster"),
+//				Password:  pulumi.String("Password123!"),
+//				Username:  pulumi.String("test-user"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -43,7 +46,9 @@ import (
 // # The import ID is {cluster_id}
 //
 // ```sh
-//  $ pulumi import hcp:index/boundaryCluster:BoundaryCluster example boundary-cluster
+//
+//	$ pulumi import hcp:index/boundaryCluster:BoundaryCluster example boundary-cluster
+//
 // ```
 type BoundaryCluster struct {
 	pulumi.CustomResourceState
@@ -179,7 +184,7 @@ func (i *BoundaryCluster) ToBoundaryClusterOutputWithContext(ctx context.Context
 // BoundaryClusterArrayInput is an input type that accepts BoundaryClusterArray and BoundaryClusterArrayOutput values.
 // You can construct a concrete instance of `BoundaryClusterArrayInput` via:
 //
-//          BoundaryClusterArray{ BoundaryClusterArgs{...} }
+//	BoundaryClusterArray{ BoundaryClusterArgs{...} }
 type BoundaryClusterArrayInput interface {
 	pulumi.Input
 
@@ -204,7 +209,7 @@ func (i BoundaryClusterArray) ToBoundaryClusterArrayOutputWithContext(ctx contex
 // BoundaryClusterMapInput is an input type that accepts BoundaryClusterMap and BoundaryClusterMapOutput values.
 // You can construct a concrete instance of `BoundaryClusterMapInput` via:
 //
-//          BoundaryClusterMap{ "key": BoundaryClusterArgs{...} }
+//	BoundaryClusterMap{ "key": BoundaryClusterArgs{...} }
 type BoundaryClusterMapInput interface {
 	pulumi.Input
 

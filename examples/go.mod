@@ -1,4 +1,4 @@
-module github.com/grapl-security/pulumi-hcp/examples
+module github.com/pulumiverse/pulumi-hcp/examples
 
 go 1.16
 
